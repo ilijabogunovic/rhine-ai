@@ -27,7 +27,7 @@ const Navigation = () => {
               <span className="text-primary-foreground font-bold text-sm">AI</span>
             </div>
             <span className="font-display font-bold text-xl text-foreground">
-              Neural Labs
+              Bogunovic LAB
             </span>
           </Link>
 
