@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const pillars = [
   {
     title: "Agentic AI Systems",
-    description: "Developing autonomous AI agents that can reason, plan, and act independently to solve complex real-world problems through multi-step decision making.",
+    description: "We build self-evolving AI systems, including LLM-based agents, that reason, adapt, and act in complex environments.",
     icon: "🤖"
   },
   {
