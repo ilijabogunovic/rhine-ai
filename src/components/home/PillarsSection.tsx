@@ -2,19 +2,19 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const pillars = [
   {
-    title: "Machine Learning Innovation",
-    description: "Developing novel algorithms and architectures that advance the state-of-the-art in deep learning, reinforcement learning, and federated learning systems.",
-    icon: "🧠"
+    title: "Agentic AI Systems",
+    description: "Developing autonomous AI agents that can reason, plan, and act independently to solve complex real-world problems through multi-step decision making.",
+    icon: "🤖"
   },
   {
-    title: "Responsible AI Development",
-    description: "Ensuring our AI systems are ethical, transparent, and fair through rigorous testing, bias detection, and explainability research.",
-    icon: "⚖️"
+    title: "Learning through Interaction (Reinforcement Learning)",
+    description: "Creating AI systems that learn optimal behaviors through trial and error, adapting to dynamic environments and improving performance over time.",
+    icon: "🔄"
   },
   {
-    title: "Real-World Applications",
-    description: "Translating cutting-edge research into practical solutions for healthcare, climate change, education, and scientific discovery.",
-    icon: "🌍"
+    title: "Exploration & Scientific Discovery",
+    description: "Leveraging AI to accelerate scientific breakthroughs by exploring vast hypothesis spaces and uncovering novel patterns in complex data.",
+    icon: "🔬"
   }
 ];
 
