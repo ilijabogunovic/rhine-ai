@@ -1,20 +1,21 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Bot, RefreshCw, Compass } from "lucide-react";
 
 const pillars = [
   {
     title: "Agentic AI Systems",
     description: "We build self-evolving AI systems, including LLM-based agents, that reason, adapt, and act in complex environments.",
-    icon: "🤖"
+    icon: Bot
   },
   {
     title: "Reinforcement Learning",
     description: "Creating AI systems that learn optimal behaviors through trial and error, adapting to dynamic environments and improving performance over time.",
-    icon: "🔄"
+    icon: RefreshCw
   },
   {
     title: "Exploration & Discovery",
     description: "Leveraging AI to accelerate discovery by exploring vast hypothesis spaces and uncovering novel patterns in complex data.",
-    icon: "🔬"
+    icon: Compass
   }
 ];
 
@@ -40,7 +41,9 @@ const PillarsSection = () => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <CardContent className="p-8 text-center">
-                <div className="text-4xl mb-4">{pillar.icon}</div>
+                <div className="text-primary mb-4">
+                  <pillar.icon size={32} />
+                </div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
                   {pillar.title}
                 </h3>
