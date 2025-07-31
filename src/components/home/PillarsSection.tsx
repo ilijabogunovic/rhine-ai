@@ -12,7 +12,7 @@ const pillars = [
     icon: "🔄"
   },
   {
-    title: "Exploration & Scientific Discovery",
+    title: "Exploration & Discovery",
     description: "Leveraging AI to accelerate scientific breakthroughs by exploring vast hypothesis spaces and uncovering novel patterns in complex data.",
     icon: "🔬"
   }
