@@ -4,7 +4,7 @@ import { Bot, RefreshCw, Compass } from "lucide-react";
 const pillars = [
   {
     title: "Agentic AI Systems",
-    description: "We create AI systems that reason, adapt, and act in complex environments, including LLM-based agents.",
+    description: "We design self-evolving LLM-based agents, that reason, adapt, and act in complex environments.",
     icon: Bot
   },
   {
