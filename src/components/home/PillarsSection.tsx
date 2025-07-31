@@ -7,7 +7,7 @@ const pillars = [
     icon: "🤖"
   },
   {
-    title: "Learning through Interaction (Reinforcement Learning)",
+    title: "Learning through interaction (RL)",
     description: "Creating AI systems that learn optimal behaviors through trial and error, adapting to dynamic environments and improving performance over time.",
     icon: "🔄"
   },
