@@ -6,10 +6,8 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in-up">
-            Agentic Intelligence Research Lab
-            <br />
             <span className="bg-hero-gradient bg-clip-text text-transparent">
-              for Tomorrow
+              Agentic Intelligence Research Lab
             </span>
           </h1>
           <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in-up">
