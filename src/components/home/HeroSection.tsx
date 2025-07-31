@@ -11,7 +11,7 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="font-body text-lg text-muted-foreground max-w-5xl mx-auto mb-8 leading-relaxed animate-fade-in-up">
-            We are part of the Department of Mathematics and Computer Science (DMI) at the University of Basel and the Centre for Artificial Intelligence at University College London, UK. Led by Ilija Bogunovic, our group develops agentic AI systems that reason, adapt, and self-evolve. We focus on sequential decision making and generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
+            We are part of the Department of Mathematics and Computer Science (DMI) at the University of Basel and the Centre for Artificial Intelligence at University College London. Led by Ilija Bogunovic, our group develops agentic AI systems that reason, adapt, and self-evolve. We focus on sequential decision making and generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
             <Button size="lg" className="shadow-elevated">
