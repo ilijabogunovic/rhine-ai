@@ -9,7 +9,7 @@ const pillars = [
   },
   {
     title: "Reinforcement Learning",
-    description: "Creating AI systems that learn optimal behaviors through trial and error, adapting to dynamic environments and improving performance over time.",
+    description: "We create AI systems that learn optimal behaviors through trial and error, adapting to dynamic environments and improving performance over time.",
     icon: RefreshCw
   },
   {
