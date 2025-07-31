@@ -11,9 +11,7 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in-up">
-            Neural Labs is at the forefront of artificial intelligence research, 
-            developing cutting-edge solutions that push the boundaries of what's possible 
-            in machine learning, natural language processing, and computer vision.
+            We are part of the Department of Mathematics and Computer Science (DMI) at the University of Basel and the Centre for Artificial Intelligence at University College London, UK. Led by Ilija Bogunovic, our group develops cutting-edge agentic AI systems designed to reason, adapt, and act autonomously. Our research combines sequential decision making and generative AI to enable novel scientific discovery and create robust, intelligent systems capable of operating in complex, real-world environments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
             <Button size="lg" className="shadow-elevated">
