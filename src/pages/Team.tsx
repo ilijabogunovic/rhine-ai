@@ -63,7 +63,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With J. Knoblauch (UCL)",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/7f65f31f-b2b9-4c66-8eb5-c20194f03c3b.png"
   },
   {
     name: "Dr. Sangwoong Yoon",
