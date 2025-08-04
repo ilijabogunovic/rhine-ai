@@ -13,13 +13,10 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Use screenshot service to capture actual PDF first page
-  const getScreenshotUrl = () => {
-    // Try using screenshot.guru service to capture the PDF
-    return `https://shot.screenshotapi.net/screenshot?token=6VTBAYC-3PCBJ0A-P1E6FKA-EHQBYYA&url=${encodeURIComponent(file)}&width=400&height=520&file_type=png&wait_for_event=load`;
+  // Use Google's PDF viewer to show the actual first page
+  const getGoogleViewerUrl = () => {
+    return `https://drive.google.com/viewerng/viewer?url=${encodeURIComponent(file)}&embedded=true`;
   };
-
-  const screenshotUrl = getScreenshotUrl();
 
   if (imageError) {
     return (
@@ -46,17 +43,18 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
 
   return (
     <div 
-      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
+      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white relative`}
       onClick={handleClick}
     >
-      <img
-        src={screenshotUrl}
-        alt={alt}
-        className="w-full h-full object-cover"
+      <iframe
+        src={getGoogleViewerUrl()}
+        className="w-full h-full"
+        style={{ pointerEvents: 'none' }}
         onError={() => setImageError(true)}
-        onLoad={() => console.log('Real PDF screenshot loaded successfully')}
-        loading="lazy"
+        title={alt}
       />
+      {/* Overlay to make entire area clickable */}
+      <div className="absolute inset-0 bg-transparent cursor-pointer" />
     </div>
   );
 };
