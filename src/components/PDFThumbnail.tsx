@@ -13,9 +13,10 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Use PDF.co service to convert first page to image
+  // Use different PDF to image conversion service
   const getPDFImageUrl = () => {
-    return `https://api.pdf.co/v1/pdf/convert/to/png?url=${encodeURIComponent(file)}&pages=1&async=false`;
+    // Try using htmlcsstoimage.com for better reliability
+    return `https://hcti.io/v1/image?html=<iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(file)}" width="400" height="520"></iframe>&css=iframe{border:none;}&device_scale=2`;
   };
 
   if (imageError) {
