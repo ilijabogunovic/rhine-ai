@@ -100,6 +100,7 @@ const collaborators = [
 ];
 
 const Team = () => {
+  console.log("Team component rendering");
   return (
     <Layout>
       <div className="py-12 px-4 sm:px-6 lg:px-8">
