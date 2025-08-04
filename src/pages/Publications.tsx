@@ -9,7 +9,8 @@ const publications = [
     authors: "S. Chen, M. Rodriguez, A. Kumar, J. Thompson",
     venue: "International Conference on Machine Learning (ICML)",
     type: "Conference Paper",
-    abstract: "We present FairNet, a comprehensive framework for detecting and mitigating bias in deep neural networks..."
+    abstract: "We present FairNet, a comprehensive framework for detecting and mitigating bias in deep neural networks...",
+    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=280&fit=crop"
   },
   {
     year: "2024",
@@ -17,7 +18,8 @@ const publications = [
     authors: "A. Kumar, L. Zhang, S. Chen",
     venue: "Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
-    abstract: "This paper introduces a novel approach to federated learning that maintains privacy while significantly reducing communication overhead..."
+    abstract: "This paper introduces a novel approach to federated learning that maintains privacy while significantly reducing communication overhead...",
+    thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=280&fit=crop"
   },
   {
     year: "2023",
@@ -25,7 +27,8 @@ const publications = [
     authors: "M. Rodriguez, J. Thompson, K. Williams",
     venue: "Nature Machine Intelligence",
     type: "Journal Article",
-    abstract: "We develop advanced neural architectures that integrate satellite imagery, weather data, and climate models for improved prediction accuracy..."
+    abstract: "We develop advanced neural architectures that integrate satellite imagery, weather data, and climate models for improved prediction accuracy...",
+    thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=200&h=280&fit=crop"
   },
   {
     year: "2023",
@@ -33,7 +36,8 @@ const publications = [
     authors: "J. Thompson, S. Chen, A. Kumar",
     venue: "IEEE Transactions on Medical Imaging",
     type: "Survey Paper",
-    abstract: "This survey examines the current state of explainable AI in medical applications, highlighting key challenges and future directions..."
+    abstract: "This survey examines the current state of explainable AI in medical applications, highlighting key challenges and future directions...",
+    thumbnail: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=200&h=280&fit=crop"
   }
 ];
 
@@ -53,19 +57,28 @@ const Publications = () => {
   const renderPublications = (publicationList: typeof publications) => (
     <div className="space-y-10">
       {publicationList.map((paper, index) => (
-        <div key={index} className="space-y-3">
-          <h2 className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer">
-            {paper.title}
-          </h2>
-          <p className="font-body text-muted-foreground text-sm">
-            {paper.authors}
-          </p>
-          <p className="font-body text-muted-foreground italic text-sm">
-            {paper.venue}, {paper.year}
-          </p>
-          <p className="font-body text-foreground leading-relaxed">
-            {paper.abstract}
-          </p>
+        <div key={index} className="flex gap-6">
+          <div className="flex-shrink-0">
+            <img 
+              src={paper.thumbnail} 
+              alt={`${paper.title} paper preview`}
+              className="w-24 h-32 object-cover rounded border border-border shadow-sm"
+            />
+          </div>
+          <div className="flex-1 space-y-3">
+            <h2 className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer">
+              {paper.title}
+            </h2>
+            <p className="font-body text-muted-foreground text-sm">
+              {paper.authors}
+            </p>
+            <p className="font-body text-muted-foreground italic text-sm">
+              {paper.venue}, {paper.year}
+            </p>
+            <p className="font-body text-foreground leading-relaxed">
+              {paper.abstract}
+            </p>
+          </div>
         </div>
       ))}
     </div>
