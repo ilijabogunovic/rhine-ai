@@ -102,14 +102,14 @@ const collaborators = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👨‍🎓"
+    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     name: "Juliusz Ziomek",
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👨‍🎓"
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   }
 ];
 
