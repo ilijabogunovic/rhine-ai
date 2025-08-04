@@ -128,10 +128,24 @@ const Publications = () => {
             <h1 className="font-display text-4xl font-bold text-foreground mb-4">
               Publications
             </h1>
-            <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
               Our research contributions to the scientific community through peer-reviewed 
               publications in top-tier conferences and journals.
             </p>
+            
+            <div className="bg-muted/50 rounded-lg p-6 max-w-2xl mx-auto">
+              <p className="font-body text-foreground mb-4">
+                For an up to date publication list, visit our <span className="text-accent-vibrant font-semibold">Google Scholar!</span>
+              </p>
+              <a 
+                href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-accent-vibrant text-white px-6 py-3 rounded-md font-medium hover:bg-accent-vibrant/90 transition-colors"
+              >
+                Google Scholar
+              </a>
+            </div>
           </div>
 
           <Tabs defaultValue="newest" className="w-full">
