@@ -7,7 +7,7 @@ const teamMembers = [
     role: "Principal Investigator",
     expertise: "",
     bio: "",
-    image: "👨‍💼"
+    image: "/lovable-uploads/7ce7c8b6-c43e-488e-a09a-415bcceee298.png"
   },
   {
     name: "William Bankes",
