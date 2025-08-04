@@ -1,37 +1,101 @@
-import React, { useState } from 'react';
-import paperThumbnail1 from '@/assets/paper-thumbnail-1.jpg';
-import paperThumbnail2 from '@/assets/paper-thumbnail-2.jpg';
-import paperThumbnail3 from '@/assets/paper-thumbnail-3.jpg';
-import paperThumbnail4 from '@/assets/paper-thumbnail-4.jpg';
-import paperThumbnail5 from '@/assets/paper-thumbnail-5.jpg';
+import React, { useState, useEffect } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 interface PDFThumbnailProps {
   file: string;
   className?: string;
   alt?: string;
-  thumbnailIndex?: number;
 }
 
-const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, thumbnailIndex }) => {
-  const [imageError, setImageError] = useState(false);
+const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   
   const handleClick = () => {
     window.open(file, '_blank');
   };
 
-  // Map thumbnail index to actual image
-  const getThumbnailImage = () => {
-    const thumbnails = [
-      paperThumbnail1,
-      paperThumbnail2,
-      paperThumbnail3,
-      paperThumbnail4,
-      paperThumbnail5
-    ];
-    return thumbnails[thumbnailIndex || 0] || paperThumbnail1;
-  };
+  useEffect(() => {
+    const generateThumbnail = async () => {
+      try {
+        setLoading(true);
+        setError(false);
 
-  if (imageError) {
+        // Load the PDF document
+        const pdf = await pdfjsLib.getDocument(file).promise;
+        
+        // Get the first page
+        const page = await pdf.getPage(1);
+        
+        // Set up the canvas
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        
+        if (!context) {
+          throw new Error('Could not get canvas context');
+        }
+
+        // Calculate scale to fit desired thumbnail size
+        const viewport = page.getViewport({ scale: 1 });
+        const scale = Math.min(400 / viewport.width, 520 / viewport.height);
+        const scaledViewport = page.getViewport({ scale });
+        
+        canvas.width = scaledViewport.width;
+        canvas.height = scaledViewport.height;
+
+        // Render the page
+        const renderContext = {
+          canvasContext: context,
+          viewport: scaledViewport,
+          canvas: canvas,
+        };
+        
+        await page.render(renderContext).promise;
+        
+        // Convert canvas to blob URL
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            setThumbnailUrl(url);
+          } else {
+            setError(true);
+          }
+          setLoading(false);
+        }, 'image/jpeg', 0.8);
+        
+      } catch (err) {
+        console.error('Error generating PDF thumbnail:', err);
+        setError(true);
+        setLoading(false);
+      }
+    };
+
+    generateThumbnail();
+
+    // Cleanup function
+    return () => {
+      if (thumbnailUrl) {
+        URL.revokeObjectURL(thumbnailUrl);
+      }
+    };
+  }, [file]);
+
+  if (loading) {
+    return (
+      <div 
+        className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4`}
+      >
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-vibrant"></div>
+        <div className="text-xs text-muted-foreground mt-2">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error || !thumbnailUrl) {
     return (
       <div 
         className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
@@ -60,10 +124,9 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, thumb
       onClick={handleClick}
     >
       <img
-        src={getThumbnailImage()}
+        src={thumbnailUrl}
         alt={alt}
         className="w-full h-full object-cover"
-        onError={() => setImageError(true)}
         loading="lazy"
       />
     </div>
