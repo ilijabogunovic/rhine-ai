@@ -3,6 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const teamMembers = [
   {
+    name: "Prof. Dr. Ilija Bogunovic",
+    role: "Professor & Lab Director",
+    expertise: "",
+    bio: "",
+    image: "👨‍💼"
+  },
+  {
     name: "William Bankes",
     role: "PhD Student",
     expertise: "",
