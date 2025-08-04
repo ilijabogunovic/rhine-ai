@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+// Import the pre-generated thumbnails
+import thumb2502 from '@/assets/pdf-thumbs/thumb-2502.01208.jpg';
+import thumb2503_1 from '@/assets/pdf-thumbs/thumb-2503.00030.jpg';
+import thumb2503_2 from '@/assets/pdf-thumbs/thumb-2503.05856.jpg';
+import thumb2503_3 from '@/assets/pdf-thumbs/thumb-2503.08796.jpg';
+import thumb2507 from '@/assets/pdf-thumbs/thumb-2507.08838.jpg';
 
 interface PDFThumbnailProps {
   file: string;
@@ -6,110 +13,32 @@ interface PDFThumbnailProps {
   alt?: string;
 }
 
+// Map arXiv IDs to their thumbnails
+const THUMBNAIL_MAP: Record<string, string> = {
+  '2502.01208': thumb2502,
+  '2503.00030': thumb2503_1,
+  '2503.05856': thumb2503_2,
+  '2503.08796': thumb2503_3,
+  '2507.08838': thumb2507,
+};
+
 const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
-  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  
   const handleClick = () => {
     window.open(file, '_blank');
   };
 
-  useEffect(() => {
-    const generateThumbnail = async () => {
-      try {
-        setLoading(true);
-        setError(false);
+  // Extract arXiv ID from the file URL
+  const getArxivId = (file: string): string | null => {
+    const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
+    return arxivMatch ? arxivMatch[1] : null;
+  };
 
-        // Dynamic import of PDF.js to avoid SSR issues
-        const pdfjsLib = await import('pdfjs-dist');
-        
-        // Set worker source to latest version
-        pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-          'pdfjs-dist/build/pdf.worker.min.js',
-          import.meta.url,
-        ).toString();
+  const arxivId = getArxivId(file);
+  const thumbnailUrl = arxivId ? THUMBNAIL_MAP[arxivId] : null;
 
-        // Map arXiv URLs to local PDF files
-        let pdfUrl = file;
-        const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
-        if (arxivMatch) {
-          const arxivId = arxivMatch[1];
-          pdfUrl = `/papers/${arxivId}.pdf`;
-        }
+  console.log('PDFThumbnail:', { file, arxivId, thumbnailUrl });
 
-        console.log('Loading PDF from:', pdfUrl);
-
-        // Load the PDF document
-        const loadingTask = pdfjsLib.getDocument({
-          url: pdfUrl,
-          disableAutoFetch: true,
-          disableStream: true,
-        });
-        
-        const pdf = await loadingTask.promise;
-        console.log('PDF loaded successfully, pages:', pdf.numPages);
-        
-        // Get the first page
-        const page = await pdf.getPage(1);
-        console.log('Page 1 loaded');
-        
-        // Set up the canvas
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        
-        if (!context) {
-          throw new Error('Could not get canvas context');
-        }
-
-        // Calculate scale to fit desired thumbnail size
-        const viewport = page.getViewport({ scale: 1.0 });
-        const scale = Math.min(300 / viewport.width, 400 / viewport.height);
-        const scaledViewport = page.getViewport({ scale });
-        
-        canvas.width = scaledViewport.width;
-        canvas.height = scaledViewport.height;
-
-        console.log('Canvas size:', canvas.width, 'x', canvas.height);
-
-        // Render the page
-        const renderContext = {
-          canvasContext: context,
-          viewport: scaledViewport,
-          canvas: canvas,
-        };
-        
-        await page.render(renderContext).promise;
-        console.log('Page rendered successfully');
-        
-        // Convert canvas to data URL
-        const dataURL = canvas.toDataURL('image/png');
-        setThumbnailUrl(dataURL);
-        console.log('Thumbnail generated successfully');
-        setLoading(false);
-        
-      } catch (err) {
-        console.error('Error generating PDF thumbnail:', err);
-        setError(true);
-        setLoading(false);
-      }
-    };
-
-    generateThumbnail();
-  }, [file]);
-
-  if (loading) {
-    return (
-      <div 
-        className={`${className} bg-muted/20 border border-border rounded flex flex-col items-center justify-center p-4`}
-      >
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        <div className="text-xs text-muted-foreground mt-2">Extracting PDF...</div>
-      </div>
-    );
-  }
-
-  if (error || !thumbnailUrl) {
+  if (!thumbnailUrl) {
     return (
       <div 
         className={`${className} bg-muted/20 border border-border rounded flex flex-col items-center justify-center p-4 cursor-pointer hover:bg-muted/30 transition-colors`}
@@ -125,7 +54,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
           </svg>
         </div>
         <div className="text-center">
-          <div className="text-xs font-semibold text-foreground mb-1">PDF</div>
+          <div className="text-xs font-semibold text-foreground mb-1">PDF Document</div>
           <div className="text-xs text-muted-foreground">Click to View</div>
         </div>
       </div>
@@ -139,7 +68,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     >
       <img
         src={thumbnailUrl}
-        alt={alt}
+        alt={alt || 'PDF Thumbnail'}
         className="w-full h-full object-cover"
         loading="lazy"
       />
