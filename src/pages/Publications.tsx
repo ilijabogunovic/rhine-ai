@@ -78,7 +78,6 @@ const Publications = () => {
               file={paper.pdfFile}
               alt={`${paper.title} paper preview`}
               className="w-48 h-64"
-              previewIndex={index}
             />
           </div>
           <div className="flex-1 space-y-3">

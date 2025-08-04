@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
-import paperPreview1 from '@/assets/paper-preview-1.jpg';
-import paperPreview2 from '@/assets/paper-preview-2.jpg';
-import paperPreview3 from '@/assets/paper-preview-3.jpg';
-import paperPreview4 from '@/assets/paper-preview-4.jpg';
-import paperPreview5 from '@/assets/paper-preview-5.jpg';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -13,10 +8,9 @@ interface PDFThumbnailProps {
   file: string;
   className?: string;
   alt?: string;
-  previewIndex?: number;
 }
 
-const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, previewIndex }) => {
+const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -25,33 +19,21 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, previ
     window.open(file, '_blank');
   };
 
-  // Use existing preview images as fallback
-  const getPreviewImage = () => {
-    const previews = [
-      paperPreview1,
-      paperPreview2,
-      paperPreview3,
-      paperPreview4,
-      paperPreview5
-    ];
-    return previews[previewIndex || 0] || paperPreview1;
-  };
-
   useEffect(() => {
     const generateThumbnail = async () => {
       try {
         setLoading(true);
         setError(false);
 
-        // Try to load the local PDF file first
+        // Map arXiv URLs to local PDF files
         let pdfUrl = file;
-        
-        // If it's an arXiv URL, try to map it to our local file
         const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
         if (arxivMatch) {
           const arxivId = arxivMatch[1];
-          pdfUrl = `/src/assets/paper-pdfs/${arxivId}.pdf`;
+          pdfUrl = `/papers/${arxivId}.pdf`;
         }
+
+        console.log('Loading PDF from:', pdfUrl);
 
         // Load the PDF document
         const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
@@ -89,6 +71,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, previ
           if (blob) {
             const url = URL.createObjectURL(blob);
             setThumbnailUrl(url);
+            console.log('Successfully generated PDF thumbnail');
           } else {
             setError(true);
           }
@@ -118,24 +101,30 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, previ
         className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4`}
       >
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-vibrant"></div>
-        <div className="text-xs text-muted-foreground mt-2">Loading...</div>
+        <div className="text-xs text-muted-foreground mt-2">Loading PDF...</div>
       </div>
     );
   }
 
   if (error || !thumbnailUrl) {
-    // Use static preview image as fallback
     return (
       <div 
-        className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
+        className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
         onClick={handleClick}
       >
-        <img
-          src={getPreviewImage()}
-          alt={alt}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <div className="mb-3">
+          <svg
+            className="w-12 h-12 text-red-500"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+          </svg>
+        </div>
+        <div className="text-center">
+          <div className="text-xs font-semibold text-red-600 dark:text-red-400 mb-1">PDF</div>
+          <div className="text-xs text-muted-foreground">Click to View</div>
+        </div>
       </div>
     );
   }
