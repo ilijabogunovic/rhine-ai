@@ -91,8 +91,7 @@ const Team = () => {
               Our Team
             </h1>
             <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-              Meet the brilliant minds behind Neural Labs' groundbreaking research 
-              in artificial intelligence and machine learning.
+              Meet the team.
             </p>
           </div>
 
