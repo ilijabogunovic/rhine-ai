@@ -76,7 +76,7 @@ const Publications = () => {
             <img 
               src={paper.thumbnail} 
               alt={`${paper.title} paper preview`}
-              className="w-32 h-44 object-cover rounded border border-border shadow-sm"
+              className="w-48 h-64 object-cover rounded border border-border shadow-sm"
             />
           </div>
           <div className="flex-1 space-y-3">
