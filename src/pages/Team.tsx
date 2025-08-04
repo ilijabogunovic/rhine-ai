@@ -183,7 +183,7 @@ const Team = () => {
                 >
                   <CardContent className="p-6 text-center">
                     <div className="mb-4">
-                      {collaborator.image.startsWith('/') ? (
+                      {collaborator.image.startsWith('/') || collaborator.image.startsWith('https://') ? (
                          <img 
                            src={collaborator.image} 
                            alt={collaborator.name}
