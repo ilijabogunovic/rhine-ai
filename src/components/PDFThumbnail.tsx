@@ -13,15 +13,20 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Extract arXiv ID from the PDF URL to create thumbnail URL
+  // Extract arXiv ID from the PDF URL
   const arxivId = file.match(/\/(\d{4}\.\d{5})\.pdf$/)?.[1];
   
-  // Use PDF.js viewer URL for thumbnail - this renders the first page as an image
-  const thumbnailUrl = arxivId ? 
-    `https://arxiv.org/pdf/${arxivId}.pdf#page=1&view=FitH&zoom=50` : 
-    null;
+  // Use a PDF-to-image service - try multiple options
+  const getImageUrl = () => {
+    if (!arxivId) return null;
+    
+    // Option 1: Use PDF thumbnail service
+    return `https://api.thumbnail.ws/api/f8a77e7b7df8c7f7c7b8c9f5e3c7f7f7/thumbnail/get?url=${encodeURIComponent(file)}&width=400&height=520`;
+  };
 
-  if (!thumbnailUrl || imageError) {
+  const imageUrl = getImageUrl();
+
+  if (!imageUrl || imageError) {
     return (
       <div 
         className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
@@ -49,15 +54,12 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
       className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
       onClick={handleClick}
     >
-      <iframe
-        src={thumbnailUrl}
-        className="w-full h-full border-0"
-        title={alt}
+      <img
+        src={imageUrl}
+        alt={alt}
+        className="w-full h-full object-cover"
         onError={() => setImageError(true)}
-        style={{ 
-          pointerEvents: 'none',
-          minHeight: '256px'
-        }}
+        onLoad={() => console.log('Thumbnail loaded successfully')}
       />
     </div>
   );
