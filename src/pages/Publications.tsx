@@ -1,6 +1,11 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import paperThumbnail1 from "@/assets/paper-thumbnail-1.jpg";
+import paperThumbnail2 from "@/assets/paper-thumbnail-2.jpg";
+import paperThumbnail3 from "@/assets/paper-thumbnail-3.jpg";
+import paperThumbnail4 from "@/assets/paper-thumbnail-4.jpg";
+import paperThumbnail5 from "@/assets/paper-thumbnail-5.jpg";
 
 const publications = [
   {
@@ -10,7 +15,7 @@ const publications = [
     venue: "arXiv preprint arXiv:2507.08838",
     type: "Preprint",
     abstract: "We present wd1, a novel weighted policy optimization approach that enhances reasoning capabilities in diffusion-based language models through sophisticated training strategies...",
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=280&fit=crop"
+    thumbnail: paperThumbnail1
   },
   {
     year: "2025",
@@ -19,7 +24,7 @@ const publications = [
     venue: "arXiv preprint arXiv:2503.08796",
     type: "Preprint",
     abstract: "This work addresses the challenge of multi-objective controlled decoding in large language models, providing robust methods for steering model outputs across multiple objectives simultaneously...",
-    thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=280&fit=crop"
+    thumbnail: paperThumbnail2
   },
   {
     year: "2025",
@@ -28,7 +33,7 @@ const publications = [
     venue: "arXiv preprint arXiv:2503.05856",
     type: "Preprint",
     abstract: "We investigate deception and robustness properties in mixture of experts language models, exploring how multiple models can be combined while maintaining trustworthiness and reliability...",
-    thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=200&h=280&fit=crop"
+    thumbnail: paperThumbnail3
   },
   {
     year: "2025",
@@ -37,7 +42,7 @@ const publications = [
     venue: "arXiv preprint arXiv:2503.00030",
     type: "Preprint",
     abstract: "We develop a game-theoretic framework for self-play alignment in large language models, using regularization techniques to improve model behavior through strategic interactions...",
-    thumbnail: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=200&h=280&fit=crop"
+    thumbnail: paperThumbnail4
   },
   {
     year: "2025",
@@ -46,7 +51,7 @@ const publications = [
     venue: "arXiv preprint arXiv:2502.01208",
     type: "Preprint",
     abstract: "This paper presents theoretical and practical methods for ensuring almost sure safety in large language model alignment during inference, providing probabilistic guarantees for model behavior...",
-    thumbnail: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=200&h=280&fit=crop"
+    thumbnail: paperThumbnail5
   }
 ];
 
