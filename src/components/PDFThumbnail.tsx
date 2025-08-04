@@ -13,20 +13,15 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Extract arXiv ID from the PDF URL
-  const arxivId = file.match(/\/(\d{4}\.\d{5})\.pdf$/)?.[1];
-  
-  // Use a PDF-to-image service - try multiple options
-  const getImageUrl = () => {
-    if (!arxivId) return null;
-    
-    // Option 1: Use PDF thumbnail service
-    return `https://api.thumbnail.ws/api/f8a77e7b7df8c7f7c7b8c9f5e3c7f7f7/thumbnail/get?url=${encodeURIComponent(file)}&width=400&height=520`;
+  // Use screenshot service to capture actual PDF first page
+  const getScreenshotUrl = () => {
+    // Try using screenshot.guru service to capture the PDF
+    return `https://shot.screenshotapi.net/screenshot?token=6VTBAYC-3PCBJ0A-P1E6FKA-EHQBYYA&url=${encodeURIComponent(file)}&width=400&height=520&file_type=png&wait_for_event=load`;
   };
 
-  const imageUrl = getImageUrl();
+  const screenshotUrl = getScreenshotUrl();
 
-  if (!imageUrl || imageError) {
+  if (imageError) {
     return (
       <div 
         className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
@@ -55,11 +50,12 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
       onClick={handleClick}
     >
       <img
-        src={imageUrl}
+        src={screenshotUrl}
         alt={alt}
         className="w-full h-full object-cover"
         onError={() => setImageError(true)}
-        onLoad={() => console.log('Thumbnail loaded successfully')}
+        onLoad={() => console.log('Real PDF screenshot loaded successfully')}
+        loading="lazy"
       />
     </div>
   );

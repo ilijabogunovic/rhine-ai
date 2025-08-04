@@ -1,11 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import paperPreview1 from "@/assets/paper-preview-1.jpg";
-import paperPreview2 from "@/assets/paper-preview-2.jpg";
-import paperPreview3 from "@/assets/paper-preview-3.jpg";
-import paperPreview4 from "@/assets/paper-preview-4.jpg";
-import paperPreview5 from "@/assets/paper-preview-5.jpg";
+import PDFThumbnail from "@/components/PDFThumbnail";
 
 const publications = [
   {
@@ -16,8 +12,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step...",
-    pdfFile: "https://arxiv.org/pdf/2507.08838.pdf",
-    previewImage: paperPreview1
+    pdfFile: "https://arxiv.org/pdf/2507.08838.pdf"
   },
   {
     year: "2025",
@@ -27,8 +22,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.08796",
     abstract: "Test-time alignment of Large Language Models (LLMs) to human preferences offers a flexible way to generate responses aligned to diverse objectives without extensive retraining of LLMs. Existing methods achieve alignment to multiple objectives simultaneously...",
-    pdfFile: "https://arxiv.org/pdf/2503.08796.pdf",
-    previewImage: paperPreview2
+    pdfFile: "https://arxiv.org/pdf/2503.08796.pdf"
   },
   {
     year: "2025",
@@ -38,8 +32,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.05856",
     abstract: "Mixture of large language model (LLMs) Agents (MoA) architectures achieve state-of-the-art performance on prominent benchmarks like AlpacaEval 2.0 by leveraging the collaboration of multiple LLMs at inference time. Despite these successes, an evaluation of the safety and reliability of MoA is missing...",
-    pdfFile: "https://arxiv.org/pdf/2503.05856.pdf",
-    previewImage: paperPreview3
+    pdfFile: "https://arxiv.org/pdf/2503.05856.pdf"
   },
   {
     year: "2025",
@@ -49,8 +42,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.00030",
     abstract: "Self-play alignment has emerged as an effective approach for fine-tuning large language models (LLMs), formulating preference optimization as a two-player game. However, the regularization with respect to the reference policy, which is crucial for mitigating over-optimization, has been insufficiently investigated in self-play alignment...",
-    pdfFile: "https://arxiv.org/pdf/2503.00030.pdf",
-    previewImage: paperPreview4
+    pdfFile: "https://arxiv.org/pdf/2503.00030.pdf"
   },
   {
     year: "2025",
@@ -60,8 +52,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2502.01208",
     abstract: "We introduce a novel inference-time alignment approach for LLMs that aims to generate safe responses almost surely, i.e., with probability approaching one. Our approach models the generation of safe responses as a constrained Markov Decision Process (MDP) within the LLM's latent space...",
-    pdfFile: "https://arxiv.org/pdf/2502.01208.pdf",
-    previewImage: paperPreview5
+    pdfFile: "https://arxiv.org/pdf/2502.01208.pdf"
   }
 ];
 
@@ -83,16 +74,11 @@ const Publications = () => {
       {publicationList.map((paper, index) => (
         <div key={index} className="flex gap-6">
           <div className="flex-shrink-0">
-            <div 
-              className="w-48 h-64 cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden"
-              onClick={() => window.open(paper.pdfFile, '_blank')}
-            >
-              <img 
-                src={paper.previewImage} 
-                alt={`${paper.title} paper preview`}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <PDFThumbnail
+              file={paper.pdfFile}
+              alt={`${paper.title} paper preview`}
+              className="w-48 h-64"
+            />
           </div>
           <div className="flex-1 space-y-3">
             <a 
