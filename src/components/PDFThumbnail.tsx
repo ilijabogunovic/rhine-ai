@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
+import paperThumbnail1 from '@/assets/paper-thumbnail-1.jpg';
+import paperThumbnail2 from '@/assets/paper-thumbnail-2.jpg';
+import paperThumbnail3 from '@/assets/paper-thumbnail-3.jpg';
+import paperThumbnail4 from '@/assets/paper-thumbnail-4.jpg';
+import paperThumbnail5 from '@/assets/paper-thumbnail-5.jpg';
 
 interface PDFThumbnailProps {
   file: string;
   className?: string;
   alt?: string;
+  thumbnailIndex?: number;
 }
 
-const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
+const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, thumbnailIndex }) => {
   const [imageError, setImageError] = useState(false);
   
   const handleClick = () => {
     window.open(file, '_blank');
   };
 
-  // Extract arXiv ID from the PDF URL and use arXiv's thumbnail service
-  const getArxivThumbnailUrl = () => {
-    const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
-    if (arxivMatch) {
-      const arxivId = arxivMatch[1];
-      // Use Screenshotlayer API to capture arXiv abstract page which has the paper preview
-      return `http://api.screenshotlayer.com/api/capture?access_key=c3b8a7f7c4e9d2a1b5f8e3c6d9a2b5f8&url=https://arxiv.org/abs/${arxivId}&viewport=1280x1024&width=400&format=PNG`;
-    }
-    // Fallback to PDF screenshot service
-    return `https://api.htmlcsstoimage.com/?html=<div style="width:400px;height:520px;"><iframe src="${file}" width="400" height="520" frameborder="0"></iframe></div>&css=iframe{border:none;zoom:0.8;}&width=400&height=520`;
+  // Map thumbnail index to actual image
+  const getThumbnailImage = () => {
+    const thumbnails = [
+      paperThumbnail1,
+      paperThumbnail2,
+      paperThumbnail3,
+      paperThumbnail4,
+      paperThumbnail5
+    ];
+    return thumbnails[thumbnailIndex || 0] || paperThumbnail1;
   };
 
   if (imageError) {
@@ -54,7 +60,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
       onClick={handleClick}
     >
       <img
-        src={getArxivThumbnailUrl()}
+        src={getThumbnailImage()}
         alt={alt}
         className="w-full h-full object-cover"
         onError={() => setImageError(true)}
