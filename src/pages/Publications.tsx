@@ -14,6 +14,7 @@ const publications = [
     authors: "X Tang, R Dolga, S Yoon, I Bogunovic",
     venue: "arXiv preprint arXiv:2507.08838",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "We present wd1, a novel weighted policy optimization approach that enhances reasoning capabilities in diffusion-based language models through sophisticated training strategies. Our method introduces adaptive weighting mechanisms that dynamically adjust policy gradients based on reasoning complexity and uncertainty estimates. We demonstrate significant improvements in mathematical reasoning, logical inference, and multi-step problem solving across diverse benchmarks. The approach leverages diffusion processes to generate more coherent and contextually appropriate responses while maintaining computational efficiency. Experimental results show substantial gains over baseline methods in both accuracy and reasoning quality, with particular strengths in handling complex multi-step problems that require sustained logical thinking.",
     thumbnail: paperThumbnail1
   },
@@ -23,6 +24,7 @@ const publications = [
     authors: "S Son, W Bankes, S Yoon, SS Ramesh, X Tang, I Bogunovic",
     venue: "arXiv preprint arXiv:2503.08796",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2503.08796",
     abstract: "This work addresses the challenge of multi-objective controlled decoding in large language models, providing robust methods for steering model outputs across multiple objectives simultaneously. We introduce a novel framework that balances competing objectives such as truthfulness, helpfulness, and safety during the generation process. Our approach employs constrained optimization techniques with uncertainty quantification to ensure reliable performance across diverse deployment scenarios. The method incorporates adaptive regularization that adjusts based on the complexity and potential risks of different generation contexts. Comprehensive experiments demonstrate superior performance in maintaining coherent outputs while satisfying multiple constraints, with particular improvements in scenarios requiring careful balance between informativeness and safety considerations.",
     thumbnail: paperThumbnail2
   },
@@ -32,6 +34,7 @@ const publications = [
     authors: "L Wolf, S Yoon, I Bogunovic",
     venue: "arXiv preprint arXiv:2503.05856",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2503.05856",
     abstract: "We investigate deception and robustness properties in mixture of experts language models, exploring how multiple models can be combined while maintaining trustworthiness and reliability. This study examines the emergent behaviors that arise when different language models with varying capabilities and biases are combined through mixture architectures. We develop novel detection methods for identifying potential deceptive outputs and propose robustness guarantees for mixture systems. The work includes both theoretical analysis of information aggregation in multi-model systems and empirical evaluation on benchmarks designed to test model honesty and consistency. Our findings reveal important trade-offs between model diversity and reliability, providing practical guidelines for deploying mixture systems in high-stakes applications.",
     thumbnail: paperThumbnail3
   },
@@ -41,6 +44,7 @@ const publications = [
     authors: "X Tang, S Yoon, S Son, H Yuan, Q Gu, I Bogunovic",
     venue: "arXiv preprint arXiv:2503.00030",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2503.00030",
     abstract: "We develop a game-theoretic framework for self-play alignment in large language models, using regularization techniques to improve model behavior through strategic interactions. Our approach models the alignment process as a multi-agent game where different versions of the model compete and cooperate to achieve desired behaviors. The framework incorporates sophisticated regularization mechanisms that prevent exploitation and ensure convergence to beneficial equilibria. We introduce novel algorithms that balance exploration and exploitation in the policy space while maintaining safety constraints. Extensive experiments demonstrate significant improvements in model helpfulness, harmlessness, and honesty compared to standard fine-tuning approaches. The method shows particular promise for scenarios requiring nuanced understanding of human preferences and complex ethical considerations.",
     thumbnail: paperThumbnail4
   },
@@ -50,6 +54,7 @@ const publications = [
     authors: "X Ji, SS Ramesh, M Zimmer, I Bogunovic, J Wang, HB Ammar",
     venue: "arXiv preprint arXiv:2502.01208",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2502.01208",
     abstract: "This paper presents theoretical and practical methods for ensuring almost sure safety in large language model alignment during inference, providing probabilistic guarantees for model behavior. We develop a comprehensive framework that combines online monitoring, adaptive intervention, and probabilistic safety certificates to maintain alignment properties with high confidence. The approach includes novel algorithms for real-time safety assessment and corrective mechanisms that can intervene when potential safety violations are detected. Our theoretical analysis provides formal guarantees on the probability of maintaining safe behavior over extended deployment periods. Empirical evaluation demonstrates the effectiveness of our methods across diverse scenarios, with particular attention to edge cases and adversarial inputs that might compromise model safety.",
     thumbnail: paperThumbnail5
   }
@@ -80,9 +85,14 @@ const Publications = () => {
             />
           </div>
           <div className="flex-1 space-y-3">
-            <h2 className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer">
+            <a 
+              href={paper.arxivLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer block"
+            >
               {paper.title}
-            </h2>
+            </a>
             <p className="font-body text-muted-foreground text-sm">
               {paper.authors}
             </p>
@@ -92,6 +102,16 @@ const Publications = () => {
             <p className="font-body text-foreground leading-relaxed">
               {paper.abstract}
             </p>
+            <div className="flex items-center gap-3 pt-2">
+              <a 
+                href={paper.arxivLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+              >
+                arXiv Link
+              </a>
+            </div>
           </div>
         </div>
       ))}
