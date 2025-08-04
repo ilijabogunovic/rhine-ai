@@ -41,7 +41,7 @@ const publications = [
   },
   {
     year: "2025",
-    title: "Almost surely safe alignment of large language models at inference-time",
+    title: "Almost Surely Safe Alignment of Large Language Models at Inference-Time",
     authors: "X Ji, SS Ramesh, M Zimmer, I Bogunovic, J Wang, HB Ammar",
     venue: "arXiv preprint arXiv:2502.01208",
     type: "Preprint",
