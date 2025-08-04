@@ -42,7 +42,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With B. Paige (UCL)",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/712dd942-6db4-40ca-a574-ccb2c35e3747.png"
   },
   {
     name: "Zhe Wang",
