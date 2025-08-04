@@ -14,7 +14,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/bab51e5a-ed71-42f6-bd0a-cf18969fee4c.png"
   },
   {
     name: "Shyam Sundhar Ramesh",
@@ -110,7 +110,17 @@ const Team = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-6 text-center">
-                  <div className="text-6xl mb-4">{member.image}</div>
+                  <div className="mb-4">
+                    {member.image.startsWith('/') ? (
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-24 h-24 rounded-full mx-auto object-cover"
+                      />
+                    ) : (
+                      <div className="text-6xl">{member.image}</div>
+                    )}
+                  </div>
                   <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                     {member.name}
                   </h3>
