@@ -56,7 +56,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With J. Parker-Holder (Google DeepMind)",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/de78cc23-d7f1-4a57-be78-b0479e0e03c6.png"
   },
   {
     name: "Abdelhamid Ezzerg",
