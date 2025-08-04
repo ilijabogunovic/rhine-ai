@@ -84,32 +84,18 @@ const teamMembers = [
 
 const collaborators = [
   {
-    name: "Prof. B. Paige",
-    role: "UCL Collaborator",
-    expertise: "Probabilistic Programming",
-    bio: "University College London",
-    image: "🎓"
+    name: "Lorenz Wolf",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👤"
   },
   {
-    name: "J. Parker-Holder",
-    role: "Google DeepMind",
-    expertise: "Reinforcement Learning",
-    bio: "Google DeepMind Research",
-    image: "🤖"
-  },
-  {
-    name: "J. Knoblauch",
-    role: "UCL Collaborator", 
-    expertise: "Bayesian Methods",
-    bio: "University College London",
-    image: "📊"
-  },
-  {
-    name: "UKAEA",
-    role: "Industry Partner",
-    expertise: "Fusion Energy",
-    bio: "UK Atomic Energy Authority",
-    image: "⚛️"
+    name: "Rares Dolge",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👤"
   }
 ];
 
