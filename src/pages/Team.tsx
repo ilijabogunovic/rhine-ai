@@ -96,6 +96,20 @@ const collaborators = [
     expertise: "",
     bio: "",
     image: "/lovable-uploads/rares-dolge-avatar.jpg"
+  },
+  {
+    name: "Colin Doumont",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Juliusz Ziomek",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👨‍🎓"
   }
 ];
 
