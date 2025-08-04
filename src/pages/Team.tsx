@@ -158,11 +158,11 @@ const Team = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {collaborators.map((collaborator, index) => (
                 <Card 
                   key={index} 
-                  className="shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in border-accent/20"
+                  className="shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in"
                   style={{ animationDelay: `${(teamMembers.length + index) * 0.1}s` }}
                 >
                   <CardContent className="p-6 text-center">
