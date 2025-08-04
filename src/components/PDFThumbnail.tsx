@@ -1,11 +1,4 @@
-import React from 'react';
-
-// Import the pre-generated thumbnails
-import thumb2502 from '@/assets/pdf-thumbs/thumb-2502.01208.jpg';
-import thumb2503_1 from '@/assets/pdf-thumbs/thumb-2503.00030.jpg';
-import thumb2503_2 from '@/assets/pdf-thumbs/thumb-2503.05856.jpg';
-import thumb2503_3 from '@/assets/pdf-thumbs/thumb-2503.08796.jpg';
-import thumb2507 from '@/assets/pdf-thumbs/thumb-2507.08838.jpg';
+import React, { useState, useEffect } from 'react';
 
 interface PDFThumbnailProps {
   file: string;
@@ -13,30 +6,80 @@ interface PDFThumbnailProps {
   alt?: string;
 }
 
-// Map arXiv IDs to their thumbnails
-const THUMBNAIL_MAP: Record<string, string> = {
-  '2502.01208': thumb2502,
-  '2503.00030': thumb2503_1,
-  '2503.05856': thumb2503_2,
-  '2503.08796': thumb2503_3,
-  '2507.08838': thumb2507,
-};
-
 const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const handleClick = () => {
     window.open(file, '_blank');
   };
 
-  // Extract arXiv ID from the file URL
-  const getArxivId = (file: string): string | null => {
-    const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
-    return arxivMatch ? arxivMatch[1] : null;
-  };
+  useEffect(() => {
+    const extractRealThumbnail = async () => {
+      try {
+        // Get arXiv ID and use local PDF
+        const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
+        if (!arxivMatch) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
 
-  const arxivId = getArxivId(file);
-  const thumbnailUrl = arxivId ? THUMBNAIL_MAP[arxivId] : null;
+        const arxivId = arxivMatch[1];
+        const pdfUrl = `/papers/${arxivId}.pdf`;
 
-  console.log('PDFThumbnail:', { file, arxivId, thumbnailUrl });
+        // Use PDF2PIC service to convert PDF to image
+        const response = await fetch(`https://api.pdf2pic.com/v1/convert`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            pdf_url: `${window.location.origin}${pdfUrl}`,
+            page: 1,
+            format: 'jpg',
+            quality: 90
+          })
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.image_url) {
+            setThumbnailUrl(result.image_url);
+            setLoading(false);
+            return;
+          }
+        }
+
+        // Fallback: Try PDF-lib in browser
+        const pdfjsLib = await import('pdfjs-dist');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 1.5 });
+        
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d')!;
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({ canvasContext: context, viewport, canvas }).promise;
+        
+        const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+        setThumbnailUrl(dataURL);
+        setLoading(false);
+
+      } catch (err) {
+        console.error('Real thumbnail extraction failed:', err);
+        setError(true);
+        setLoading(false);
+      }
+    };
+
+    extractRealThumbnail();
+  }, [file]);
 
   if (!thumbnailUrl) {
     return (
