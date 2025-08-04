@@ -38,7 +38,7 @@ const publications = [
 ];
 
 const Publications = () => {
-  const newestPublications = publications.filter(paper => paper.year === "2024");
+  const newestPublications = publications.slice(0, 5);
   
   const publicationsByYear = publications.reduce((acc, paper) => {
     if (!acc[paper.year]) {
@@ -51,33 +51,22 @@ const Publications = () => {
   const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
   
   const renderPublications = (publicationList: typeof publications) => (
-    <div className="space-y-6">
+    <div className="space-y-10">
       {publicationList.map((paper, index) => (
-        <Card key={index} className="shadow-card hover:shadow-elevated transition-shadow duration-300">
-          <CardHeader>
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
-              <div className="flex-1">
-                <h2 className="font-display text-xl font-semibold text-foreground mb-2">
-                  {paper.title}
-                </h2>
-                <p className="font-body text-muted-foreground mb-1">
-                  {paper.authors}
-                </p>
-                <p className="font-body text-sm text-accent-vibrant font-medium">
-                  {paper.venue} • {paper.type}
-                </p>
-              </div>
-              <span className="font-body text-sm text-muted-foreground font-medium">
-                {paper.year}
-              </span>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="font-body text-muted-foreground">
-              {paper.abstract}
-            </p>
-          </CardContent>
-        </Card>
+        <div key={index} className="space-y-3">
+          <h2 className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer">
+            {paper.title}
+          </h2>
+          <p className="font-body text-muted-foreground text-sm">
+            {paper.authors}
+          </p>
+          <p className="font-body text-muted-foreground italic text-sm">
+            {paper.venue}, {paper.year}
+          </p>
+          <p className="font-body text-foreground leading-relaxed">
+            {paper.abstract}
+          </p>
+        </div>
       ))}
     </div>
   );
