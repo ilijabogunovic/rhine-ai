@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const publications = [
   {
@@ -37,6 +38,40 @@ const publications = [
 ];
 
 const Publications = () => {
+  const newestPublications = publications.filter(paper => paper.year === "2024");
+  
+  const renderPublications = (publicationList: typeof publications) => (
+    <div className="space-y-6">
+      {publicationList.map((paper, index) => (
+        <Card key={index} className="shadow-card hover:shadow-elevated transition-shadow duration-300">
+          <CardHeader>
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
+              <div className="flex-1">
+                <h2 className="font-display text-xl font-semibold text-foreground mb-2">
+                  {paper.title}
+                </h2>
+                <p className="font-body text-muted-foreground mb-1">
+                  {paper.authors}
+                </p>
+                <p className="font-body text-sm text-accent-vibrant font-medium">
+                  {paper.venue} • {paper.type}
+                </p>
+              </div>
+              <span className="font-body text-sm text-muted-foreground font-medium">
+                {paper.year}
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="font-body text-muted-foreground">
+              {paper.abstract}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
   return (
     <Layout>
       <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -51,35 +86,20 @@ const Publications = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
-            {publications.map((paper, index) => (
-              <Card key={index} className="shadow-card hover:shadow-elevated transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
-                    <div className="flex-1">
-                      <h2 className="font-display text-xl font-semibold text-foreground mb-2">
-                        {paper.title}
-                      </h2>
-                      <p className="font-body text-muted-foreground mb-1">
-                        {paper.authors}
-                      </p>
-                      <p className="font-body text-sm text-accent-vibrant font-medium">
-                        {paper.venue} • {paper.type}
-                      </p>
-                    </div>
-                    <span className="font-body text-sm text-muted-foreground font-medium">
-                      {paper.year}
-                    </span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="font-body text-muted-foreground">
-                    {paper.abstract}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Tabs defaultValue="newest" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
+              <TabsTrigger value="newest">Newest Publications</TabsTrigger>
+              <TabsTrigger value="all">All Publications</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="newest">
+              {renderPublications(newestPublications)}
+            </TabsContent>
+            
+            <TabsContent value="all">
+              {renderPublications(publications)}
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </Layout>
