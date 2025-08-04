@@ -82,6 +82,37 @@ const teamMembers = [
   }
 ];
 
+const collaborators = [
+  {
+    name: "Prof. B. Paige",
+    role: "UCL Collaborator",
+    expertise: "Probabilistic Programming",
+    bio: "University College London",
+    image: "🎓"
+  },
+  {
+    name: "J. Parker-Holder",
+    role: "Google DeepMind",
+    expertise: "Reinforcement Learning",
+    bio: "Google DeepMind Research",
+    image: "🤖"
+  },
+  {
+    name: "J. Knoblauch",
+    role: "UCL Collaborator", 
+    expertise: "Bayesian Methods",
+    bio: "University College London",
+    image: "📊"
+  },
+  {
+    name: "UKAEA",
+    role: "Industry Partner",
+    expertise: "Fusion Energy",
+    bio: "UK Atomic Energy Authority",
+    image: "⚛️"
+  }
+];
+
 const Team = () => {
   return (
     <Layout>
@@ -127,6 +158,46 @@ const Team = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Collaborators Section */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl font-bold text-foreground mb-4">
+                Our Collaborators
+              </h2>
+              <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
+                We work closely with leading researchers and institutions worldwide to push the boundaries of AI research.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {collaborators.map((collaborator, index) => (
+                <Card 
+                  key={index} 
+                  className="shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in border-accent/20"
+                  style={{ animationDelay: `${(teamMembers.length + index) * 0.1}s` }}
+                >
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="text-4xl">{collaborator.image}</div>
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                      {collaborator.name}
+                    </h3>
+                    <p className="font-body text-accent-vibrant font-medium mb-1 text-sm">
+                      {collaborator.role}
+                    </p>
+                    <p className="font-body text-xs text-muted-foreground mb-2">
+                      {collaborator.expertise}
+                    </p>
+                    <p className="font-body text-xs text-muted-foreground">
+                      {collaborator.bio}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
