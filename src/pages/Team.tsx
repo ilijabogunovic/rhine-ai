@@ -91,7 +91,7 @@ const collaborators = [
     image: "/lovable-uploads/lorenz-wolf-avatar.jpg"
   },
   {
-    name: "Rares Dolge",
+    name: "Rares Dolga",
     role: "PhD Student",
     expertise: "",
     bio: "",
