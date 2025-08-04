@@ -28,7 +28,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/f9b74fce-3193-459f-af51-21643847fec5.png"
   },
   {
     name: "Theo Brown",
