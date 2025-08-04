@@ -117,9 +117,6 @@ const Team = () => {
                   <p className="font-body text-accent-vibrant font-medium mb-2">
                     {member.role}
                   </p>
-                  <p className="font-body text-sm text-muted-foreground mb-4">
-                    <strong>Expertise:</strong> {member.expertise}
-                  </p>
                   <p className="font-body text-sm text-muted-foreground">
                     {member.bio}
                   </p>
