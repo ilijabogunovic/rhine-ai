@@ -7,7 +7,7 @@ const teamMembers = [
     name: "Prof. Dr. Ilija Bogunovic",
     role: "Principal Investigator",
     expertise: "",
-    bio: "University of Basel\nUniversity College London (honorary)",
+    bio: "University of Basel\nUniversity College London",
     image: "/lovable-uploads/7ce7c8b6-c43e-488e-a09a-415bcceee298.png"
   },
   {
