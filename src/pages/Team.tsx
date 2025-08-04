@@ -88,14 +88,14 @@ const collaborators = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👤"
+    image: "/lovable-uploads/lorenz-wolf-avatar.jpg"
   },
   {
     name: "Rares Dolge",
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👤"
+    image: "/lovable-uploads/rares-dolge-avatar.jpg"
   }
 ];
 
@@ -167,7 +167,15 @@ const Team = () => {
                 >
                   <CardContent className="p-6 text-center">
                     <div className="mb-4">
-                      <div className="text-4xl">{collaborator.image}</div>
+                      {collaborator.image.startsWith('/') ? (
+                        <img 
+                          src={collaborator.image} 
+                          alt={collaborator.name}
+                          className="w-32 h-32 rounded-full mx-auto object-cover object-top"
+                        />
+                      ) : (
+                        <div className="text-4xl">{collaborator.image}</div>
+                      )}
                     </div>
                     <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                       {collaborator.name}
