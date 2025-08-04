@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 interface PDFThumbnailProps {
   file: string;
@@ -7,82 +7,21 @@ interface PDFThumbnailProps {
 }
 
 const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadPDF = async () => {
-      try {
-        console.log('Starting PDF load for:', file);
-        
-        // Import PDF.js dynamically
-        const pdfjsLib = await import('pdfjs-dist');
-        console.log('PDF.js loaded, version:', pdfjsLib.version);
-        
-        // Try multiple worker setup approaches
-        try {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-            'pdfjs-dist/build/pdf.worker.min.mjs',
-            import.meta.url
-          ).toString();
-        } catch (workerError) {
-          console.log('Primary worker setup failed, trying fallback');
-          // Fallback: disable worker for thumbnails
-          pdfjsLib.GlobalWorkerOptions.workerSrc = '';
-        }
-        
-        console.log('Worker configured, loading document...');
-
-        const loadingTask = pdfjsLib.getDocument(file);
-        const pdf = await loadingTask.promise;
-        const page = await pdf.getPage(1);
-
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const context = canvas.getContext('2d');
-        if (!context) return;
-
-        // Calculate the scale to fit the thumbnail size
-        const viewport = page.getViewport({ scale: 1 });
-        const scale = Math.min(192 / viewport.width, 256 / viewport.height); // w-48 = 192px, h-64 = 256px
-        const scaledViewport = page.getViewport({ scale });
-
-        canvas.width = scaledViewport.width;
-        canvas.height = scaledViewport.height;
-
-        const renderContext = {
-          canvasContext: context,
-          viewport: scaledViewport,
-          canvas: canvas,
-        };
-
-        await page.render(renderContext).promise;
-        setLoading(false);
-      } catch (err) {
-        console.error('Error loading PDF:', err);
-        setError('Failed to load PDF preview');
-        setLoading(false);
-      }
-    };
-
-    loadPDF();
-  }, [file]);
-
+  const [imageError, setImageError] = useState(false);
+  
   const handleClick = () => {
     window.open(file, '_blank');
   };
 
-  if (loading) {
-    return (
-      <div className={`${className} bg-muted animate-pulse flex items-center justify-center border border-border rounded`}>
-        <span className="text-muted-foreground text-sm">Loading...</span>
-      </div>
-    );
-  }
+  // Extract arXiv ID from the PDF URL to create thumbnail URL
+  const arxivId = file.match(/\/(\d{4}\.\d{5})\.pdf$/)?.[1];
+  
+  // Use PDF.js viewer URL for thumbnail - this renders the first page as an image
+  const thumbnailUrl = arxivId ? 
+    `https://arxiv.org/pdf/${arxivId}.pdf#page=1&view=FitH&zoom=50` : 
+    null;
 
-  if (error) {
+  if (!thumbnailUrl || imageError) {
     return (
       <div 
         className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
@@ -107,13 +46,18 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
 
   return (
     <div 
-      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden`}
+      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
       onClick={handleClick}
     >
-      <canvas 
-        ref={canvasRef} 
-        className="w-full h-full object-cover"
-        style={{ maxWidth: '100%', maxHeight: '100%' }}
+      <iframe
+        src={thumbnailUrl}
+        className="w-full h-full border-0"
+        title={alt}
+        onError={() => setImageError(true)}
+        style={{ 
+          pointerEvents: 'none',
+          minHeight: '256px'
+        }}
       />
     </div>
   );
