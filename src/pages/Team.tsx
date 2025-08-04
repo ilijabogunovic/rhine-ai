@@ -78,6 +78,13 @@ const teamMembers = [
     expertise: "",
     bio: "",
     image: "👨‍🔬"
+  },
+  {
+    name: "Your Name Here?",
+    role: "Join Our Team",
+    expertise: "",
+    bio: "We're always looking for passionate researchers to join our lab. Contact us if you're interested!",
+    image: "🚀"
   }
 ];
 
