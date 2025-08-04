@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const teamMembers = [
   {
     name: "Prof. Dr. Ilija Bogunovic",
-    role: "Professor & Lab Director",
+    role: "Principal Investigator",
     expertise: "",
     bio: "",
     image: "👨‍💼"
