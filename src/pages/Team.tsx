@@ -3,46 +3,74 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const teamMembers = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Principal Researcher & Lab Director",
-    expertise: "Machine Learning, Neural Networks, Fairness in AI",
-    bio: "Former lead scientist at DeepMind with 10+ years experience in AI research. PhD from Stanford University.",
-    image: "👩‍💼"
-  },
-  {
-    name: "Dr. Miguel Rodriguez",
-    role: "Senior Research Scientist",
-    expertise: "Climate AI, Computer Vision, Remote Sensing",
-    bio: "Expert in applying AI to climate science. Previously at NASA JPL. PhD from MIT.",
-    image: "👨‍🔬"
-  },
-  {
-    name: "Dr. Arun Kumar",
-    role: "Research Scientist",
-    expertise: "Federated Learning, Privacy-Preserving ML, Security",
-    bio: "Specialist in distributed machine learning systems. Former researcher at Microsoft Research. PhD from CMU.",
-    image: "👨‍💻"
-  },
-  {
-    name: "Dr. Jessica Thompson",
-    role: "Research Scientist",
-    expertise: "Medical AI, Explainable AI, Ethics",
-    bio: "Focused on AI applications in healthcare and medical diagnosis. Former researcher at Johns Hopkins. PhD from Harvard.",
-    image: "👩‍⚕️"
-  },
-  {
-    name: "Lisa Zhang",
+    name: "William Bankes",
     role: "PhD Student",
-    expertise: "Natural Language Processing, Large Language Models",
-    bio: "Working on advancing language understanding and generation. MS from Berkeley.",
-    image: "👩‍🎓"
-  },
-  {
-    name: "Kevin Williams",
-    role: "PhD Student",
-    expertise: "Reinforcement Learning, Robotics, Control Systems",
-    bio: "Researching autonomous systems and robot learning. MS from Georgia Tech.",
+    expertise: "",
+    bio: "",
     image: "👨‍🎓"
+  },
+  {
+    name: "Shyam Sundhar Ramesh",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Xiaohang Tang",
+    role: "PhD Student",
+    expertise: "",
+    bio: "",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Theo Brown",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With UKAEA",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Hamza Merzic",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With Google DeepMind",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Seong Ho",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With Brooks Paige",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Zhe Wang",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With Google DeepMind",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Ahmet H. Guzel",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With Jack Parker-Holder",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Abdelhamid Ezzerg",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With Jeremias Knoblauch",
+    image: "👨‍🎓"
+  },
+  {
+    name: "Sangwoong Yoon",
+    role: "Research Fellow",
+    expertise: "",
+    bio: "",
+    image: "👨‍🔬"
   }
 ];
 
