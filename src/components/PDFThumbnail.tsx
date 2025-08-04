@@ -14,11 +14,25 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
   useEffect(() => {
     const loadPDF = async () => {
       try {
+        console.log('Starting PDF load for:', file);
+        
         // Import PDF.js dynamically
         const pdfjsLib = await import('pdfjs-dist');
+        console.log('PDF.js loaded, version:', pdfjsLib.version);
         
-        // Set up the worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+        // Try multiple worker setup approaches
+        try {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+            'pdfjs-dist/build/pdf.worker.min.mjs',
+            import.meta.url
+          ).toString();
+        } catch (workerError) {
+          console.log('Primary worker setup failed, trying fallback');
+          // Fallback: disable worker for thumbnails
+          pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+        }
+        
+        console.log('Worker configured, loading document...');
 
         const loadingTask = pdfjsLib.getDocument(file);
         const pdf = await loadingTask.promise;
