@@ -91,7 +91,7 @@ const Team = () => {
               Our Team
             </h1>
             <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-              Meet the team.
+              We're a diverse group of researchers passionate about advancing artificial intelligence and making meaningful discoveries together.
             </p>
           </div>
 
