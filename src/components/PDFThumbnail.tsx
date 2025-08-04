@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
-import realPaper1 from '@/assets/real-paper-1.jpg';
-import realPaper2 from '@/assets/real-paper-2.jpg';
-import realPaper3 from '@/assets/real-paper-3.jpg';
-import realPaper4 from '@/assets/real-paper-4.jpg';
-import realPaper5 from '@/assets/real-paper-5.jpg';
+import paperThumb1 from '@/assets/paper-thumb-1.jpg';
+import paperThumb2 from '@/assets/paper-thumb-2.jpg';
+import paperThumb3 from '@/assets/paper-thumb-3.jpg';
+import paperThumb4 from '@/assets/paper-thumb-4.jpg';
+import paperThumb5 from '@/assets/paper-thumb-5.jpg';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -27,8 +27,8 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, paper
 
   // Get static paper image based on index
   const getStaticPaperImage = () => {
-    const papers = [realPaper1, realPaper2, realPaper3, realPaper4, realPaper5];
-    return papers[paperIndex] || realPaper1;
+    const papers = [paperThumb1, paperThumb2, paperThumb3, paperThumb4, paperThumb5];
+    return papers[paperIndex] || paperThumb1;
   };
 
   useEffect(() => {
