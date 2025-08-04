@@ -4,48 +4,48 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const publications = [
   {
-    year: "2024",
-    title: "Group robust preference optimization in reward-free rlhf",
-    authors: "SS Ramesh, Y Hu, I Chaimalas, V Mehta, PG Sessa, H Bou Ammar, I Bogunovic",
-    venue: "Advances in Neural Information Processing Systems 37",
-    type: "Conference Paper",
-    abstract: "We present a novel approach to group robust preference optimization in reward-free reinforcement learning from human feedback, addressing challenges in multi-agent systems and preference learning...",
+    year: "2025",
+    title: "wd1: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
+    authors: "X Tang, R Dolga, S Yoon, I Bogunovic",
+    venue: "arXiv preprint arXiv:2507.08838",
+    type: "Preprint",
+    abstract: "We present wd1, a novel weighted policy optimization approach that enhances reasoning capabilities in diffusion-based language models through sophisticated training strategies...",
     thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=280&fit=crop"
   },
   {
-    year: "2021",
-    title: "Misspecified gaussian process bandit optimization",
-    authors: "I Bogunovic, A Krause",
-    venue: "Advances in neural information processing systems 34",
-    type: "Conference Paper",
-    abstract: "This work studies Gaussian process bandit optimization under model misspecification, providing theoretical analysis and practical algorithms for robust optimization in uncertain environments...",
+    year: "2025",
+    title: "Robust Multi-Objective Controlled Decoding of Large Language Models",
+    authors: "S Son, W Bankes, S Yoon, SS Ramesh, X Tang, I Bogunovic",
+    venue: "arXiv preprint arXiv:2503.08796",
+    type: "Preprint",
+    abstract: "This work addresses the challenge of multi-objective controlled decoding in large language models, providing robust methods for steering model outputs across multiple objectives simultaneously...",
     thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=280&fit=crop"
   },
   {
-    year: "2021",
-    title: "Risk-averse heteroscedastic bayesian optimization",
-    authors: "A Makarova, I Usmanova, I Bogunovic, A Krause",
-    venue: "Advances in Neural Information Processing Systems 34",
-    type: "Conference Paper",
-    abstract: "We develop risk-averse Bayesian optimization methods that account for heteroscedastic noise, enabling more robust optimization in settings with varying uncertainty levels...",
+    year: "2025",
+    title: "This Is Your Doge, If It Please You: Exploring Deception and Robustness in Mixture of LLMs",
+    authors: "L Wolf, S Yoon, I Bogunovic",
+    venue: "arXiv preprint arXiv:2503.05856",
+    type: "Preprint",
+    abstract: "We investigate deception and robustness properties in mixture of experts language models, exploring how multiple models can be combined while maintaining trustworthiness and reliability...",
     thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=200&h=280&fit=crop"
   },
   {
-    year: "2021",
-    title: "Stochastic linear bandits robust to adversarial attacks",
-    authors: "I Bogunovic, A Losalka, A Krause, J Scarlett",
-    venue: "International Conference on Artificial Intelligence and Statistics",
-    type: "Conference Paper",
-    abstract: "We investigate stochastic linear bandit algorithms that maintain performance guarantees even under adversarial corruption, providing both theoretical analysis and empirical validation...",
+    year: "2025",
+    title: "Game-Theoretic Regularized Self-Play Alignment of Large Language Models",
+    authors: "X Tang, S Yoon, S Son, H Yuan, Q Gu, I Bogunovic",
+    venue: "arXiv preprint arXiv:2503.00030",
+    type: "Preprint",
+    abstract: "We develop a game-theoretic framework for self-play alignment in large language models, using regularization techniques to improve model behavior through strategic interactions...",
     thumbnail: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=200&h=280&fit=crop"
   },
   {
-    year: "2021",
-    title: "DP-Sniper: Black-Box Discovery of Differential Privacy Violations using Classifiers",
-    authors: "B Bichsel, S Steffen, I Bogunovic, M Vechev",
-    venue: "Security and Privacy Conference",
-    type: "Conference Paper",
-    abstract: "DP-Sniper is a novel black-box method for discovering differential privacy violations in machine learning systems using classifier-based approaches, providing practical tools for privacy auditing...",
+    year: "2025",
+    title: "Almost surely safe alignment of large language models at inference-time",
+    authors: "X Ji, SS Ramesh, M Zimmer, I Bogunovic, J Wang, HB Ammar",
+    venue: "arXiv preprint arXiv:2502.01208",
+    type: "Preprint",
+    abstract: "This paper presents theoretical and practical methods for ensuring almost sure safety in large language model alignment during inference, providing probabilistic guarantees for model behavior...",
     thumbnail: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=200&h=280&fit=crop"
   }
 ];
