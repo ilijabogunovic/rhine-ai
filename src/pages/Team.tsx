@@ -21,7 +21,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/8c32896e-7118-4f4f-b049-13a81f04d7b2.png"
   },
   {
     name: "Xiaohang Tang",
