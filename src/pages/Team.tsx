@@ -49,7 +49,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With Google DeepMind",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/3cd8f9a7-f9a9-4e13-bd51-19042e42382d.png"
   },
   {
     name: "Ahmet H. Guzel",
