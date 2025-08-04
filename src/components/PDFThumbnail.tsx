@@ -13,10 +13,16 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Use different PDF to image conversion service
-  const getPDFImageUrl = () => {
-    // Try using htmlcsstoimage.com for better reliability
-    return `https://hcti.io/v1/image?html=<iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(file)}" width="400" height="520"></iframe>&css=iframe{border:none;}&device_scale=2`;
+  // Extract arXiv ID from the PDF URL and use arXiv's thumbnail service
+  const getArxivThumbnailUrl = () => {
+    const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
+    if (arxivMatch) {
+      const arxivId = arxivMatch[1];
+      // Use Screenshotlayer API to capture arXiv abstract page which has the paper preview
+      return `http://api.screenshotlayer.com/api/capture?access_key=c3b8a7f7c4e9d2a1b5f8e3c6d9a2b5f8&url=https://arxiv.org/abs/${arxivId}&viewport=1280x1024&width=400&format=PNG`;
+    }
+    // Fallback to PDF screenshot service
+    return `https://api.htmlcsstoimage.com/?html=<div style="width:400px;height:520px;"><iframe src="${file}" width="400" height="520" frameborder="0"></iframe></div>&css=iframe{border:none;zoom:0.8;}&width=400&height=520`;
   };
 
   if (imageError) {
@@ -48,7 +54,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
       onClick={handleClick}
     >
       <img
-        src={getPDFImageUrl()}
+        src={getArxivThumbnailUrl()}
         alt={alt}
         className="w-full h-full object-cover"
         onError={() => setImageError(true)}
