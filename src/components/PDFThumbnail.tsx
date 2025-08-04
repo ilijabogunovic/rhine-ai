@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
+import realPaper1 from '@/assets/real-paper-1.jpg';
+import realPaper2 from '@/assets/real-paper-2.jpg';
+import realPaper3 from '@/assets/real-paper-3.jpg';
+import realPaper4 from '@/assets/real-paper-4.jpg';
+import realPaper5 from '@/assets/real-paper-5.jpg';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -8,15 +13,22 @@ interface PDFThumbnailProps {
   file: string;
   className?: string;
   alt?: string;
+  paperIndex?: number;
 }
 
-const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
+const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt, paperIndex = 0 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   
   const handleClick = () => {
     window.open(file, '_blank');
+  };
+
+  // Get static paper image based on index
+  const getStaticPaperImage = () => {
+    const papers = [realPaper1, realPaper2, realPaper3, realPaper4, realPaper5];
+    return papers[paperIndex] || realPaper1;
   };
 
   useEffect(() => {
@@ -107,24 +119,18 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
   }
 
   if (error || !thumbnailUrl) {
+    // Use static paper image as fallback
     return (
       <div 
-        className={`${className} bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-border rounded shadow-sm flex flex-col items-center justify-center p-4 cursor-pointer hover:shadow-md transition-shadow`}
+        className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
         onClick={handleClick}
       >
-        <div className="mb-3">
-          <svg
-            className="w-12 h-12 text-red-500"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-          </svg>
-        </div>
-        <div className="text-center">
-          <div className="text-xs font-semibold text-red-600 dark:text-red-400 mb-1">PDF</div>
-          <div className="text-xs text-muted-foreground">Click to View</div>
-        </div>
+        <img
+          src={getStaticPaperImage()}
+          alt={alt}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
     );
   }
