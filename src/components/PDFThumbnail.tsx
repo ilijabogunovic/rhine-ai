@@ -52,24 +52,43 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
           }
         }
 
-        // Fallback: Try PDF-lib in browser
+        // Fallback: Extract real thumbnail with PDF.js
         const pdfjsLib = await import('pdfjs-dist');
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
 
+        console.log('Extracting real thumbnail from:', pdfUrl);
         const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
         const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 1.5 });
+        const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for quality
         
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d')!;
         canvas.width = viewport.width;
         canvas.height = viewport.height;
 
+        // White background
+        context.fillStyle = 'white';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
         await page.render({ canvasContext: context, viewport, canvas }).promise;
         
-        const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+        const dataURL = canvas.toDataURL('image/jpeg', 0.9);
         setThumbnailUrl(dataURL);
         setLoading(false);
+
+        // Save extracted thumbnail for future use
+        console.log(`Real thumbnail extracted for ${arxivId}. Right-click the thumbnail and "Save image as" to save it to src/assets/extracted-thumbs/${arxivId}.jpg`);
+        
+        // Also provide download link in console
+        const link = document.createElement('a');
+        link.download = `extracted-thumb-${arxivId}.jpg`;
+        link.href = dataURL;
+        console.log('Auto-download link created for:', arxivId);
+        
+        // Uncomment to auto-download:
+        // document.body.appendChild(link);
+        // link.click();
+        // document.body.removeChild(link);
 
       } catch (err) {
         console.error('Real thumbnail extraction failed:', err);
