@@ -69,7 +69,7 @@ const teamMembers = [
     name: "Abdelhamid Ezzerg",
     role: "PhD Student",
     expertise: "",
-    bio: "With Jeremias Knoblauch",
+    bio: "With J. Knoblauch (UCL)",
     image: "👨‍🎓"
   },
   {
