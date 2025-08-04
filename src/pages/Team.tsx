@@ -73,7 +73,7 @@ const teamMembers = [
     image: "👨‍🎓"
   },
   {
-    name: "Sangwoong Yoon",
+    name: "Dr. Sangwoong Yoon",
     role: "Research Fellow",
     expertise: "",
     bio: "",
