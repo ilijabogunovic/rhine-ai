@@ -70,7 +70,7 @@ const teamMembers = [
     role: "Research Fellow",
     expertise: "",
     bio: "",
-    image: "👨‍🔬"
+    image: "/lovable-uploads/977f0e30-578b-4050-bf03-3a35410d4347.png"
   },
   {
     name: "Your Name Here?",
