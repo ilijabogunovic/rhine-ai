@@ -13,9 +13,9 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
     window.open(file, '_blank');
   };
 
-  // Use Google's PDF viewer to show the actual first page
-  const getGoogleViewerUrl = () => {
-    return `https://drive.google.com/viewerng/viewer?url=${encodeURIComponent(file)}&embedded=true`;
+  // Use PDF.co service to convert first page to image
+  const getPDFImageUrl = () => {
+    return `https://api.pdf.co/v1/pdf/convert/to/png?url=${encodeURIComponent(file)}&pages=1&async=false`;
   };
 
   if (imageError) {
@@ -43,18 +43,16 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
 
   return (
     <div 
-      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white relative`}
+      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
       onClick={handleClick}
     >
-      <iframe
-        src={getGoogleViewerUrl()}
-        className="w-full h-full"
-        style={{ pointerEvents: 'none' }}
+      <img
+        src={getPDFImageUrl()}
+        alt={alt}
+        className="w-full h-full object-cover"
         onError={() => setImageError(true)}
-        title={alt}
+        loading="lazy"
       />
-      {/* Overlay to make entire area clickable */}
-      <div className="absolute inset-0 bg-transparent cursor-pointer" />
     </div>
   );
 };
