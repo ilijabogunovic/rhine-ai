@@ -35,7 +35,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With UKAEA",
-    image: "👨‍🎓"
+    image: "/lovable-uploads/4cd88aa5-7628-45ac-85e7-228839c321cf.png"
   },
   {
     name: "Hamza Merzic",
