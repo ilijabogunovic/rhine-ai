@@ -40,6 +40,16 @@ const publications = [
 const Publications = () => {
   const newestPublications = publications.filter(paper => paper.year === "2024");
   
+  const publicationsByYear = publications.reduce((acc, paper) => {
+    if (!acc[paper.year]) {
+      acc[paper.year] = [];
+    }
+    acc[paper.year].push(paper);
+    return acc;
+  }, {} as Record<string, typeof publications>);
+
+  const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+  
   const renderPublications = (publicationList: typeof publications) => (
     <div className="space-y-6">
       {publicationList.map((paper, index) => (
@@ -72,6 +82,42 @@ const Publications = () => {
     </div>
   );
 
+  const renderPublicationsByYear = () => (
+    <div className="space-y-12">
+      {sortedYears.map(year => (
+        <div key={year}>
+          <h2 className="font-display text-2xl font-bold text-foreground mb-6 border-b border-border pb-2">
+            {year}
+          </h2>
+          <div className="space-y-8">
+            {publicationsByYear[year].map((paper, index) => (
+              <div key={index} className="space-y-3">
+                <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                  {paper.authors}
+                </p>
+                <h3 className="font-display text-lg font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors">
+                  {paper.title}
+                </h3>
+                <p className="font-body text-muted-foreground">
+                  In: {paper.venue}, {paper.year}.
+                </p>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer">
+                    Links
+                  </span>
+                  <span className="text-muted-foreground">|</span>
+                  <span className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer">
+                    BibTeX
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <Layout>
       <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -97,7 +143,7 @@ const Publications = () => {
             </TabsContent>
             
             <TabsContent value="all">
-              {renderPublications(publications)}
+              {renderPublicationsByYear()}
             </TabsContent>
           </Tabs>
         </div>
