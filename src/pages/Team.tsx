@@ -154,7 +154,7 @@ const Team = () => {
                 Our Collaborators
               </h2>
               <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-                We work closely with leading researchers and institutions worldwide to push the boundaries of AI research.
+                We collaborate with distinguished researchers and leading institutions globally to advance the frontiers of artificial intelligence.
               </p>
             </div>
 
