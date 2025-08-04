@@ -5,39 +5,48 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const publications = [
   {
     year: "2024",
-    title: "FairNet: A Novel Framework for Bias Detection in Neural Networks",
-    authors: "S. Chen, M. Rodriguez, A. Kumar, J. Thompson",
-    venue: "International Conference on Machine Learning (ICML)",
+    title: "Group robust preference optimization in reward-free rlhf",
+    authors: "SS Ramesh, Y Hu, I Chaimalas, V Mehta, PG Sessa, H Bou Ammar, I Bogunovic",
+    venue: "Advances in Neural Information Processing Systems 37",
     type: "Conference Paper",
-    abstract: "We present FairNet, a comprehensive framework for detecting and mitigating bias in deep neural networks...",
+    abstract: "We present a novel approach to group robust preference optimization in reward-free reinforcement learning from human feedback, addressing challenges in multi-agent systems and preference learning...",
     thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=280&fit=crop"
   },
   {
-    year: "2024",
-    title: "Federated Learning with Privacy-Preserving Gradient Compression",
-    authors: "A. Kumar, L. Zhang, S. Chen",
-    venue: "Neural Information Processing Systems (NeurIPS)",
+    year: "2021",
+    title: "Misspecified gaussian process bandit optimization",
+    authors: "I Bogunovic, A Krause",
+    venue: "Advances in neural information processing systems 34",
     type: "Conference Paper",
-    abstract: "This paper introduces a novel approach to federated learning that maintains privacy while significantly reducing communication overhead...",
+    abstract: "This work studies Gaussian process bandit optimization under model misspecification, providing theoretical analysis and practical algorithms for robust optimization in uncertain environments...",
     thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=280&fit=crop"
   },
   {
-    year: "2023",
-    title: "Climate Prediction Models Using Multi-Modal Deep Learning",
-    authors: "M. Rodriguez, J. Thompson, K. Williams",
-    venue: "Nature Machine Intelligence",
-    type: "Journal Article",
-    abstract: "We develop advanced neural architectures that integrate satellite imagery, weather data, and climate models for improved prediction accuracy...",
+    year: "2021",
+    title: "Risk-averse heteroscedastic bayesian optimization",
+    authors: "A Makarova, I Usmanova, I Bogunovic, A Krause",
+    venue: "Advances in Neural Information Processing Systems 34",
+    type: "Conference Paper",
+    abstract: "We develop risk-averse Bayesian optimization methods that account for heteroscedastic noise, enabling more robust optimization in settings with varying uncertainty levels...",
     thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=200&h=280&fit=crop"
   },
   {
-    year: "2023",
-    title: "Explainable AI for Medical Diagnosis: A Comprehensive Survey",
-    authors: "J. Thompson, S. Chen, A. Kumar",
-    venue: "IEEE Transactions on Medical Imaging",
-    type: "Survey Paper",
-    abstract: "This survey examines the current state of explainable AI in medical applications, highlighting key challenges and future directions...",
+    year: "2021",
+    title: "Stochastic linear bandits robust to adversarial attacks",
+    authors: "I Bogunovic, A Losalka, A Krause, J Scarlett",
+    venue: "International Conference on Artificial Intelligence and Statistics",
+    type: "Conference Paper",
+    abstract: "We investigate stochastic linear bandit algorithms that maintain performance guarantees even under adversarial corruption, providing both theoretical analysis and empirical validation...",
     thumbnail: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=200&h=280&fit=crop"
+  },
+  {
+    year: "2021",
+    title: "DP-Sniper: Black-Box Discovery of Differential Privacy Violations using Classifiers",
+    authors: "B Bichsel, S Steffen, I Bogunovic, M Vechev",
+    venue: "Security and Privacy Conference",
+    type: "Conference Paper",
+    abstract: "DP-Sniper is a novel black-box method for discovering differential privacy violations in machine learning systems using classifier-based approaches, providing practical tools for privacy auditing...",
+    thumbnail: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=200&h=280&fit=crop"
   }
 ];
 
