@@ -12,7 +12,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step...",
-    pdfFile: "/src/assets/paper-pdfs/2507.08838.pdf"
+    pdfFile: "https://arxiv.org/pdf/2507.08838.pdf"
   },
   {
     year: "2025",
@@ -22,7 +22,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.08796",
     abstract: "Test-time alignment of Large Language Models (LLMs) to human preferences offers a flexible way to generate responses aligned to diverse objectives without extensive retraining of LLMs. Existing methods achieve alignment to multiple objectives simultaneously...",
-    pdfFile: "/src/assets/paper-pdfs/2503.08796.pdf"
+    pdfFile: "https://arxiv.org/pdf/2503.08796.pdf"
   },
   {
     year: "2025",
@@ -32,7 +32,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.05856",
     abstract: "Mixture of large language model (LLMs) Agents (MoA) architectures achieve state-of-the-art performance on prominent benchmarks like AlpacaEval 2.0 by leveraging the collaboration of multiple LLMs at inference time. Despite these successes, an evaluation of the safety and reliability of MoA is missing...",
-    pdfFile: "/src/assets/paper-pdfs/2503.05856.pdf"
+    pdfFile: "https://arxiv.org/pdf/2503.05856.pdf"
   },
   {
     year: "2025",
@@ -42,7 +42,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.00030",
     abstract: "Self-play alignment has emerged as an effective approach for fine-tuning large language models (LLMs), formulating preference optimization as a two-player game. However, the regularization with respect to the reference policy, which is crucial for mitigating over-optimization, has been insufficiently investigated in self-play alignment...",
-    pdfFile: "/src/assets/paper-pdfs/2503.00030.pdf"
+    pdfFile: "https://arxiv.org/pdf/2503.00030.pdf"
   },
   {
     year: "2025",
@@ -52,7 +52,7 @@ const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2502.01208",
     abstract: "We introduce a novel inference-time alignment approach for LLMs that aims to generate safe responses almost surely, i.e., with probability approaching one. Our approach models the generation of safe responses as a constrained Markov Decision Process (MDP) within the LLM's latent space...",
-    pdfFile: "/src/assets/paper-pdfs/2502.01208.pdf"
+    pdfFile: "https://arxiv.org/pdf/2502.01208.pdf"
   }
 ];
 

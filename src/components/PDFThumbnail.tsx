@@ -41,6 +41,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
         const renderContext = {
           canvasContext: context,
           viewport: scaledViewport,
+          canvas: canvas,
         };
 
         await page.render(renderContext).promise;
