@@ -7,7 +7,7 @@ const teamMembers = [
     name: "Prof. Dr. Ilija Bogunovic",
     role: "Principal Investigator",
     expertise: "",
-    bio: "",
+    bio: "University of Basel\nUniversity College London (honorary)",
     image: "/lovable-uploads/7ce7c8b6-c43e-488e-a09a-415bcceee298.png"
   },
   {
@@ -141,7 +141,7 @@ const Team = () => {
                   <p className="font-body text-accent-vibrant font-medium mb-2">
                     {member.role}
                   </p>
-                  <p className="font-body text-sm text-muted-foreground">
+                  <p className="font-body text-sm text-muted-foreground whitespace-pre-line">
                     {member.bio}
                   </p>
                 </CardContent>
