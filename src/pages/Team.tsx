@@ -48,7 +48,7 @@ const teamMembers = [
     name: "Seong Ho",
     role: "PhD Student",
     expertise: "",
-    bio: "With B. Paige",
+    bio: "With B. Paige (UCL)",
     image: "👨‍🎓"
   },
   {
