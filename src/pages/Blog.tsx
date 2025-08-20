@@ -9,7 +9,7 @@ const blogPosts = [
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     author: "Xiaohang Tang",
-    excerpt: "Introducing a novel policy optimization approach for dLLMs that reformulates the objective as a weighted likelihood, requiring only a single approximation for the current parametrized policy likelihood..",
+    excerpt: "Introducing a novel policy optimization approach for dLLMs that reformulates the objective as a weighted likelihood, requiring only a single approximation for the current parametrized policy likelihood. This new approach demonstrates both better performance and computational efficiency in dLLMs reasoning.",
     readTime: "3 min read",
     category: "Technical",
     url: "https://ucl-diffusion-reasoning.github.io/wd1-demo/"
@@ -27,7 +27,7 @@ const blogPosts = [
     date: "July 22, 2024",
     title: "Pluralistic Alignment of LLMs: Fix your Algorithm not just your data",
     author: "Dr. Haitham Bou Ammar",
-    excerpt: "Recent studies have found that large language models (LLMs) are biased, with many articles demonstrating these biases and their negative impacts. Mitigating this bias and improving diversity has been rather expensive and impractical, typically requiring more data from diverse groups to ensure that the LLM aligns correctly. Seeking a better solution, we posed the question: What if the data remained intact — could we optimise the models differently to improve alignment and enhance diversity, particularly for minority groups that are underrepresented in the data? The answer is yes! We can achieve greater equality in our fine-tuning process by adopting a robust optimisation approach. This blog is the story of group robust preference optimization, which enables us to achieve just that.",
+    excerpt: "Large language models (LLMs) often exhibit biases that are expensive and impractical to fix with traditional methods. What if we could optimize models differently while keeping data intact? This blog explores group robust preference optimization, a novel approach that improves alignment and diversity for underrepresented groups without requiring additional data.",
     readTime: "5 min read",
     category: "Technical",
     url: "https://medium.com/@haitham.bouammar71/pluralistic-alignment-of-llms-fix-your-algorithm-not-just-your-data-a0686ec7a279"
@@ -74,39 +74,41 @@ const Blog = () => {
           </div>
 
           <div className="space-y-8">
-            {blogPosts.map((post, index) => (
-              <Link 
-                key={index} 
-                to={post.url}
-                className="block no-underline"
-              >
-                <Card 
-                  className="shadow-card hover:shadow-elevated transition-all duration-300 cursor-pointer group"
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
-                        {post.category}
-                      </span>
-                      <div className="text-sm text-muted-foreground">
-                        {post.date} • {post.readTime}
-                      </div>
-                    </div>
-                    <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {renderMathText(post.title)}
-                    </h2>
-                    <p className="font-body text-sm text-accent-vibrant">
-                      by {post.author}
-                    </p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-body text-muted-foreground leading-relaxed">
-                      {renderMathText(post.excerpt)}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                         {blogPosts.map((post, index) => (
+               <a 
+                 key={index} 
+                 href={post.url}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="block no-underline"
+               >
+                 <Card 
+                   className="shadow-card hover:shadow-elevated transition-all duration-300 cursor-pointer group"
+                 >
+                   <CardHeader>
+                     <div className="flex items-center justify-between mb-3">
+                       <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
+                         {post.category}
+                       </span>
+                       <div className="text-sm text-muted-foreground">
+                         {post.date} • {post.readTime}
+                       </div>
+                     </div>
+                     <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                       {renderMathText(post.title)}
+                     </h2>
+                     <p className="font-body text-sm text-accent-vibrant">
+                       by {post.author}
+                     </p>
+                   </CardHeader>
+                   <CardContent>
+                     <p className="font-body text-muted-foreground leading-relaxed">
+                       {renderMathText(post.excerpt)}
+                     </p>
+                   </CardContent>
+                 </Card>
+               </a>
+             ))}
           </div>
         </div>
       </div>
