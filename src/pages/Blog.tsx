@@ -1,48 +1,63 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const blogPosts = [
   {
-    date: "December 12, 2024",
-    title: "The Future of Federated Learning: Privacy and Performance",
-    author: "Dr. Arun Kumar",
-    excerpt: "Exploring how federated learning is reshaping AI development while maintaining user privacy. We dive into the latest advances and challenges in distributed machine learning.",
-    readTime: "8 min read",
-    category: "Technical"
+    date: "July 7, 2025",
+    title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
+    author: "Xiaohang Tang",
+    excerpt: "Introducing a novel policy optimization approach for dLLMs that reformulates the objective as a weighted likelihood, requiring only a single approximation for the current parametrized policy likelihood..",
+    readTime: "3 min read",
+    category: "Technical",
+    url: "https://ucl-diffusion-reasoning.github.io/wd1-demo/"
   },
   {
-    date: "December 8, 2024",
-    title: "Building Ethical AI: Lessons from Our Bias Detection Research",
-    author: "Dr. Sarah Chen",
-    excerpt: "Our journey in developing FairNet and what we've learned about creating more equitable AI systems. Key insights for practitioners and researchers.",
-    readTime: "12 min read",
-    category: "Ethics"
+    date: "December 9, 2024",
+    title: "How can we exploit known symmetry in Bayesian optimisation?",
+    author: "Theo Brown",
+    excerpt: "Taking a fully Bayesian approach to optimisation means incorporating all prior knowledge about our objective function into the optimisation process. Often in the physical sciences we come to the table knowing quite a lot about the shape of the objective, whether that's from knowledge of the underlying governing equations, physical principles, or geometry of the problem. Our NeurIPS 2024 paper derives new, general guarantees on performance of Bayesian optimisation algorithms that exploit a problem's invariances.",
+    readTime: "5 min read",
+    category: "Technical",
+    url: "https://theobrown.uk/blog/invariantbo/"
   },
   {
-    date: "December 3, 2024",
-    title: "AI for Climate Science: Early Results and Future Directions",
-    author: "Dr. Miguel Rodriguez",
-    excerpt: "How our climate prediction models are performing and what they tell us about the role of AI in understanding climate change.",
-    readTime: "10 min read",
-    category: "Applications"
-  },
-  {
-    date: "November 28, 2024",
-    title: "Open Source AI: Why We Released FairNet to the Community",
-    author: "Dr. Jessica Thompson",
-    excerpt: "The philosophy behind our decision to open-source our bias detection framework and how the community can contribute to responsible AI development.",
-    readTime: "6 min read",
-    category: "Community"
-  },
-  {
-    date: "November 20, 2024",
-    title: "From Theory to Practice: Implementing Explainable AI in Healthcare",
-    author: "Dr. Jessica Thompson",
-    excerpt: "Real-world challenges and solutions in deploying explainable AI systems in medical settings. Case studies and practical guidelines.",
-    readTime: "15 min read",
-    category: "Applications"
+    date: "July 22, 2024",
+    title: "Pluralistic Alignment of LLMs: Fix your Algorithm not just your data",
+    author: "Dr. Haitham Bou Ammar",
+    excerpt: "Recent studies have found that large language models (LLMs) are biased, with many articles demonstrating these biases and their negative impacts. Mitigating this bias and improving diversity has been rather expensive and impractical, typically requiring more data from diverse groups to ensure that the LLM aligns correctly. Seeking a better solution, we posed the question: What if the data remained intact — could we optimise the models differently to improve alignment and enhance diversity, particularly for minority groups that are underrepresented in the data? The answer is yes! We can achieve greater equality in our fine-tuning process by adopting a robust optimisation approach. This blog is the story of group robust preference optimization, which enables us to achieve just that.",
+    readTime: "5 min read",
+    category: "Technical",
+    url: "https://medium.com/@haitham.bouammar71/pluralistic-alignment-of-llms-fix-your-algorithm-not-just-your-data-a0686ec7a279"
   }
 ];
+
+// Helper function to render text with LaTeX expressions
+const renderMathText = (text: string) => {
+  // Split text by LaTeX delimiters
+  const parts = text.split(/(\$.*?\$|\\\(.*?\\\)|\\\[.*?\\\])/);
+  
+  return parts.map((part, index) => {
+    if (part.startsWith('$') && part.endsWith('$')) {
+      // Inline math: $...$
+      const math = part.slice(1, -1);
+      return <InlineMath key={index} math={math} />;
+    } else if (part.startsWith('\\(') && part.endsWith('\\)')) {
+      // Inline math: \(...\)
+      const math = part.slice(2, -2);
+      return <InlineMath key={index} math={math} />;
+    } else if (part.startsWith('\\[') && part.endsWith('\\]')) {
+      // Block math: \[...\]
+      const math = part.slice(2, -2);
+      return <BlockMath key={index} math={math} />;
+    } else {
+      // Regular text
+      return <span key={index}>{part}</span>;
+    }
+  });
+};
 
 const Blog = () => {
   return (
@@ -60,32 +75,37 @@ const Blog = () => {
 
           <div className="space-y-8">
             {blogPosts.map((post, index) => (
-              <Card 
+              <Link 
                 key={index} 
-                className="shadow-card hover:shadow-elevated transition-all duration-300 cursor-pointer group"
+                to={post.url}
+                className="block no-underline"
               >
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
-                      {post.category}
-                    </span>
-                    <div className="text-sm text-muted-foreground">
-                      {post.date} • {post.readTime}
+                <Card 
+                  className="shadow-card hover:shadow-elevated transition-all duration-300 cursor-pointer group"
+                >
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full">
+                        {post.category}
+                      </span>
+                      <div className="text-sm text-muted-foreground">
+                        {post.date} • {post.readTime}
+                      </div>
                     </div>
-                  </div>
-                  <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="font-body text-sm text-accent-vibrant">
-                    by {post.author}
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <p className="font-body text-muted-foreground leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                </CardContent>
-              </Card>
+                    <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {renderMathText(post.title)}
+                    </h2>
+                    <p className="font-body text-sm text-accent-vibrant">
+                      by {post.author}
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="font-body text-muted-foreground leading-relaxed">
+                      {renderMathText(post.excerpt)}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
