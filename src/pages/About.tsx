@@ -8,7 +8,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              About Neural Labs
+              About Bogunovic LAB
             </h1>
             <p className="font-body text-lg text-muted-foreground">
               Pioneering AI research for a better tomorrow.
@@ -23,7 +23,7 @@ const About = () => {
                   Our Mission
                 </h2>
                 <p className="font-body text-muted-foreground leading-relaxed text-lg">
-                  Neural Labs is dedicated to advancing the frontiers of artificial intelligence 
+                  The Bogunovic LAB is dedicated to advancing the frontiers of artificial intelligence 
                   through innovative research, ethical development practices, and collaborative 
                   partnerships. We believe that AI has the potential to solve some of humanity's 
                   greatest challenges, from climate change to healthcare, and we're committed to 
@@ -40,16 +40,21 @@ const About = () => {
                 </h2>
                 <div className="space-y-4 font-body text-muted-foreground leading-relaxed">
                   <p>
-                    Founded in 2020 by a group of AI researchers from leading academic institutions 
-                    and industry labs, Neural Labs emerged from a shared vision: to create AI 
-                    systems that are not only powerful but also responsible, explainable, and 
-                    beneficial to society.
+                    Originally founded by Prof. Ilija Bogunovic at University College London (UCL), 
+                    the Bogunovic LAB emerged from a shared vision: to create AI systems that are 
+                    not only powerful but also responsible, explainable, and beneficial to society.
                   </p>
                   <p>
-                    Starting with just four researchers and a small grant, we've grown into a 
-                    multidisciplinary team of 15+ scientists and engineers. Our work has been 
-                    published in top-tier venues like ICML, NeurIPS, and Nature Machine Intelligence, 
-                    and our open-source tools are used by researchers worldwide.
+                    In 2025, the lab moved to the University of Basel, Department of Mathematics 
+                    and Computer Science. However, we maintain close ties with the UCL AI Centre, 
+                    where most of our current PhD students are situated. All lab members are also 
+                    members of the UCL AI Centre, fostering continued collaboration and research excellence.
+                  </p>
+                  <p>
+                    Our team conducts cutting-edge research in machine learning and AI, with a focus 
+                    on foundation models, learning algorithms, and theoretical advances. We publish in 
+                    leading venues such as NeurIPS, ICML, ICLR, AISTATS, JMLR, TMLR, and others, 
+                    contributing to the global advancement of artificial intelligence.
                   </p>
                 </div>
               </CardContent>

@@ -13,6 +13,7 @@ const Navigation = () => {
     { name: "Team", path: "/team" },
     { name: "Blog", path: "/blog" },
     { name: "About", path: "/about" },
+    { name: "Join Us", path: "/join-us" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -46,9 +47,11 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="shadow-card">
-              Contact
-            </Button>
+            <Link to="/contact">
+              <Button variant="default" size="sm" className="shadow-card">
+                Contact
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -83,9 +86,11 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="px-3 py-2">
-                <Button variant="default" size="sm" className="w-full">
-                  Contact
-                </Button>
+                <Link to="/contact">
+                  <Button variant="default" size="sm" className="w-full">
+                    Contact
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,84 +1,96 @@
 
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const teamMembers = [
   {
     name: "Prof. Dr. Ilija Bogunovic",
-    role: "Principal Investigator",
+    role: "Associate Professor",
     expertise: "",
     bio: "University of Basel\nUniversity College London",
-    image: "/lovable-uploads/7ce7c8b6-c43e-488e-a09a-415bcceee298.png"
+    image: "/ilija-bogunovic-proper.jpg",
+    link: "/team/ilija-bogunovic"
   },
   {
     name: "William Bankes",
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "/lovable-uploads/bab51e5a-ed71-42f6-bd0a-cf18969fee4c.png"
+    image: "/william-bankes-proper.jpg",
+    link: "/team/william-bankes"
   },
   {
     name: "Shyam Sundhar Ramesh",
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "/lovable-uploads/8c32896e-7118-4f4f-b049-13a81f04d7b2.png"
+    image: "/shyam-ramesh-proper.jpg",
+    link: "/team/shyam-sundhar-ramesh"
   },
   {
     name: "Xiaohang Tang",
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "/lovable-uploads/f9b74fce-3193-459f-af51-21643847fec5.png"
+    image: "/xiaohang-tang-proper.jpg",
+    link: "/team/xiaohang-tang"
   },
   {
     name: "Theo Brown",
     role: "PhD Student",
     expertise: "",
     bio: "With UKAEA",
-    image: "/lovable-uploads/4cd88aa5-7628-45ac-85e7-228839c321cf.png"
+    image: "/theo-brown-resized.jpg",
+    link: "/team/theo-brown"
   },
   {
     name: "Seong Ho",
     role: "PhD Student",
     expertise: "",
     bio: "With B. Paige (UCL)",
-    image: "/lovable-uploads/712dd942-6db4-40ca-a574-ccb2c35e3747.png"
+    image: "/seong-ho-resized.jpg",
+    link: "/team/seong-ho"
   },
   {
     name: "Zhe Wang",
     role: "PhD Student",
     expertise: "",
     bio: "With Google DeepMind",
-    image: "/lovable-uploads/3cd8f9a7-f9a9-4e13-bd51-19042e42382d.png"
+    image: "/zhe-wang-proper.jpg",
+    link: "/team/zhe-wang"
   },
   {
     name: "Ahmet H. Guzel",
     role: "PhD Student",
     expertise: "",
     bio: "With J. Parker-Holder (Google DeepMind)",
-    image: "/lovable-uploads/de78cc23-d7f1-4a57-be78-b0479e0e03c6.png"
+    image: "/ahmet-guzel-proper.jpg",
+    link: "/team/ahmet-h-guzel"
   },
   {
     name: "Abdelhamid Ezzerg",
     role: "PhD Student",
     expertise: "",
     bio: "With J. Knoblauch (UCL)",
-    image: "/lovable-uploads/7f65f31f-b2b9-4c66-8eb5-c20194f03c3b.png"
+    image: "/abdelhamid-ezzerg-proper.jpg",
+    link: "/team/abdelhamid-ezzerg"
   },
   {
     name: "Dr. Sangwoong Yoon",
     role: "Research Fellow",
     expertise: "",
     bio: "",
-    image: "/lovable-uploads/977f0e30-578b-4050-bf03-3a35410d4347.png"
+    image: "/sangwoong-yoon-resized.jpg",
+    link: "/team/sangwoong-yoon"
   },
   {
     name: "Your Name Here?",
     role: "Join Our Team",
     expertise: "",
     bio: "We're always looking for passionate AI researchers to join our lab. Contact us if you're interested!",
-    image: "🚀"
+    image: "🚀",
+    link: "/join-us"
   }
 ];
 
@@ -117,50 +129,79 @@ const Team = () => {
   console.log("Team component rendering");
   return (
     <Layout>
+      {/* Hero Team Photo Section */}
+      <div className="relative w-full h-[450px] md:h-[600px] overflow-hidden">
+        <img 
+          src="/team-photo.jpg"
+          alt="Bogunovic LAB Team"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '50% 40%' }}
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-end">
+          <div className="w-full px-4 sm:px-6 lg:px-8 pb-12">
+            <div className="max-w-7xl mx-auto text-center">
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                Our Team
+              </h1>
+              <p className="font-body text-lg md:text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md">
+                We're a diverse group of researchers passionate about advancing artificial intelligence and making meaningful discoveries together.
+              </p>
+              <p className="font-body text-sm text-white/70 mt-3 drop-shadow-md">
+                🐪 Group retreat in Morocco, Agadir, 2025 🏖️ ☀️
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              Our Team
-            </h1>
-            <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-              We're a diverse group of researchers passionate about advancing artificial intelligence and making meaningful discoveries together.
-            </p>
-          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <Card 
-                key={index} 
-                className="shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="mb-4">
-                    {member.image.startsWith('/') ? (
-                      <img 
-                        src={member.image} 
-                        alt={member.name}
-                        className={`w-40 h-40 rounded-full mx-auto object-cover ${
-                          member.name === "Abdelhamid Ezzerg" ? "object-center" : "object-top"
-                        }`}
-                      />
-                    ) : (
-                      <div className="text-6xl">{member.image}</div>
-                    )}
-                  </div>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="font-body text-accent-vibrant font-medium mb-2">
-                    {member.role}
-                  </p>
-                  <p className="font-body text-sm text-muted-foreground whitespace-pre-line">
-                    {member.bio}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {teamMembers.map((member, index) => {
+              const content = (
+                <Card 
+                  key={index} 
+                  className={`shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in h-full ${
+                    member.link ? 'cursor-pointer' : ''
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardContent className="p-6 text-center h-full flex flex-col">
+                    <div className="mb-4">
+                      {member.image.startsWith('/') ? (
+                        <div className="w-40 h-40 rounded-full mx-auto overflow-hidden bg-gray-100">
+                          <img 
+                            src={member.image} 
+                            alt={member.name}
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </div>
+                      ) : (
+                        <div className="text-6xl">{member.image}</div>
+                      )}
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+                      {member.name}
+                    </h3>
+                    <p className="font-body text-accent-vibrant font-medium mb-2">
+                      {member.role}
+                    </p>
+                    <p className="font-body text-sm text-muted-foreground whitespace-pre-line flex-grow">
+                      {member.bio}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+
+              return member.link ? (
+                <Link key={index} to={member.link} className="block">
+                  {content}
+                </Link>
+              ) : (
+                content
+              );
+            })}
           </div>
 
           {/* Collaborators Section */}

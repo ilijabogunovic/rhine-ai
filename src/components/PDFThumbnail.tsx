@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+// Import thumbnails statically
+import thumb250201208 from '../assets/pdf-thumbs/thumb-2502.01208.jpg';
+import thumb250300030 from '../assets/pdf-thumbs/thumb-2503.00030.jpg';
+import thumb250305856 from '../assets/pdf-thumbs/thumb-2503.05856.jpg';
+import thumb250308796 from '../assets/pdf-thumbs/thumb-2503.08796.jpg';
+import thumb250708838 from '../assets/pdf-thumbs/thumb-2507.08838.jpg';
+
 interface PDFThumbnailProps {
   file: string;
   className?: string;
@@ -16,9 +23,9 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
   };
 
   useEffect(() => {
-    const extractRealThumbnail = async () => {
+    const loadThumbnail = () => {
       try {
-        // Get arXiv ID and use local PDF
+        // Get arXiv ID from the file URL
         const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
         if (!arxivMatch) {
           setError(true);
@@ -27,77 +34,34 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
         }
 
         const arxivId = arxivMatch[1];
-        const pdfUrl = `/papers/${arxivId}.pdf`;
+        
+        // Map arXiv IDs to imported thumbnails
+        const thumbnailMap: { [key: string]: string } = {
+          '2502.01208': thumb250201208,
+          '2503.00030': thumb250300030,
+          '2503.05856': thumb250305856,
+          '2503.08796': thumb250308796,
+          '2507.08838': thumb250708838,
+        };
 
-        // Use PDF2PIC service to convert PDF to image
-        const response = await fetch(`https://api.pdf2pic.com/v1/convert`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            pdf_url: `${window.location.origin}${pdfUrl}`,
-            page: 1,
-            format: 'jpg',
-            quality: 90
-          })
-        });
-
-        if (response.ok) {
-          const result = await response.json();
-          if (result.image_url) {
-            setThumbnailUrl(result.image_url);
-            setLoading(false);
-            return;
-          }
+        const thumbnail = thumbnailMap[arxivId];
+        if (thumbnail) {
+          setThumbnailUrl(thumbnail);
+          setLoading(false);
+        } else {
+          console.warn(`Thumbnail not found for arXiv ID: ${arxivId}`);
+          setError(true);
+          setLoading(false);
         }
 
-        // Fallback: Extract real thumbnail with PDF.js
-        const pdfjsLib = await import('pdfjs-dist');
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
-
-        console.log('Extracting real thumbnail from:', pdfUrl);
-        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
-        const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 2.0 }); // Higher scale for quality
-        
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d')!;
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        // White background
-        context.fillStyle = 'white';
-        context.fillRect(0, 0, canvas.width, canvas.height);
-
-        await page.render({ canvasContext: context, viewport, canvas }).promise;
-        
-        const dataURL = canvas.toDataURL('image/jpeg', 0.9);
-        setThumbnailUrl(dataURL);
-        setLoading(false);
-
-        // Save extracted thumbnail for future use
-        console.log(`Real thumbnail extracted for ${arxivId}. Right-click the thumbnail and "Save image as" to save it to src/assets/extracted-thumbs/${arxivId}.jpg`);
-        
-        // Also provide download link in console
-        const link = document.createElement('a');
-        link.download = `extracted-thumb-${arxivId}.jpg`;
-        link.href = dataURL;
-        console.log('Auto-download link created for:', arxivId);
-        
-        // Uncomment to auto-download:
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
-
       } catch (err) {
-        console.error('Real thumbnail extraction failed:', err);
+        console.error('Thumbnail loading failed:', err);
         setError(true);
         setLoading(false);
       }
     };
 
-    extractRealThumbnail();
+    loadThumbnail();
   }, [file]);
 
   if (!thumbnailUrl) {
