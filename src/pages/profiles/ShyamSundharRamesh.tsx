@@ -4,57 +4,55 @@ const ShyamSundharRamesh = () => {
   const profileData = {
     name: "Shyam Sundhar Ramesh",
     role: "PhD Student",
-    affiliation: "University of Basel & UCL AI Centre",
-    image: "/shyam-ramesh-profile.jpg",
+    affiliation: "University College London",
+    image: "/shyam-ramesh-new.jpg",
     about: [
-      "Shyam Sundhar Ramesh is a PhD student at the University of Basel and a member of the UCL AI Centre. His research focuses on developing innovative machine learning algorithms with strong theoretical foundations.",
-      "He is passionate about bridging the gap between theory and practice in machine learning, with particular interest in scalable algorithms and their real-world applications. His work aims to create more efficient and robust AI systems.",
-      "Shyam brings a strong background in mathematics and computer science to his research, contributing fresh perspectives to challenging problems in artificial intelligence and machine learning."
+      "Shyam Sundhar Ramesh is a PhD student at the University College London. His research lies at the intersection of reinforcement learning, robust optimization, and large language model alignment. His work focuses on developing principled methods that ensure reliability, safety, and robustness in machine learning systems, with applications ranging from safe alignment to sustainable energy. More recently, he is interested in the challenges of language model alignment, exploring robust and group-fair decoding strategies, inference-time safety, and pluralistic alignment approaches."
     ],
     researchInterests: [
       {
-        title: "Algorithmic Foundations",
-        description: "Fundamental algorithms for machine learning and their theoretical properties"
+        title: "Reinforcement Learning",
+        description: "Designing fundamental algorithms and analyzing their theoretical guarantees for sequential decision-making."
       },
       {
-        title: "Scalable Learning",
-        description: "Algorithms that scale efficiently with data size and computational resources"
+        title: "Robust Optimization",
+        description: "Developing scalable methods that remain reliable under distributional shifts and limited resources."
       },
       {
-        title: "Mathematical Optimization",
-        description: "Optimization theory and methods for machine learning applications"
+        title: "Large Language Model Alignment",
+        description: "Creating optimization-based approaches to ensure safe and fair behavior in language models."
       },
       {
-        title: "Applied Machine Learning",
-        description: "Practical applications of ML algorithms to real-world problems"
+        title: "Bayesian Optimization",
+        description: "Advancing probabilistic optimization techniques for impactful real-world applications such as energy systems."
       }
     ],
     publications: [],
     socialLinks: [
       {
         type: "email" as const,
-        url: "mailto:shyam.ramesh@example.com",
+        url: "mailto:shyam.ramesh.22@ucl.ac.uk",
         label: "Email"
       },
       {
         type: "scholar" as const,
-        url: "https://scholar.google.com/citations?user=sramesh",
+        url: "https://scholar.google.com/citations?user=-d5usyUAAAAJ&hl=en",
         label: "Google Scholar"
       },
       {
         type: "linkedin" as const,
-        url: "https://linkedin.com/in/shyam-ramesh",
+        url: "https://www.linkedin.com/in/shyamsundharr/",
         label: "LinkedIn"
       },
       {
         type: "twitter" as const,
-        url: "https://twitter.com/shyam_ramesh",
+        url: "https://x.com/shyam91019594",
         label: "Twitter"
       },
       {
         type: "external" as const,
-        url: "https://shyamramesh.com",
-        label: "External Website"
+        url: "https://github.com/rsshyam",
+        label: "GitHub"
       }
     ]
   };
