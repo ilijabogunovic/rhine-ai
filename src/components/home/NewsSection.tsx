@@ -30,18 +30,18 @@ const renderMathText = (text: string) => {
 
 const newsItems = [
   {
+    date: "August 21, 2025",
+    title: "Prof. Dr. Ilija Bogunovic Appointed to University of Basel",
+    excerpt: "Prof. Dr. Ilija Bogunovic, currently Lecturer at UCL, has been appointed to a new professorship at the Department of Mathematics and Computer Science, University of Basel, starting September 1, 2025.",
+    type: "Announcement",
+    url: "https://dmi.unibas.ch/de/news-events/detail/neuer-professor-in-der-informatik-prof-dr-ilija-bogunovic/"
+  },
+  {
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     excerpt: "Introducing a novel policy optimization approach for dLLMs reasoning.",
     type: "Preprint",
     url: "https://ucl-diffusion-reasoning.github.io/wd1-demo/"
-  },
-  {
-    date: "Dec 10, 2024",
-    title: "New Paper Accepted at ICML 2025",
-    excerpt: "Our research on federated learning optimization has been accepted for publication at the International Conference on Machine Learning.",
-    type: "Publication",
-    url: "/publications"
   }
 ];
 

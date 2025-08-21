@@ -21,14 +21,14 @@ const pillars = [
 
 const PillarsSection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="research-pillars" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Our Research Pillars
+            Our Research Directions
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our research is built on three fundamental pillars that guide our approach 
+            Our research is built on three fundamental directions that guide our approach 
             to advancing artificial intelligence.
           </p>
         </div>
