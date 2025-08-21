@@ -73,7 +73,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With J. Knoblauch (UCL)",
-    image: "/abdelhamid-ezzerg-proper.jpg",
+    image: "/abdelhamid-ezzerg-profile.jpg",
     link: "/team/abdelhamid-ezzerg"
   },
   {
