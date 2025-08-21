@@ -2,60 +2,60 @@ import ProfilePage from "@/components/ProfilePage";
 
 const SeongHo = () => {
   const profileData = {
-    name: "Seong Ho",
+    name: "Seongho Son (손성호, /sung-ho/)",
     role: "PhD Student",
     affiliation: "University of Basel & UCL AI Centre (With B. Paige, UCL)",
     image: "/seong-ho-profile.jpg",
     about: [
-      "Seong Ho is a PhD student at the University of Basel and a member of the UCL AI Centre, working in collaboration with B. Paige at UCL. His research focuses on probabilistic machine learning and Bayesian methods.",
-      "He specializes in developing scalable Bayesian inference methods and probabilistic models that can handle uncertainty in complex machine learning systems. His work aims to make AI systems more reliable and interpretable.",
-      "Seong Ho's research combines theoretical foundations in probability theory with practical implementations, contributing to both the understanding and application of probabilistic machine learning methods."
+      "Seongho is a PhD student at the University of Basel and a member of the UCL AI Centre, working in collaboration with B. Paige at UCL. His research focuses on Reinforcement Learning (RL) and its applications to Large Language Models (LLMs).",
+      "His work aims to make AI systems more robust and reliable. He specializes in Reinforcement Learning from Human Feedback (RLHF), multi-objective optimziation and test-time alignment methods.",
+      "He is also exploring the application of multi-agent systems and diffusion models for language model tasks.",
     ],
     researchInterests: [
       {
-        title: "Bayesian Machine Learning",
-        description: "Probabilistic models, Bayesian inference, and uncertainty quantification"
+        title: "Reinforcement Learning",
+        description: "RLHF, Multi-objective optimization"
       },
       {
-        title: "Variational Methods",
-        description: "Variational inference and approximate Bayesian computation techniques"
+        title: "Large Language Models",
+        description: "Preference Optimization under temporal drift, robust test-time alignment, efficient use of compute for LLM fine-tuning"
       },
       {
-        title: "Probabilistic Programming",
-        description: "Tools and methods for probabilistic programming and model specification"
+        title: "Multi-agent systems",
+        description: "Mixture-of-Agents, synergistic collaboration of diverse agents"
       },
       {
-        title: "Uncertainty Quantification",
-        description: "Methods for quantifying and propagating uncertainty in ML systems"
+        title: "Diffusion Models",
+        description: "Discrete Diffusion Models, efficient training and inference techniques for diffusion LLMs" 
       }
     ],
     publications: [],
     socialLinks: [
       {
         type: "email" as const,
-        url: "mailto:seong.ho@example.com",
+        url: "mailto:geronest@gmail.com",
         label: "Email"
       },
       {
         type: "scholar" as const,
-        url: "https://scholar.google.com/citations?user=sho",
+        url: "https://scholar.google.com/citations?user=jBSBdecAAAAJ&hl=en&oi=ao",
         label: "Google Scholar"
       },
       {
         type: "linkedin" as const,
-        url: "https://linkedin.com/in/seong-ho",
+        url: "https://www.linkedin.com/in/seong-ho-son-528bb892/",
         label: "LinkedIn"
       },
       {
         type: "twitter" as const,
-        url: "https://twitter.com/seong_ho",
+        url: "https://x.com/seongho_son_ml",
         label: "Twitter"
       },
-      {
-        type: "external" as const,
-        url: "https://seongho.com",
-        label: "External Website"
-      }
+      // {
+      //   type: "external" as const,
+      //   url: "https://seongho.com",
+      //   label: "External Website"
+      // }
     ]
   };
 
