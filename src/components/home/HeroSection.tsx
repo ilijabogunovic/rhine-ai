@@ -14,8 +14,9 @@ const HeroSection = () => {
   return (
     <>
       <section className="relative py-0 px-4 overflow-hidden" style={{ 
+        backgroundColor: 'rgb(233,230,223)',
         backgroundImage: 'url(/c.jpg)',
-        backgroundSize: '100% 100%',
+        backgroundSize: '80% 100%',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat'
       }}>
