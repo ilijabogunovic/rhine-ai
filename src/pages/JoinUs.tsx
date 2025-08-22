@@ -83,6 +83,40 @@ const JoinUs = () => {
               </CardContent>
             </Card>
 
+            {/* UCL PhD Students */}
+            <Card className="shadow-card">
+              <CardContent className="p-8">
+                <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                  <Globe className="h-6 w-6 text-accent-vibrant" />
+                  You are a prospective PhD student or MSc student at UCL (AI Centre)?
+                </h2>
+                <div className="space-y-4">
+                  <p className="font-body text-muted-foreground">
+                    Please reach out directly, I am able to supervise/co-supervise admitted students or MSc thesis projects.
+                  </p>
+                  <div className="space-y-4">
+                    <p className="font-body text-muted-foreground">
+                      To reach out, please contact:
+                    </p>
+                    <a 
+                      href="mailto:i.bogunovic@ucl.ac.uk"
+                      className="block font-body text-foreground font-medium text-lg hover:text-accent-vibrant transition-colors"
+                    >
+                      📧 Ilija Bogunovic
+                    </a>
+                  </div>
+                  <div className="bg-accent-vibrant/10 border border-accent-vibrant/20 rounded-lg p-4">
+                    <p className="font-body text-foreground font-medium mb-2">
+                      When reaching out for UCL supervision, please use the subject line:
+                    </p>
+                    <p className="font-mono text-accent-vibrant font-medium text-lg">
+                      "[UCL PhD supervision inquiry]"
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Postdoc Positions */}
             <Card className="shadow-card">
               <CardContent className="p-8">
@@ -148,8 +182,6 @@ const JoinUs = () => {
                 </div>
               </CardContent>
             </Card>
-
-
 
           </div>
         </div>
