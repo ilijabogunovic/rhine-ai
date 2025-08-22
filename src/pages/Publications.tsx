@@ -137,7 +137,7 @@ const publications = [
   {
     year: "2024",
     title: "Adversarial Robust Decision Transformer: Enhancing Robustness of RvS via Minimax Returns-to-go",
-    authors: "Xinglin Tang, André Marques, Kiran Parameswaran, Ilija Bogunovic",
+    authors: "Xiaohang Tang, Afonso Marques, Parameswaran Kamalaruban, Ilija Bogunovic",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2407.18414",

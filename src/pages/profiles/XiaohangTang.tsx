@@ -4,79 +4,63 @@ const XiaohangTang = () => {
   const profileData = {
     name: "Xiaohang Tang",
     role: "PhD Student",
-    affiliation: "University of Basel & UCL AI Centre",
+    affiliation: "UCL Statistical Science",
     image: "/xiaohang-tang-profile.jpg",
     about: [
-      "Xiaohang Tang is a PhD student at the University of Basel and a member of the UCL AI Centre. His research focuses on advancing machine learning through innovative algorithmic approaches and theoretical foundations.",
-      "He is passionate about developing scalable and efficient learning algorithms that can tackle real-world challenges in artificial intelligence. His work spans multiple areas including optimization theory, deep learning, and computational efficiency.",
-      "Prior to his PhD studies, Xiaohang completed his Master's degree in Computer Science with a focus on machine learning and data analysis. He has contributed to several high-impact research projects and collaborates actively with leading researchers in the field."
+      "Xiaohang Tang is a PhD student at the UCL Statistical Science. His research focuses on self-improving AI, spanning reinforcement learning, game theory, and Large Language Models.",
     ],
     researchInterests: [
       {
-        title: "Machine Learning Theory",
-        description: "Optimization algorithms, convergence analysis, and theoretical foundations of learning"
+        title: "Reinforcement Learning",
+        description: "Offline RL, Multi-agent RL, Robust RL, and RL with Large Language Models"
       },
       {
-        title: "Deep Learning",
-        description: "Neural network architectures, training dynamics, and representation learning"
+        title: "Game Theory",
+        description: "Online Learning, Game Solving."
       },
       {
-        title: "Computational Efficiency",
-        description: "Scalable algorithms, distributed computing, and resource-efficient learning"
-      },
-      {
-        title: "Applied AI",
-        description: "Real-world applications, domain adaptation, and practical machine learning systems"
+        title: "Large Language Models",
+        description: "Alignment, Reasoning, and Diffusion-based LLMs"
       }
     ],
     publications: [
       {
-        title: "Efficient Learning Algorithms for Large-Scale Optimization",
-        authors: "Xiaohang Tang, Ilija Bogunovic, et al.",
-        venue: "International Conference on Machine Learning (ICML)",
+        year: "2025",
+        title: "RSPO: Regularized Self-Play Alignment of Large Language Models",
+        authors: "Xiaohang Tang, Sangwoong Yoon, Seongho Son, Huizhuo Yuan, Quanquan Gu, Ilija Bogunovic",
+        venue: "arXiv preprint arXiv:2503.00030",
+        description: "Self-play alignment for fine-tuning LLMs through two-player game formulation, with focus on reference policy regularization to mitigate over-optimization.",
+      },
+      {
         year: "2024",
-        description: "This paper presents novel optimization algorithms that achieve superior convergence rates for large-scale machine learning problems."
+        title: "Adversarially Robust Decision Transformer",
+        authors: "Xiaohang Tang, Afonso Marques, Parameswaran Kamalaruban, Ilija Bogunovic",
+        venue: "NeurIPS",
+        description: "Enhances robustness of reward-conditioned sequence modeling via minimax returns-to-go."
       },
       {
-        title: "Theoretical Analysis of Adaptive Learning Rates in Deep Networks",
-        authors: "Xiaohang Tang, Collaborator Name, Ilija Bogunovic",
-        venue: "Neural Information Processing Systems (NeurIPS)",
         year: "2023",
-        description: "We provide theoretical insights into adaptive learning rate methods and their impact on training dynamics in deep neural networks."
+        title: "Regret-minimizing Double Rracle for Extensive-Form Games",
+        authors: "Xiaohang Tang, Le Cong Dinh, Stephen Marcus Mcaleer, Yaodong Yang",
+        venue: "ICML",
+        description: "Proposes Periodic Double Oracle (PDO) method for extensive-form games, achieving polynomial sample complexity and faster convergence than existing double oracle algorithms.",
       },
-      {
-        title: "Scalable Distributed Learning with Communication Constraints",
-        authors: "Author Name, Xiaohang Tang, Ilija Bogunovic",
-        venue: "International Conference on Learning Representations (ICLR)",
-        year: "2023",
-        description: "A framework for distributed machine learning that minimizes communication overhead while maintaining convergence guarantees."
-      }
     ],
     socialLinks: [
       {
         type: "email" as const,
-        url: "mailto:xiaohang.tang@example.com",
+        url: "xiaohang.tang20@ucl.ac.uk",
         label: "Email"
       },
       {
         type: "scholar" as const,
-        url: "https://scholar.google.com/citations?user=example",
+        url: "https://scholar.google.co.uk/citations?user=VVaL9mwAAAAJ&hl=en&oi=ao",
         label: "Google Scholar"
       },
       {
-        type: "linkedin" as const,
-        url: "https://linkedin.com/in/xiaohang-tang",
-        label: "LinkedIn"
-      },
-      {
         type: "twitter" as const,
-        url: "https://twitter.com/xiaohang_tang",
+        url: "https://x.com/xiaohang_tang?s=21&t=ALSNVDQfZZ3DP1N01YSQag",
         label: "Twitter"
-      },
-      {
-        type: "external" as const,
-        url: "https://xiaohangtang.com",
-        label: "External Website"
       }
     ]
   };
