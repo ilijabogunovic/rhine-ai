@@ -17,7 +17,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "",
-    image: "/william-bankes-proper.jpg",
+    image: "/william-bankes-new.jpg",
     link: "/team/william-bankes"
   },
   {
