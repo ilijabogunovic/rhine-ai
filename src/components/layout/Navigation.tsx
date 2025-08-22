@@ -23,14 +23,12 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-hero-gradient rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">AI</span>
-            </div>
+          <div className="flex items-center space-x-2">
+            <img src="/logo.png" alt="RHINE AI Logo" className="w-12 h-12 mt-2" />
             <span className="font-display font-bold text-xl text-foreground">
               Bogunovic LAB
             </span>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
