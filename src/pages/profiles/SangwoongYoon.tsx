@@ -4,72 +4,71 @@ const SangwoongYoon = () => {
   const profileData = {
     name: "Dr. Sangwoong Yoon",
     role: "Research Fellow",
-    affiliation: "University of Basel & UCL AI Centre",
+    affiliation: "University College London",
     image: "/sangwoong-yoon-profile.jpg",
     about: [
-      "Dr. Sangwoong Yoon is a Research Fellow at the University of Basel and a member of the UCL AI Centre. He leads independent research projects while mentoring PhD students in the lab, bringing extensive experience in machine learning research.",
-      "His research focuses on advanced machine learning algorithms with particular emphasis on deep learning, optimization, and their theoretical foundations. Dr. Yoon has contributed significantly to the understanding of neural network dynamics and training algorithms.",
-      "With a strong publication record in top-tier venues, Dr. Yoon bridges theoretical insights with practical applications, developing algorithms that are both theoretically sound and practically effective for real-world problems."
+      "Dr. Sangwoong Yoon is a Research Fellow at University College London (UCL) and an incoming assistant professor at Ulsan National Institute of Science and Technology (UNIST). His research is focused on the intersection of reinforcement learning and generative modeling, with a particular emphasis on improving AI alignment and reasoning capabilities.",
+      "Before joining UCL, Dr. Yoon was a Research Fellow at Korea Institute for Advanced Study (KIAS). He received his PhD, MS, and BS from Seoul National University (SNU)."
     ],
     researchInterests: [
       {
-        title: "Deep Learning Theory",
-        description: "Theoretical analysis of deep neural networks and their training dynamics"
+        title: "Generative Modeling",
+        description: "Learning probabilistic models of data. Energy-based models and diffusion models."
       },
       {
-        title: "Optimization for ML",
-        description: "Advanced optimization methods for machine learning and deep learning"
+        title: "Reinforcement Learning for Generative Modeling",
+        description: "Reinforcement learning for alignment, reasoning, and distillation."
       },
       {
-        title: "Neural Network Dynamics",
-        description: "Understanding the behavior and properties of neural networks during training"
+        title: "Machine Learning for Science and Engineering",
+        description: "Robotics, chemistry, particle physics, and rheology."
       },
       {
-        title: "Algorithm Development",
-        description: "Developing novel algorithms for efficient and robust machine learning"
+        title: "Learning to Act Under Partial Observability",
+        description: "Learning to ask questions or to interact with the environment."
       }
     ],
     publications: [
       {
-        title: "Understanding Neural Network Training Dynamics",
-        authors: "Sangwoong Yoon, Ilija Bogunovic, et al.",
-        venue: "International Conference on Machine Learning (ICML)",
+        title: "Maximum Entropy Inverse Reinforcement Learning of Diffusion Models with Energy-Based Models",
+        authors: "Sangwoong Yoon, Himchan Hwang, Dohyun Kwon, Yung-Kyun Noh, Frank C. Park",
+        venue: "Neural Information Processing Systems (NeurIPS)",
         year: "2024",
-        description: "A comprehensive analysis of training dynamics in deep neural networks, providing theoretical insights into convergence behavior."
+        description: "Training a diffusion model and an energy-based model jointly under the inverse reinforcement learning framework."
       },
       {
-        title: "Efficient Optimization Methods for Large-Scale Learning",
-        authors: "Sangwoong Yoon, Research Collaborators",
+        title: "Energy-based models for anomaly detection: A manifold diffusion recovery approach",
+        authors: "Sangwoong Yoon, Young-Uk Jin, Yung-Kyun Noh, Frank C. Park",
         venue: "Neural Information Processing Systems (NeurIPS)",
         year: "2023",
-        description: "Novel optimization algorithms that achieve improved convergence rates for large-scale machine learning problems."
+        description: "Training an energy-based model with manifold-based perturbations."
       }
     ],
     socialLinks: [
       {
         type: "email" as const,
-        url: "mailto:sangwoong.yoon@example.com",
+        url: "mailto:sangwoong24yoon@gmail.com",
         label: "Email"
       },
       {
         type: "scholar" as const,
-        url: "https://scholar.google.com/citations?user=syoon",
+        url: "https://scholar.google.com/citations?user=cH2rjfIAAAAJ",
         label: "Google Scholar"
       },
       {
         type: "linkedin" as const,
-        url: "https://linkedin.com/in/sangwoong-yoon",
+        url: "https://www.linkedin.com/in/sangwoong-yoon-8a6944b9/",
         label: "LinkedIn"
       },
       {
         type: "twitter" as const,
-        url: "https://twitter.com/sangwoong_yoon",
+        url: "https://x.com/WoongSSang",
         label: "Twitter"
       },
       {
         type: "external" as const,
-        url: "https://sangwoongyoon.com",
-        label: "External Website"
+        url: "https://swyoon.github.io/",
+        label: "Personal Website"
       }
     ]
   };

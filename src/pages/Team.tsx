@@ -80,7 +80,7 @@ const teamMembers = [
     name: "Dr. Sangwoong Yoon",
     role: "Research Fellow",
     expertise: "",
-    bio: "",
+    bio: "University College London\nIncoming assistant professor at UNIST",
     image: "/sangwoong-yoon-resized.jpg",
     link: "/team/sangwoong-yoon"
   },
