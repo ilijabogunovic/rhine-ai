@@ -4,52 +4,50 @@ const TheoBrown = () => {
   const profileData = {
     name: "Theo Brown",
     role: "PhD Student",
-    affiliation: "University of Basel & UCL AI Centre (With UKAEA)",
+    affiliation: "UCL AI Centre, UK Atomic Energy Authority",
     image: "/theo-brown-profile.jpg",
     about: [
-      "Theo Brown is a PhD student at the University of Basel and a member of the UCL AI Centre, working in collaboration with the UK Atomic Energy Authority (UKAEA). His research focuses on the intersection of machine learning and energy applications.",
-      "He specializes in developing AI solutions for complex energy systems, with particular emphasis on fusion energy and sustainable energy technologies. His work combines cutting-edge machine learning techniques with domain expertise in energy physics.",
-      "Theo's interdisciplinary approach brings together computational methods, theoretical physics, and practical engineering to address some of the most challenging problems in sustainable energy research."
+      ""
     ],
     researchInterests: [
       {
-        title: "AI for Energy Systems",
-        description: "Machine learning applications in fusion energy and sustainable energy systems"
+        title: "Probabilistic machine learning",
+        description: ""
       },
       {
         title: "Physics-Informed ML",
-        description: "Incorporating physical constraints and domain knowledge into learning algorithms"
+        description: ""
       },
       {
-        title: "Control Systems",
-        description: "AI-driven control and optimization of complex energy systems"
+        title: "Robust Optimization and Control",
+        description: ""
       },
       {
         title: "Scientific Computing",
-        description: "Computational methods for large-scale physics simulations and modeling"
+        description: "Computational methods for large-scale, multi-fidelity physics simulations"
       }
     ],
     publications: [],
     socialLinks: [
       {
         type: "email" as const,
-        url: "mailto:theo.brown@example.com",
+        url: "mailto:theodore.brown@ucl.ac.uk",
         label: "Email"
       },
       {
         type: "scholar" as const,
-        url: "https://scholar.google.com/citations?user=tbrown",
+        url: "https://scholar.google.com/citations?user=m4LY31gAAAAJ",
         label: "Google Scholar"
       },
       {
         type: "linkedin" as const,
-        url: "https://linkedin.com/in/theo-brown",
+        url: "https://linkedin.com/in/theo-brown-uk",
         label: "LinkedIn"
       },
       {
-        type: "twitter" as const,
-        url: "https://twitter.com/theo_brown",
-        label: "Twitter"
+        type: "github" as const,
+        url: "https://github.com/theo-brown",
+        label: "Github"
       },
       {
         type: "external" as const,
