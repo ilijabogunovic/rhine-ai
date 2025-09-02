@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getAuthorPublications } from "@/utils/publicationUtils";
 
 const SeongHo = () => {
   const profileData = {
@@ -29,7 +30,7 @@ const SeongHo = () => {
         description: "Discrete Diffusion Models, efficient training and inference techniques for diffusion LLMs" 
       }
     ],
-    publications: [],
+    publications: getAuthorPublications("Seongho Son"),
     socialLinks: [
       {
         type: "email" as const,

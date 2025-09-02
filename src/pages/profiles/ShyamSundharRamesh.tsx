@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getAuthorPublications } from "@/utils/publicationUtils";
 
 const ShyamSundharRamesh = () => {
   const profileData = {
@@ -27,7 +28,7 @@ const ShyamSundharRamesh = () => {
         description: "Advancing probabilistic optimization techniques for impactful real-world applications such as energy systems."
       }
     ],
-    publications: [],
+    publications: getAuthorPublications("Shyam Sundhar Ramesh"),
     socialLinks: [
       {
         type: "email" as const,

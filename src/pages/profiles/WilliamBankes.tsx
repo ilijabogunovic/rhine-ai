@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getAuthorPublications } from "@/utils/publicationUtils";
 
 const WilliamBankes = () => {
   const profileData = {
@@ -21,7 +22,7 @@ const WilliamBankes = () => {
         description: "Alignment, Reinforcement Learning, and Inference Time Algorithms"
       },
     ],
-    publications: [],
+    publications: getAuthorPublications("William Bankes"),
     socialLinks: [
       {
         type: "email" as const,

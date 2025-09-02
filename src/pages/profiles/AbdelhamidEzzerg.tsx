@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getAuthorPublications } from "@/utils/publicationUtils";
 
 const AbdelhamidEzzerg = () => {
   const profileData = {
@@ -29,7 +30,7 @@ const AbdelhamidEzzerg = () => {
         description: "Methods for analyzing complex, high-dimensional datasets"
       }
     ],
-    publications: [],
+    publications: getAuthorPublications("Abdelhamid Ezzerg"),
     socialLinks: [
       {
         type: "email" as const,

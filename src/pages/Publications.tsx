@@ -2,8 +2,57 @@ import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PDFThumbnail from "@/components/PDFThumbnail";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const publications = [
+// Mapping of author names to their profile routes
+const authorRoutes: Record<string, string> = {
+  "Ilija Bogunovic": "/team/ilija-bogunovic",
+  "William Bankes": "/team/william-bankes",
+  "Shyam Sundhar Ramesh": "/team/shyam-sundhar-ramesh",
+  "Xiaohang Tang": "/team/xiaohang-tang",
+  "Theodore Brown": "/team/theo-brown",
+  "Theo Brown": "/team/theo-brown",
+  "Seong Ho": "/team/seong-ho",
+  "Seongho Son": "/team/seong-ho",
+  "Zhe Wang": "/team/zhe-wang",
+  "Ahmet Hamdi Güzel": "/team/ahmet-h-guzel",
+  "Ahmet H. Guzel": "/team/ahmet-h-guzel",
+  "Abdelhamid Ezzerg": "/team/abdelhamid-ezzerg",
+  "Sangwoong Yoon": "/team/sangwoong-yoon"
+};
+
+// Function to render author names with clickable links for team members
+const renderAuthors = (authors: string) => {
+  const authorList = authors.split(',').map(author => author.trim());
+  
+  return authorList.map((author, index) => {
+    const route = authorRoutes[author];
+    const isLast = index === authorList.length - 1;
+    const separator = isLast ? '' : ', ';
+    
+    if (route) {
+      return (
+        <span key={index}>
+          <Link 
+            to={route}
+            className="text-accent-vibrant hover:text-accent-vibrant/80 hover:underline transition-colors"
+          >
+            {author}
+          </Link>
+          {separator}
+        </span>
+      );
+    } else {
+      return (
+        <span key={index}>
+          {author}{separator}
+        </span>
+      );
+    }
+  });
+};
+
+export const publications = [
   {
     year: "2025",
     title: "wd1: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
@@ -420,7 +469,7 @@ const Publications = () => {
                       {paper.title}
                     </a>
                     <p className="font-body text-muted-foreground text-sm">
-                      {paper.authors}
+                      {renderAuthors(paper.authors)}
                     </p>
                     <p className="font-body text-muted-foreground italic text-sm">
                       {paper.venue}, {paper.year}
@@ -429,15 +478,131 @@ const Publications = () => {
                       {paper.abstract}
                     </p>
                     <div className="flex items-center gap-3 pt-2">
-                      <a 
-                        href={paper.arxivLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                      {paper.arxivLink && (
+                        <>
+                          <a 
+                            href={paper.arxivLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            arXiv
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {paper.pdfFile && (
+                        <>
+                          <a
+                            href={paper.pdfFile}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            PDF
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).githubLink && (
+                        <>
+                          <a
+                            href={(paper as any).githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            GitHub
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).codeLink && (
+                        <>
+                          <a
+                            href={(paper as any).codeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            Code
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).videoLink && (
+                        <>
+                          <a
+                            href={(paper as any).videoLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            Video
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).blogLink && (
+                        <>
+                          <a
+                            href={(paper as any).blogLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            Blog
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).websiteLink && (
+                        <>
+                          <a
+                            href={(paper as any).websiteLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            Website
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      {(paper as any).slidesLink && (
+                        <>
+                          <a
+                            href={(paper as any).slidesLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            Slides
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
+                      <button
+                        onClick={() => toggleBibTeX(`recent-${index}`)}
+                        className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer bg-transparent border-0 p-0"
+                        style={{ background: 'none', border: 'none', padding: 0, font: 'inherit' }}
                       >
-                        arXiv Link
-                      </a>
+                        BibTeX
+                      </button>
                     </div>
+                    {showBibTeX === `recent-${index}` && (
+                      <div className="mt-4 p-4 bg-muted/50 rounded-md border">
+                        <pre className="text-sm font-mono whitespace-pre-wrap overflow-x-auto">
+                          {generateBibTeX(paper)}
+                        </pre>
+                        <button
+                          onClick={() => navigator.clipboard.writeText(generateBibTeX(paper))}
+                          className="mt-2 px-3 py-1 text-xs bg-accent-vibrant text-white rounded hover:bg-accent-vibrant/90"
+                        >
+                          Copy to Clipboard
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -458,21 +623,49 @@ const Publications = () => {
     const cleanTitle = paper.title.replace(/[{}]/g, '');
     const cleanAbstract = paper.abstract?.replace(/[{}]/g, '').substring(0, 500) + (paper.abstract && paper.abstract.length > 500 ? '...' : '');
     
-    let bibtex = `@misc{${key},\n`;
+    // Determine BibTeX entry type and appropriate fields based on publication type and venue
+    let entryType = 'misc';
+    let venueField = 'howpublished';
+    
+    if (paper.type === 'Journal Article') {
+      entryType = 'article';
+      venueField = 'journal';
+    } else if (paper.type === 'Conference Paper') {
+      entryType = 'inproceedings';
+      venueField = 'booktitle';
+    } else if (paper.type === 'Preprint' || paper.venue?.includes('arXiv')) {
+      entryType = 'misc';
+      venueField = 'howpublished';
+    }
+    
+    // Start building BibTeX entry
+    let bibtex = `@${entryType}{${key},\n`;
     bibtex += `  title={${cleanTitle}},\n`;
     bibtex += `  author={${paper.authors}},\n`;
     bibtex += `  year={${paper.year}}`;
     
+    // Add venue using appropriate field name
     if (paper.venue) {
-      bibtex += `,\n  journal={${paper.venue}}`;
+      bibtex += `,\n  ${venueField}={${paper.venue}}`;
     }
     
+    // Add URL (arXiv link or other)
     if (paper.arxivLink) {
       bibtex += `,\n  url={${paper.arxivLink}}`;
     }
     
+    // Add abstract
     if (cleanAbstract) {
       bibtex += `,\n  abstract={${cleanAbstract}}`;
+    }
+    
+    // Add additional fields for specific entry types
+    if (entryType === 'article' && paper.venue) {
+      // For journal articles, you might want to add volume, number, pages if available
+      // Currently we only have the full venue string
+    } else if (entryType === 'inproceedings' && paper.venue) {
+      // For conference papers, venue is already in booktitle
+      // You could add organization, address, pages if available
     }
     
     bibtex += `\n}`;
@@ -496,7 +689,7 @@ const Publications = () => {
               return (
                 <div key={index} className="space-y-3">
                   <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                    {paper.authors}
+                    {renderAuthors(paper.authors)}
                   </p>
                   <h3 className="font-display text-lg font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors">
                     <a 
@@ -534,6 +727,84 @@ const Publications = () => {
                           className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
                         >
                           PDF
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).githubLink && (
+                      <>
+                        <a
+                          href={(paper as any).githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          GitHub
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).codeLink && (
+                      <>
+                        <a
+                          href={(paper as any).codeLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          Code
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).videoLink && (
+                      <>
+                        <a
+                          href={(paper as any).videoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          Video
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).blogLink && (
+                      <>
+                        <a
+                          href={(paper as any).blogLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          Blog
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).websiteLink && (
+                      <>
+                        <a
+                          href={(paper as any).websiteLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          Website
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).slidesLink && (
+                      <>
+                        <a
+                          href={(paper as any).slidesLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          Slides
                         </a>
                         <span className="text-muted-foreground">|</span>
                       </>

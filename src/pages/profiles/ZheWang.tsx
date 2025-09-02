@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getAuthorPublications } from "@/utils/publicationUtils";
 
 const ZheWang = () => {
   const profileData = {
@@ -29,7 +30,7 @@ const ZheWang = () => {
         description: "Bridging fundamental research with practical AI applications"
       }
     ],
-    publications: [],
+    publications: getAuthorPublications("Zhe Wang"),
     socialLinks: [
       {
         type: "email" as const,
