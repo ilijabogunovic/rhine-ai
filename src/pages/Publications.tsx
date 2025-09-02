@@ -62,7 +62,8 @@ export const publications = [
     arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step...",
     pdfFile: "https://arxiv.org/pdf/2507.08838.pdf",
-    huggingFaceLink: "https://huggingface.co/example-model"
+    githubLink: "https://github.com/xiaohangt/wd1",
+    blogLink: "https://ucl-diffusion-reasoning.github.io/wd1-demo/",
   },
   {
     year: "2024",
@@ -210,13 +211,14 @@ export const publications = [
   },
   {
     year: "2024",
-    title: "Adversarial Robust Decision Transformer: Enhancing Robustness of RvS via Minimax Returns-to-go",
+    title: "Adversarially Robust Decision Transformer",
     authors: "Xiaohang Tang, Afonso Marques, Parameswaran Kamalaruban, Ilija Bogunovic",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2407.18414",
     pdfFile: "https://arxiv.org/pdf/2407.18414.pdf",
-    abstract: "Enhances robustness of reward-conditioned sequence modeling via minimax returns-to-go."
+    abstract: "Enhances robustness of reward-conditioned sequence modeling via minimax returns-to-go.",
+    githubLink: "https://github.com/xiaohangt/ardt",
   },
   {
     year: "2024",
