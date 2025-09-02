@@ -100,8 +100,9 @@ export const publications = [
     venue: "arXiv preprint arXiv:2502.01208",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2502.01208",
-    abstract: "We introduce a novel inference-time alignment approach for LLMs that aims to generate safe responses almost surely, i.e., with probability approaching one. Our approach models the generation of safe responses as a constrained Markov Decision Process (MDP) within the LLM's latent space...",
-    pdfFile: "https://arxiv.org/pdf/2502.01208.pdf"
+    abstract: "We introduce a novel inference-time alignment approach for LLMs that aims to generate safe responses almost surely, i.e., with probability approaching one. Our approach models the generation of safe responses as a constrained Markov Decision Process (MDP) within the LLM's latent space. We augment a safety state that tracks the evolution of safety constraints and dynamically penalize unsafe generations to ensure the generation of safe responses. Consequently, we demonstrate formal safety guarantees w.r.t. the given cost model upon solving the MDP in the latent space with sufficiently large penalties. Building on this foundation, we propose InferenceGuard, a practical implementation that safely aligns LLMs without modifying the model weights. Empirically, we demonstrate that InferenceGuard effectively balances safety and task performance, outperforming existing inference-time alignment methods in generating safe and aligned responses. Our findings contribute to the advancement of safer LLM deployment through alignment at inference-time, thus presenting a promising alternative to resource-intensive, overfitting-prone alignment techniques like RLHF.",
+    pdfFile: "https://arxiv.org/pdf/2502.01208.pdf",
+    huggingFaceLink: "https://huggingface.co/papers/2502.01208"
   },
   {
     year: "2025",
@@ -147,13 +148,16 @@ export const publications = [
   },
   {
     year: "2024",
-    title: "Distributionally Robust Model-based Reinforcement Learning with Large State Spaces",
-    authors: "Shyam Sundhar Ramesh, Pier Giuseppe Sessa, Yifan Hu, Andreas Krause, Ilija Bogunovic",
-    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
+    title: "Group Robust Preference Optimization in Reward-free RLHF",
+    authors: "Shyam Sundhar Ramesh, Yifan Hu, Iason Chaimalas, Viraj Mehta, Pier Giuseppe Sessa, Haitham Bou Ammar, Ilija Bogunovic",
+    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
-    arxivLink: "https://arxiv.org/abs/2309.02236",
-    pdfFile: "https://arxiv.org/pdf/2309.02236.pdf",
-    abstract: "Addresses distributionally robust Markov decision processes with continuous state spaces, proposing a model-based approach using Gaussian Processes for efficient learning of multi-output nominal transition dynamics."
+    arxivLink: "https://arxiv.org/abs/2405.20304",
+    pdfFile: "https://arxiv.org/pdf/2405.20304.pdf",
+    abstract: "Adapting large language models (LLMs) for specific tasks usually involves fine-tuning through reinforcement learning with human feedback (RLHF) on preference data. While these data often come from diverse labelers' groups (e.g., different demographics, ethnicities, company teams, etc.), traditional RLHF approaches adopt a \"one-size-fits-all\" approach, i.e., they indiscriminately assume and optimize a single preference model, thus not being robust to unique characteristics and needs of the various groups. To address this limitation, we propose a novel Group Robust Preference Optimization (GRPO) method to align LLMs to individual groups' preferences robustly. Our approach builds upon reward-free direct preference optimization methods, but unlike previous approaches, it seeks a robust policy which maximizes the worst-case group performance. To achieve this, GRPO adaptively and sequentially weights the importance of different groups, prioritizing groups with worse cumulative loss. We theoretically study the feasibility of GRPO and analyze its convergence for the log-linear policy class. By fine-tuning LLMs with GRPO using diverse group-based global opinion data, we significantly improved performance for the worst-performing groups, reduced loss imbalances across groups, and improved probability accuracies compared to non-robust baselines.",
+    githubLink: "https://github.com/rsshyam/GRPO",
+    videoLink: "https://slideslive.com/39027665",
+    blogLink: "https://medium.com/@haitham.bouammar71/pluralistic-alignment-of-llms-fix-your-algorithm-not-just-your-data-a0686ec7a279",
   },
   {
     year: "2024",
@@ -195,13 +199,14 @@ export const publications = [
   },
   {
     year: "2024",
-    title: "Group Robust Preference Optimization in Reward-free RLHF",
-    authors: "Shyam Sundhar Ramesh, Yifan Hu, Iason Chaimalas, Viraj Mehta, Pier Giuseppe Sessa, Haitham Bou Ammar, Ilija Bogunovic",
-    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
+    title: "Distributionally Robust Model-based Reinforcement Learning with Large State Spaces",
+    authors: "Shyam Sundhar Ramesh, Pier Giuseppe Sessa, Yifan Hu, Andreas Krause, Ilija Bogunovic",
+    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
     type: "Conference Paper",
-    arxivLink: "https://arxiv.org/abs/2405.20304",
-    pdfFile: "https://arxiv.org/pdf/2405.20304.pdf",
-    abstract: "Addresses group robustness in preference optimization for reinforcement learning from human feedback."
+    arxivLink: "https://arxiv.org/abs/2309.02236",
+    pdfFile: "https://arxiv.org/pdf/2309.02236.pdf",
+    abstract: "Three major challenges in reinforcement learning are the complex dynamical systems with large state spaces, the costly data acquisition processes, and the deviation of real-world dynamics from the training environment deployment. To overcome these issues, we study distributionally robust Markov decision processes with continuous state spaces under the widely used Kullback-Leibler, chi-square, and total variation uncertainty sets. We propose a model-based approach that utilizes Gaussian Processes and the maximum variance reduction algorithm to efficiently learn multi-output nominal transition dynamics, leveraging access to a generative model (i.e., simulator). We further demonstrate the statistical sample complexity of the proposed method for different uncertainty sets. These complexity bounds are independent of the number of states and extend beyond linear dynamics, ensuring the effectiveness of our approach in identifying near-optimal distributionally-robust policies. The proposed method can be further combined with other model-free distributionally robust reinforcement learning methods to obtain a near-optimal robust policy. Experimental results demonstrate the robustness of our algorithm to distributional shifts and its superior performance in terms of the number of samples needed.",
+    githubLink: "https://github.com/rsshyam/MVR-RFQI/tree/main",
   },
   {
     year: "2023",
@@ -240,10 +245,13 @@ export const publications = [
   {
     year: "2022",
     title: "Movement Penalized Bayesian Optimization with Application to Wind Energy Systems",
-    authors: "Ilija Bogunovic, Jonathan Scarlett, Stefanie Jegelka, Volkan Cevher",
+    authors: "Shyam Sundhar Ramesh, Pier Giuseppe Sessa, Andreas Krause, Ilija Bogunovic",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
-    abstract: "Develops Bayesian optimization methods that penalize movement costs, with applications to wind energy system optimization."
+    abstract: "Contextual Bayesian optimization (CBO) is a powerful framework for sequential decision-making given side information, with important applications, e.g., in wind energy systems. In this setting, the learner receives context (e.g., weather conditions) at each round, and has to choose an action (e.g., turbine parameters). Standard algorithms assume no cost for switching their decisions at every round. However, in many practical applications, there is a cost associated with such changes, which should be minimized. We introduce the episodic CBO with movement costs problem and, based on the online learning approach for metrical task systems of Coester and Lee (2019), propose a novel randomized mirror descent algorithm that makes use of Gaussian Process confidence bounds. We compare its performance with the offline optimal sequence for each episode and provide rigorous regret guarantees. We further demonstrate our approach on the important real-world application of altitude optimization for Airborne Wind Energy Systems. In the presence of substantial movement costs, our algorithm consistently outperforms standard CBO algorithms.",
+    arxivLink: "https://arxiv.org/abs/2210.08087",
+    pdfFile: "https://arxiv.org/pdf/2210.08087",
+    videoLink: "https://slideslive.com/38990489"
   },
   {
     year: "2022",
@@ -256,7 +264,7 @@ export const publications = [
   {
     year: "2022",
     title: "Contextual Bayesian Optimization",
-    authors: "Shyam Sundhar Ramesh, Pier Giuseppe Sessa, Andreas Krause, Ilija Bogunovic",
+    authors: "Ilija Bogunovic, Jonathan Scarlett, Stefanie Jegelka, Volkan Cevher",
     venue: "International Conference on Machine Learning (ICML)",
     type: "Conference Paper",
     abstract: "Describes CBO as a powerful framework for sequential decision-making given side information."
