@@ -20,6 +20,7 @@ import ZheWang from "./pages/profiles/ZheWang";
 import AhmetHGuzel from "./pages/profiles/AhmetHGuzel";
 import AbdelhamidEzzerg from "./pages/profiles/AbdelhamidEzzerg";
 import SangwoongYoon from "./pages/profiles/SangwoongYoon";
+import ColinDoumont from "./pages/profiles/ColinDoumont";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/team/ahmet-h-guzel" element={<AhmetHGuzel />} />
           <Route path="/team/abdelhamid-ezzerg" element={<AbdelhamidEzzerg />} />
           <Route path="/team/sangwoong-yoon" element={<SangwoongYoon />} />
+          <Route path="/team/colin-doumont" element={<ColinDoumont />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
