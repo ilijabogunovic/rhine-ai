@@ -6,7 +6,11 @@
       "Bash(npm run dev:*)",
       "Bash(cp:*)",
       "WebFetch(domain:github.com)",
-      "Bash(magick:*)"
+      "Bash(magick:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

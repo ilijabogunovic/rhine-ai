@@ -8,10 +8,10 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              About Bogunovic LAB
+              About RHINE AI Lab
             </h1>
             <p className="font-body text-lg text-muted-foreground">
-              Pioneering AI research for a better tomorrow.
+              Developing intelligent agents that reason, learn, and discover.
             </p>
           </div>
 
@@ -23,11 +23,7 @@ const About = () => {
                   Our Mission
                 </h2>
                 <p className="font-body text-muted-foreground leading-relaxed text-lg">
-                  The Bogunovic LAB is dedicated to advancing the frontiers of artificial intelligence 
-                  through innovative research, ethical development practices, and collaborative 
-                  partnerships. We believe that AI has the potential to solve some of humanity's 
-                  greatest challenges, from climate change to healthcare, and we're committed to 
-                  ensuring that these advances benefit everyone.
+                  RHINE AI Lab focuses on agentic AI systems with capabilities for reasoning, adaptation, and self-evolution - developing reliable and theory-inspired algorithms that can autonomously explore complex problems while staying aligned with human values and advancing scientific knowledge.
                 </p>
               </CardContent>
             </Card>
@@ -40,21 +36,23 @@ const About = () => {
                 </h2>
                 <div className="space-y-4 font-body text-muted-foreground leading-relaxed">
                   <p>
-                    Originally founded by Prof. Ilija Bogunovic at University College London (UCL), 
-                    the Bogunovic LAB emerged from a shared vision: to create AI systems that are 
-                    not only powerful but also responsible, explainable, and beneficial to society.
+                    RHINE AI Lab was founded by Prof. Ilija Bogunovic with a vision to develop intelligent 
+                    systems that can reason about complex problems, adapt to new challenges, and evolve 
+                    their capabilities while remaining aligned with human values and advancing scientific discovery.
                   </p>
                   <p>
-                    In 2025, the lab moved to the University of Basel, Department of Mathematics 
-                    and Computer Science. However, we maintain close ties with the UCL AI Centre, 
-                    where most of our current PhD students are situated. All lab members are also 
-                    members of the UCL AI Centre, fostering continued collaboration and research excellence.
+                    Originally established at University College London (UCL), the lab transitioned to the 
+                    University of Basel's Department of Mathematics and Computer Science in 2025, while 
+                    maintaining strong collaborative ties with the UCL AI Centre. This dual affiliation 
+                    enables us to leverage the strengths of both institutions and foster international 
+                    research partnerships.
                   </p>
                   <p>
-                    Our team conducts cutting-edge research in machine learning and AI, with a focus 
-                    on foundation models, learning algorithms, and theoretical advances. We publish in 
-                    leading venues such as NeurIPS, ICML, ICLR, AISTATS, JMLR, TMLR, and others, 
-                    contributing to the global advancement of artificial intelligence.
+                    Our research spans three core directions: agentic AI systems, reinforcement learning, 
+                    and exploration & discovery. We develop reliable, theory-inspired algorithms for 
+                    sequential decision making, human-AI collaboration, and autonomous problem solving. 
+                    Our work appears in top venues including NeurIPS, ICML, ICLR, AISTATS, and JMLR, 
+                    contributing to both theoretical understanding and practical applications of AI.
                   </p>
                 </div>
               </CardContent>
@@ -72,35 +70,35 @@ const About = () => {
                       Scientific Rigor
                     </h3>
                     <p className="font-body text-muted-foreground text-sm">
-                      We uphold the highest standards of scientific methodology and 
-                      reproducibility in all our research.
+                      We uphold the highest standards of scientific methodology, 
+                      theoretical foundations, and reproducibility in all our research.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-2">
-                      Ethical Responsibility
+                      Collaborative Teamwork
                     </h3>
                     <p className="font-body text-muted-foreground text-sm">
-                      We prioritize the development of fair, transparent, and 
-                      accountable AI systems.
+                      We foster an inclusive environment where diverse perspectives 
+                      and interdisciplinary collaboration drive innovation.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-2">
-                      Open Collaboration
+                      Human-Aligned AI
                     </h3>
                     <p className="font-body text-muted-foreground text-sm">
-                      We believe in sharing knowledge and tools to accelerate 
-                      progress across the AI community.
+                      We develop AI systems that remain aligned with human values 
+                      and serve the broader benefit of society.
                     </p>
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-foreground mb-2">
-                      Real-World Impact
+                      Open Science
                     </h3>
                     <p className="font-body text-muted-foreground text-sm">
-                      We focus on research that addresses pressing societal 
-                      challenges and creates tangible benefits.
+                      We believe in sharing knowledge, tools, and discoveries to 
+                      accelerate progress across the global AI community.
                     </p>
                   </div>
                 </div>
@@ -113,22 +111,29 @@ const About = () => {
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
                   Get in Touch
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6 font-body text-muted-foreground">
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Research Inquiries</h3>
-                    <p>research@neurallabs.org</p>
+                <div className="space-y-4 font-body text-muted-foreground">
+                  <p className="text-lg">
+                    For all inquiries, please contact:
+                  </p>
+                  <div className="bg-background rounded-lg p-4 border">
+                    <p className="font-body text-foreground">
+                      📧 <a href="mailto:ilija.bogunovic@unibas.ch" className="text-accent-vibrant hover:text-accent-vibrant/80 transition-colors font-medium">
+                        ilija.bogunovic@unibas.ch
+                      </a> or <a href="mailto:i.bogunovic@ucl.ac.uk" className="text-accent-vibrant hover:text-accent-vibrant/80 transition-colors font-medium">
+                        i.bogunovic@ucl.ac.uk
+                      </a>
+                    </p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Collaborations</h3>
-                    <p>partnerships@neurallabs.org</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Media & Press</h3>
-                    <p>press@neurallabs.org</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">General</h3>
-                    <p>info@neurallabs.org</p>
+                  <div className="bg-accent-vibrant/10 border border-accent-vibrant/20 rounded-lg p-4">
+                    <p className="font-body text-foreground font-medium mb-2">
+                      Please use an appropriate subject line such as:
+                    </p>
+                    <div className="space-y-1 font-mono text-accent-vibrant font-medium">
+                      <p>"[Research Inquiry]" for research questions</p>
+                      <p>"[Collaboration]" for partnership opportunities</p>
+                      <p>"[Media Inquiry]" for press and media requests</p>
+                      <p>"[General Inquiry]" for other questions</p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
