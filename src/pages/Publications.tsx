@@ -168,6 +168,16 @@ export const publications = [
   },
   {
     year: "2024",
+    title: "Sample-Efficient Regret-Minimizing Double Oracle in Extensive-Form Games",
+    authors: "Xiaohang Tang, Chiyuan Wang, Chengdong Ma, Ilija Bogunovic, Stephen McAleer, Yaodong Yang",
+    venue: "arXiv preprint arXiv:2411.00954",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2411.00954",
+    abstract: "We propose Adaptive Double Oracle (AdaDO), which reduces the exponential sample complexity of XDO to polynomial by optimizing expansion frequency, and introduce a theoretical framework, Regret-Minimizing Double Oracle (RMDO), to guide efficient algorithm design. Empirical results show that AdaDO outperforms strong baselines while RMDO further enhances convergence and scalability for complex multi-agent tasks.",
+    pdfFile: "https://arxiv.org/pdf/2411.00954.pdf",
+  },
+  {
+    year: "2024",
     title: "Group Robust Preference Optimization in Reward-free RLHF",
     authors: "Shyam Sundhar Ramesh, Yifan Hu, Iason Chaimalas, Viraj Mehta, Pier Giuseppe Sessa, Haitham Bou Ammar, Ilija Bogunovic",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
@@ -732,9 +742,6 @@ const Publications = () => {
               const paperKey = `${year}-${index}`;
               return (
                 <div key={index} className="space-y-3">
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                    {renderAuthors(paper.authors)}
-                  </p>
                   <h3 className="font-display text-lg font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors">
                     <a 
                       href={paper.arxivLink}
@@ -745,6 +752,9 @@ const Publications = () => {
                       {paper.title}
                     </a>
                   </h3>
+                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                    {renderAuthors(paper.authors)}
+                  </p>
                   <p className="font-body text-muted-foreground">
                     In: {paper.venue}, {paper.year}.
                   </p>
