@@ -21,9 +21,16 @@ const HeroSection = () => {
         backgroundRepeat: 'no-repeat'
       }}>
         <div className="max-w-7xl mx-auto relative z-10 flex items-end h-full min-h-96">
-          <div className="text-center w-full" style={{ transform: 'translateY(-30px)' }}>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-0 animate-fade-in-up">
-              <span className="text-primary">
+          <div className="text-center w-full" style={{ transform: 'translateY(-40px)' }}>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black mb-0 animate-fade-in-up tracking-tighter">
+              <span 
+                style={{
+                  background: 'linear-gradient(135deg, hsl(215 45% 25%), hsl(215 85% 65%))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: '0 4px 8px rgba(0, 0, 0, 0.15)'
+                }}
+              >
                 RHINE AI
               </span>
             </h1>
@@ -38,7 +45,7 @@ const HeroSection = () => {
               <span className="text-accent-vibrant">R</span>easoning, <span className="text-accent-vibrant">H</span>uman-aligned <span className="text-accent-vibrant">I</span>ntelligence and <span className="text-accent-vibrant">N</span>ovel <span className="text-accent-vibrant">E</span>xploration AI Lab
             </h2>
             <p className="font-body text-lg text-muted-foreground max-w-5xl mx-auto mb-8 leading-relaxed animate-fade-in-up">
-              UniBas RHINE AI Lab is a part of the <a href="https://dmi.unibas.ch/de/" target="_blank" rel="noopener noreferrer" className="text-accent-vibrant hover:underline relative z-50" style={{ pointerEvents: 'auto' }}>Department of Mathematics and Computer Science (DMI)</a> at the University of Basel and the <a href="https://www.ucl.ac.uk/engineering/research/centres-institutes-and-labs/ucl-centre-artificial-intelligence" target="_blank" rel="noopener noreferrer" className="text-accent-vibrant hover:underline relative z-50" style={{ pointerEvents: 'auto' }}>Centre for Artificial Intelligence</a> at University College London. Led by Ilija Bogunovic, our research group develops agentic AI systems that reason, adapt, and self-evolve. We focus on sequential decision making and generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
+              UniBas RHINE AI Lab is a part of the <a href="https://dmi.unibas.ch/de/" target="_blank" rel="noopener noreferrer" className="text-accent-vibrant hover:underline relative z-50" style={{ pointerEvents: 'auto' }}>Department of Mathematics and Computer Science (DMI)</a> at the University of Basel and the <a href="https://www.ucl.ac.uk/engineering/research/centres-institutes-and-labs/ucl-centre-artificial-intelligence" target="_blank" rel="noopener noreferrer" className="text-accent-vibrant hover:underline relative z-50" style={{ pointerEvents: 'auto' }}>Centre for Artificial Intelligence</a> at University College London. Led by <Link to="/team/ilija-bogunovic" className="text-accent-vibrant hover:underline relative z-50" style={{ pointerEvents: 'auto' }}>Ilija Bogunovic</Link>, our research group develops agentic AI systems that reason, adapt, and self-evolve. We focus on sequential decision making and generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
               <Button 

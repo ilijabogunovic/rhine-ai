@@ -60,7 +60,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2507.08838",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
-    abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step...",
+    abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by approximating policy likelihoods with controllable variance reduction. Our approach demonstrates superior performance on reasoning benchmarks while maintaining computational efficiency in diffusion model training.",
     pdfFile: "https://arxiv.org/pdf/2507.08838.pdf",
     githubLink: "https://github.com/xiaohangt/wd1",
     blogLink: "https://ucl-diffusion-reasoning.github.io/wd1-demo/",
@@ -85,7 +85,7 @@ export const publications = [
     arxivLink: "https://arxiv.org/abs/2503.08796",
     pdfFile: "https://arxiv.org/pdf/2503.08796.pdf",
     githubLink: "https://github.com/williambankes/robust-multi-objective-decoding",
-    abstract: "Test-time alignment of Large Language Models (LLMs) to human preferences offers a flexible way to generate responses aligned to diverse objectives without extensive retraining of LLMs. Existing methods achieve alignment to multiple objectives simultaneously (e.g., instruction-following, helpfulness, conciseness) by optimizing their corresponding reward functions. However, they often rely on predefined weights or optimize for averages, sacrificing one objective for another and leading to unbalanced outcomes. To address this, we introduce Robust Multi-Objective Decoding (RMOD), a novel inference-time algorithm that optimizes for improving worst-case rewards. RMOD formalizes the robust decoding problem as a maximin two-player game between reward weights and the sampling policy, solving for the Nash equilibrium. We show that the game reduces to a convex optimization problem to find the worst-case weights, while the best response policy can be computed analytically. We also introduce a practical RMOD variant designed for efficient decoding with contemporary LLMs, incurring minimal computational overhead compared to non-robust Multi-Objective Decoding (MOD) methods. Our experimental results showcase the effectiveness of RMOD in generating responses equitably aligned with diverse objectives, outperforming baselines up to 20%.",
+    abstract: "Test-time alignment of Large Language Models to human preferences typically relies on predefined weights or averages, leading to unbalanced outcomes across multiple objectives. We introduce Robust Multi-Objective Decoding (RMOD), a novel inference-time algorithm that optimizes worst-case rewards through a maximin game formulation. RMOD achieves equitable alignment across diverse objectives with minimal computational overhead, outperforming baselines by up to 20% while maintaining efficiency for contemporary LLMs.",
   },
   {
     year: "2025",
@@ -94,7 +94,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2503.05856",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.05856",
-    abstract: "Mixture of large language model (LLMs) Agents (MoA) architectures achieve state-of-the-art performance on prominent benchmarks like AlpacaEval 2.0 by leveraging the collaboration of multiple LLMs at inference time. Despite these successes, an evaluation of the safety and reliability of MoA is missing...",
+    abstract: "Mixture of large language model (LLM) Agents (MoA) architectures achieve state-of-the-art performance on benchmarks like AlpacaEval 2.0 through collaborative inference. However, comprehensive evaluation of their safety and reliability remains missing. We systematically investigate deception and robustness in MoA systems, revealing critical vulnerabilities and proposing mitigation strategies to improve their trustworthiness in real-world deployment.",
     pdfFile: "https://arxiv.org/pdf/2503.05856.pdf"
   },
   {
@@ -104,7 +104,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2503.00030",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.00030",
-    abstract: "Self-play alignment has emerged as an effective approach for fine-tuning large language models (LLMs), formulating preference optimization as a two-player game. However, the regularization with respect to the reference policy, which is crucial for mitigating over-optimization, has been insufficiently investigated in self-play alignment...",
+    abstract: "Self-play alignment formulates preference optimization as a two-player game for fine-tuning large language models, but regularization strategies remain underexplored. We propose Regularized Self-Play Optimization (RSPO), which introduces principled regularization mechanisms to prevent over-optimization while maintaining alignment effectiveness. Our approach demonstrates improved stability and performance compared to existing self-play methods across diverse alignment tasks.",
     pdfFile: "https://arxiv.org/pdf/2503.00030.pdf"
   },
   {
@@ -114,7 +114,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2502.01208",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2502.01208",
-    abstract: "We introduce a novel inference-time alignment approach for LLMs that aims to generate safe responses almost surely, i.e., with probability approaching one. Our approach models the generation of safe responses as a constrained Markov Decision Process (MDP) within the LLM's latent space. We augment a safety state that tracks the evolution of safety constraints and dynamically penalize unsafe generations to ensure the generation of safe responses. Consequently, we demonstrate formal safety guarantees w.r.t. the given cost model upon solving the MDP in the latent space with sufficiently large penalties. Building on this foundation, we propose InferenceGuard, a practical implementation that safely aligns LLMs without modifying the model weights. Empirically, we demonstrate that InferenceGuard effectively balances safety and task performance, outperforming existing inference-time alignment methods in generating safe and aligned responses. Our findings contribute to the advancement of safer LLM deployment through alignment at inference-time, thus presenting a promising alternative to resource-intensive, overfitting-prone alignment techniques like RLHF.",
+    abstract: "We introduce a novel inference-time alignment approach that generates safe LLM responses with probability approaching one. Our method models safe response generation as a constrained Markov Decision Process in the latent space, using dynamic safety state tracking and penalty mechanisms. The resulting InferenceGuard system provides formal safety guarantees while maintaining task performance, offering a computationally efficient alternative to resource-intensive training-based alignment methods.",
     pdfFile: "https://arxiv.org/pdf/2502.01208.pdf",
     huggingFaceLink: "https://huggingface.co/papers/2502.01208"
   },
@@ -124,7 +124,7 @@ export const publications = [
     authors: "Chen Feng, Ziquan Liu, Zhuo Zhi, Ilija Bogunovic, Carsten Gerner-Beuerle, Miguel Rodrigues",
     venue: "AAAI Conference on Artificial Intelligence (AAAI)",
     type: "Conference Paper",
-    abstract: "Addresses provably safe certification for machine learning models under adversarial attacks."
+    abstract: "Machine learning models face significant vulnerabilities under adversarial attacks, requiring robust certification methods. We propose PROSAC, a framework that provides provably safe certification guarantees for ML models in adversarial settings. Our approach combines theoretical analysis with practical algorithms to ensure model reliability and safety in critical applications where adversarial robustness is essential."
   },
   {
     year: "2025",
@@ -132,7 +132,7 @@ export const publications = [
     authors: "Chong Liu, Dan Qiao, Ming Yin, Yu-Xiang Wang, Ilija Bogunovic",
     venue: "arXiv preprint",
     type: "Preprint",
-    abstract: "Addresses linear bandit problems under misspecification with gap-adjusted analysis."
+    abstract: "Linear bandit algorithms often assume perfect model specification, which rarely holds in practice. We develop no-regret algorithms for linear bandits under gap-adjusted misspecification, providing theoretical guarantees that adapt to the degree of model mismatch. Our analysis reveals fundamental trade-offs between robustness and regret, offering practical insights for real-world bandit applications."
   },
   {
     year: "2025",
@@ -140,7 +140,7 @@ export const publications = [
     authors: "Petar Steinberg, Juliusz Ziomek, Matej Jusup, Ilija Bogunovic",
     venue: "arXiv preprint",
     type: "Preprint",
-    abstract: "Introduces mean-field approaches to Bayesian optimization for large-scale problems."
+    abstract: "Bayesian optimization faces scalability challenges when applied to high-dimensional problems with large datasets. We introduce mean-field approaches that decompose complex optimization landscapes into tractable subproblems while preserving global optimization properties. Our method enables efficient Bayesian optimization for large-scale applications previously considered intractable."
   },
   {
     year: "2025",
@@ -150,7 +150,7 @@ export const publications = [
     type: "Journal Paper",
     arxivLink: "https://arxiv.org/abs/2508.12356",
     pdfFile: "https://arxiv.org/pdf/2508.12356.pdf",
-    abstract: "We show that generating synthetic training data through a two-step process—first augmenting offline datasets for diversity, then using diffusion models to create additional data in latent space—significantly improves generalization in vision-based offline reinforcement learning without requiring changes to existing algorithms. We explore this approach across both continuous (Visual D4RL) and discrete (Procgen) action spaces, demonstrating substantial reductions in generalization gaps while maintaining computational efficiency for training more robust agents."
+    abstract: "Vision-based offline reinforcement learning often suffers from poor generalization due to limited data diversity. We demonstrate that synthetic data generation through a two-step process—dataset augmentation followed by diffusion-based latent space sampling—significantly improves zero-shot generalization. Our approach works across continuous and discrete action spaces without algorithm modifications, substantially reducing generalization gaps while maintaining computational efficiency."
   },     
   {
     year: "2024",
