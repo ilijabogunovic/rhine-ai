@@ -98,17 +98,6 @@ export const publications = [
   },
   {
     year: "2025",
-    title: "Right Now, Wrong Then: Non-Stationary Direct Preference Optimization under Preference Drift",
-    authors: "Seongho Son, William Bankes, Sayak Ray Chowdhury, Brooks Paige, Ilija Bogunovic",
-    venue: "International Conference on Machine Learning (ICML)",
-    type: "Conference Paper",
-    arxivLink: "https://arxiv.org/abs/2407.18676",
-    githubLink: "https://github.com/geronest/ns-dpo",
-    abstract: "Reinforcement learning from human feedback (RLHF) aligns Large Language Models (LLMs) with human preferences. However, these preferences can often change over time due to external factors (e.g. environment change and societal influence). Consequently, what was wrong then might be right now.",
-    pdfFile: "https://arxiv.org/pdf/2407.18676.pdf"
-  },
-  {
-    year: "2025",
     title: "RSPO: Regularized Self-Play Alignment of Large Language Models",
     authors: "Xiaohang Tang, Sangwoong Yoon, Seongho Son, Huizhuo Yuan, Quanquan Gu, Ilija Bogunovic",
     venue: "arXiv preprint arXiv:2503.00030",
