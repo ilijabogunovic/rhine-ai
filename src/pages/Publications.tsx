@@ -22,6 +22,7 @@ const publications = [
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2312.00486",
     pdfFile: "https://arxiv.org/pdf/2312.00486.pdf",
+    githubLink: "https://github.com/williambankes/REDUCR",
     abstract: "Data Downsampling algorithm robust to class imbalance and class distribution shifts."
   },
   {
@@ -51,6 +52,7 @@ const publications = [
     venue: "International Conference on Machine Learning (ICML)",
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2407.18676",
+    githubLink: "https://github.com/geronest/ns-dpo",
     abstract: "Reinforcement learning from human feedback (RLHF) aligns Large Language Models (LLMs) with human preferences. However, these preferences can often change over time due to external factors (e.g. environment change and societal influence). Consequently, what was wrong then might be right now.",
     pdfFile: "https://arxiv.org/pdf/2407.18676.pdf"
   },
