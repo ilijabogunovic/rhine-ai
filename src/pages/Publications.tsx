@@ -115,14 +115,6 @@ export const publications = [
   },
   {
     year: "2025",
-    title: "Synthetic Data is Sufficient for Zero-Shot Visual Generalization from Offline Data",
-    authors: "Ahmet Hamdi Güzel, Jack Parker-Holder, Ilija Bogunovic",
-    venue: "Transactions on Machine Learning Research (TMLR)",
-    type: "Journal Article",
-    abstract: "Demonstrates that synthetic data can achieve zero-shot visual generalization from offline datasets."
-  },
-  {
-    year: "2025",
     title: "No-Regret Linear Bandits under Gap-Adjusted Misspecification",
     authors: "Chong Liu, Dan Qiao, Ming Yin, Yu-Xiang Wang, Ilija Bogunovic",
     venue: "arXiv preprint",
@@ -137,6 +129,16 @@ export const publications = [
     type: "Preprint",
     abstract: "Introduces mean-field approaches to Bayesian optimization for large-scale problems."
   },
+  {
+    year: "2025",
+    title: "Synthetic Data is Sufficient for Zero-Shot Visual Generalization from Offline Data",
+    authors: "Ahmet Hamdi Güzel, Ilija Bogunovic, Jack Parker-Holder",
+    venue: "Transactions on Machine Learning Research (TMLR)",
+    type: "Journal Paper",
+    arxivLink: "https://arxiv.org/abs/2508.12356",
+    pdfFile: "https://arxiv.org/pdf/2508.12356.pdf",
+    abstract: "We show that generating synthetic training data through a two-step process—first augmenting offline datasets for diversity, then using diffusion models to create additional data in latent space—significantly improves generalization in vision-based offline reinforcement learning without requiring changes to existing algorithms. We explore this approach across both continuous (Visual D4RL) and discrete (Procgen) action spaces, demonstrating substantial reductions in generalization gaps while maintaining computational efficiency for training more robust agents."
+  },     
   {
     year: "2024",
     title: "Sample-efficient Bayesian Optimisation Using Known Invariances",
