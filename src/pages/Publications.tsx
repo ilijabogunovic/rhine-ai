@@ -201,7 +201,7 @@ export const publications = [
     year: "2025",
     title: "Right Now, Wrong Then: Non-Stationary Direct Preference Optimization under Preference Drift",
     authors: "Seongho Son, William Bankes, Sayak Ray Chowdhury, Brooks Paige, Ilija Bogunovic",
-    venue: "International Conference on Machine Learning (ICML) 2025",
+    venue: "International Conference on Machine Learning (ICML)",
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2407.18676",
     pdfFile: "https://arxiv.org/pdf/2407.18676.pdf",
