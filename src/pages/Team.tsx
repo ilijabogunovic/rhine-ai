@@ -113,8 +113,9 @@ const collaborators = [
     name: "Colin Doumont",
     role: "PhD Student",
     expertise: "",
-    bio: "",
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    bio: "Tübingen AI Center (with Philipp Hennig)",
+    image: "/colin-doumont.jpg",
+    link: "/team/colin-doumont"
   },
   {
     name: "Juliusz Ziomek",
@@ -216,39 +217,51 @@ const Team = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {collaborators.map((collaborator, index) => (
-                <Card 
-                  key={index} 
-                  className="shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in"
-                  style={{ animationDelay: `${(teamMembers.length + index) * 0.1}s` }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-4">
-                      {collaborator.image.startsWith('/') || collaborator.image.startsWith('https://') ? (
-                         <img 
-                           src={collaborator.image} 
-                           alt={collaborator.name}
-                           className="w-40 h-40 rounded-full mx-auto object-cover object-top"
-                         />
-                      ) : (
-                        <div className="text-4xl">{collaborator.image}</div>
-                      )}
-                    </div>
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                      {collaborator.name}
-                    </h3>
-                    <p className="font-body text-accent-vibrant font-medium mb-1 text-sm">
-                      {collaborator.role}
-                    </p>
-                    <p className="font-body text-xs text-muted-foreground mb-2">
-                      {collaborator.expertise}
-                    </p>
-                    <p className="font-body text-xs text-muted-foreground">
-                      {collaborator.bio}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+              {collaborators.map((collaborator, index) => {
+                const content = (
+                  <Card 
+                    key={index} 
+                    className={`shadow-card hover:shadow-elevated transition-all duration-300 animate-scale-in ${
+                      collaborator.link ? 'cursor-pointer' : ''
+                    }`}
+                    style={{ animationDelay: `${(teamMembers.length + index) * 0.1}s` }}
+                  >
+                    <CardContent className="p-6 text-center">
+                      <div className="mb-4">
+                        {collaborator.image.startsWith('/') || collaborator.image.startsWith('https://') ? (
+                          <img 
+                            src={collaborator.image} 
+                            alt={collaborator.name}
+                            className="w-40 h-40 rounded-full mx-auto object-cover object-top"
+                          />
+                        ) : (
+                          <div className="text-4xl">{collaborator.image}</div>
+                        )}
+                      </div>
+                      <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                        {collaborator.name}
+                      </h3>
+                      <p className="font-body text-accent-vibrant font-medium mb-1 text-sm">
+                        {collaborator.role}
+                      </p>
+                      <p className="font-body text-xs text-muted-foreground mb-2">
+                        {collaborator.expertise}
+                      </p>
+                      <p className="font-body text-xs text-muted-foreground">
+                        {collaborator.bio}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+
+                return collaborator.link ? (
+                  <Link key={index} to={collaborator.link} className="block">
+                    {content}
+                  </Link>
+                ) : (
+                  content
+                );
+              })}
             </div>
           </div>
         </div>
