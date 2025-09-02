@@ -15,6 +15,16 @@ const publications = [
     pdfFile: "https://arxiv.org/pdf/2507.08838.pdf"
   },
   {
+    year: "2024",
+    title: "REDUCR: Robust Data Downsampling Using Class Priority Reweighting",
+    authors: "William Bankes, George Hughes, Ilija Bogunovic, Zi Wang",
+    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2312.00486",
+    pdfFile: "https://arxiv.org/pdf/2312.00486.pdf",
+    abstract: "Data Downsampling algorithm robust to class imbalance and class distribution shifts."
+  },
+  {
     year: "2025",
     title: "Robust Multi-Objective Controlled Decoding of Large Language Models",
     authors: "Seongho Son, William Bankes, Sangwoong Yoon, Shyam Sundhar Ramesh, Xiaohang Tang, Ilija Bogunovic",
@@ -33,6 +43,16 @@ const publications = [
     arxivLink: "https://arxiv.org/abs/2503.05856",
     abstract: "Mixture of large language model (LLMs) Agents (MoA) architectures achieve state-of-the-art performance on prominent benchmarks like AlpacaEval 2.0 by leveraging the collaboration of multiple LLMs at inference time. Despite these successes, an evaluation of the safety and reliability of MoA is missing...",
     pdfFile: "https://arxiv.org/pdf/2503.05856.pdf"
+  },
+  {
+    year: "2025",
+    title: "Right Now, Wrong Then: Non-Stationary Direct Preference Optimization under Preference Drift",
+    authors: "Seongho Son, William Bankes, Sayak Ray Chowdhury, Brooks Paige, Ilija Bogunovic",
+    venue: "International Conference on Machine Learning (ICML)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2407.18676",
+    abstract: "Reinforcement learning from human feedback (RLHF) aligns Large Language Models (LLMs) with human preferences. However, these preferences can often change over time due to external factors (e.g. environment change and societal influence). Consequently, what was wrong then might be right now.",
+    pdfFile: "https://arxiv.org/pdf/2407.18676.pdf"
   },
   {
     year: "2025",
