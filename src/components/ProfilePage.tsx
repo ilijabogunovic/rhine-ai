@@ -18,6 +18,7 @@ interface Publication {
   blogLink?: string;
   websiteLink?: string;
   slidesLink?: string;
+  huggingFaceLink?: string;
 }
 
 interface ResearchArea {
@@ -344,6 +345,17 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
                               >
                                 <ExternalLink className="h-3 w-3" />
                                 Slides
+                              </a>
+                            )}
+                            {pub.huggingFaceLink && (
+                              <a
+                                href={pub.huggingFaceLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                                🤗 HF
                               </a>
                             )}
                             <button

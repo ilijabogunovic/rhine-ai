@@ -450,7 +450,7 @@ export const publications = [
 
 const Publications = () => {
   const [showBibTeX, setShowBibTeX] = useState<string | null>(null);
-  const newestPublications = publications.slice(0, 5);
+  const newestPublications = publications.filter(paper => paper.year !== "2024").slice(0, 5);
   
   const publicationsByYear = publications.reduce((acc, paper) => {
     if (!acc[paper.year]) {
