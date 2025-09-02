@@ -61,7 +61,8 @@ export const publications = [
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning (RL) remains an open problem. The intractability of dLLMs likelihood function necessitates approximating the current, old, and reference policy likelihoods at each policy optimization step...",
-    pdfFile: "https://arxiv.org/pdf/2507.08838.pdf"
+    pdfFile: "https://arxiv.org/pdf/2507.08838.pdf",
+    huggingFaceLink: "https://huggingface.co/example-model"
   },
   {
     year: "2025",
@@ -564,6 +565,19 @@ const Publications = () => {
                           <span className="text-muted-foreground">|</span>
                         </>
                       )}
+                      {(paper as any).huggingFaceLink && (
+                        <>
+                          <a
+                            href={(paper as any).huggingFaceLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
+                          >
+                            🤗 HF
+                          </a>
+                          <span className="text-muted-foreground">|</span>
+                        </>
+                      )}
                       {(paper as any).websiteLink && (
                         <>
                           <a
@@ -787,6 +801,19 @@ const Publications = () => {
                           className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
                         >
                           Blog
+                        </a>
+                        <span className="text-muted-foreground">|</span>
+                      </>
+                    )}
+                    {(paper as any).huggingFaceLink && (
+                      <>
+                        <a
+                          href={(paper as any).huggingFaceLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
+                        >
+                          🤗 HF
                         </a>
                         <span className="text-muted-foreground">|</span>
                       </>
