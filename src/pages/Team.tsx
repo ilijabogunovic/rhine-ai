@@ -45,7 +45,7 @@ const teamMembers = [
     link: "/team/theo-brown"
   },
   {
-    name: "Seong Ho",
+    name: "Seongho Son",
     role: "PhD Student",
     expertise: "",
     bio: "With B. Paige (UCL)",

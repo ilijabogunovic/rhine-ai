@@ -71,8 +71,9 @@ export const publications = [
     venue: "arXiv preprint arXiv:2503.08796",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.08796",
-    abstract: "Test-time alignment of Large Language Models (LLMs) to human preferences offers a flexible way to generate responses aligned to diverse objectives without extensive retraining of LLMs. Existing methods achieve alignment to multiple objectives simultaneously...",
-    pdfFile: "https://arxiv.org/pdf/2503.08796.pdf"
+    pdfFile: "https://arxiv.org/pdf/2503.08796.pdf",
+    githubLink: "https://github.com/williambankes/robust-multi-objective-decoding",
+    abstract: "Test-time alignment of Large Language Models (LLMs) to human preferences offers a flexible way to generate responses aligned to diverse objectives without extensive retraining of LLMs. Existing methods achieve alignment to multiple objectives simultaneously (e.g., instruction-following, helpfulness, conciseness) by optimizing their corresponding reward functions. However, they often rely on predefined weights or optimize for averages, sacrificing one objective for another and leading to unbalanced outcomes. To address this, we introduce Robust Multi-Objective Decoding (RMOD), a novel inference-time algorithm that optimizes for improving worst-case rewards. RMOD formalizes the robust decoding problem as a maximin two-player game between reward weights and the sampling policy, solving for the Nash equilibrium. We show that the game reduces to a convex optimization problem to find the worst-case weights, while the best response policy can be computed analytically. We also introduce a practical RMOD variant designed for efficient decoding with contemporary LLMs, incurring minimal computational overhead compared to non-robust Multi-Objective Decoding (MOD) methods. Our experimental results showcase the effectiveness of RMOD in generating responses equitably aligned with diverse objectives, outperforming baselines up to 20%.",
   },
   {
     year: "2025",
@@ -185,14 +186,16 @@ export const publications = [
     abstract: "Addresses safe multi-agent reinforcement learning in mean-field settings using model-based approaches."
   },
   {
-    year: "2024",
+    year: "2025",
     title: "Right Now, Wrong Then: Non-Stationary Direct Preference Optimization under Preference Drift",
     authors: "Seongho Son, William Bankes, Sayak Ray Chowdhury, Brooks Paige, Ilija Bogunovic",
-    venue: "arXiv preprint arXiv:2407.18676",
-    type: "Preprint",
+    venue: "International Conference on Machine Learning (ICML) 2025",
+    type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2407.18676",
     pdfFile: "https://arxiv.org/pdf/2407.18676.pdf",
-    abstract: "Addresses non-stationary preference learning in the context of preference drift over time."
+    githubLink: "https://github.com/geronest/ns-dpo",
+    videoLink: "https://icml.cc/virtual/2025/poster/44703",
+    abstract: "Reinforcement learning from human feedback (RLHF) aligns Large Language Models (LLMs) with human preferences. However, these preferences can often change over time due to external factors (e.g. environment change and societal influence). Consequently, what was wrong then might be right now. Current preference optimization algorithms do not account for temporal preference drift in their modeling, which can lead to severe misalignment. To address this limitation, we use a Dynamic Bradley-Terry model that models preferences via time-dependent reward functions, and propose Non-Stationary Direct Preference Optimisation (NS-DPO). By introducing a discount parameter in the loss function, NS-DPO applies exponential weighting, which proportionally focuses learning on more time-relevant datapoints. We theoretically analyse the convergence of NS-DPO in the offline setting, providing upper bounds on the estimation error caused by non-stationary preferences. Finally, we demonstrate the effectiveness of NS-DPO for fine-tuning LLMs in scenarios with drifting preferences. By simulating preference drift using renowned reward models and modifying popular LLM datasets accordingly, we show that NS-DPO fine-tuned LLMs remain robust under non-stationarity, significantly outperforming baseline algorithms that ignore temporal preference changes, without sacrificing performance in stationary cases."
   },
   {
     year: "2024",
