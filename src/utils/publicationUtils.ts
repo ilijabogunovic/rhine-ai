@@ -85,7 +85,8 @@ export const convertToProfileFormat = (publication: any) => {
     videoLink: publication.videoLink,
     blogLink: publication.blogLink,
     websiteLink: publication.websiteLink,
-    slidesLink: publication.slidesLink
+    slidesLink: publication.slidesLink,
+    huggingFaceLink: publication.huggingFaceLink
   };
 };
 
