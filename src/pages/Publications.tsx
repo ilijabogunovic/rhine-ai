@@ -145,7 +145,11 @@ export const publications = [
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2410.16972",
     pdfFile: "https://arxiv.org/pdf/2410.16972.pdf",
-    abstract: "Focuses on Bayesian optimisation for functions exhibiting invariance to known group transformations, proposing invariance-aware algorithms that achieve significant improvements in sample efficiency."
+    githubLink: "https://github.com/theo-brown/bayesopt_with_invariances",
+    codeLink: "https://github.com/theo-brown/invariantkernels",
+    blogLink: "https://theobrown.uk/blog/invariantbo/",
+    slidesLink: "https://theobrown.uk/talks/invariantbo/slides.html#/title-slide",
+    abstract: "We explore BO of functions that exhibit invariance to a known group of transformations (symmetries). We show the inefficiency of vanilla and constrained BO in such cases, and provide theoretical asymptotic bounds on the performance of symmetry-aware algorithms. We demonstrate our method on a range of synthetic invariant and quasi-invariant functions, and investigate a low-cost approximation where only some of the symmetries are incorporated into the kernel. Finally, we use invariant BO to design a current drive system for a nuclear fusion reactor. "
   },
   {
     year: "2024",
