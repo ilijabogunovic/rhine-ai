@@ -120,26 +120,23 @@ export const publications = [
   },
   {
     year: "2025",
-    title: "PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks",
-    authors: "Chen Feng, Ziquan Liu, Zhuo Zhi, Ilija Bogunovic, Carsten Gerner-Beuerle, Miguel Rodrigues",
-    venue: "AAAI Conference on Artificial Intelligence (AAAI)",
+    title: "Sample Efficient Preference Alignment in LLMs via Active Exploration",
+    authors: "Viraj Mehta, Syrine Belakaria, Vikramjeet Das, Ojash Neopane, Yijia Dai, Ilija Bogunovic, Barbara Engelhardt, Stefano Ermon, Jeff Schneider, Willie Neiswanger",
+    venue: "Conference on Language Modeling (COLM)",
     type: "Conference Paper",
-    abstract: "Machine learning models face significant vulnerabilities under adversarial attacks, requiring robust certification methods. We propose PROSAC, a framework that provides provably safe certification guarantees for ML models in adversarial settings. Our approach combines theoretical analysis with practical algorithms to ensure model reliability and safety in critical applications where adversarial robustness is essential."
-  },
-  {
-    year: "2025",
-    title: "No-Regret Linear Bandits under Gap-Adjusted Misspecification",
-    authors: "Chong Liu, Dan Qiao, Ming Yin, Yu-Xiang Wang, Ilija Bogunovic",
-    venue: "arXiv preprint",
-    type: "Preprint",
-    abstract: "Linear bandit algorithms often assume perfect model specification, which rarely holds in practice. We develop no-regret algorithms for linear bandits under gap-adjusted misspecification, providing theoretical guarantees that adapt to the degree of model mismatch. Our analysis reveals fundamental trade-offs between robustness and regret, offering practical insights for real-world bandit applications."
+    arxivLink: "https://arxiv.org/abs/2312.00267",
+    pdfFile: "https://arxiv.org/pdf/2312.00267.pdf",
+    githubLink: "https://github.com/belakaria/active-llm-alignment",
+    abstract: "Proposes active exploration techniques for sample efficient preference alignment in large language models, reducing the amount of human feedback required for effective alignment."
   },
   {
     year: "2025",
     title: "Mean-Field Bayesian Optimisation",
     authors: "Petar Steinberg, Juliusz Ziomek, Matej Jusup, Ilija Bogunovic",
-    venue: "arXiv preprint",
+    venue: "arXiv preprint arXiv:2502.12315",
     type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2502.12315",
+    pdfFile: "https://arxiv.org/pdf/2502.12315.pdf",
     abstract: "Bayesian optimization faces scalability challenges when applied to high-dimensional problems with large datasets. We introduce mean-field approaches that decompose complex optimization landscapes into tractable subproblems while preserving global optimization properties. Our method enables efficient Bayesian optimization for large-scale applications previously considered intractable."
   },
   {
@@ -191,16 +188,6 @@ export const publications = [
   },
   {
     year: "2024",
-    title: "Sample Efficient Reinforcement Learning from Human Feedback via Active Exploration",
-    authors: "Viraj Mehta, Vikramjeet Das, Ojash Neopane, Yijia Dai, Ilija Bogunovic, Jeff G. Schneider, Willie Neiswanger",
-    venue: "arXiv preprint arXiv:2312.00267",
-    type: "Preprint",
-    arxivLink: "https://arxiv.org/abs/2312.00267",
-    pdfFile: "https://arxiv.org/pdf/2312.00267.pdf",
-    abstract: "Proposes active exploration techniques for sample efficient reinforcement learning from human feedback."
-  },
-  {
-    year: "2024",
     title: "Safe Model-Based Multi-Agent Mean-Field Reinforcement Learning",
     authors: "Matej Jusup, Barna Pásztor, Tadeusz Janik, Kenan Zhang, Francesco Corman, Andreas Krause, Ilija Bogunovic",
     venue: "International Conference on Autonomous Agents and Multiagent Systems (AAMAS)",
@@ -243,36 +230,80 @@ export const publications = [
   },
   {
     year: "2023",
+    title: "Robust Best-arm Identification in Linear Bandits",
+    authors: "Wei Wang, Sattar Vakili, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2311.04731",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2311.04731",
+    pdfFile: "https://arxiv.org/pdf/2311.04731.pdf",
+    abstract: "Studies the robust best-arm identification problem in linear rewards, proposing both static and adaptive bandit algorithms that achieve sample complexity matching instance-dependent lower bounds."
+  },
+  {
+    year: "2023",
+    title: "Graph Neural Network Powered Bayesian Optimization for Large Molecular Spaces",
+    authors: "Miles Wang-Henderson, Bartu Soyuer, Parnian Kassraie, Andreas Krause, Ilija Bogunovic",
+    venue: "ICML 2023 Workshop on Structured Probabilistic Inference & Generative Modeling",
+    type: "Workshop Paper",
+    pdfFile: "https://openreview.net/forum?id=QIrgM7uybw#all",
+    abstract: "Applies graph neural networks to Bayesian optimization for molecular discovery in large chemical spaces."
+  },
+  {
+    year: "2024",
+    title: "Safe Model-Based Multi-Agent Mean-Field Reinforcement Learning",
+    authors: "Matej Jusup, Barna Pásztor, Tadeusz Janik, Kenan Zhang, Francesco Corman, Andreas Krause, Ilija Bogunovic",
+    venue: "International Conference on Autonomous Agents and Multiagent Systems (AAMAS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2306.17052",
+    pdfFile: "https://arxiv.org/pdf/2306.17052.pdf",
+    abstract: "Addresses safe multi-agent reinforcement learning in mean-field settings using model-based approaches."
+  },
+  {
+    year: "2023",
+    title: "Efficient Planning in Combinatorial Action Spaces with Applications to Cooperative Multi-Agent Reinforcement Learning",
+    authors: "Vasyl Tkachuk, Seyed Alireza Bakhtiari, Johannes Kirschner, Matej Jusup, Ilija Bogunovic, Csaba Szepesvári",
+    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2302.04376",
+    pdfFile: "https://arxiv.org/pdf/2302.04376.pdf",
+    abstract: "Addresses efficient planning in combinatorial action spaces with applications to cooperative multi-agent reinforcement learning."
+  },
+  {
+    year: "2023",
+    title: "Graph Neural Bayesian Optimization for Virtual Screening",
+    authors: "Miles Wang-Henderson, Bartu Soyuer, Parnian Kassraie, Andreas Krause, Ilija Bogunovic",
+    venue: "NeurIPS 2023 Workshop on Adaptive Experimental Design and Active Learning in the Real World",
+    type: "Workshop Paper",
+    pdfFile: "https://openreview.net/forum?id=t3PzfH98Mq",
+    abstract: "Applies graph neural Bayesian optimization techniques to virtual screening for drug discovery applications."
+  },
+  {
+    year: "2023",
     title: "Near-optimal Policy Identification in Active Reinforcement Learning",
     authors: "Xiang Li, Viraj Mehta, Johannes Kirschner, Ian Char, Willie Neiswanger, Jeff Schneider, Andreas Krause, Ilija Bogunovic",
-    venue: "International Conference on Learning Representations (ICLR)",
+    venue: "International Conference on Learning Representations (ICLR) - Top 5%",
     type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2212.09510",
     pdfFile: "https://arxiv.org/pdf/2212.09510.pdf",
     abstract: "Proposes the AE-LSVI algorithm for best-policy identification, combining optimism with pessimism for active exploration in reinforcement learning with costly data acquisition and large state spaces."
   },
   {
-    year: "2023",
-    title: "Efficient Planning in Combinatorial Action Spaces with Applications to Cooperative Multi-Agent Reinforcement Learning",
-    authors: "Ilija Bogunovic, Andreas Krause, Volkan Cevher",
-    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
-    type: "Conference Paper",
-    abstract: "Addresses efficient planning in combinatorial action spaces with applications to cooperative multi-agent reinforcement learning."
-  },
-  {
     year: "2022",
     title: "A Robust Phased Elimination Algorithm for Corruption-Tolerant Gaussian Process Bandits",
-    authors: "Ilija Bogunovic, Andreas Krause, Jonathan Scarlett",
+    authors: "Ilija Bogunovic, Zihan Li, Andreas Krause, Jonathan Scarlett",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2202.01850",
+    pdfFile: "https://arxiv.org/pdf/2202.01850.pdf",
     abstract: "Proposes a robust algorithm for Gaussian process bandits that tolerates adversarial corruption in observations."
   },
   {
     year: "2022",
     title: "Graph Neural Network Bandits",
-    authors: "Ilija Bogunovic, Zhao Song, Suvrit Sra",
+    authors: "Parnian Kassraie, Andreas Krause, Ilija Bogunovic",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2207.06456",
+    pdfFile: "https://arxiv.org/pdf/2207.06456.pdf",
     abstract: "Introduces bandit algorithms that leverage graph neural networks for improved exploration in structured environments."
   },
   {
@@ -283,24 +314,8 @@ export const publications = [
     type: "Conference Paper",
     abstract: "Contextual Bayesian optimization (CBO) is a powerful framework for sequential decision-making given side information, with important applications, e.g., in wind energy systems. In this setting, the learner receives context (e.g., weather conditions) at each round, and has to choose an action (e.g., turbine parameters). Standard algorithms assume no cost for switching their decisions at every round. However, in many practical applications, there is a cost associated with such changes, which should be minimized. We introduce the episodic CBO with movement costs problem and, based on the online learning approach for metrical task systems of Coester and Lee (2019), propose a novel randomized mirror descent algorithm that makes use of Gaussian Process confidence bounds. We compare its performance with the offline optimal sequence for each episode and provide rigorous regret guarantees. We further demonstrate our approach on the important real-world application of altitude optimization for Airborne Wind Energy Systems. In the presence of substantial movement costs, our algorithm consistently outperforms standard CBO algorithms.",
     arxivLink: "https://arxiv.org/abs/2210.08087",
-    pdfFile: "https://arxiv.org/pdf/2210.08087",
+    pdfFile: "https://arxiv.org/pdf/2210.08087.pdf",
     videoLink: "https://slideslive.com/38990489"
-  },
-  {
-    year: "2022",
-    title: "Sequential Optimization with Adversarial Corruption",
-    authors: "Ilija Bogunovic, Zihan Li, Andreas Krause, Jonathan Scarlett",
-    venue: "International Conference on Machine Learning (ICML)",
-    type: "Conference Paper",
-    abstract: "Considers sequential optimization of unknown, continuous, expensive-to-evaluate reward functions from noisy and adversarially corrupted observed rewards."
-  },
-  {
-    year: "2022",
-    title: "Contextual Bayesian Optimization",
-    authors: "Ilija Bogunovic, Jonathan Scarlett, Stefanie Jegelka, Volkan Cevher",
-    venue: "International Conference on Machine Learning (ICML)",
-    type: "Conference Paper",
-    abstract: "Describes CBO as a powerful framework for sequential decision-making given side information."
   },
   {
     year: "2021",
@@ -308,7 +323,28 @@ export const publications = [
     authors: "Ilija Bogunovic, Andreas Krause",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2111.05008",
+    pdfFile: "https://arxiv.org/pdf/2111.05008.pdf",
     abstract: "Considers optimizing black-box functions with noisy bandit feedback in a misspecified kernelized bandit setting where the unknown function can be ε-uniformly approximated by a function with bounded norm in some RKHS."
+  },
+  {
+    year: "2021",
+    title: "Efficient Model-based Multi-Agent Mean-Field Reinforcement Learning",
+    authors: "Barna Pásztor, Ilija Bogunovic, Andreas Krause",
+    venue: "arXiv preprint arXiv:2107.04050",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2107.04050",
+    pdfFile: "https://arxiv.org/pdf/2107.04050.pdf",
+    abstract: "Addresses efficient model-based reinforcement learning in multi-agent mean-field settings with theoretical and empirical analysis."
+  },
+  {
+    year: "2021",
+    title: "Online Submodular Resource Allocation with Applications to Rebalancing Shared Mobility Systems",
+    authors: "Pier Giuseppe Sessa, Ilija Bogunovic, Andreas Krause, Maryam Kamgarpour",
+    venue: "International Conference on Machine Learning (ICML)",
+    type: "Conference Paper",
+    pdfFile: "http://proceedings.mlr.press/v139/sessa21a/sessa21a.pdf",
+    abstract: "Addresses the problem of allocating agents to resources to maximize cumulative welfare in shared mobility systems using submodular optimization."
   },
   {
     year: "2021",
@@ -316,17 +352,69 @@ export const publications = [
     authors: "Sebastian Curi, Ilija Bogunovic, Andreas Krause",
     venue: "International Conference on Machine Learning (ICML)",
     type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2103.10369",
+    pdfFile: "https://arxiv.org/pdf/2103.10369.pdf",
     abstract: "Proposes the Robust Hallucinated Upper-Confidence RL (RH-UCRL) algorithm to solve robust RL problems while attaining near-optimal sample complexity guarantees."
   },
   {
-    year: "2020",
-    title: "Contextual Games",
-    authors: "Pier Giuseppe Sessa, Ilija Bogunovic, Andreas Krause, Maryam Kamgarpour",
+    year: "2021",
+    title: "Stochastic Linear Bandits Robust to Adversarial Attacks",
+    authors: "Ilija Bogunovic, Arpan Losalka, Andreas Krause, Jonathan Scarlett",
+    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2007.03285",
+    pdfFile: "https://arxiv.org/pdf/2007.03285.pdf",
+    abstract: "Considers stochastic linear bandit problems where rewards are subject to both random noise and adversarial attacks with budget constraints."
+  },
+  {
+    year: "2021",
+    title: "Cost-efficient Online Hyperparameter Optimization",
+    authors: "Jialin Wang, Muhan Ren, Ilija Bogunovic, Yuwen Xiong, Raquel Urtasun",
+    venue: "arXiv preprint arXiv:2101.06590",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2101.06590",
+    pdfFile: "https://arxiv.org/pdf/2101.06590.pdf",
+    abstract: "Proposes cost-efficient methods for online hyperparameter optimization with theoretical and practical contributions."
+  },
+  {
+    year: "2021",
+    title: "DP-Sniper: Black-Box Discovery of Differential Privacy Violations using Classifiers",
+    authors: "Benjamin Bichsel, Samuel Steffen, Ilija Bogunovic, Martin Vechev",
+    venue: "IEEE Symposium on Security and Privacy (SP)",
+    type: "Conference Paper",
+    pdfFile: "https://files.sri.inf.ethz.ch/website/papers/sp21-dpsniper.pdf",
+    githubLink: "https://github.com/eth-sri/dp-sniper",
+    abstract: "Introduces a black-box method for discovering differential privacy violations using machine learning classifiers."
+  },
+  {
+    year: "2021",
+    title: "Risk-averse Heteroscedastic Bayesian Optimization",
+    authors: "Anastasiia Makarova, Ilnura Usmanova, Ilija Bogunovic, Andreas Krause",
     venue: "Conference on Neural Information Processing Systems (NeurIPS)",
     type: "Conference Paper",
-    arxivLink: "https://arxiv.org/abs/2107.06327",
-    pdfFile: "https://arxiv.org/pdf/2107.06327.pdf",
-    abstract: "Formulates the novel class of contextual games, a type of repeated games driven by contextual information at each round."
+    arxivLink: "https://arxiv.org/abs/2111.03637",
+    pdfFile: "https://arxiv.org/pdf/2111.03637.pdf",
+    abstract: "Generalizes Bayesian optimization to trade mean and input-dependent variance of the objective, proposing RAHBO algorithm that identifies solutions with high return and low noise variance."
+  },
+  {
+    year: "2020",
+    title: "Corruption-tolerant Gaussian Process Bandit Optimization",
+    authors: "Ilija Bogunovic, Andreas Krause, Jonathan Scarlett",
+    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2003.01971",
+    pdfFile: "https://arxiv.org/pdf/2003.01971.pdf",
+    abstract: "Proposes corruption-tolerant algorithms for Gaussian process bandit optimization that maintain performance even when observations are adversarially corrupted."
+  },
+  {
+    year: "2020",
+    title: "Mixed Strategies for Robust Optimization of Unknown Objectives",
+    authors: "Pier Giuseppe Sessa, Ilija Bogunovic, Maryam Kamgarpour, Andreas Krause",
+    venue: "International Conference on Artificial Intelligence and Statistics (AISTATS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2002.12613",
+    pdfFile: "https://arxiv.org/pdf/2002.12613.pdf",
+    abstract: "Develops mixed strategies for robust optimization problems when the objective function is unknown and must be learned through noisy evaluations."
   },
   {
     year: "2020",
@@ -337,6 +425,27 @@ export const publications = [
     arxivLink: "https://arxiv.org/abs/2002.09038",
     pdfFile: "https://arxiv.org/pdf/2002.09038.pdf",
     abstract: "Addresses robust optimization problems in Bayesian optimization under distributional uncertainty."
+  },
+  {
+    year: "2020",
+    title: "Contextual Games: Multi-Agent Learning with Side Information",
+    authors: "Pier Giuseppe Sessa, Ilija Bogunovic, Andreas Krause, Maryam Kamgarpour",
+    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2107.06327",
+    pdfFile: "https://arxiv.org/pdf/2107.06327.pdf",
+    abstract: "Formulates the novel class of contextual games, a type of repeated games driven by contextual information at each round."
+  },
+  {
+    year: "2020",
+    title: "Learning to Play Sequential Games versus Unknown Opponents",
+    authors: "Pier Giuseppe Sessa, Ilija Bogunovic, Maryam Kamgarpour, Andreas Krause",
+    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2007.05271",
+    pdfFile: "https://arxiv.org/pdf/2007.05271.pdf",
+    githubLink: "https://github.com/sessap/stackelucb",
+    abstract: "Develops algorithms for learning to play sequential games against unknown opponents in multi-agent settings."
   },
   {
     year: "2019",
@@ -354,7 +463,8 @@ export const publications = [
     authors: "Jonathan Scarlett, Ilija Bogunovic, Volkan Cevher",
     venue: "IEEE International Symposium on Information Theory (ISIT)",
     type: "Conference Paper",
-    abstract: "Addresses the best arm identification problem in overlapping multi-bandit settings."
+    abstract: "Addresses the best arm identification problem in overlapping multi-bandit settings.",
+    pdfFile: "https://ieeexplore.ieee.org/document/8849327"
   },
   {
     year: "2018",

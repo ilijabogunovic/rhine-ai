@@ -37,6 +37,13 @@ const newsItems = [
     url: "https://dmi.unibas.ch/de/news-events/detail/neuer-professor-in-der-informatik-prof-dr-ilija-bogunovic/"
   },
   {
+    date: "September 2025",
+    title: "Paper Accepted to COLM 2025: Sample Efficient Preference Alignment in LLMs via Active Exploration",
+    excerpt: "Our work on active exploration techniques for sample efficient preference alignment in large language models has been accepted to the Conference on Language Modeling (COLM) 2025. This research reduces the amount of human feedback required for effective LLM alignment through principled active learning approaches.",
+    type: "Publication",
+    url: "https://arxiv.org/abs/2312.00267"
+  },
+  {
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     excerpt: "Introducing a novel policy optimization approach for dLLMs reasoning.",

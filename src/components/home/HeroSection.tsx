@@ -22,15 +22,8 @@ const HeroSection = () => {
       }}>
         <div className="max-w-7xl mx-auto relative z-10 flex items-end h-full min-h-96">
           <div className="text-center w-full" style={{ transform: 'translateY(-40px)' }}>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black mb-0 animate-fade-in-up tracking-tighter">
-              <span 
-                style={{
-                  background: 'linear-gradient(135deg, hsl(215 45% 25%), hsl(215 85% 65%))',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 4px 8px rgba(0, 0, 0, 0.15)'
-                }}
-              >
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-primary mb-0 animate-fade-in-up tracking-tighter">
+              <span>
                 RHINE AI
               </span>
             </h1>
