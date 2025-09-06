@@ -46,7 +46,7 @@ const newsItems = [
   {
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
-    excerpt: "Introducing a novel policy optimization approach for dLLMs reasoning.",
+    excerpt: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by reducing the use of approximated likelihoods.",
     type: "Preprint",
     url: "https://ucl-diffusion-reasoning.github.io/wd1-demo/"
   }

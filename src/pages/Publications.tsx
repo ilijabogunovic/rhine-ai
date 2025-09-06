@@ -60,7 +60,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2507.08838",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
-    abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by approximating policy likelihoods with controllable variance reduction. Our approach demonstrates superior performance on reasoning benchmarks while maintaining computational efficiency in diffusion model training.",
+    abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by reducing the use of approximated likelihoods. Our approach demonstrates superior performance on reasoning benchmarks while maintaining computational efficiency in diffusion model training.",
     pdfFile: "https://arxiv.org/pdf/2507.08838.pdf",
     githubLink: "https://github.com/xiaohangt/wd1",
     blogLink: "https://ucl-diffusion-reasoning.github.io/wd1-demo/",
