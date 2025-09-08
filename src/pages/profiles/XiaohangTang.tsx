@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const XiaohangTang = () => {
   const profileData = {
     name: "Xiaohang Tang",
     role: "PhD Student",
     affiliation: "University College London",
-    image: "/xiaohang-tang-profile.jpg",
+    image: getImagePath("/xiaohang-tang-profile.jpg"),
     about: [
       "Xiaohang Tang is a PhD student at the UCL Statistical Science. His research focuses on self-improving AI, spanning reinforcement learning, game theory, and Large Language Models.",
     ],

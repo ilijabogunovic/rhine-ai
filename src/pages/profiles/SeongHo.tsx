@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const SeongHo = () => {
   const profileData = {
     name: "Seongho Son (손성호, /sung-ho/)",
     role: "PhD Student",
     affiliation: "University College London AI Centre (With B. Paige, UCL)",
-    image: "/seong-ho-profile.jpg",
+    image: getImagePath("/seong-ho-profile.jpg"),
     about: [
       "Seongho is a PhD student at the University College London and a member of the UCL AI Centre, working in collaboration with B. Paige. His research focuses on Reinforcement Learning (RL) and its applications to Large Language Models (LLMs).",
       "His work aims to make AI systems more robust and reliable. He specializes in Reinforcement Learning from Human Feedback (RLHF), multi-objective optimziation and test-time alignment methods.",

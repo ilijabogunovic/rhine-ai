@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const AbdelhamidEzzerg = () => {
   const profileData = {
     name: "Abdelhamid Ezzerg",
     role: "PhD Student",
     affiliation: "University College London (With J. Knoblauch, UCL)",
-    image: "/abdelhamid-ezzerg-profile.jpg",
+    image: getImagePath("/abdelhamid-ezzerg-profile.jpg"),
     about: [
       "Abdelhamid Ezzerg is a PhD student at University College London, working in collaboration with J. Knoblauch at UCL. His research focuses on statistical machine learning and computational methods for data analysis.",
       "He specializes in developing robust statistical methods that can handle complex, high-dimensional data. His work combines statistical theory with computational efficiency to create practical solutions for modern data challenges.",

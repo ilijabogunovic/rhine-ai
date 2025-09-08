@@ -1,11 +1,12 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getImagePath } from "@/utils/imageUtils";
 
 const SangwoongYoon = () => {
   const profileData = {
     name: "Dr. Sangwoong Yoon",
     role: "Research Fellow",
     affiliation: "University College London",
-    image: "/sangwoong-yoon-profile.jpg",
+    image: getImagePath("/sangwoong-yoon-profile.jpg"),
     about: [
       "Dr. Sangwoong Yoon is a Research Fellow at University College London (UCL) and an incoming assistant professor at Ulsan National Institute of Science and Technology (UNIST). His research is focused on the intersection of reinforcement learning and generative modeling, with a particular emphasis on improving AI alignment and reasoning capabilities.",
       "Before joining UCL, Dr. Yoon was a Research Fellow at Korea Institute for Advanced Study (KIAS). He received his PhD, MS, and BS from Seoul National University (SNU)."

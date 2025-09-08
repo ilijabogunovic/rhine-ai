@@ -1,11 +1,12 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getImagePath } from "@/utils/imageUtils";
 
 const AhmetHGuzel = () => {
   const profileData = {
     name: "Ahmet H. Guzel",
     role: "PhD Student",
     affiliation: "University College London AI Centre (With Dr. J. Parker-Holder, Google DeepMind) and University of Basel (With Prof. Ilija Bogunovic)",
-    image: "/ahmet-guzel-profile.jpg",
+    image: getImagePath("/ahmet-guzel-profile.jpg"),
     about: [
       "Ahmet H. Guzel is a PhD student at University College London, working in collaboration with J. Parker-Holder at Google DeepMind. His research focuses on advancing reinforcement learning through world models, synthetic data generation, and decision-making in complex environments.",
       "His work centers on developing world models for offline reinforcement learning, where he explores how to learn effective internal representations of environments using limited offline data for long-horizon planning and decision-making. He has demonstrated that synthetic data can be sufficient for achieving zero-shot generalization in procedurally generated environments.",

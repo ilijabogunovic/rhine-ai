@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const ShyamSundharRamesh = () => {
   const profileData = {
     name: "Shyam Sundhar Ramesh",
     role: "PhD Student",
     affiliation: "University College London",
-    image: "/shyam-ramesh-new-2.jpg",
+    image: getImagePath("/shyam-ramesh-new-2.jpg"),
     about: [
       "Shyam Sundhar Ramesh is a PhD student at the University College London. His research lies at the intersection of reinforcement learning, robust optimization, and large language model alignment. His work focuses on developing principled methods that ensure reliability, safety, and robustness in machine learning systems, with applications ranging from safe alignment to sustainable energy. More recently, he is interested in the challenges of language model alignment, exploring robust and group-fair decoding strategies, inference-time safety, and pluralistic alignment approaches."
     ],

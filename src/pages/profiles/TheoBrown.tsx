@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const TheoBrown = () => {
     const profileData = {
         name: "Theo Brown",
         role: "PhD Student",
         affiliation: "UCL AI Centre (with Prof. Sarah Spurgeon), UK Atomic Energy Authority (with Dr. Lorenzo Zanisi)",
-        image: "/theo-brown-profile.jpg",
+        image: getImagePath("/theo-brown-profile.jpg"),
         about: [
             "Theo is a PhD student at UCL, jointly supervised with Prof. Sarah Spurgeon (Electronic & Electrical Engineering). He is a visiting researcher at the UK's national lab for nuclear fusion research (UKAEA), where he works with the plasma scenario development team for the UK's next-generation fusion device.",
             "Motivated by challenging problems from nuclear fusion and plasma physics, Theo's research involves developing new ML methods for robust, efficient optimization and online control, with a focus on situations where gathering data is expensive.",

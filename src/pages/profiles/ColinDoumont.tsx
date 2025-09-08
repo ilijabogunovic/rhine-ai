@@ -1,11 +1,12 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getImagePath } from "@/utils/imageUtils";
 
 const ColinDoumont = () => {
   const profileData = {
     name: "Colin Doumont",
     role: "PhD Student",
     affiliation: "Tübingen AI Center (with Philipp Hennig)",
-    image: "/colin-doumont.jpg",
+    image: getImagePath("/colin-doumont.jpg"),
     about: [
       "Colin is currently a research assistant at UCL (with Ilija Bogunovic), and will soon be starting his PhD in Tübingen (with Philipp Hennig). Before UCL, he spent some time doing research at: the Vector Institute (with Geoff Pleiss), the University of Cambridge (with Henry Moss), Secondmind Ltd. (with Victor Picheny), and ETH Zürich (with Viacheslav Borovitskiy and Andreas Krause).",
       "In general, Colin is interested in mathematically-rich problems, whose solutions lead to real-world benefits for practitioners. So far, this has meant designing different kernels for combinatorial and high-dimensional Bayesian-optimization, as well as developing new data-selection algorithms for diffusion-based LLMs.",
