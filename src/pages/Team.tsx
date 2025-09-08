@@ -99,7 +99,7 @@ const collaborators = [
     name: "Lorenz Wolf",
     role: "PhD Student",
     expertise: "",
-    bio: "University College London & The Alan Turing Institute",
+    bio: "University College London\nThe Alan Turing Institute",
     image: "/lorenz-wolf-profile-2.jpg"
   },
   {
