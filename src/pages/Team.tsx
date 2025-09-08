@@ -2,6 +2,7 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { getImagePath } from "@/utils/imageUtils";
 
 const teamMembers = [
   {
@@ -133,7 +134,7 @@ const Team = () => {
       {/* Hero Team Photo Section */}
       <div className="relative w-full h-[450px] md:h-[600px] overflow-hidden">
         <img 
-          src="/team-photo.jpg"
+          src={getImagePath("/team-photo.jpg")}
           alt="Bogunovic LAB Team"
           className="w-full h-full object-cover"
           style={{ objectPosition: '50% 40%' }}
@@ -173,7 +174,7 @@ const Team = () => {
                       {member.image.startsWith('/') ? (
                         <div className="w-40 h-40 rounded-full mx-auto overflow-hidden bg-gray-100">
                           <img 
-                            src={member.image} 
+                            src={getImagePath(member.image)} 
                             alt={member.name}
                             className="w-full h-full object-cover object-center"
                           />
@@ -230,7 +231,7 @@ const Team = () => {
                       <div className="mb-4">
                         {collaborator.image.startsWith('/') || collaborator.image.startsWith('https://') ? (
                           <img 
-                            src={collaborator.image} 
+                            src={getImagePath(collaborator.image)} 
                             alt={collaborator.name}
                             className="w-40 h-40 rounded-full mx-auto object-cover object-top"
                           />

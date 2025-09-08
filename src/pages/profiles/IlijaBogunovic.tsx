@@ -1,11 +1,12 @@
 import ProfilePage from "@/components/ProfilePage";
+import { getImagePath } from "@/utils/imageUtils";
 
 const IlijaBogunovic = () => {
   const profileData = {
     name: "Prof. Dr. Ilija Bogunovic",
     role: "Associate Professor",
     affiliation: "University of Basel\nUniversity College London (honorary)\nUCL AI Centre",
-    image: "/ilija-bogunovic-profile.jpg",
+    image: getImagePath("/ilija-bogunovic-profile.jpg"),
     about: [
       "Prof. Dr. Ilija Bogunovic is an Associate Professor at the University of Basel, Department of Mathematics and Computer Science, and a member of University College London. He leads Rhine AI, focusing on cutting-edge research in machine learning and artificial intelligence.",
       "His research focuses on developing models and algorithms for AI/ML. He has published widely in leading venues such as NeurIPS, ICML, ICLR, AISTATS, JMLR, and TMLR, making significant contributions to the advancement of the field.",
