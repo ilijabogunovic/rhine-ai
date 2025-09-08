@@ -94,6 +94,7 @@ export const publications = [
     venue: "arXiv preprint arXiv:2503.05856",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2503.05856",
+    githubLink: "https://github.com/lorenzflow/robust-moa",
     abstract: "Mixture of large language model (LLM) Agents (MoA) architectures achieve state-of-the-art performance on benchmarks like AlpacaEval 2.0 through collaborative inference. However, comprehensive evaluation of their safety and reliability remains missing. We systematically investigate deception and robustness in MoA systems, revealing critical vulnerabilities and proposing mitigation strategies to improve their trustworthiness in real-world deployment.",
     pdfFile: "https://arxiv.org/pdf/2503.05856.pdf"
   },
