@@ -171,10 +171,10 @@ const Team = () => {
                 >
                   <CardContent className="p-6 text-center h-full flex flex-col">
                     <div className="mb-4">
-                      {member.image.startsWith('/') ? (
+                      {member.image.startsWith('/') || member.image.startsWith('https://') ? (
                         <div className="w-40 h-40 rounded-full mx-auto overflow-hidden bg-gray-100">
                           <img 
-                            src={getImagePath(member.image)} 
+                            src={member.image.startsWith('/') ? getImagePath(member.image) : member.image} 
                             alt={member.name}
                             className="w-full h-full object-cover object-center"
                           />
@@ -231,7 +231,7 @@ const Team = () => {
                       <div className="mb-4">
                         {collaborator.image.startsWith('/') || collaborator.image.startsWith('https://') ? (
                           <img 
-                            src={getImagePath(collaborator.image)} 
+                            src={collaborator.image.startsWith('/') ? getImagePath(collaborator.image) : collaborator.image} 
                             alt={collaborator.name}
                             className="w-40 h-40 rounded-full mx-auto object-cover object-top"
                           />
