@@ -1,12 +1,13 @@
 import ProfilePage from "@/components/ProfilePage";
 import { getAuthorPublications } from "@/utils/publicationUtils";
+import { getImagePath } from "@/utils/imageUtils";
 
 const ZheWang = () => {
   const profileData = {
     name: "Zhe Wang",
     role: "PhD Student",
     affiliation: "UCL AI Centre (With Google DeepMind)",
-    image: "/zhe-wang-profile.jpg",
+    image: getImagePath("/zhe-wang-profile.jpg"),
     about: [],
     researchInterests: [],
     publications: getAuthorPublications("Zhe Wang"),
