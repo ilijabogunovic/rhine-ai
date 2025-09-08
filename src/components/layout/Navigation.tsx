@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logoUrl from "/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Rhine AI Logo" className="w-12 h-12 mt-2" />
+            <img src={logoUrl} alt="Rhine AI Logo" className="w-12 h-12 mt-2" />
             <span className="font-display font-bold text-xl text-foreground">
               Rhine AI (Bogunovic LAB)
             </span>

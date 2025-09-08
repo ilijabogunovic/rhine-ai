@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
+import backgroundImage from "/c.jpg";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const HeroSection = () => {
     <>
       <section className="relative py-0 px-4 overflow-hidden" style={{ 
         backgroundColor: 'rgb(233,230,223)',
-        backgroundImage: 'url(/c.jpg)',
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: '80% 100%',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat'
