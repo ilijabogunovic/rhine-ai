@@ -1,73 +1,77 @@
-# Welcome to your Lovable project
+# Rhine AI Lab Website
 
-## Project info
+Official website for Rhine AI (Bogunovic LAB) at the University of Basel and UCL AI Centre.
 
-**URL**: https://lovable.dev/projects/31287075-da23-4023-83ae-542f960bc29a
+## About
 
-## How can I edit this code?
+Rhine AI focuses on developing agentic AI systems that reason, adapt, and operate in complex environments. Led by Prof. Dr. Ilija Bogunovic, our research spans:
 
-There are several ways of editing your application.
+- **Agentic AI Systems**: Self-evolving LLM agents that reason, adapt, and operate in complex environments
+- **Reinforcement Learning**: Algorithms for sequential decision making under uncertainty, emphasizing robustness, efficiency, and alignment  
+- **Exploration & Discovery**: Foundation models for exploring hypothesis spaces, uncovering knowledge, and accelerating discovery
 
-**Use Lovable**
+## Website Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/31287075-da23-4023-83ae-542f960bc29a) and start prompting.
+- Team member profiles and research interests
+- Publications showcase with interactive PDF viewers
+- Research focus areas and lab information
+- Responsive design optimized for all devices
+- Built with modern web technologies
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technology Stack
 
-**Use your preferred IDE**
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Routing**: React Router
+- **Deployment**: GitHub Pages
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Development
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (v18 or higher)
+- npm
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Local Development
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# Clone the repository
+git clone https://github.com/ilijabogunovic/rhine-ai.git
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Navigate to project directory
+cd rhine-ai
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server will start at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+```bash
+# Build the application
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview the build locally
+npm run preview
+```
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with:
+The website is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+**Live Website**: https://ilijabogunovic.github.io/rhine-ai/
 
-## How can I deploy this project?
+## Contributing
 
-Simply open [Lovable](https://lovable.dev/projects/31287075-da23-4023-83ae-542f960bc29a) and click on Share -> Publish.
+For updates to team information, publications, or website content, please contact the lab members or submit a pull request.
 
-## Can I connect a custom domain to my Lovable project?
+## License
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+© 2025 Rhine AI Lab. All rights reserved.
