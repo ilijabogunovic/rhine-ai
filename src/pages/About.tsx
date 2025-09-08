@@ -8,7 +8,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              About RHINE AI Lab
+              About Rhine AI Lab
             </h1>
             <p className="font-body text-lg text-muted-foreground">
               Developing intelligent agents that reason, learn, and discover.
@@ -23,7 +23,7 @@ const About = () => {
                   Our Mission
                 </h2>
                 <p className="font-body text-muted-foreground leading-relaxed text-lg">
-                  RHINE AI Lab focuses on agentic AI systems with capabilities for reasoning, adaptation, and self-evolution - developing reliable and theory-inspired algorithms that can autonomously explore complex problems while staying aligned with human values and advancing scientific knowledge.
+                  Rhine AI Lab focuses on agentic AI systems with capabilities for reasoning, adaptation, and self-evolution - developing reliable and theory-inspired algorithms that can autonomously explore complex problems while staying aligned with human values and advancing scientific knowledge.
                 </p>
               </CardContent>
             </Card>
@@ -36,7 +36,7 @@ const About = () => {
                 </h2>
                 <div className="space-y-4 font-body text-muted-foreground leading-relaxed">
                   <p>
-                    RHINE AI Lab was founded by Prof. Ilija Bogunovic with a vision to develop intelligent 
+                    Rhine AI Lab was founded by Prof. Ilija Bogunovic with a vision to develop intelligent 
                     systems that can reason about complex problems, adapt to new challenges, and evolve 
                     their capabilities while remaining aligned with human values and advancing scientific discovery.
                   </p>

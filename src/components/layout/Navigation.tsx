@@ -24,9 +24,9 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="RHINE AI Logo" className="w-12 h-12 mt-2" />
+            <img src="/logo.png" alt="Rhine AI Logo" className="w-12 h-12 mt-2" />
             <span className="font-display font-bold text-xl text-foreground">
-              Bogunovic LAB
+              Rhine AI (Bogunovic LAB)
             </span>
           </div>
 
