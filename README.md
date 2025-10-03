@@ -74,4 +74,4 @@ For updates to team information, publications, or website content, please contac
 
 ## License
 
-© 2025 Rhine AI Lab. All rights reserved.
+© 2025 Rhine AI Lab. All rights reserved.# Updated
