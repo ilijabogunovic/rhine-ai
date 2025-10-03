@@ -55,6 +55,18 @@ const renderAuthors = (authors: string) => {
 export const publications = [
   {
     year: "2025",
+    title: "Imagined Autocurricula",
+    authors: "Ahmet H. Guzel, Matthew Thomas Jackson, Jarek Luca Liesen, Tim Rocktäschel, Jakob Nicolaus Foerster, Ilija Bogunovic, Jack Parker-Holder",
+    venue: "NeurIPS 2025",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2509.13341",
+    abstract: "IMAC (Imagined Autocurricula) trains robust AI agents entirely within world models by automatically generating a curriculum of diverse imagined environments, eliminating the need for massive real-world data or accurate simulators. By combining world models with Unsupervised Environment Design, we demonstrate strong generalization to novel tasks, paving the way for training generally capable agents using large-scale foundation world models.",
+    pdfFile: "https://arxiv.org/pdf/2509.13341.pdf",
+    blogLink: "https://sites.google.com/view/imagined-autocurricula/home",
+  },
+
+  {
+    year: "2025",
     title: "wd1: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     authors: "Xiaohang Tang, Rares Dolga, Sangwoong Yoon, Ilija Bogunovic",
     venue: "arXiv preprint arXiv:2507.08838",

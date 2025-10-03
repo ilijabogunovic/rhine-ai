@@ -33,6 +33,18 @@ const AhmetHGuzel = () => {
     publications: [
       {
         year: "2025",
+        title: "Imagined Autocurricula",
+        authors: "Ahmet H. Guzel, Matthew Thomas Jackson, Jarek Luca Liesen, Tim Rocktäschel, Jakob Nicolaus Foerster, Ilija Bogunovic, Jack Parker-Holder",
+        venue: "NeurIPS",
+        type: "Conference Paper",
+        arxivLink: "https://arxiv.org/abs/2509.13341",
+        pdfFile: "https://arxiv.org/pdf/2509.13341.pdf",
+        abstract: "IMAC (Imagined Autocurricula) trains robust AI agents entirely within world models by automatically generating a curriculum of diverse imagined environments, eliminating the need for massive real-world data or accurate simulators. By combining world models with Unsupervised Environment Design, we demonstrate strong generalization to novel tasks, paving the way for training generally capable agents using large-scale foundation world models.",
+        blogLink: "https://sites.google.com/view/imagined-autocurricula/home",
+      },
+
+      {
+        year: "2025",
         title: "Synthetic Data is Sufficient for Zero-Shot Visual Generalization from Offline Data",
         authors: "Ahmet Hamdi Güzel, Ilija Bogunovic, Jack Parker-Holder",
         venue: "Transactions on Machine Learning Research (TMLR)",

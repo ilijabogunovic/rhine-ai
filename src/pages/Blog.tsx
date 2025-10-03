@@ -6,6 +6,16 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 const blogPosts = [
   {
+    date: "October 3, 2025",
+    title: "Imagined Autocurricula",
+    author: "Ahmet H. Güzel",
+    excerpt: "What if AI agents could train in imagined worlds instead of needing massive real-world datasets? We introduce IMAC, a breakthrough approach that uses world models to generate diverse training environments with automatic curriculum learning, enabling agents to master new tasks they've never seen before—opening the door to truly general-purpose AI trained entirely in simulation.",
+    readTime: "3 min read",
+    category: "Technical",
+    url: "https://sites.google.com/view/imagined-autocurricula/home"
+  },
+  
+  {
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     author: "Xiaohang Tang",
