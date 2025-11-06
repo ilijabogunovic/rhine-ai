@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <title>Rhine AI Lab</title>
     <script>
-      window.location.href = "/rhine-ai/" + window.location.pathname.replace("/rhine-ai", "") + window.location.search + window.location.hash;
+      // Store the URL the user was trying to access
+      sessionStorage.redirect = location.href;
     </script>
+    <meta http-equiv="refresh" content="0;URL='/rhine-ai/'">
   </head>
   <body>
   </body>
