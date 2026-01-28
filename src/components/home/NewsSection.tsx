@@ -30,14 +30,6 @@ const renderMathText = (text: string) => {
 
 const newsItems = [
   {
-    date: "November 2025",
-    title: "🎯 Open PhD Positions: Reinforcement Learning for LLMs and Agentic AI",
-    excerpt: "We are recruiting PhD students to work on cutting-edge research in post-training algorithms for LLMs, diffusion-based reasoning, AI alignment, and self-improving autonomous agents. Join us at the University of Basel to shape the future of AI! Application deadline: December 1, 2025. Start date: January 2026 (flexible).",
-    type: "Opportunity",
-    url: "https://jobs.unibas.ch/offene-stellen/phd-positions-in-reinforcement-learning-for-llms-and-agentic-ai-prof-i-bogunovic/934e80ad-82d3-468e-9454-781e884ceae3",
-    highlight: true
-  },
-  {
     date: "January 2026",
     title: "Paper Accepted to ICLR 2026: $\\texttt{wd1}$ - Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     excerpt: "Our work on improving the reasoning capabilities of diffusion-based large language models has been accepted to the International Conference on Learning Representations (ICLR) 2026. We introduce wd1, a weighted policy optimization algorithm that addresses the challenge of intractable likelihood functions in diffusion LLMs by reducing the use of approximated likelihoods, enabling more effective reinforcement learning for reasoning tasks.",
@@ -50,6 +42,14 @@ const newsItems = [
     excerpt: "Our work on robust multi-objective alignment of large language models has been accepted to the International Conference on Learning Representations (ICLR) 2026. This research presents a novel approach to controlled decoding that enables LLMs to balance multiple objectives simultaneously while maintaining robustness, advancing the field of LLM alignment and controllable generation.",
     type: "Publication",
     url: "https://arxiv.org/abs/2503.08796"
+  },
+  {
+    date: "November 2025",
+    title: "🎯 Open PhD Positions: Reinforcement Learning for LLMs and Agentic AI",
+    excerpt: "We are recruiting PhD students to work on cutting-edge research in post-training algorithms for LLMs, diffusion-based reasoning, AI alignment, and self-improving autonomous agents. Join us at the University of Basel to shape the future of AI! Application deadline: December 1, 2025. Start date: January 2026 (flexible).",
+    type: "Opportunity",
+    url: "https://jobs.unibas.ch/offene-stellen/phd-positions-in-reinforcement-learning-for-llms-and-agentic-ai-prof-i-bogunovic/934e80ad-82d3-468e-9454-781e884ceae3",
+    highlight: true
   },
   {
     date: "October 3, 2025",
