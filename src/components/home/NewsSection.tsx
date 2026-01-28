@@ -3,11 +3,37 @@ import { Button } from "@/components/ui/button";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
-// Helper function to render text with LaTeX expressions
-const renderMathText = (text: string) => {
-  // Split text by LaTeX delimiters
+// Helper function to render text with LaTeX expressions and colored paper titles
+const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
+  // Check for "Paper Accepted to [Conference] [Year]:" pattern
+  const paperAcceptedMatch = text.match(/^(Paper Accepted to [^:]+:)\s*(.*)/);
+
+  if (paperAcceptedMatch && colorPaperTitle) {
+    const prefix = paperAcceptedMatch[1];
+    const paperTitle = paperAcceptedMatch[2];
+
+    // Process the paper title for LaTeX
+    const parts = paperTitle.split(/(\$.*?\$|\\\(.*?\\\)|\\\[.*?\\\])/);
+    const renderedTitle = parts.map((part, index) => {
+      if (part.startsWith('$') && part.endsWith('$')) {
+        const math = part.slice(1, -1);
+        return <InlineMath key={index} math={math} />;
+      } else {
+        return <span key={index}>{part}</span>;
+      }
+    });
+
+    return (
+      <>
+        <span>{prefix}</span>{' '}
+        <span className="text-accent-vibrant">{renderedTitle}</span>
+      </>
+    );
+  }
+
+  // Default: Split text by LaTeX delimiters
   const parts = text.split(/(\$.*?\$|\\\(.*?\\\)|\\\[.*?\\\])/);
-  
+
   return parts.map((part, index) => {
     if (part.startsWith('$') && part.endsWith('$')) {
       // Inline math: $...$
@@ -123,7 +149,7 @@ const NewsSection = () => {
                      </span>
                    </div>
                    <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                     {renderMathText(item.title)}
+                     {renderMathText(item.title, item.title.includes("ICLR 2026"))}
                    </h3>
                  </CardHeader>
                  <CardContent>
