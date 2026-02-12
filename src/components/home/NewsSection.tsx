@@ -56,6 +56,20 @@ const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
 
 const newsItems = [
   {
+    date: "February 2026",
+    title: "Robin Faro Joins Rhine AI Lab as PhD Student",
+    excerpt: "We are excited to welcome Robin Faro to the Rhine AI Lab as a new PhD student at the University of Basel. Robin is jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi (University of Basel). Welcome to the team!",
+    type: "Announcement",
+    url: "/team/robin-faro"
+  },
+  {
+    date: "February 2026",
+    title: "Multi-Task GRPO: Reliable LLM Reasoning Across Tasks",
+    excerpt: "New preprint on multi-task reinforcement learning for LLMs. When standard GRPO methods are adapted for multi-task scenarios, some tasks receive disproportionate attention while others fall behind. We introduce MT-GRPO, which dynamically adjusts task weights to explicitly optimize worst-task performance and promote balanced progress, achieving significant improvement on worst-task performance compared to baseline approaches.",
+    type: "Preprint",
+    url: "https://arxiv.org/abs/2602.05547"
+  },
+  {
     date: "January 2026",
     title: "Paper Accepted to ICLR 2026: $\\texttt{wd1}$ - Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     excerpt: "Our work on improving the reasoning capabilities of diffusion-based large language models has been accepted to the International Conference on Learning Representations (ICLR) 2026. We introduce wd1, a weighted policy optimization algorithm that addresses the challenge of intractable likelihood functions in diffusion LLMs by reducing the use of approximated likelihoods, enabling more effective reinforcement learning for reasoning tasks.",

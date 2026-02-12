@@ -86,6 +86,14 @@ const teamMembers = [
     link: "/team/sangwoong-yoon"
   },
   {
+    name: "Robin Faro",
+    role: "PhD Student",
+    expertise: "",
+    bio: "With A. Lucchi (University of Basel)",
+    image: "/placeholder.svg",
+    link: "/team/robin-faro"
+  },
+  {
     name: "Your Name Here?",
     role: "Join Our Team",
     expertise: "",

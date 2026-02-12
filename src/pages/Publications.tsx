@@ -54,6 +54,17 @@ const renderAuthors = (authors: string) => {
 
 export const publications = [
   {
+    year: "2026",
+    title: "Multi-Task GRPO: Reliable LLM Reasoning Across Tasks",
+    authors: "Shyam Sundhar Ramesh, Xiaotong Ji, Matthieu Zimmer, Sangwoong Yoon, Zhiyong Wang, Haitham Bou Ammar, Aurelien Lucchi, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2602.05547",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2602.05547",
+    pdfFile: "https://arxiv.org/pdf/2602.05547.pdf",
+    abstract: "When standard GRPO methods are adapted for multi-task scenarios, some tasks receive disproportionate attention while others fall behind. We introduce MT-GRPO, which dynamically adjusts task weights to explicitly optimize worst-task performance and promote balanced progress, and implements a sampling method ensuring policy gradients align with these weights. Our experiments demonstrate substantial gains: MT-GRPO achieves significant improvement on worst-task performance compared to baseline approaches while requiring significantly fewer training steps for convergence.",
+    githubLink: "https://github.com/rsshyam/MT-GRPO",
+  },
+  {
     year: "2025",
     title: "Imagined Autocurricula",
     authors: "Ahmet H. Guzel, Matthew Thomas Jackson, Jarek Luca Liesen, Tim Rocktäschel, Jakob Nicolaus Foerster, Ilija Bogunovic, Jack Parker-Holder",

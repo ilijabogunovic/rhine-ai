@@ -28,6 +28,18 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // GitHub Pages SPA redirect handler:
+      // 404.html saves the original URL to sessionStorage and redirects here.
+      // This script restores the correct route so React Router can handle it.
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
