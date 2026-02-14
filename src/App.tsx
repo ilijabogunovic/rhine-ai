@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import JoinUs from "./pages/JoinUs";
+import Teaching from "./pages/Teaching";
 import IlijaBogunovic from "./pages/profiles/IlijaBogunovic";
 import WilliamBankes from "./pages/profiles/WilliamBankes";
 import ShyamSundharRamesh from "./pages/profiles/ShyamSundharRamesh";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/publications" element={<Publications />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/teaching" element={<Teaching />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
