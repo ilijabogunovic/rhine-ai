@@ -135,6 +135,9 @@ const Teaching = () => {
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
                   Lectures
                 </h2>
+                <p className="font-body text-muted-foreground mb-4">
+                  <strong className="text-foreground">Password:</strong> rl
+                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full font-body text-sm">
                     <thead>
@@ -146,7 +149,7 @@ const Teaching = () => {
                       </tr>
                     </thead>
                     <tbody className="text-muted-foreground">
-                      <tr className="border-b border-border/50"><td className="py-2 px-2">1</td><td className="py-2 px-2">Feb 20, 2026</td><td className="py-2 px-2">Introduction; MDPs & Bellman equations</td><td className="py-2 px-2">Slides / Annotated Slides</td></tr>
+                      <tr className="border-b border-border/50"><td className="py-2 px-2">1</td><td className="py-2 px-2">Feb 20, 2026</td><td className="py-2 px-2">Introduction; MDPs & Bellman equations</td><td className="py-2 px-2"><a href="/lectures/lecture1.pdf" className="text-accent-vibrant hover:underline">Slides</a> / Annotated Slides</td></tr>
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">2</td><td className="py-2 px-2">Feb 27, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">3</td><td className="py-2 px-2">Mar 6, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">4</td><td className="py-2 px-2">Mar 13, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
