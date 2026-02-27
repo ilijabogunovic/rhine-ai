@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
+import ProtectedDownload from "@/components/ProtectedDownload";
 
 const Teaching = () => {
   return (
@@ -176,6 +177,9 @@ const Teaching = () => {
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
                   Exercises
                 </h2>
+                <p className="font-body text-muted-foreground mb-4">
+                  <strong className="text-foreground">Password:</strong> rl
+                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full font-body text-sm">
                     <thead>
@@ -189,7 +193,7 @@ const Teaching = () => {
                     <tbody className="text-muted-foreground">
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">1</td><td className="py-2 px-2">Feb 20, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">2</td><td className="py-2 px-2">Feb 27, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
-                      <tr className="border-b border-border/50"><td className="py-2 px-2">3</td><td className="py-2 px-2">Mar 6, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
+                      <tr className="border-b border-border/50"><td className="py-2 px-2">3</td><td className="py-2 px-2">Mar 6, 2026</td><td className="py-2 px-2">MDPs & Dynamic Programming</td><td className="py-2 px-2"><ProtectedDownload href="/exercises/Exercise1.ipynb" filename="Exercise1.ipynb" password="rl">Exercise 1</ProtectedDownload></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">4</td><td className="py-2 px-2">Mar 13, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">5</td><td className="py-2 px-2">Mar 20, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">6</td><td className="py-2 px-2">Mar 27, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
