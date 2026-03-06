@@ -90,7 +90,7 @@ const teamMembers = [
     role: "PhD Student",
     expertise: "",
     bio: "With A. Lucchi (University of Basel)",
-    image: "/placeholder.svg",
+    image: "/robin-faro-profile.jpg",
     link: "/team/robin-faro"
   },
   {
