@@ -136,9 +136,6 @@ const Teaching = () => {
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
                   Lectures
                 </h2>
-                <p className="font-body text-muted-foreground mb-4">
-                  <strong className="text-foreground">Password:</strong> rl
-                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full font-body text-sm">
                     <thead>
@@ -153,7 +150,7 @@ const Teaching = () => {
                       <tr className="border-b border-border/50"><td className="py-2 px-2">1</td><td className="py-2 px-2">Feb 20, 2026</td><td className="py-2 px-2">Introduction; MDPs & Bellman equations</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/lecture1.pdf" filename="lecture1.pdf" password="rl">Slides</ProtectedDownload> / <ProtectedDownload href="/lectures/lecture1_annotated.pdf" filename="lecture1_annotated.pdf" password="rl">Annotated</ProtectedDownload></td></tr>
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">2</td><td className="py-2 px-2">Feb 27, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">3</td><td className="py-2 px-2">Mar 6, 2026</td><td className="py-2 px-2">MC & TD Learning; Model-free Control</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/lecture2.pdf" filename="lecture2.pdf" password="rl">Slides</ProtectedDownload> / <ProtectedDownload href="/lectures/lecture2_annotated.pdf" filename="lecture2_annotated.pdf" password="rl">Annotated</ProtectedDownload></td></tr>
-                      <tr className="border-b border-border/50"><td className="py-2 px-2">4</td><td className="py-2 px-2">Mar 13, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
+                      <tr className="border-b border-border/50"><td className="py-2 px-2">4</td><td className="py-2 px-2">Mar 13, 2026</td><td className="py-2 px-2">Function Approximation & Deep RL</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/lecture3.pdf" filename="lecture3.pdf" password="rl">Slides</ProtectedDownload></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">5</td><td className="py-2 px-2">Mar 20, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">6</td><td className="py-2 px-2">Mar 27, 2026</td><td className="py-2 px-2"></td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">7</td><td className="py-2 px-2">Apr 3, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
@@ -177,9 +174,6 @@ const Teaching = () => {
                 <h2 className="font-display text-2xl font-semibold text-foreground mb-4">
                   Exercises
                 </h2>
-                <p className="font-body text-muted-foreground mb-4">
-                  <strong className="text-foreground">Password:</strong> rl
-                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full font-body text-sm">
                     <thead>
