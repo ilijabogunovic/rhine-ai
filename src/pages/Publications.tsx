@@ -55,6 +55,17 @@ const renderAuthors = (authors: string) => {
 export const publications = [
   {
     year: "2026",
+    title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
+    authors: "Juliusz Ziomek, William Bankes, Lorenz Wolf, Shyam Sundhar Ramesh, Xiaohang Tang, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2602.16902",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2602.16902",
+    pdfFile: "https://arxiv.org/pdf/2602.16902.pdf",
+    abstract: "We introduce LLM-Wikirace, a benchmark for evaluating planning, reasoning, and world knowledge in large language models (LLMs). In LLM-Wikirace, models must efficiently navigate Wikipedia hyperlinks step by step to reach a target page from a given source, requiring look-ahead planning and the ability to reason about how concepts are connected in the real world.",
+    githubLink: "https://llmwikirace.github.io/"
+  },
+  {
+    year: "2026",
     title: "Multi-Task GRPO: Reliable LLM Reasoning Across Tasks",
     authors: "Shyam Sundhar Ramesh, Xiaotong Ji, Matthieu Zimmer, Sangwoong Yoon, Zhiyong Wang, Haitham Bou Ammar, Aurelien Lucchi, Ilija Bogunovic",
     venue: "arXiv preprint arXiv:2602.05547",
