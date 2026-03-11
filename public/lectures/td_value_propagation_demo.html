@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TD Value Propagation</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+  :root {
+    --bg: #0c0f1a;
+    --surface: #151929;
+    --surface2: #1c2137;
+    --border: #2a3050;
+    --text: #e0e4f0;
+    --text-dim: #7a82a0;
+    --accent: #4fc3f7;
+    --reward: #66bb6a;
+    --terminal: #ffb74d;
+    --terminal-glow: rgba(255, 183, 77, 0.25);
+    --path: #ab47bc;
+    --update: #ef5350;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,195,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,195,247,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .slide {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 28px 40px 36px;
+  }
+  .header { margin-bottom: 18px; }
+  .header h1 {
+    font-family: var(--mono);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  .header h1 span { color: var(--text-dim); font-weight: 400; }
+  .subtitle {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .key-idea {
+    background: linear-gradient(135deg, rgba(79,195,247,0.08), rgba(79,195,247,0.02));
+    border: 1px solid rgba(79,195,247,0.25);
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .key-idea .ki-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .key-idea p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .viz-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .viz-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+  .episode-badge {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(79,195,247,0.1);
+    border: 1px solid rgba(79,195,247,0.3);
+    border-radius: 6px;
+    padding: 4px 12px;
+    transition: all 0.3s;
+  }
+  .grid-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  .cell {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cell .coord {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    opacity: 0.5;
+  }
+  .cell .value {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: all 0.4s ease;
+  }
+  .cell .value-label {
+    font-family: var(--mono);
+    font-size: 0.48rem;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  .cell.terminal {
+    background: linear-gradient(135deg, rgba(255,183,77,0.15), rgba(255,183,77,0.05));
+    border-color: var(--terminal);
+    box-shadow: 0 0 16px var(--terminal-glow), inset 0 0 16px var(--terminal-glow);
+  }
+  .cell.terminal .value { color: var(--terminal); }
+  .cell.terminal::after {
+    content: '★'; position: absolute; top: 3px; right: 6px;
+    font-size: 0.6rem; color: var(--terminal);
+  }
+  .cell.on-path {
+    border-color: var(--path);
+    background: linear-gradient(135deg, rgba(171,71,188,0.12), rgba(171,71,188,0.04));
+    box-shadow: 0 0 10px rgba(171,71,188,0.2);
+  }
+  .cell.updating {
+    border-color: var(--update);
+    box-shadow: 0 0 18px rgba(239,83,80,0.3);
+    animation: pulse 0.6s ease-in-out;
+  }
+  .cell.just-updated .value { color: var(--reward) !important; }
+  .cell.has-value .value { color: var(--accent); }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .path-arrows {
+    position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  }
+  .path-arrows svg { width: 100%; height: 100%; }
+  .legend {
+    display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 5px;
+    font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim);
+  }
+  .legend-swatch {
+    width: 10px; height: 10px; border-radius: 3px; border: 1px solid;
+  }
+  .legend-swatch.t-sw { background: rgba(255,183,77,0.2); border-color: var(--terminal); }
+  .legend-swatch.p-sw { background: rgba(171,71,188,0.2); border-color: var(--path); }
+  .legend-swatch.u-sw { background: rgba(239,83,80,0.2); border-color: var(--update); }
+  .legend-swatch.v-sw { background: rgba(102,187,106,0.2); border-color: var(--reward); }
+  .explain-panel { display: flex; flex-direction: column; gap: 14px; }
+  .scenario-box, .steps-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .box-title {
+    font-family: var(--mono); font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .scenario-box p {
+    font-size: 0.82rem; line-height: 1.65; color: var(--text); margin-bottom: 2px;
+  }
+  .dim { color: var(--text-dim); }
+  .highlight { color: var(--terminal); font-weight: 600; }
+  .green { color: var(--reward); font-weight: 600; }
+  .step {
+    padding: 10px 12px; border-radius: 8px; margin-bottom: 6px;
+    border: 1px solid transparent; transition: all 0.4s ease; opacity: 0.3;
+  }
+  .step.active {
+    background: var(--surface2); border-color: var(--border); opacity: 1;
+  }
+  .step.done { opacity: 0.55; }
+  .step .step-num {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px;
+  }
+  .step .step-transition {
+    font-family: var(--mono); font-size: 0.73rem; color: var(--text); margin-bottom: 4px;
+  }
+  .step .step-math {
+    font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); min-height: 1.3em;
+  }
+  .step .step-math .katex { font-size: 0.78rem; }
+  .step .step-result {
+    font-family: var(--mono); font-size: 0.68rem; font-weight: 700; margin-top: 3px;
+  }
+  .step .step-result.changed { color: var(--reward); }
+  .step .step-result.unchanged { color: var(--text-dim); }
+  .controls { display: flex; gap: 8px; margin-top: 8px; }
+  .btn {
+    font-family: var(--mono); font-size: 0.73rem; font-weight: 600;
+    padding: 9px 16px; border: 1px solid var(--border); border-radius: 7px;
+    background: var(--surface2); color: var(--text); cursor: pointer;
+    transition: all 0.2s; flex: 1; text-align: center;
+  }
+  .btn:hover {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(79,195,247,0.08);
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary {
+    background: linear-gradient(135deg, rgba(79,195,247,0.2), rgba(79,195,247,0.08));
+    border-color: var(--accent); color: var(--accent);
+  }
+  .btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+  .progress { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+  .progress-dots { display: flex; gap: 4px; align-items: center; }
+  .progress-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); transition: all 0.3s;
+  }
+  .progress-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(79,195,247,0.5); }
+  .progress-dot.done { background: var(--path); }
+  .ep-sep {
+    width: 1px; height: 14px; background: var(--border); margin: 0 2px;
+  }
+  .progress-label {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header">
+    <h1>Example<span>:</span> How TD Propagates Value Backwards Step-by-Step</h1>
+    <div class="subtitle">The +1 signal ripples back one cell per episode — watch it propagate.</div>
+  </div>
+  <div class="key-idea">
+    <div class="ki-label">Key Insight</div>
+    <p>The +1 reward signal is <strong>propagated backward one step at a time</strong>. Each episode, TD pushes value one cell further from the terminal — learning <em>incrementally</em> without waiting for episodes to finish.</p>
+  </div>
+  <div class="content">
+    <div class="viz-panel">
+      <div class="panel-header">
+        <div class="viz-label">4 × 4 Gridworld</div>
+        <div class="episode-badge" id="episodeBadge">Ready</div>
+      </div>
+      <div class="grid-container">
+        <div class="grid" id="grid"></div>
+        <div class="path-arrows">
+          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="ah" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#ab47bc" opacity="0.8"/>
+              </marker>
+              <marker id="ah-r" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#ef5350" opacity="0.9"/>
+              </marker>
+            </defs>
+            <g id="arrowGroup"></g>
+          </svg>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-swatch t-sw"></div>Terminal (+1)</div>
+        <div class="legend-item"><div class="legend-swatch p-sw"></div>Agent path</div>
+        <div class="legend-item"><div class="legend-swatch u-sw"></div>Updating now</div>
+        <div class="legend-item"><div class="legend-swatch v-sw"></div>Value changed</div>
+      </div>
+    </div>
+    <div class="explain-panel">
+      <div class="scenario-box">
+        <div class="box-title">Scenario</div>
+        <p>Terminal = <span class="highlight">(0,2) ★</span>, reward <span class="green">+1</span></p>
+        <p class="dim">Other transitions: R = 0 &nbsp;|&nbsp; α = 0.1 &nbsp;|&nbsp; γ = 1</p>
+        <p class="dim">Same path each episode: (2,3)→(2,2)→(1,2)→(0,2)</p>
+      </div>
+      <div class="steps-box">
+        <div class="box-title" id="stepsTitle">TD(0) Updates</div>
+        <div id="stepsContainer"></div>
+        <div class="controls">
+          <button class="btn" id="prevBtn" onclick="prev()">← Back</button>
+          <button class="btn primary" id="nextBtn" onclick="next()">Next →</button>
+          <button class="btn" onclick="resetAll()">Reset</button>
+        </div>
+        <div class="progress">
+          <div class="progress-dots" id="progressDots"></div>
+          <div class="progress-label" id="progressLabel"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Grid
+const gridEl = document.getElementById('grid');
+const cells = {};
+for (let r = 0; r < 4; r++) {
+  for (let c = 0; c < 4; c++) {
+    const isTerm = r === 0 && c === 2;
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (isTerm ? ' terminal' : '');
+    cell.id = `cell-${r}-${c}`;
+    cell.innerHTML = `
+      <div class="coord">${r},${c}</div>
+      <div class="value" id="val-${r}-${c}">${isTerm ? '—' : '0'}</div>
+      <div class="value-label">V(${r},${c})</div>`;
+    gridEl.appendChild(cell);
+    cells[`${r},${c}`] = cell;
+  }
+}
+
+// Pre-compute 3 episodes × 3 transitions = 9 steps
+const path = [[2,3],[2,2],[1,2],[0,2]];
+const alpha = 0.1;
+const steps = [];
+
+(function build() {
+  const V = {};
+  for (let r = 0; r < 4; r++)
+    for (let c = 0; c < 4; c++) V[`${r},${c}`] = 0;
+
+  for (let ep = 1; ep <= 3; ep++) {
+    for (let t = 0; t < 3; t++) {
+      const from = path[t], to = path[t+1];
+      const fk = `${from[0]},${from[1]}`, tk = `${to[0]},${to[1]}`;
+      const isTerm = to[0]===0 && to[1]===2;
+      const reward = isTerm ? 1 : 0;
+      const vNext = isTerm ? 0 : V[tk];
+      const vOld = V[fk];
+      const vNew = vOld + alpha * (reward + vNext - vOld);
+      steps.push({ ep, t, fk, tk, reward, vOld, vNew, vNext, isTerm,
+                    changed: Math.abs(vNew - vOld) > 1e-12 });
+      V[fk] = vNew;
+    }
+  }
+})();
+
+let cursor = -1;
+
+function cellCenter(r, c) {
+  const gap = 5, cs = (400 - 3*gap) / 4;
+  return { x: c*(cs+gap)+cs/2, y: r*(cs+gap)+cs/2 };
+}
+
+function drawArrows() {
+  const g = document.getElementById('arrowGroup');
+  g.innerHTML = '';
+  if (cursor < 0) return;
+  const ep = steps[cursor].ep;
+  const epStart = (ep-1)*3;
+  for (let i = epStart; i <= cursor; i++) {
+    const s = steps[i];
+    const [fr,fc] = s.fk.split(',').map(Number);
+    const [tr,tc] = s.tk.split(',').map(Number);
+    const f = cellCenter(fr,fc), t = cellCenter(tr,tc);
+    const dx = t.x-f.x, dy = t.y-f.y, len = Math.hypot(dx,dy), sh = 28;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', f.x+dx/len*sh); line.setAttribute('y1', f.y+dy/len*sh);
+    line.setAttribute('x2', t.x-dx/len*sh); line.setAttribute('y2', t.y-dy/len*sh);
+    const cur = i === cursor;
+    line.setAttribute('stroke', cur ? '#ef5350' : '#ab47bc');
+    line.setAttribute('stroke-width', cur ? '3' : '2');
+    line.setAttribute('stroke-dasharray', cur ? '6,4' : 'none');
+    line.setAttribute('marker-end', cur ? 'url(#ah-r)' : 'url(#ah)');
+    line.setAttribute('opacity', cur ? '1' : '0.4');
+    g.appendChild(line);
+  }
+}
+
+function fv(v) {
+  if (Math.abs(v) < 1e-12) return '0';
+  if (v >= 0.001) return v.toFixed(4).replace(/0+$/,'').replace(/\.$/,'');
+  return v.toExponential(1);
+}
+
+function render() {
+  // Compute V up to cursor
+  const V = {};
+  for (let r = 0; r < 4; r++)
+    for (let c = 0; c < 4; c++) V[`${r},${c}`] = 0;
+  for (let i = 0; i <= cursor && i < steps.length; i++)
+    V[steps[i].fk] = steps[i].vNew;
+
+  // Update grid
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      const k = `${r},${c}`, cell = cells[k];
+      const el = document.getElementById(`val-${r}-${c}`);
+      cell.classList.remove('on-path','updating','just-updated','has-value');
+      if (r===0 && c===2) { el.textContent = '—'; continue; }
+      const v = V[k];
+      el.textContent = fv(v);
+      el.style.color = '';
+      if (v > 1e-12) cell.classList.add('has-value');
+    }
+  }
+
+  if (cursor >= 0) {
+    const s = steps[cursor];
+    const epStart = (s.ep-1)*3;
+    for (let i = epStart; i <= cursor; i++)
+      cells[steps[i].fk].classList.add('on-path');
+    cells[s.fk].classList.add('updating');
+    cells[s.fk].classList.remove('on-path');
+    if (s.changed) cells[s.fk].classList.add('just-updated');
+  }
+
+  drawArrows();
+
+  // Badge
+  const badge = document.getElementById('episodeBadge');
+  badge.textContent = cursor < 0 ? 'Ready' : `Episode ${steps[cursor].ep} / 3`;
+
+  // Steps
+  const cont = document.getElementById('stepsContainer');
+  cont.innerHTML = '';
+  const ep = cursor < 0 ? 1 : steps[cursor].ep;
+  const localT = cursor < 0 ? -1 : steps[cursor].t;
+  document.getElementById('stepsTitle').textContent = `Episode ${ep} — TD(0) Updates`;
+
+  for (let t = 0; t < 3; t++) {
+    const idx = (ep-1)*3+t;
+    const s = steps[idx];
+    const div = document.createElement('div');
+    div.className = 'step';
+    if (t === localT) div.classList.add('active');
+    else if (t < localT) div.classList.add('done');
+
+    const rStr = s.reward > 0 ? '+1' : '0';
+    let resultHtml = '';
+    if (t <= localT && cursor >= 0) {
+      resultHtml = s.changed
+        ? `<div class="step-result changed">→ V(${s.fk}) = ${fv(s.vNew)} ✓ signal reached!</div>`
+        : `<div class="step-result unchanged">→ V(${s.fk}) = ${fv(s.vNew)} (no change yet)</div>`;
+    }
+
+    div.innerHTML = `
+      <div class="step-num">Transition ${t+1}</div>
+      <div class="step-transition">(${s.fk}) → (${s.tk}), R = ${rStr}</div>
+      <div class="step-math" id="eq-${ep}-${t}"></div>
+      ${resultHtml}`;
+    cont.appendChild(div);
+
+    if (t <= localT && cursor >= 0) {
+      const eq = `V(${s.fk}) \\leftarrow ${fv(s.vOld)} + 0.1\\,(${s.reward} + ${fv(s.vNext)} - ${fv(s.vOld)}) = ${fv(s.vNew)}`;
+      try { katex.render(eq, div.querySelector('.step-math'), { displayMode: false, throwOnError: false }); } catch(e){}
+    }
+  }
+
+  // Progress
+  const dots = document.getElementById('progressDots');
+  dots.innerHTML = '';
+  for (let i = 0; i < 9; i++) {
+    if (i > 0 && i % 3 === 0) {
+      const sep = document.createElement('div');
+      sep.className = 'ep-sep';
+      dots.appendChild(sep);
+    }
+    const d = document.createElement('div');
+    d.className = 'progress-dot';
+    if (i === cursor) d.classList.add('active');
+    else if (i < cursor) d.classList.add('done');
+    dots.appendChild(d);
+  }
+  document.getElementById('progressLabel').textContent =
+    cursor < 0 ? 'Ready — press Next' : `Step ${cursor+1} / 9`;
+
+  document.getElementById('prevBtn').disabled = cursor < 0;
+  document.getElementById('nextBtn').disabled = cursor >= 8;
+}
+
+function next() { if (cursor < 8) { cursor++; render(); } }
+function prev() { if (cursor >= 0) { cursor--; render(); } }
+function resetAll() { cursor = -1; render(); }
+render();
+</script>
+</body>
+</html>
