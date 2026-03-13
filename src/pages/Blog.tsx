@@ -6,6 +6,15 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 const blogPosts = [
   {
+    date: "March 13, 2026",
+    title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
+    author: "Juliusz Ziomek, William Bankes, and Lorenz Wolf",
+    excerpt: "We introduce LLM-Wikirace, a benchmark for evaluating planning, reasoning, and world knowledge in large language models (LLMs). In LLM-Wikirace, models must efficiently navigate Wikipedia hyperlinks step by step to reach a target page from a given source, requiring look-ahead planning and the ability to reason about how concepts are connected in the real world.",
+    readTime: "4 min read",
+    category: "Technical",
+    url: "https://llmwikirace.github.io/"
+  },
+  {
     date: "October 3, 2025",
     title: "Imagined Autocurricula",
     author: "Ahmet H. Güzel",
@@ -14,7 +23,6 @@ const blogPosts = [
     category: "Technical",
     url: "https://sites.google.com/view/imagined-autocurricula/home"
   },
-  
   {
     date: "July 7, 2025",
     title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",

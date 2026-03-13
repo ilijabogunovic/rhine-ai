@@ -56,6 +56,13 @@ const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
 
 const newsItems = [
   {
+    date: "March 13, 2026",
+    title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
+    excerpt: "We introduce LLM-Wikirace, a benchmark for evaluating planning, reasoning, and world knowledge in large language models (LLMs). In LLM-Wikirace, models must efficiently navigate Wikipedia hyperlinks step by step to reach a target page from a given source, requiring look-ahead planning and the ability to reason about how concepts are connected in the real world.",
+    type: "Preprint",
+    url: "https://llmwikirace.github.io/"
+  },
+  {
     date: "February 2026",
     title: "Robin Faro Joins Rhine AI Lab as PhD Student",
     excerpt: "We are excited to welcome Robin Faro to the Rhine AI Lab as a new PhD student at the University of Basel. Robin is jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi (University of Basel). Welcome to the team!",
