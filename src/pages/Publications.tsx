@@ -88,10 +88,10 @@ export const publications = [
   },
 
   {
-    year: "2025",
+    year: "2026",
     title: "wd1: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
     authors: "Xiaohang Tang, Rares Dolga, Sangwoong Yoon, Ilija Bogunovic",
-    venue: "arXiv preprint arXiv:2507.08838",
+    venue: "International Conference on Learning Representations (ICLR)",
     type: "Preprint",
     arxivLink: "https://arxiv.org/abs/2507.08838",
     abstract: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by reducing the use of approximated likelihoods. Our approach demonstrates superior performance on reasoning benchmarks while maintaining computational efficiency in diffusion model training.",
@@ -100,25 +100,15 @@ export const publications = [
     blogLink: "https://ucl-diffusion-reasoning.github.io/wd1-demo/",
   },
   {
-    year: "2024",
-    title: "REDUCR: Robust Data Downsampling Using Class Priority Reweighting",
-    authors: "William Bankes, George Hughes, Ilija Bogunovic, Zi Wang",
-    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
-    type: "Conference Paper",
-    arxivLink: "https://arxiv.org/abs/2312.00486",
-    pdfFile: "https://arxiv.org/pdf/2312.00486.pdf",
-    githubLink: "https://github.com/williambankes/REDUCR",
-    abstract: "Data Downsampling algorithm robust to class imbalance and class distribution shifts."
-  },
-  {
-    year: "2025",
+    year: "2026",
     title: "Robust Multi-Objective Controlled Decoding of Large Language Models",
     authors: "Seongho Son, William Bankes, Sangwoong Yoon, Shyam Sundhar Ramesh, Xiaohang Tang, Ilija Bogunovic",
-    venue: "arXiv preprint arXiv:2503.08796",
-    type: "Preprint",
+    venue: "International Conference on Learning Representations (ICLR)",
+    type: "Conference Paper",
     arxivLink: "https://arxiv.org/abs/2503.08796",
     pdfFile: "https://arxiv.org/pdf/2503.08796.pdf",
     githubLink: "https://github.com/williambankes/robust-multi-objective-decoding",
+    videoLink: "https://recorder-v3.slideslive.com/?share=108956&s=5022e321-8033-420d-9f2c-eacd91eea12b",
     abstract: "Test-time alignment of Large Language Models to human preferences typically relies on predefined weights or averages, leading to unbalanced outcomes across multiple objectives. We introduce Robust Multi-Objective Decoding (RMOD), a novel inference-time algorithm that optimizes worst-case rewards through a maximin game formulation. RMOD achieves equitable alignment across diverse objectives with minimal computational overhead, outperforming baselines by up to 20% while maintaining efficiency for contemporary LLMs.",
   },
   {
@@ -183,6 +173,17 @@ export const publications = [
     arxivLink: "https://arxiv.org/abs/2508.12356",
     pdfFile: "https://arxiv.org/pdf/2508.12356.pdf",
     abstract: "Vision-based offline reinforcement learning often suffers from poor generalization due to limited data diversity. We demonstrate that synthetic data generation through a two-step process—dataset augmentation followed by diffusion-based latent space sampling—significantly improves zero-shot generalization. Our approach works across continuous and discrete action spaces without algorithm modifications, substantially reducing generalization gaps while maintaining computational efficiency."
+  },
+  {
+    year: "2024",
+    title: "REDUCR: Robust Data Downsampling Using Class Priority Reweighting",
+    authors: "William Bankes, George Hughes, Ilija Bogunovic, Zi Wang",
+    venue: "Conference on Neural Information Processing Systems (NeurIPS)",
+    type: "Conference Paper",
+    arxivLink: "https://arxiv.org/abs/2312.00486",
+    pdfFile: "https://arxiv.org/pdf/2312.00486.pdf",
+    githubLink: "https://github.com/williambankes/REDUCR",
+    abstract: "Data Downsampling algorithm robust to class imbalance and class distribution shifts."
   },     
   {
     year: "2024",
