@@ -56,6 +56,13 @@ const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
 
 const newsItems = [
   {
+    date: "April 2026",
+    title: "Rhine AI students presented papers at ICLR 2026 in Rio 🇧🇷",
+    excerpt: "Rhine AI students and collaborators presented two papers at ICLR 2026: wd1 and RMOD!",
+    type: "Announcement",
+    url: "/news/iclr2026"
+  },
+  {
     date: "March 13, 2026",
     title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
     excerpt: "We introduce LLM-Wikirace, a benchmark for evaluating planning, reasoning, and world knowledge in large language models (LLMs). In LLM-Wikirace, models must efficiently navigate Wikipedia hyperlinks step by step to reach a target page from a given source, requiring look-ahead planning and the ability to reason about how concepts are connected in the real world.",
@@ -142,9 +149,11 @@ const NewsSection = () => {
               Stay updated with our latest research breakthroughs and announcements.
             </p>
           </div>
-          <Button variant="outline" className="mt-4 md:mt-0">
-            View All News
-          </Button>
+          <a href="/news">
+            <Button variant="outline" className="mt-4 md:mt-0">
+              View All News
+            </Button>
+          </a>
         </div>
         
                  <div className="grid lg:grid-cols-2 gap-6">

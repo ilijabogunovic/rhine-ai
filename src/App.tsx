@@ -23,6 +23,8 @@ import AbdelhamidEzzerg from "./pages/profiles/AbdelhamidEzzerg";
 import SangwoongYoon from "./pages/profiles/SangwoongYoon";
 import ColinDoumont from "./pages/profiles/ColinDoumont";
 import RobinFaro from "./pages/profiles/RobinFaro";
+import News from "./pages/News";
+import ICLR2026 from "./pages/news/ICLR2026";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/join-us" element={<JoinUs />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/iclr2026" element={<ICLR2026 />} />
           <Route path="/team/ilija-bogunovic" element={<IlijaBogunovic />} />
           <Route path="/team/william-bankes" element={<WilliamBankes />} />
           <Route path="/team/shyam-sundhar-ramesh" element={<ShyamSundharRamesh />} />
