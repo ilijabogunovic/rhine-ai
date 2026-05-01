@@ -25,6 +25,7 @@ import ColinDoumont from "./pages/profiles/ColinDoumont";
 import RobinFaro from "./pages/profiles/RobinFaro";
 import News from "./pages/News";
 import ICLR2026 from "./pages/news/ICLR2026";
+import Icml2026 from "./pages/news/Icml2026";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/team/sangwoong-yoon" element={<SangwoongYoon />} />
           <Route path="/team/colin-doumont" element={<ColinDoumont />} />
           <Route path="/team/robin-faro" element={<RobinFaro />} />
+          <Route path="/news/icml-2026" element={<Icml2026 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
