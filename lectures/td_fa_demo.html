@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baird's Counterexample — TD(0) Divergence</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f4f6fa;
+    --surface2: #e8ecf5;
+    --border: #c0c8dd;
+    --blue:   #1565c0;
+    --red:    #c62828;
+    --green:  #1b7c3d;
+    --orange: #e65100;
+    --text: #1a1f2e;
+    --muted: #4a5168;
+    --heading: #0d1117;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 17px;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+
+  header {
+    padding: 44px 0 32px;
+    text-align: center;
+    border-bottom: 3px solid var(--border);
+    margin-bottom: 36px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue); background: #e3eaf8;
+    border: 2px solid var(--blue);
+    padding: 5px 14px; border-radius: 3px; margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: clamp(30px, 5vw, 54px); font-weight: 800;
+    color: var(--heading); line-height: 1.1; margin-bottom: 14px;
+  }
+  h1 em { color: var(--red); font-style: italic; }
+
+  .subtitle {
+    font-size: 18px; color: var(--muted);
+    max-width: 620px; margin: 0 auto; line-height: 1.65;
+  }
+
+  .triad { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .triad-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    padding: 7px 18px; border-radius: 4px; border: 2px solid;
+  }
+  .t1 { background:#e3eaf8; color:var(--blue);  border-color:var(--blue);  }
+  .t2 { background:#fce8e6; color:var(--red);   border-color:var(--red);   }
+  .t3 { background:#e6f4ea; color:var(--green); border-color:var(--green); }
+
+  .steps-nav { display:flex; gap:6px; margin-bottom:28px; flex-wrap:wrap; }
+  .step-btn {
+    background:var(--surface); border:2px solid var(--border);
+    color:var(--muted); font-family:'JetBrains Mono',monospace;
+    font-size:13px; font-weight:600; padding:9px 18px;
+    cursor:pointer; transition:all .15s; border-radius:4px;
+  }
+  .step-btn:hover { border-color:var(--blue); color:var(--blue); background:#e3eaf8; }
+  .step-btn.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  .step-panel { display:none; animation:fadeIn .3s ease; }
+  .step-panel.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+  .panel-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+  @media(max-width:700px){ .panel-grid{grid-template-columns:1fr} }
+
+  .card { background:var(--surface); border:2px solid var(--border); border-radius:6px; padding:26px; }
+  .card.full { grid-column:1/-1; }
+
+  .card-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+  }
+  .card h3 { font-size:20px; font-weight:700; color:var(--heading); margin-bottom:12px; }
+  .card p { font-size:16px; line-height:1.75; color:var(--text); }
+  .card p+p { margin-top:10px; }
+  .card ul { padding-left:22px; }
+  .card li { font-size:15px; line-height:2.1; }
+
+  .highlight {
+    border-left:5px solid var(--blue); background:#e3eaf8;
+    padding:12px 16px; margin-top:14px;
+    font-size:15px; font-family:'JetBrains Mono',monospace;
+    color:var(--blue); line-height:1.65;
+    border-radius:0 4px 4px 0;
+  }
+  .warn   { border-color:var(--red);    background:#fce8e6; color:var(--red);    }
+  .good   { border-color:var(--green);  background:#e6f4ea; color:var(--green);  }
+  .orange { border-color:var(--orange); background:#fff3e0; color:var(--orange); }
+
+  #mdp-svg-container {
+    background:var(--surface2); border:2px solid var(--border);
+    border-radius:6px; padding:16px;
+    display:flex; justify-content:center; align-items:center; min-height:240px;
+  }
+
+  #sim-canvas {
+    width:100%; height:300px;
+    background:#f0f3fa; border:2px solid var(--border);
+    border-radius:6px; display:block;
+  }
+
+  .controls { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; align-items:center; }
+
+  .btn {
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px; font-weight:700; padding:10px 22px;
+    border:2px solid; cursor:pointer; border-radius:4px;
+    transition:all .15s; background:white;
+  }
+  .btn-primary { border-color:var(--blue); color:var(--blue); }
+  .btn-primary:hover  { background:var(--blue);  color:#fff; }
+  .btn-primary:disabled { opacity:.4; cursor:default; background:white; }
+  .btn-danger  { border-color:var(--red);  color:var(--red);  }
+  .btn-danger:hover   { background:var(--red);   color:#fff; }
+  .btn-danger:disabled { opacity:.4; cursor:default; background:white; }
+  .btn-success { border-color:var(--green); color:var(--green); }
+  .btn-success:hover  { background:var(--green); color:#fff; }
+
+  .stat-row { display:flex; gap:24px; flex-wrap:wrap; margin-top:14px; }
+  .stat { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:var(--muted); }
+  .stat span { font-size:22px; font-weight:700; display:block; margin-bottom:2px; color:var(--heading); }
+
+  .feature-table { width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace; font-size:13px; margin-top:12px; }
+  .feature-table th { text-align:left; padding:8px 12px; background:var(--surface2); color:var(--muted); font-weight:700; font-size:11px; letter-spacing:1px; text-transform:uppercase; border-bottom:2px solid var(--border); }
+  .feature-table td { padding:7px 12px; color:var(--text); border-bottom:1px solid var(--border); }
+  .feature-table tr:last-child td { border-bottom:none; }
+  .upper-state { color:var(--blue);  font-weight:700; }
+  .lower-state { color:var(--green); font-weight:700; }
+
+  .policy-bar-row { display:flex; align-items:center; gap:12px; margin-bottom:8px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; }
+  .bar-track { flex:1; height:14px; background:var(--surface2); border-radius:3px; border:1px solid var(--border); overflow:hidden; }
+  .bar-fill  { height:100%; border-radius:3px; }
+  .policy-pct { width:40px; text-align:right; color:var(--muted); }
+
+  .math-block {
+    background:#f0f3fa; border:2px solid var(--border); border-radius:6px;
+    padding:18px 22px; font-family:'JetBrains Mono',monospace;
+    font-size:15px; font-weight:600; line-height:2.1; color:var(--heading);
+    margin-top:14px; overflow-x:auto;
+  }
+  .math-comment { color:var(--muted); font-weight:400; font-size:13px; }
+
+  .weight-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
+  .weight-cell {
+    background:white; border:2px solid var(--border);
+    border-radius:4px; padding:8px; text-align:center;
+    font-family:'JetBrains Mono',monospace; transition:all .2s;
+  }
+  .weight-cell .wlabel { font-size:11px; color:var(--muted); font-weight:700; margin-bottom:3px; }
+  .weight-cell .wval   { font-size:15px; font-weight:700; color:var(--heading); }
+  .weight-cell.diverging { border-color:var(--red); background:#fce8e6; }
+  .weight-cell.diverging .wval { color:var(--red); }
+
+  .conclusion-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+  @media(max-width:620px){ .conclusion-grid{grid-template-columns:1fr} }
+  .concl-card { background:white; border:2px solid var(--border); border-radius:6px; padding:18px; text-align:center; }
+  .concl-icon { font-size:28px; margin-bottom:8px; }
+  .concl-card h4 { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--blue); margin-bottom:7px; }
+  .concl-card p  { font-size:13px; color:var(--muted); line-height:1.65; }
+
+  .progress { display:flex; justify-content:center; gap:10px; margin:28px 0 44px; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer; transition:all .2s; border:2px solid var(--border); }
+  .dot.active { background:var(--blue); border-color:var(--blue); transform:scale(1.3); }
+
+  .nav-btns { display:flex; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:2px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="tag">Reinforcement Learning · The Deadly Triad</div>
+  <h1>Baird's <em>Counterexample</em></h1>
+  <p class="subtitle">Why TD(0) with linear function approximation diverges off-policy — even with zero rewards, only 7 states, and deterministic transitions.</p>
+  <div class="triad">
+    <span class="triad-item t1">① Function Approximation</span>
+    <span class="triad-item t2">② Bootstrapping (TD)</span>
+    <span class="triad-item t3">③ Off-Policy Sampling</span>
+  </div>
+</header>
+
+<div class="steps-nav">
+  <button class="step-btn active" onclick="goTo(0)">01 · The MDP</button>
+  <button class="step-btn" onclick="goTo(1)">02 · Policies</button>
+  <button class="step-btn" onclick="goTo(2)">03 · Features</button>
+  <button class="step-btn" onclick="goTo(3)">04 · TD Update</button>
+  <button class="step-btn" onclick="goTo(4)">05 · Simulation</button>
+  <button class="step-btn" onclick="goTo(5)">06 · Why Diverges</button>
+  <button class="step-btn" onclick="goTo(6)">07 · Takeaways</button>
+</div>
+
+<!-- ════ STEP 0 ════ -->
+<div class="step-panel active" id="panel-0">
+  <div class="panel-grid">
+    <div class="card">
+      <div class="card-label">Step 01</div>
+      <h3>The 7-State MDP</h3>
+      <p>Baird's example uses the <strong>simplest possible MDP</strong> that exposes instability: 7 states, <strong>zero reward</strong> everywhere, and two actions per state — each with <strong>deterministic transitions</strong>.</p>
+      <ul style="margin-top:10px; margin-bottom:10px">
+        <li><strong>Solid action</strong> → self-loop (stay in current state)</li>
+        <li><strong>Dashed action</strong> → always go to s₇</li>
+      </ul>
+      <p>The <strong>stochasticity is in the policy</strong>, not the environment. P(s'|s,a) is fully deterministic — only the action selection is random.</p>
+      <ul style="margin-top:10px">
+        <li><strong style="color:var(--blue)">s₁–s₆</strong> — "upper" states, heavily sampled by behavior policy</li>
+        <li><strong style="color:var(--green)">s₇</strong> — "lower" state, where the target policy always goes</li>
+      </ul>
+      <div class="highlight warn">
+        All rewards = 0, so <strong>V*(s) = 0 everywhere</strong>. Any divergence is purely algorithmic — not caused by a hard optimization problem.
+      </div>
+    </div>
+    <div class="card" id="mdp-svg-container">
+      <svg id="mdp-svg" viewBox="0 0 350 240" width="100%" style="max-width:400px">
+        <g id="upper-states"></g>
+        <g id="s7-group"></g>
+      </svg>
+    </div>
+  </div>
+  <div class="nav-btns"><span></span><button class="btn btn-primary" onclick="goTo(1)">Next →</button></div>
+</div>
+
+<!-- ════ STEP 1 ════ -->
+<div class="step-panel" id="panel-1">
+  <div class="panel-grid">
+    <div class="card">
+      <div class="card-label">Step 02</div>
+      <h3>Two Different Policies</h3>
+      <p><strong style="color:var(--blue)">Behavior policy b</strong> — generates the data:</p>
+      <ul style="margin: 8px 0 12px">
+        <li>From <strong>upper state sᵢ</strong>: solid (self-loop) w.p. 6/7, dashed (→ s₇) w.p. 1/7</li>
+        <li>From <strong>s₇</strong>: solid (→ random upper state) w.p. 6/7, dashed (self-loop) w.p. 1/7</li>
+      </ul>
+      <p><strong style="color:var(--red)">Target policy π</strong> — what we want to evaluate:</p>
+      <ul style="margin: 8px 0 12px">
+        <li>From <strong>upper state sᵢ</strong>: always dashed → s₇</li>
+        <li>From <strong>s₇</strong>: always dashed → self-loop at s₇</li>
+      </ul>
+      <div class="highlight orange" style="margin-top:4px; font-size:13px;">
+        Under b, there is a <strong>cycle</strong>: upper states occasionally go to s₇, and s₇ occasionally bounces back to a random upper state. This spreads b's stationary distribution across all 7 states.
+      </div>
+      <div class="highlight warn" style="margin-top:10px;">
+        <strong>This mismatch IS the off-policy problem.</strong> We use data from b but update toward targets computed under π — lethal combined with FA + bootstrapping.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Transition Probabilities → s₇</div>
+      <h3>Behavior vs. Target</h3>
+      <div style="margin-bottom:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Behavior Policy b</div>
+        <div class="policy-bar-row">
+          <span style="width:80px;color:var(--muted)">→ upper</span>
+          <div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--blue)"></div></div>
+          <span class="policy-pct">6/7</span>
+        </div>
+        <div class="policy-bar-row">
+          <span style="width:80px;color:var(--muted)">→ s₇</span>
+          <div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--green)"></div></div>
+          <span class="policy-pct">1/7</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--red);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Target Policy π</div>
+        <div class="policy-bar-row">
+          <span style="width:80px;color:var(--muted)">→ upper</span>
+          <div class="bar-track"><div class="bar-fill" style="width:0%;background:var(--blue)"></div></div>
+          <span class="policy-pct">0/7</span>
+        </div>
+        <div class="policy-bar-row">
+          <span style="width:80px;color:var(--muted)">→ s₇</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--green)"></div></div>
+          <span class="policy-pct">7/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(0)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(2)">Next →</button>
+  </div>
+</div>
+
+<!-- ════ STEP 2 ════ -->
+<div class="step-panel" id="panel-2">
+  <div class="panel-grid">
+    <div class="card">
+      <div class="card-label">Step 03</div>
+      <h3>Linear Function Approximation</h3>
+      <p>Instead of storing one value per state, we use <strong>V(s) ≈ φ(s)ᵀ w</strong> — features φ(s) dotted with a shared weight vector <strong>w</strong>.</p>
+      <p>This is the "function approximation" component. It saves memory but <strong>couples all state estimates</strong> — updating one state's value implicitly changes others.</p>
+      <div class="highlight">
+        7 states, only <strong>8 weights</strong>. Shared structure prevents independent estimates. The coupling through <strong>w₈</strong> is what makes everything interact destructively.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Feature Vectors φ(s)</div>
+      <h3>w = [w₁ w₂ … w₇ w₈]</h3>
+      <table class="feature-table">
+        <thead><tr><th>State</th><th>φ(s)</th><th>V(s) =</th></tr></thead>
+        <tbody>
+          <tr><td class="upper-state">s₁</td><td class="upper-state">(2,0,0,0,0,0,0,1)</td><td>2w₁ + w₈</td></tr>
+          <tr><td class="upper-state">s₂</td><td class="upper-state">(0,2,0,0,0,0,0,1)</td><td>2w₂ + w₈</td></tr>
+          <tr><td class="upper-state">s₃</td><td class="upper-state">(0,0,2,0,0,0,0,1)</td><td>2w₃ + w₈</td></tr>
+          <tr><td class="upper-state">s₄</td><td class="upper-state">(0,0,0,2,0,0,0,1)</td><td>2w₄ + w₈</td></tr>
+          <tr><td class="upper-state">s₅</td><td class="upper-state">(0,0,0,0,2,0,0,1)</td><td>2w₅ + w₈</td></tr>
+          <tr><td class="upper-state">s₆</td><td class="upper-state">(0,0,0,0,0,2,0,1)</td><td>2w₆ + w₈</td></tr>
+          <tr><td class="lower-state">s₇</td><td class="lower-state">(0,0,0,0,0,0,1,2)</td><td>w₇ + 2w₈</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight orange" style="margin-top:12px;font-size:13px;">
+        <strong>w₈ is shared by every state.</strong> Updating any upper state also shifts V(s₇) via w₈.
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(1)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Next →</button>
+  </div>
+</div>
+
+<!-- ════ STEP 3 ════ -->
+<div class="step-panel" id="panel-3">
+  <div class="panel-grid">
+    <div class="card full">
+      <div class="card-label">Step 04</div>
+      <h3>The TD(0) Semi-Gradient Update</h3>
+      <p>We want to evaluate <strong>Vπ</strong> — the value function of π — without following π. Instead we use b to visit states, but evaluate next-state values using π's transitions.</p>
+      <div class="math-block">
+        δ &nbsp;=&nbsp; R + γ · V(s') &nbsp;−&nbsp; V(s) &nbsp;&nbsp;&nbsp;<span class="math-comment">// R = 0 always</span><br>
+        w &nbsp;←&nbsp; w &nbsp;+&nbsp; α · δ · φ(s) &nbsp;&nbsp;&nbsp;&nbsp;<span class="math-comment">// push V(s) toward γ·V(s')</span>
+      </div>
+      <p style="margin-top:16px;"><strong>s</strong> is sampled from b's distribution (upper states, frequently).<br>
+      <strong>s'</strong> is the next state under <strong>π</strong> — from any upper state, π always goes to s₇.</p>
+      <div class="highlight" style="margin-top:14px;font-size:15px;">
+        So each update uses <strong>s from b</strong> but <strong>s' from π</strong>. These come from two different distributions — this mismatch is the off-policy problem.
+      </div>
+      <div class="highlight warn" style="margin-top:10px;font-size:15px;">
+        The bootstrap target <strong>γ·V(s')</strong> uses current w — so as w grows, the target grows too. There is no fixed point to converge to.
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(2)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Next →</button>
+  </div>
+</div>
+
+<!-- ════ STEP 4 ════ -->
+<div class="step-panel" id="panel-4">
+  <div class="card full" style="margin-bottom:18px">
+    <div class="card-label">Step 05</div>
+    <h3>Live TD(0) Simulation — Watch the Weights Blow Up</h3>
+    <p style="margin-bottom:16px;font-size:15px;">All rewards are zero. The true value is <strong>V*(s) = 0 everywhere</strong>. The divergence is pure algorithm failure.</p>
+    <canvas id="sim-canvas"></canvas>
+    <div class="controls">
+      <button class="btn btn-primary" id="btn-run" onclick="startSim()">▶ Run</button>
+      <button class="btn btn-danger"  id="btn-stop" onclick="stopSim()" disabled>■ Stop</button>
+      <button class="btn btn-success" onclick="resetSim()">↺ Reset</button>
+      <label style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--muted);margin-left:10px;display:flex;align-items:center;gap:8px;">
+        α = <input type="range" id="alpha-slider" min="1" max="20" value="5" style="width:90px;accent-color:var(--blue)" oninput="document.getElementById('alpha-val').textContent=(this.value/100).toFixed(2)">
+        <span id="alpha-val">0.05</span>
+      </label>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><span id="stat-iter">0</span>Iterations</div>
+      <div class="stat"><span id="stat-norm" style="color:var(--red)">0.000</span>‖w‖ (should stay 0)</div>
+      <div class="stat"><span id="stat-v7" style="color:var(--green)">0.000</span>V(s₇)</div>
+      <div class="stat"><span id="stat-v1" style="color:var(--blue)">0.000</span>V(s₁)</div>
+    </div>
+  </div>
+  <div class="panel-grid">
+    <div class="card">
+      <div class="card-label">Weight Vector w</div>
+      <h3>Current Weights</h3>
+      <div class="weight-grid" id="weight-display"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">What to Observe</div>
+      <h3>Signs of Divergence</h3>
+      <ul>
+        <li>‖w‖ grows <strong style="color:var(--red)">without bound</strong></li>
+        <li>V(s₁)–V(s₆) diverge <strong style="color:var(--blue)">without bound</strong></li>
+        <li>V(s₇) diverges <strong style="color:var(--green)">without bound</strong></li>
+        <li>Smaller α <strong>slows</strong> it — does <em>not</em> stop it</li>
+        <li>True value is <strong style="color:var(--green)">always 0</strong></li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(3)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Next →</button>
+  </div>
+</div>
+
+<!-- ════ STEP 5 ════ -->
+<div class="step-panel" id="panel-5">
+  <div class="panel-grid">
+    <div class="card full">
+      <div class="card-label">Step 06</div>
+      <h3>Why the Weights Diverge: The Feedback Loop</h3>
+    </div>
+    <div class="card" style="border-color:var(--blue);border-width:3px">
+      <div class="card-label" style="color:var(--blue)">Phase 1 — Frequent Updates</div>
+      <h3 style="font-size:17px;color:var(--blue)">Upper states sampled constantly</h3>
+      <p style="font-size:15px;">b visits s₁–s₆ <strong>6/7 of the time</strong>. Each update uses s' = s₇ (π's next state from any upper state), so V(sᵢ) is repeatedly pushed toward <strong>γ·V(s₇)</strong>.</p>
+    </div>
+    <div class="card" style="border-color:var(--red);border-width:3px">
+      <div class="card-label" style="color:var(--red)">Phase 2 — Bootstrapping Amplifies</div>
+      <h3 style="font-size:17px;color:var(--red)">Target moves with the weights</h3>
+      <p style="font-size:15px;">As V(sᵢ) is pushed up, V(s₇) also rises (shared w₈). This raises the bootstrap target γ·V(s₇), which pushes V(sᵢ) up further. A <strong>runaway feedback loop</strong>.</p>
+    </div>
+    <div class="card" style="border-color:var(--orange);border-width:3px">
+      <div class="card-label" style="color:var(--orange)">Phase 3 — Feature Coupling</div>
+      <h3 style="font-size:17px;color:var(--orange)">w₈ ties everything together</h3>
+      <p style="font-size:15px;">Every upper-state feature has +1 in position 8. s₇ has +2 in position 8. Updating any upper state shifts w₈, which <strong>directly changes V(s₇) = w₇ + 2w₈</strong>.</p>
+    </div>
+    <div class="card full">
+      <div class="highlight warn" style="font-size:15px;line-height:1.8">
+        <strong>The root cause:</strong> s (from b) and s' (from π) come from different distributions. The expected update matrix A = 𝔼<sub>b</sub>[φ(s)(φ(s) − γφ(s'))ᵀ] is not positive definite — TD(0) has no stable fixed point. With linear FA, this means divergence.
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(4)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(6)">Next →</button>
+  </div>
+</div>
+
+<!-- ════ STEP 6 ════ -->
+<div class="step-panel" id="panel-6">
+  <div class="card full" style="margin-bottom:18px">
+    <div class="card-label">Step 07</div>
+    <h3>Key Takeaways</h3>
+    <p>A 7-state MDP with zero reward exposes a fundamental impossibility for a broad class of RL algorithms.</p>
+  </div>
+  <div class="conclusion-grid">
+    <div class="concl-card"><div class="concl-icon">⚠️</div><h4>Not a bug</h4><p>Divergence is a provable property of TD(0) + FA + off-policy. Not noise, bad luck, or bad code.</p></div>
+    <div class="concl-card"><div class="concl-icon">📐</div><h4>Linear = enough</h4><p>No deep networks needed. 8 linear weights in a 7-state MDP is sufficient for divergence.</p></div>
+    <div class="concl-card"><div class="concl-icon">🔗</div><h4>All three needed</h4><p>Remove any one — go on-policy, use MC, or use tabular — and instability collapses.</p></div>
+    <div class="concl-card"><div class="concl-icon">🎯</div><h4>True value = 0</h4><p>All rewards zero. Algorithm diverges not from a hard problem but from a structural flaw.</p></div>
+    <div class="concl-card"><div class="concl-icon">🛡️</div><h4>Fixes exist</h4><p>Gradient TD, Emphatic TD, and fitted-value methods (DQN replay + target nets) address stability.</p></div>
+    <div class="concl-card"><div class="concl-icon">🔬</div><h4>Deep RL too</h4><p>DQN's experience replay + frozen target network both implicitly fight the deadly triad.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="card-label">Sutton & Barto, Chapter 11</div>
+    <h3>The Deadly Triad — All Three Required for Instability</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px">
+      <div style="padding:14px;background:#e3eaf8;border-radius:5px;border:2px solid var(--blue)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">① Function Approx.</div>
+        <p style="font-size:14px">Generalizes across states but couples estimates through shared weights.</p>
+      </div>
+      <div style="padding:14px;background:#fce8e6;border-radius:5px;border:2px solid var(--red)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--red);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">② Bootstrapping</div>
+        <p style="font-size:14px">Uses current estimates as targets (TD, Q-learning) — targets move as weights change.</p>
+      </div>
+      <div style="padding:14px;background:#e6f4ea;border-radius:5px;border:2px solid var(--green)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">③ Off-Policy</div>
+        <p style="font-size:14px">Data distribution (b) ≠ target policy (π) — destroys the restoring force of on-policy learning.</p>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goTo(5)">← Back</button>
+    <button class="btn btn-success"  onclick="goTo(0)">↺ Start Over</button>
+  </div>
+</div>
+
+<div class="progress" id="progress-dots"></div>
+</div>
+
+<script>
+// ── Navigation ─────────────────────────────────────────────────────────────
+const totalSteps = 7;
+function goTo(step) {
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i===step));
+  document.querySelectorAll('.step-btn').forEach((b,i) => b.classList.toggle('active', i===step));
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===step));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+const dotsEl = document.getElementById('progress-dots');
+for (let i=0; i<totalSteps; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+// ── MDP SVG ────────────────────────────────────────────────────────────────
+function buildMDPSvg() {
+  const svg  = document.getElementById('mdp-svg');
+  const g    = document.getElementById('upper-states');
+  const gs7  = document.getElementById('s7-group');
+
+  const labels   = ['s₁','s₂','s₃','s₄','s₅','s₆'];
+  const xPos     = [25, 77, 129, 201, 253, 305];  // upper-state centres
+  const yCx = 55, r = 20;
+  const s7x = 165, s7y = 178, s7r = 22;           // s₇ centred between gap of xPos[2] and xPos[3]
+
+  // ── Markers ────────────────────────────────────────────────────────────────
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  defs.innerHTML = `
+    <marker id="ah-b"  markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#1565c0"/></marker>
+    <marker id="ah-g"  markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#1b7c3d"/></marker>`;
+  svg.insertBefore(defs, svg.firstChild);
+
+  // ── Helper: quadratic bezier path string ───────────────────────────────────
+  function qbez(x1,y1, cx,cy, x2,y2) {
+    return `M${x1},${y1} Q${cx},${cy} ${x2},${y2}`;
+  }
+
+  function makePath(d, stroke, sw, dash, marker) {
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', d); p.setAttribute('fill','none');
+    p.setAttribute('stroke', stroke); p.setAttribute('stroke-width', sw);
+    if (dash) p.setAttribute('stroke-dasharray', dash);
+    if (marker) p.setAttribute('marker-end', marker);
+    return p;
+  }
+
+  // ── For each upper state: draw arrows FIRST (so circles sit on top) ────────
+  xPos.forEach((xi, i) => {
+    const leftOfS7 = xi < s7x;
+    const offset   = leftOfS7 ? +22 : -22;  // bend direction away from straight line
+
+    // Spread attachment points across top of s₇
+    const s7AttachX = s7x - 14 + i * 5.6;   // spread: ~150 to ~178
+    const s7TopY    = s7y - s7r;
+    const midY      = (yCx + r + s7TopY) / 2;
+
+    // --- Dashed: upper → s₇ ---
+    // start bottom of upper circle (right side), end at s₇ top
+    const d_sx = xi + 5, d_sy = yCx + r;
+    const d_ex = s7AttachX + 2, d_ey = s7TopY;
+    const d_cx = (d_sx + d_ex) / 2 + offset, d_cy = midY;
+    g.appendChild(makePath(qbez(d_sx,d_sy, d_cx,d_cy, d_ex,d_ey), '#1b7c3d','1.8','5,3','url(#ah-g)'));
+
+    // --- Solid: s₇ → upper ---
+    // start at s₇ top, end bottom of upper circle (left side)
+    const s_sx = s7AttachX - 2, s_sy = s7TopY;
+    const s_ex = xi - 5, s_ey = yCx + r;
+    const s_cx = (s_sx + s_ex) / 2 - offset, s_cy = midY;
+    g.appendChild(makePath(qbez(s_sx,s_sy, s_cx,s_cy, s_ex,s_ey), '#1565c0','1.8',null,'url(#ah-b)'));
+
+    // --- Solid self-loop: upper state ---
+    const arc = document.createElementNS('http://www.w3.org/2000/svg','path');
+    arc.setAttribute('d', `M${xi-9},${yCx-r-1} Q${xi},${yCx-r-28} ${xi+9},${yCx-r-1}`);
+    arc.setAttribute('fill','none'); arc.setAttribute('stroke','#1565c0');
+    arc.setAttribute('stroke-width','2'); arc.setAttribute('marker-end','url(#ah-b)');
+    g.appendChild(arc);
+  });
+
+  // ── Upper-state circles & labels (drawn on top of arrows) ─────────────────
+  xPos.forEach((xi, i) => {
+    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    circle.setAttribute('cx', xi); circle.setAttribute('cy', yCx);
+    circle.setAttribute('r', r); circle.setAttribute('fill','#e3eaf8');
+    circle.setAttribute('stroke','#1565c0'); circle.setAttribute('stroke-width','2.5');
+    g.appendChild(circle);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+    text.setAttribute('x', xi); text.setAttribute('y', yCx + 5);
+    text.setAttribute('text-anchor','middle'); text.setAttribute('fill','#1565c0');
+    text.setAttribute('font-family','JetBrains Mono'); text.setAttribute('font-size','13');
+    text.setAttribute('font-weight','700');
+    text.textContent = labels[i];
+    g.appendChild(text);
+  });
+
+  // ── s₇ dashed self-loop (drawn before s₇ circle so circle covers start) ───
+  gs7.appendChild(makePath(
+    `M${s7x+s7r-3},${s7y+6} Q${s7x+s7r+26},${s7y+34} ${s7x+s7r-8},${s7y+20}`,
+    '#1b7c3d','2','5,3','url(#ah-g)'
+  ));
+
+  // ── s₇ circle & label ─────────────────────────────────────────────────────
+  const s7c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  s7c.setAttribute('cx', s7x); s7c.setAttribute('cy', s7y); s7c.setAttribute('r', s7r);
+  s7c.setAttribute('fill','#e6f4ea'); s7c.setAttribute('stroke','#1b7c3d'); s7c.setAttribute('stroke-width','3');
+  gs7.appendChild(s7c);
+
+  const s7t = document.createElementNS('http://www.w3.org/2000/svg','text');
+  s7t.setAttribute('x', s7x); s7t.setAttribute('y', s7y + 5);
+  s7t.setAttribute('text-anchor','middle'); s7t.setAttribute('fill','#1b7c3d');
+  s7t.setAttribute('font-family','JetBrains Mono'); s7t.setAttribute('font-size','14');
+  s7t.setAttribute('font-weight','700');
+  s7t.textContent = 's₇';
+  gs7.appendChild(s7t);
+
+  // ── Legend ────────────────────────────────────────────────────────────────
+  function legendRow(x, y, dash, color, label) {
+    const p = makePath(`M${x},${y} L${x+28},${y}`, color, '2', dash||null, null);
+    gs7.appendChild(p);
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x', x+34); t.setAttribute('y', y+4);
+    t.setAttribute('fill','#4a5168'); t.setAttribute('font-family','Sora');
+    t.setAttribute('font-size','10'); t.setAttribute('font-weight','600');
+    t.textContent = label; gs7.appendChild(t);
+  }
+  legendRow(8, 220, null,  '#1565c0', 'solid action (self-loop upper / →upper from s₇)');
+  legendRow(8, 234, '5,3', '#1b7c3d', 'dashed action (→s₇ from upper / self-loop at s₇)');
+}
+buildMDPSvg();
+
+// ── Simulation ─────────────────────────────────────────────────────────────
+const gamma = 0.99;
+let w = new Array(8).fill(0).map(() => (Math.random()-0.5)*0.01);
+let simRunning = false, drawRAF = null, iteration = 0;
+const histNorm=[], histV7=[], histV1=[];
+
+const PHI = Array.from({length:7}, (_,i) => {
+  const v = new Array(8).fill(0);
+  if (i<6) { v[i]=2; v[7]=1; } else { v[6]=1; v[7]=2; }
+  return v;
+});
+
+const dot  = (a,b) => a.reduce((s,x,i)=>s+x*b[i],0);
+const norm = a => Math.sqrt(a.reduce((s,x)=>s+x*x,0));
+const sampleB = () => Math.random()<6/7 ? Math.floor(Math.random()*6) : 6;
+
+function tdStep() {
+  const alpha = parseFloat(document.getElementById('alpha-slider').value)/100;
+  const s = sampleB();
+  const delta = gamma*dot(PHI[6],w) - dot(PHI[s],w);
+  for (let j=0; j<8; j++) w[j] += alpha*delta*PHI[s][j];
+  iteration++;
+  const n = norm(w);
+  histNorm.push(n); histV1.push(dot(PHI[0],w)); histV7.push(dot(PHI[6],w));
+  updateStats(n); updateWeightDisplay();
+  if (n>1e6) stopSim();
+}
+
+function updateStats(n) {
+  document.getElementById('stat-iter').textContent = iteration;
+  document.getElementById('stat-norm').textContent = n>1000?n.toExponential(2):n.toFixed(3);
+  document.getElementById('stat-v7').textContent   = dot(PHI[6],w).toFixed(3);
+  document.getElementById('stat-v1').textContent   = dot(PHI[0],w).toFixed(3);
+}
+
+function updateWeightDisplay() {
+  const el = document.getElementById('weight-display');
+  el.innerHTML = '';
+  w.forEach((wi,i) => {
+    const cell = document.createElement('div');
+    cell.className = 'weight-cell'+(Math.abs(wi)>1?' diverging':'');
+    cell.innerHTML = `<div class="wlabel">w${i+1}</div><div class="wval">${Math.abs(wi)>100?wi.toExponential(1):wi.toFixed(3)}</div>`;
+    el.appendChild(cell);
+  });
+}
+
+function drawCanvas() {
+  const canvas = document.getElementById('sim-canvas');
+  if (!canvas) return;
+  const W=canvas.offsetWidth, H=canvas.offsetHeight;
+  canvas.width=W; canvas.height=H;
+  const ctx=canvas.getContext('2d');
+
+  ctx.fillStyle='#f0f3fa'; ctx.fillRect(0,0,W,H);
+
+  // grid (symmetric around zero)
+  ctx.strokeStyle='rgba(192,200,221,0.9)'; ctx.lineWidth=1;
+  for (let i=-3; i<=3; i++) {
+    const y = H*0.55 - (i/3)*(H*0.40);
+    ctx.beginPath(); ctx.moveTo(54,y); ctx.lineTo(W-16,y); ctx.stroke();
+  }
+
+  if (histNorm.length<2) {
+    ctx.fillStyle='#4a5168'; ctx.font='bold 16px Sora,sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('Press ▶ Run to start the simulation', W/2, H/2);
+    return;
+  }
+
+  const maxAbs = Math.max(...histNorm, ...histV1.map(Math.abs), ...histV7.map(Math.abs), 0.1);
+  const n=histNorm.length;
+  const xS=(W-70)/Math.max(n-1,1);
+  const yMid = H * 0.55;                      // zero line sits at 55% down
+  const yS   = (H * 0.80) / (2 * maxAbs);    // scale: ±maxAbs fills 80% height
+  const toY  = v => yMid - v * yS;
+
+  function drawLine(data,color,lw) {
+    ctx.beginPath(); ctx.strokeStyle=color; ctx.lineWidth=lw;
+    data.forEach((v,i)=>{ const x=54+i*xS, y=toY(v); i===0?ctx.moveTo(x,y):ctx.lineTo(x,y); });
+    ctx.stroke();
+  }
+
+  // zero / V*=0 line
+  ctx.strokeStyle='#1b7c3d'; ctx.lineWidth=2; ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(54,toY(0)); ctx.lineTo(W-16,toY(0)); ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawLine(histNorm,   '#c62828', 3.5);
+  drawLine(histV1,     '#1565c0', 2.5);
+  drawLine(histV7,     '#1b7c3d', 2);   // raw V(s7), not abs
+
+  // legend
+  ctx.font='bold 14px JetBrains Mono,monospace'; ctx.textAlign='left';
+  ctx.fillStyle='#c62828'; ctx.fillText('‖w‖', 58, 22);
+  ctx.fillStyle='#1565c0'; ctx.fillText('V(s₁)', 110, 22);
+  ctx.fillStyle='#1b7c3d'; ctx.fillText('V(s₇)', 180, 22);
+
+  // axes
+  ctx.fillStyle='#4a5168'; ctx.font='12px JetBrains Mono,monospace';
+  ctx.textAlign='right';
+  ctx.fillText('0', 50, toY(0)+4);
+  ctx.fillText('+'+maxAbs.toFixed(1), 50, toY(maxAbs)+4);
+  ctx.fillText('-'+maxAbs.toFixed(1), 50, toY(-maxAbs)+4);
+  ctx.textAlign='center';
+  ctx.fillText('Iterations: '+n, W/2, H-4);
+  ctx.textAlign='right'; ctx.fillStyle='#1b7c3d'; ctx.font='bold 11px JetBrains Mono';
+  ctx.fillText('V* = 0', 50, toY(0)-5);
+}
+
+function simLoop() {
+  for (let i=0;i<12;i++) tdStep();
+  drawCanvas();
+  if (simRunning) drawRAF=requestAnimationFrame(simLoop);
+}
+function startSim() {
+  simRunning=true;
+  document.getElementById('btn-run').disabled=true;
+  document.getElementById('btn-stop').disabled=false;
+  simLoop();
+}
+function stopSim() {
+  simRunning=false; cancelAnimationFrame(drawRAF);
+  document.getElementById('btn-run').disabled=false;
+  document.getElementById('btn-stop').disabled=true;
+}
+function resetSim() {
+  stopSim();
+  w=new Array(8).fill(0).map(()=>(Math.random()-0.5)*0.01);
+  iteration=0; histNorm.length=0; histV1.length=0; histV7.length=0;
+  updateStats(0); updateWeightDisplay(); drawCanvas();
+}
+
+setTimeout(()=>{ updateWeightDisplay(); drawCanvas(); }, 120);
+window.addEventListener('resize', drawCanvas);
+</script>
+</body>
+</html>
