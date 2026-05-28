@@ -161,7 +161,7 @@ const Teaching = () => {
                       <tr className="border-b border-border/50"><td className="py-2 px-2">12</td><td className="py-2 px-2">May 8, 2026</td><td className="py-2 px-2">Post-training LLMs 1</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/lecture8.pdf" filename="lecture8.pdf" password="rl">Slides</ProtectedDownload></td></tr>
                       <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-2">13</td><td className="py-2 px-2">May 15, 2026</td><td className="py-2 px-2 italic">No class</td><td className="py-2 px-2"></td></tr>
                       <tr className="border-b border-border/50"><td className="py-2 px-2">14</td><td className="py-2 px-2">May 22, 2026</td><td className="py-2 px-2">Post-training LLMs 2</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/lecture9.pdf" filename="lecture9.pdf" password="rl">Slides</ProtectedDownload></td></tr>
-                      <tr><td className="py-2 px-2">15</td><td className="py-2 px-2">May 29, 2026</td><td className="py-2 px-2">Exam Preparation</td><td className="py-2 px-2"></td></tr>
+                      <tr><td className="py-2 px-2">15</td><td className="py-2 px-2">May 29, 2026</td><td className="py-2 px-2">Exam Preparation</td><td className="py-2 px-2"><ProtectedDownload href="/lectures/Modern_RL_Mock_Exam.pdf" filename="Modern_RL_Mock_Exam.pdf" password="rl">Mock Exam</ProtectedDownload></td></tr>
                     </tbody>
                   </table>
                 </div>
