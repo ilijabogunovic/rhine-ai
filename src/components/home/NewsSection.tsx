@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import { newsItems as allNewsItems } from "@/pages/News";
+
+const newsItems = allNewsItems.slice(0, 8);
 
 // Helper function to render text with LaTeX expressions and colored paper titles
 const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
@@ -54,94 +57,6 @@ const renderMathText = (text: string, colorPaperTitle: boolean = false) => {
   });
 };
 
-const newsItems = [
-  {
-    date: "May 2026",
-    title: "Three Rhine AI Lab Papers Accepted to ICML 2026 🇰🇷",
-    excerpt: "We are excited to announce that three papers from the Rhine AI Lab have been accepted to the International Conference on Machine Learning (ICML) 2026, taking place in Seoul, South Korea.",
-    type: "Publication",
-    url: "/news/icml-2026"
-  },
-  {
-    date: "April 2026",
-    title: "Rhine AI students presented papers at ICLR 2026 in Rio 🇧🇷",
-    excerpt: "Rhine AI students and collaborators presented two papers at ICLR 2026: wd1 and RMOD!",
-    type: "Announcement",
-    url: "/news/iclr2026"
-  },
-  {
-    date: "March 13, 2026",
-    title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
-    excerpt: "We introduce LLM-Wikirace, a benchmark for evaluating planning, reasoning, and world knowledge in large language models (LLMs). In LLM-Wikirace, models must efficiently navigate Wikipedia hyperlinks step by step to reach a target page from a given source, requiring look-ahead planning and the ability to reason about how concepts are connected in the real world.",
-    type: "Preprint",
-    url: "https://llmwikirace.github.io/"
-  },
-  {
-    date: "February 2026",
-    title: "Robin Faro Joins Rhine AI Lab as PhD Student",
-    excerpt: "We are excited to welcome Robin Faro to the Rhine AI Lab as a new PhD student at the University of Basel. Robin is jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi (University of Basel). Welcome to the team!",
-    type: "Announcement",
-    url: "/team/robin-faro"
-  },
-  {
-    date: "February 2026",
-    title: "Multi-Task GRPO: Reliable LLM Reasoning Across Tasks",
-    excerpt: "New preprint on multi-task reinforcement learning for LLMs. When standard GRPO methods are adapted for multi-task scenarios, some tasks receive disproportionate attention while others fall behind. We introduce MT-GRPO, which dynamically adjusts task weights to explicitly optimize worst-task performance and promote balanced progress, achieving significant improvement on worst-task performance compared to baseline approaches.",
-    type: "Preprint",
-    url: "https://arxiv.org/abs/2602.05547"
-  },
-  {
-    date: "January 2026",
-    title: "Paper Accepted to ICLR 2026: $\\texttt{wd1}$ - Weighted Policy Optimization for Reasoning in Diffusion Language Models",
-    excerpt: "Our work on improving the reasoning capabilities of diffusion-based large language models has been accepted to the International Conference on Learning Representations (ICLR) 2026. We introduce wd1, a weighted policy optimization algorithm that addresses the challenge of intractable likelihood functions in diffusion LLMs by reducing the use of approximated likelihoods, enabling more effective reinforcement learning for reasoning tasks.",
-    type: "Publication",
-    url: "https://arxiv.org/abs/2507.08838"
-  },
-  {
-    date: "January 2026",
-    title: "Paper Accepted to ICLR 2026: Robust Multi-Objective Controlled Decoding of Large Language Models",
-    excerpt: "Our work on robust multi-objective alignment of large language models has been accepted to the International Conference on Learning Representations (ICLR) 2026. This research presents a novel approach to controlled decoding that enables LLMs to balance multiple objectives simultaneously while maintaining robustness, advancing the field of LLM alignment and controllable generation.",
-    type: "Publication",
-    url: "https://arxiv.org/abs/2503.08796"
-  },
-  {
-    date: "November 2025",
-    title: "🎯 Open PhD Positions: Reinforcement Learning for LLMs and Agentic AI",
-    excerpt: "We are recruiting PhD students to work on cutting-edge research in post-training algorithms for LLMs, diffusion-based reasoning, AI alignment, and self-improving autonomous agents. Join us at the University of Basel to shape the future of AI! Application deadline: December 1, 2025. Start date: January 2026 (flexible).",
-    type: "Opportunity",
-    url: "https://jobs.unibas.ch/offene-stellen/phd-positions-in-reinforcement-learning-for-llms-and-agentic-ai-prof-i-bogunovic/934e80ad-82d3-468e-9454-781e884ceae3",
-    highlight: true
-  },
-  {
-    date: "October 3, 2025",
-    title: "Paper Accepted to NeurIPS 2025: IMAC - Training Agents in Imagined Worlds via Autocurricula",
-    excerpt: "Our work on training robust agents using world models and unsupervised environment design has been accepted to the Conference on Neural Information Processing Systems (NeurIPS) 2025. This research demonstrates how agents can achieve strong generalization to novel tasks by training entirely within imagined environments generated by learned world models, eliminating the need for vast real-world datasets or accurate simulation.",
-    type: "Publication",
-    url: "https://arxiv.org/abs/2509.13341"
-  },
-
-  {
-    date: "August 21, 2025",
-    title: "Prof. Dr. Ilija Bogunovic Appointed to University of Basel",
-    excerpt: "Prof. Dr. Ilija Bogunovic, currently Lecturer at UCL, has been appointed to a new professorship at the Department of Mathematics and Computer Science, University of Basel, starting September 1, 2025.",
-    type: "Announcement",
-    url: "https://dmi.unibas.ch/de/news-events/detail/neuer-professor-in-der-informatik-prof-dr-ilija-bogunovic/"
-  },
-  {
-    date: "September 2025",
-    title: "Paper Accepted to COLM 2025: Sample Efficient Preference Alignment in LLMs via Active Exploration",
-    excerpt: "Our work on active exploration techniques for sample efficient preference alignment in large language models has been accepted to the Conference on Language Modeling (COLM) 2025. This research reduces the amount of human feedback required for effective LLM alignment through principled active learning approaches.",
-    type: "Publication",
-    url: "https://arxiv.org/abs/2312.00267"
-  },
-  {
-    date: "July 7, 2025",
-    title: "$\\texttt{wd1}$: Weighted Policy Optimization for Reasoning in Diffusion Language Models",
-    excerpt: "Improving the reasoning capabilities of diffusion-based large language models (dLLMs) through reinforcement learning remains an open problem due to the intractability of likelihood functions. We introduce wd1, a weighted policy optimization algorithm that addresses this challenge by reducing the use of approximated likelihoods.",
-    type: "Preprint",
-    url: "https://ucl-diffusion-reasoning.github.io/wd1-demo/"
-  }
-];
 
 const NewsSection = () => {
   return (

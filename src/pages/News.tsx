@@ -16,10 +16,24 @@ const renderMathText = (text: string) => {
   });
 };
 
-const newsItems = [
+export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
+  {
+    date: "June 2026",
+    title: "Macroscopic Ventures supports RHINE AI research through a research gift",
+    excerpt: "We are grateful to Macroscopic Ventures for supporting our research through a generous research gift.",
+    type: "Announcement",
+    url: "/news/macroscopic2026"
+  },
+  {
+    date: "May 2026",
+    title: "Three Rhine AI Lab Papers Accepted to ICML 2026 🇰🇷",
+    excerpt: "We are excited to announce that three papers from the Rhine AI Lab have been accepted to the International Conference on Machine Learning (ICML) 2026, taking place in Seoul, South Korea.",
+    type: "Publication",
+    url: "/news/icml-2026"
+  },
   {
     date: "April 2026",
-    title: "Rhine AI students presented papers at ICLR 2026 in Rio :flag-br:",
+    title: "Rhine AI students presented papers at ICLR 2026 in Rio 🇧🇷",
     excerpt: "Rhine AI students and collaborators presented two papers at ICLR 2026: wd1 and RMOD!",
     type: "Announcement",
     url: "/news/iclr2026"

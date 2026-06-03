@@ -26,6 +26,7 @@ import RobinFaro from "./pages/profiles/RobinFaro";
 import News from "./pages/News";
 import ICLR2026 from "./pages/news/ICLR2026";
 import Icml2026 from "./pages/news/Icml2026";
+import Macroscopic2026 from "./pages/news/macroscopic2026";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/join-us" element={<JoinUs />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/iclr2026" element={<ICLR2026 />} />
+          <Route path="/news/macroscopic2026" element={<Macroscopic2026 />} />
           <Route path="/team/ilija-bogunovic" element={<IlijaBogunovic />} />
           <Route path="/team/william-bankes" element={<WilliamBankes />} />
           <Route path="/team/shyam-sundhar-ramesh" element={<ShyamSundharRamesh />} />
