@@ -13,7 +13,18 @@ const RobinFaro = () => {
     ],
     researchInterests: [],
     publications: getAuthorPublications("Robin Faro"),
-    socialLinks: []
+    socialLinks: [
+        {
+        type: "email" as const,
+        url: "mailto:robin.faro@unibas.ch",
+        label: "Email"
+      },
+      {
+        type: "twitter" as const,
+        url: "https://x.com/robinfaro13",
+        label: "Twitter"
+      },
+    ]
   };
 
   return <ProfilePage {...profileData} />;

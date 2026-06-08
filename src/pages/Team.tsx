@@ -89,9 +89,17 @@ const teamMembers = [
     name: "Robin Faro",
     role: "PhD Student",
     expertise: "",
-    bio: "With A. Lucchi (University of Basel)",
+    bio: "University of Basel \nWith A. Lucchi",
     image: "/robin-faro-profile.jpg",
     link: "/team/robin-faro"
+  },
+  {
+    name:"Andrea Miele",
+    role: "PhD Student",
+    expertise: "",
+    bio: "University of Basel \nWith C. Gulcehre (EPFL)",
+    image: "/andrea-miele-profile.jpg",
+    link: "/team/andrea-miele"
   },
   {
     name: "Your Name Here?",

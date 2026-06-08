@@ -19,6 +19,13 @@ const renderMathText = (text: string) => {
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "June 2026",
+    title: "Andrea Miele Joins Rhine AI Lab as PhD Student",
+    excerpt: "We are excited to announce Andrea Miele joining the Rhine AI Lab as a new PhD student at the University of Basel. Welcome to the team!",
+    type: "Announcement",
+    url: "/team/andrea-miele"
+  },
+  {
+    date: "June 2026",
     title: "Macroscopic Ventures supports RHINE AI research through a research gift",
     excerpt: "We are grateful to Macroscopic Ventures for supporting our research through a generous research gift.",
     type: "Announcement",

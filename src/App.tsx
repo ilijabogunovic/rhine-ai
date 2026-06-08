@@ -23,6 +23,7 @@ import AbdelhamidEzzerg from "./pages/profiles/AbdelhamidEzzerg";
 import SangwoongYoon from "./pages/profiles/SangwoongYoon";
 import ColinDoumont from "./pages/profiles/ColinDoumont";
 import RobinFaro from "./pages/profiles/RobinFaro";
+import AndreaMiele from "./pages/profiles/AndreaMiele";
 import News from "./pages/News";
 import ICLR2026 from "./pages/news/ICLR2026";
 import Icml2026 from "./pages/news/Icml2026";
@@ -61,6 +62,7 @@ const App = () => (
           <Route path="/team/sangwoong-yoon" element={<SangwoongYoon />} />
           <Route path="/team/colin-doumont" element={<ColinDoumont />} />
           <Route path="/team/robin-faro" element={<RobinFaro />} />
+          <Route path="/team/andrea-miele" element={<AndreaMiele />} />
           <Route path="/news/icml-2026" element={<Icml2026 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
