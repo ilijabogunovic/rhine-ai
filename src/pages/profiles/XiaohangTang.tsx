@@ -7,7 +7,7 @@ const XiaohangTang = () => {
     name: "Xiaohang Tang",
     role: "PhD Student",
     affiliation: "University College London",
-    image: getImagePath("/xiaohang-tang-profile.jpg"),
+    image: getImagePath("/xiaohang-tang-profile.png"),
     about: [
       "Xiaohang Tang is a PhD student at the UCL Statistical Science. His research focuses on self-improving AI, spanning reinforcement learning, game theory, and Large Language Models.",
     ],

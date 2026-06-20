@@ -6,6 +6,15 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 const blogPosts = [
   {
+    date: "June 2026",
+    title: "GDSD: Reinforcement Learning as Guided Denoiser Self-Distillation for Diffusion Language Models",
+    author: "Xiaohang Tang, Keyue Jiang, and Ilija Bogunovic",
+    excerpt: "Reinforcement learning for diffusion language models is hindered by intractable policy likelihoods and bias from training–inference mismatch in ELBO-based methods. We introduce Guided Denoiser Self-Distillation (GDSD), which distills the denoiser from an advantage-guided self-teacher derived from the closed-form optimum of reverse-KL regularized. GDSD outperforms prior ELBO-based methods on planning, math, and coding benchmarks.",
+    readTime: "4 min read",
+    category: "Technical",
+    url: "https://rhine-ai-lab.github.io/diffusion_reasoning/"
+  },
+  {
     date: "March 13, 2026",
     title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
     author: "Juliusz Ziomek, William Bankes, and Lorenz Wolf",

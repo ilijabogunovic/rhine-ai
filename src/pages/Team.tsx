@@ -34,7 +34,7 @@ const teamMembers = [
     role: "PhD Student",
     bio: "University College London",
     expertise: "",
-    image: "/xiaohang-tang-proper.jpg",
+    image: "/xiaohang-tang-profile.png",
     link: "/team/xiaohang-tang"
   },
   {
