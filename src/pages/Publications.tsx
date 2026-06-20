@@ -55,6 +55,19 @@ const renderAuthors = (authors: string) => {
 export const publications = [
   {
     year: "2026",
+    title: "GDSD: Reinforcement Learning as Guided Denoiser Self-Distillation for Diffusion Language Models",
+    authors: "Xiaohang Tang, Keyue Jiang, Che Liu, Qifang Zhao, Xiaoxiao Xu, Sangwoong Yoon, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2605.29398",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2605.29398",
+    pdfFile: "https://arxiv.org/pdf/2605.29398.pdf",
+    abstract: "Reinforcement learning (RL) can improve the denoiser policy of diffusion large language models (dLLMs), but is hindered by intractable policy likelihoods. ELBO-based methods are efficient and aligned with pre-training, yet introduce bias through training–inference mismatch that can degrade performance. We propose Guided Denoiser Self-Distillation (GDSD), which distills the denoiser from an advantage-guided self-teacher derived from the closed-form optimum of reverse-KL regularized RL. On planning, math, and coding benchmarks with LLaDA-8B and Dream-7B, GDSD consistently outperforms prior ELBO-based methods with more stable training dynamics, achieving test-accuracy improvements of up to +19.6%.",
+    githubLink: "https://github.com/GaryBall/GDSD",
+    blogLink: "https://rhine-ai-lab.github.io/diffusion_reasoning/",
+    huggingFaceLink: "https://huggingface.co/papers/2605.29398",
+  },
+  {
+    year: "2026",
     title: "LLM-WikiRace Benchmark: How Far Can LLMs Plan over Real-World Knowledge Graphs?",
     authors: "Juliusz Ziomek, William Bankes, Lorenz Wolf, Shyam Sundhar Ramesh, Xiaohang Tang, Ilija Bogunovic",
     venue: "arXiv preprint arXiv:2602.16902",
