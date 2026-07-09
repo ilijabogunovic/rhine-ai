@@ -19,6 +19,13 @@ const renderMathText = (text: string) => {
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "July 2026",
+    title: "Overton Pluralistic Reinforcement Learning for Large Language Models",
+    excerpt: "Our work on improving the overton pluralistic behaviour of large language models through reinforcement learning has been accepted to Conference on Language Modeling (COLM) 2026.",
+    type: "Publication",
+    url: "https://arxiv.org/abs/2602.20759"
+  },
+  {
+    date: "July 2026",
     title: "Rhine AI Lab at ICML 2026 🇰🇷",
     excerpt: "Rhine AI Lab will present three main-conference papers at ICML 2026 in Seoul, alongside several workshop papers spanning LLM reasoning, alignment, benchmarking, and agentic software engineering.",
     type: "Conference",
