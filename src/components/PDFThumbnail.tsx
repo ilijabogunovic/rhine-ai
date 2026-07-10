@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 // Import thumbnails statically
+import thumb260220759 from '../assets/pdf-thumbs/thumb-2602.20759.jpg';
+import thumb260529398 from '../assets/pdf-thumbs/thumb-2605.29398.jpg';
 import thumb250201208 from '../assets/pdf-thumbs/thumb-2502.01208.jpg';
 import thumb250300030 from '../assets/pdf-thumbs/thumb-2503.00030.jpg';
 import thumb250305856 from '../assets/pdf-thumbs/thumb-2503.05856.jpg';
@@ -40,6 +42,8 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
         
         // Map arXiv IDs to imported thumbnails
         const thumbnailMap: { [key: string]: string } = {
+          '2602.20759': thumb260220759,
+          '2605.29398': thumb260529398,
           '2502.01208': thumb250201208,
           '2503.00030': thumb250300030,
           '2503.05856': thumb250305856,
