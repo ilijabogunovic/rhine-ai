@@ -102,6 +102,14 @@ const teamMembers = [
     link: "/team/andrea-miele"
   },
   {
+    name: "Antonio Lopardo",
+    role: "PhD Student",
+    expertise: "",
+    bio: "University of Basel \nWith A. Lucchi",
+    image: "/antonio-lopardo-profile.jpg",
+    link: "/team/antonio-lopardo"
+  },
+  {
     name: "Your Name Here?",
     role: "Join Our Team",
     expertise: "",

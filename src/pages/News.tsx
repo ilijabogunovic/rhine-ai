@@ -18,6 +18,13 @@ const renderMathText = (text: string) => {
 
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
+    date: "September 2026",
+    title: "Antonio Lopardo Joins Rhine AI Lab as PhD Student",
+    excerpt: "We are excited to welcome Antonio Lopardo to the Rhine AI Lab as a new PhD student at the University of Basel. Antonio is jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi. Welcome to the team!",
+    type: "Announcement",
+    url: "/team/antonio-lopardo"
+  },
+  {
     date: "July 2026",
     title: "Overton Pluralistic Reinforcement Learning for Large Language Models",
     excerpt: "Our work on improving the overton pluralistic behaviour of large language models through reinforcement learning has been accepted to Conference on Language Modeling (COLM) 2026.",
