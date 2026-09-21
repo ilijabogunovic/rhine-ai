@@ -26,7 +26,23 @@ const AntonioLopardo = () => {
       }
     ],
     publications: getAuthorPublications("Antonio Lopardo"),
-    socialLinks: []
+    socialLinks: [
+      {
+        type: "email" as const,
+        url: "mailto:antonio.lopardo@unibas.ch",
+        label: "Email"
+      },
+      {
+        type: "twitter" as const,
+        url: "https://x.com/AntonioLprd",
+        label: "Twitter"
+      },
+      {
+        type: "external" as const,
+        url: "https://antoniolopardo.github.io",
+        label: "Website"
+      }
+    ]
   };
 
   return <ProfilePage {...profileData} />;
