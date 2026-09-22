@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 // Mapping of author names to their profile routes
 const authorRoutes: Record<string, string> = {
   "Ilija Bogunovic": "/team/ilija-bogunovic",
+  "Andrea Miele": "/team/andrea-miele",
   "William Bankes": "/team/william-bankes",
   "Shyam Sundhar Ramesh": "/team/shyam-sundhar-ramesh",
   "Xiaohang Tang": "/team/xiaohang-tang",
@@ -53,6 +54,16 @@ const renderAuthors = (authors: string) => {
 };
 
 export const publications = [
+  {
+    year: "2026",
+    title: "Temporal Self-Distillation: Faster Inference in Discrete Diffusion Language Models",
+    authors: "Shijian Xu, Andrea Miele, Metod Jazbec, Volker Roth, Eric Nalisnick, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2609.15177",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2609.15177",
+    pdfFile: "/papers/2609.15177.pdf",
+    abstract: "Diffusion language models promise fast inference by generating multiple tokens in parallel, but aggressive parallel decoding can substantially degrade performance. We introduce Temporal Self-Distillation (TSD), an on-policy method that distills predictions across denoising timesteps, encouraging earlier predictions to anticipate the model's eventual output. TSD requires no offline teacher generation and applies to both base and post-trained policies. Across mathematics, planning, and code benchmarks, it improves the speed-quality frontier and achieves speedups competitive with offline distillation while avoiding a complex two-stage pipeline.",
+  },
   {
     year: "2026",
     title: "Overton Pluralistic Reinforcement Learning for Large Language Models",

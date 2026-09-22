@@ -11,6 +11,7 @@ import thumb250708838 from '../assets/pdf-thumbs/thumb-2507.08838.jpg';
 import thumb250913341 from '../assets/pdf-thumbs/thumb-2509.13341.jpg';
 import thumb260205547 from '../assets/pdf-thumbs/thumb-2602.05547.jpg';
 import thumb260216902 from '../assets/pdf-thumbs/thumb-2602.16902.jpg';
+import thumb260915177 from '../assets/pdf-thumbs/thumb-2609.15177.jpg';
 
 interface PDFThumbnailProps {
   file: string;
@@ -32,13 +33,14 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
       try {
         // Get arXiv ID from the file URL
         const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
-        if (!arxivMatch) {
+        const localPaperMatch = file.match(/\/papers\/(\d+\.\d+)\.pdf/);
+        const arxivId = arxivMatch?.[1] || localPaperMatch?.[1];
+
+        if (!arxivId) {
           setError(true);
           setLoading(false);
           return;
         }
-
-        const arxivId = arxivMatch[1];
         
         // Map arXiv IDs to imported thumbnails
         const thumbnailMap: { [key: string]: string } = {
@@ -52,6 +54,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
           '2509.13341': thumb250913341,
           '2602.05547': thumb260205547,
           '2602.16902': thumb260216902,
+          '2609.15177': thumb260915177,
         };
 
         const thumbnail = thumbnailMap[arxivId];
