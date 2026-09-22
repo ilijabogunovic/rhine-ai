@@ -6,6 +6,15 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 const blogPosts = [
   {
+    date: "September 2026",
+    title: "Fine-Tuning DiffusionGemma: What Works, What Breaks",
+    author: "Andrea Miele, William Bankes, Keyue Jiang, Seongho Son, Xiaohang Tang, and Ilija Bogunovic",
+    excerpt: "An empirical study of SFT for the first large open-weight uniform diffusion LM. Which objective wins, where post-training helps, and why it breaks as the horizon grows.",
+    readTime: "20 min read",
+    category: "Technical",
+    url: "https://www.andreamiele.fr/blog/fine-tuning-diffusiongemma/"
+  },
+  {
     date: "June 2026",
     title: "GDSD: Reinforcement Learning as Guided Denoiser Self-Distillation for Diffusion Language Models",
     author: "Xiaohang Tang, Keyue Jiang, and Ilija Bogunovic",
