@@ -19,6 +19,13 @@ const renderMathText = (text: string) => {
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "September 2026",
+    title: "Temporal Self-Distillation: Faster Inference in Discrete Diffusion Language Models",
+    excerpt: "We introduce Temporal Self-Distillation, an on-policy method that trains discrete diffusion language models for more aggressive parallel decoding while preserving quality. The approach requires no offline teacher generation and improves the speed-quality frontier across mathematics, planning, and code benchmarks.",
+    type: "Preprint",
+    url: "https://arxiv.org/abs/2609.15177"
+  },
+  {
+    date: "September 2026",
     title: "Antonio Lopardo Joins Rhine AI Lab as PhD Student",
     excerpt: "We are excited to welcome Antonio Lopardo to the Rhine AI Lab as a new PhD student at the University of Basel. Antonio is jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi. Welcome to the team!",
     type: "Announcement",

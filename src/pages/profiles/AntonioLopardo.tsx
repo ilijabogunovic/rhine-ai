@@ -40,7 +40,7 @@ const AntonioLopardo = () => {
       {
         type: "website" as const,
         url: "https://antoniolopardo.github.io",
-        label: "Website"
+        label: "External Website"
       }
     ]
   };
