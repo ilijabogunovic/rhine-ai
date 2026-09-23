@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import backgroundImage from "/c.jpg";
+import backgroundImage from "/rhine-ai-header.png";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -14,16 +14,16 @@ const HeroSection = () => {
   
   return (
     <>
-      <section className="relative py-0 px-4 overflow-hidden" style={{ 
+      <section className="relative px-4 overflow-hidden aspect-[4/1]" style={{ 
         backgroundColor: 'rgb(233,230,223)',
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: '80% 100%',
-        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat'
       }}>
-        <div className="max-w-7xl mx-auto relative z-10 flex items-end h-full min-h-96">
-          <div className="text-center w-full" style={{ transform: 'translateY(-40px)' }}>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-primary mb-0 animate-fade-in-up tracking-tighter">
+        <div className="max-w-7xl mx-auto relative z-10 flex items-start justify-center h-full">
+          <div className="text-center w-full pt-[4%]">
+            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-black text-primary mb-0 animate-fade-in-up tracking-tighter">
               <span>
                 Rhine AI
               </span>

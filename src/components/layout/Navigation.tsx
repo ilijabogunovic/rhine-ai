@@ -26,15 +26,15 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <img src={logoUrl} alt="Rhine AI Logo" className="w-12 h-12 mt-2" />
-            <span className="font-display font-bold text-xl text-foreground">
-              Rhine AI (Bogunovic LAB)
+          <div className="flex min-w-0 items-center space-x-2">
+            <img src={logoUrl} alt="Rhine AI Logo" className="w-12 h-12 mt-2 shrink-0" />
+            <span className="whitespace-nowrap font-display font-bold text-base xl:text-xl text-foreground leading-tight">
+              Rhine AI<span className="block text-xs xl:inline xl:text-xl"> (Bogunovic LAB)</span>
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -56,7 +56,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -70,7 +70,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden animate-fade-in">
+          <div className="xl:hidden animate-fade-in">
             <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border bg-background">
               {navItems.map((item) => (
                 <Link
