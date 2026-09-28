@@ -23,7 +23,7 @@ const HeroSection = () => {
       }}>
         <div className="max-w-7xl mx-auto relative z-10 flex items-start justify-center h-full">
           <div className="text-center w-full pt-[4%]">
-            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-black text-primary mb-0 animate-fade-in-up tracking-tighter">
+            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-black text-primary mb-0 animate-fade-in-up tracking-tighter" style={{ fontFamily: "'Fraunces', serif" }}>
               <span>
                 Rhine AI
               </span>

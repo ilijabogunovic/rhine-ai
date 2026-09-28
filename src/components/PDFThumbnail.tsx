@@ -12,6 +12,10 @@ import thumb250913341 from '../assets/pdf-thumbs/thumb-2509.13341.jpg';
 import thumb260205547 from '../assets/pdf-thumbs/thumb-2602.05547.jpg';
 import thumb260216902 from '../assets/pdf-thumbs/thumb-2602.16902.jpg';
 import thumb260915177 from '../assets/pdf-thumbs/thumb-2609.15177.jpg';
+import thumb260713315 from '../assets/pdf-thumbs/thumb-2607.13315.jpg';
+import thumb260700053 from '../assets/pdf-thumbs/thumb-2607.00053.jpg';
+import thumb260612232 from '../assets/pdf-thumbs/thumb-2606.12232.jpg';
+import thumb260518803 from '../assets/pdf-thumbs/thumb-2605.18803.jpg';
 
 interface PDFThumbnailProps {
   file: string;
@@ -55,6 +59,10 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
           '2602.05547': thumb260205547,
           '2602.16902': thumb260216902,
           '2609.15177': thumb260915177,
+          '2607.13315': thumb260713315,
+          '2607.00053': thumb260700053,
+          '2606.12232': thumb260612232,
+          '2605.18803': thumb260518803,
         };
 
         const thumbnail = thumbnailMap[arxivId];
