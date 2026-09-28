@@ -19,6 +19,20 @@ const renderMathText = (text: string) => {
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "September 2026",
+    title: "Rhine AI Lab Has Four Papers Accepted to NeurIPS 2026",
+    excerpt: "We are excited to announce that four Rhine AI Lab papers have been accepted to to the Conference on Neural Information Processing Systems (NeurIPS) 2026. See you there!",
+    type: "Publication",
+    url: "/news/neurips-2026"
+  },
+  {
+    date: "September 2026",
+    title: "Ilija Bogunovic Receives SNSF Project Grant for Research on Diffusion Language Models",
+    excerpt: "Ilija Bogunovic has been awarded a Project Grant by the Swiss National Science Foundation (SNSF) for the project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. PhD and postdoc openings will be announced soon.",
+    type: "Announcement",
+    url: "/news/snsf-project-grant-2026"
+  },
+  {
+    date: "September 2026",
     title: "Temporal Self-Distillation: Faster Inference in Discrete Diffusion Language Models",
     excerpt: "We introduce Temporal Self-Distillation, an on-policy method that trains discrete diffusion language models for more aggressive parallel decoding while preserving quality. The approach requires no offline teacher generation and improves the speed-quality frontier across mathematics, planning, and code benchmarks.",
     type: "Preprint",
