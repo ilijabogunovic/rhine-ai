@@ -49,7 +49,7 @@ const ProtectedDownload = ({ href, filename, password, children }: ProtectedDown
       <a
         href={href}
         onClick={handleClick}
-        className="text-accent-vibrant hover:underline cursor-pointer"
+        className="link cursor-pointer"
       >
         {children}
       </a>
@@ -70,11 +70,12 @@ const ProtectedDownload = ({ href, filename, password, children }: ProtectedDown
                 setInputPassword(e.target.value);
                 setError(false);
               }}
-              className={error ? "border-red-500" : ""}
+              className={error ? "border-carmine" : ""}
+              aria-invalid={error}
               autoFocus
             />
             {error && (
-              <p className="text-sm text-red-500">Incorrect password</p>
+              <p className="text-sm text-carmine">Incorrect password</p>
             )}
             <Button type="submit" className="w-full">
               Download

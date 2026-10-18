@@ -1,7 +1,9 @@
 import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PDFThumbnail from "@/components/PDFThumbnail";
-import { useState } from "react";
+import PageHeader from "@/components/brand/PageHeader";
+import PaperActions from "@/components/brand/PaperActions";
+import Reveal from "@/components/brand/Reveal";
 import { Link } from "react-router-dom";
 
 // Mapping of author names to their profile routes
@@ -37,7 +39,7 @@ const renderAuthors = (authors: string) => {
         <span key={index}>
           <Link 
             to={route}
-            className="text-accent-vibrant hover:text-accent-vibrant/80 hover:underline transition-colors"
+            className="link"
           >
             {author}
           </Link>
@@ -680,212 +682,15 @@ export const publications = [
 ];
 
 const Publications = () => {
-  const [showBibTeX, setShowBibTeX] = useState<string | null>(null);
   const newestPublications = publications.filter(paper => paper.year !== "2024").slice(0, 5);
-  
-  const publicationsByYear = publications.reduce((acc, paper) => {
-    if (!acc[paper.year]) {
-      acc[paper.year] = [];
-    }
-    acc[paper.year].push(paper);
-    return acc;
-  }, {} as Record<string, typeof publications>);
 
-  const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
-  
-  const renderRecentPublications = (publicationList: typeof publications) => {
-    const publicationsByYear = publicationList.reduce((acc, paper) => {
-      if (!acc[paper.year]) {
-        acc[paper.year] = [];
-      }
-      acc[paper.year].push(paper);
+  const groupByYear = (list: typeof publications) => {
+    const byYear = list.reduce((acc, paper) => {
+      (acc[paper.year] ||= []).push(paper);
       return acc;
     }, {} as Record<string, typeof publications>);
-
-    const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
-
-    return (
-      <div className="space-y-12">
-        {sortedYears.map(year => (
-          <div key={year}>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-6 border-b border-border pb-2">
-              {year}
-            </h2>
-            <div className="space-y-10">
-              {publicationsByYear[year].map((paper, index) => (
-                <div key={index} className="flex gap-6">
-                  <div className="flex-shrink-0">
-                    <PDFThumbnail
-                      file={paper.pdfFile}
-                      alt={`${paper.title} paper preview`}
-                      className="w-48 h-64"
-                    />
-                  </div>
-                  <div className="flex-1 space-y-3">
-                    <a 
-                      href={paper.arxivLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-display text-xl font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors cursor-pointer block"
-                    >
-                      {paper.title}
-                    </a>
-                    <p className="font-body text-muted-foreground text-sm">
-                      {renderAuthors(paper.authors)}
-                    </p>
-                    <p className="font-body text-muted-foreground italic text-sm">
-                      {paper.venue}, {paper.year}
-                    </p>
-                    <p className="font-body text-foreground leading-relaxed">
-                      {paper.abstract}
-                    </p>
-                    <div className="flex items-center gap-3 pt-2">
-                      {paper.arxivLink && (
-                        <>
-                          <a 
-                            href={paper.arxivLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            arXiv
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {paper.pdfFile && (
-                        <>
-                          <a
-                            href={paper.pdfFile}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            PDF
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).githubLink && (
-                        <>
-                          <a
-                            href={(paper as any).githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            GitHub
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).codeLink && (
-                        <>
-                          <a
-                            href={(paper as any).codeLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            Code
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).videoLink && (
-                        <>
-                          <a
-                            href={(paper as any).videoLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            Video
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).blogLink && (
-                        <>
-                          <a
-                            href={(paper as any).blogLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            Blog
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).huggingFaceLink && (
-                        <>
-                          <a
-                            href={(paper as any).huggingFaceLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            🤗 HF
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).websiteLink && (
-                        <>
-                          <a
-                            href={(paper as any).websiteLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            Website
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      {(paper as any).slidesLink && (
-                        <>
-                          <a
-                            href={(paper as any).slidesLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-                          >
-                            Slides
-                          </a>
-                          <span className="text-muted-foreground">|</span>
-                        </>
-                      )}
-                      <button
-                        onClick={() => toggleBibTeX(`recent-${index}`)}
-                        className="font-body text-sm text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer bg-transparent border-0 p-0"
-                        style={{ background: 'none', border: 'none', padding: 0, font: 'inherit' }}
-                      >
-                        BibTeX
-                      </button>
-                    </div>
-                    {showBibTeX === `recent-${index}` && (
-                      <div className="mt-4 p-4 bg-muted/50 rounded-md border">
-                        <pre className="text-sm font-mono whitespace-pre-wrap overflow-x-auto">
-                          {generateBibTeX(paper)}
-                        </pre>
-                        <button
-                          onClick={() => navigator.clipboard.writeText(generateBibTeX(paper))}
-                          className="mt-2 px-3 py-1 text-xs bg-accent-vibrant text-white rounded hover:bg-accent-vibrant/90"
-                        >
-                          Copy to Clipboard
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
+    const years = Object.keys(byYear).sort((a, b) => parseInt(b) - parseInt(a));
+    return { byYear, years };
   };
 
   const generateBibTeX = (paper: typeof publications[0]) => {
@@ -947,234 +752,101 @@ const Publications = () => {
     return bibtex;
   };
 
-  const toggleBibTeX = (paperIndex: string) => {
-    setShowBibTeX(showBibTeX === paperIndex ? null : paperIndex);
+  const renderRecentPublications = (publicationList: typeof publications) => {
+    const { byYear, years } = groupByYear(publicationList);
+    return (
+      <div className="space-y-20">
+        {years.map(year => (
+          <section key={year} aria-labelledby={`recent-${year}`}>
+            <h2 id={`recent-${year}`} className="t-4 font-semibold text-ink">{year}</h2>
+            <div className="mt-10 space-y-16">
+              {byYear[year].map((paper) => (
+                <Reveal key={paper.title} as="article" className="grid gap-6 sm:grid-cols-[10rem_1fr] sm:gap-10 lg:grid-cols-[12rem_1fr]">
+                  <PDFThumbnail
+                    file={paper.pdfFile}
+                    alt={`First page of ${paper.title}`}
+                    className="aspect-[3/4] w-32 sm:w-full"
+                  />
+                  <div className="max-w-[72ch] space-y-3">
+                    <h3 className="t-3 font-semibold text-ink">
+                      <a href={paper.arxivLink} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-carmine">
+                        {paper.title}
+                      </a>
+                    </h3>
+                    <p className="t-1 text-ink-soft">{renderAuthors(paper.authors)}</p>
+                    <p className="t-1 italic text-ink-soft">{paper.venue}, {paper.year}</p>
+                    <p className="t-2 max-w-[66ch] text-ink">{paper.abstract}</p>
+                    <div className="pt-2">
+                      <PaperActions paper={paper} bibtex={generateBibTeX(paper)} />
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    );
   };
 
-  const renderAllPublications = () => (
-    <div className="space-y-12">
-      {sortedYears.map(year => (
-        <div key={year}>
-          <h2 className="font-display text-2xl font-bold text-foreground mb-6 border-b border-border pb-2">
-            {year}
-          </h2>
-          <div className="space-y-8">
-            {publicationsByYear[year].map((paper, index) => {
-              const paperKey = `${year}-${index}`;
-              return (
-                <div key={index} className="space-y-3">
-                  <h3 className="font-display text-lg font-semibold text-accent-vibrant hover:text-accent-vibrant/80 transition-colors">
-                    <a 
-                      href={paper.arxivLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                    >
+  const renderAllPublications = () => {
+    const { byYear, years } = groupByYear(publications);
+    return (
+      <div className="space-y-20">
+        {years.map(year => (
+          <section key={year} className="grid gap-6 lg:grid-cols-12" aria-labelledby={`all-${year}`}>
+            <h2 id={`all-${year}`} className="t-4 font-semibold text-ink lg:col-span-2">{year}</h2>
+            <ul className="space-y-9 lg:col-span-10">
+              {byYear[year].map((paper) => (
+                <li key={paper.title} className="max-w-[80ch] space-y-1.5">
+                  <h3 className="t-2 font-body font-semibold leading-snug text-ink">
+                    <a href={paper.arxivLink} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-carmine">
                       {paper.title}
                     </a>
                   </h3>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                    {renderAuthors(paper.authors)}
-                  </p>
-                  <p className="font-body text-muted-foreground">
-                    In: {paper.venue}, {paper.year}.
-                  </p>
-                  <div className="flex items-center gap-2 text-sm">
-                    {paper.arxivLink && (
-                      <>
-                        <a
-                          href={paper.arxivLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          arXiv
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {paper.pdfFile && (
-                      <>
-                        <a
-                          href={paper.pdfFile}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          PDF
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).githubLink && (
-                      <>
-                        <a
-                          href={(paper as any).githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          GitHub
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).codeLink && (
-                      <>
-                        <a
-                          href={(paper as any).codeLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          Code
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).videoLink && (
-                      <>
-                        <a
-                          href={(paper as any).videoLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          Video
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).blogLink && (
-                      <>
-                        <a
-                          href={(paper as any).blogLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          Blog
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).huggingFaceLink && (
-                      <>
-                        <a
-                          href={(paper as any).huggingFaceLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          🤗 HF
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).websiteLink && (
-                      <>
-                        <a
-                          href={(paper as any).websiteLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          Website
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    {(paper as any).slidesLink && (
-                      <>
-                        <a
-                          href={(paper as any).slidesLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer"
-                        >
-                          Slides
-                        </a>
-                        <span className="text-muted-foreground">|</span>
-                      </>
-                    )}
-                    <button
-                      onClick={() => toggleBibTeX(paperKey)}
-                      className="font-body text-accent-vibrant hover:text-accent-vibrant/80 cursor-pointer bg-transparent border-0 p-0 underline-none"
-                      style={{ background: 'none', border: 'none', padding: 0, font: 'inherit' }}
-                    >
-                      BibTeX
-                    </button>
+                  <p className="t-1 text-ink-soft">{renderAuthors(paper.authors)}</p>
+                  <p className="t-1 text-ink-soft">In: {paper.venue}, {paper.year}.</p>
+                  <div className="pt-1">
+                    <PaperActions paper={paper} bibtex={generateBibTeX(paper)} />
                   </div>
-                  {showBibTeX === paperKey && (
-                    <div className="mt-4 p-4 bg-muted/50 rounded-md border">
-                      <pre className="text-sm font-mono whitespace-pre-wrap overflow-x-auto">
-                        {generateBibTeX(paper)}
-                      </pre>
-                      <button
-                        onClick={() => navigator.clipboard.writeText(generateBibTeX(paper))}
-                        className="mt-2 px-3 py-1 text-xs bg-accent-vibrant text-white rounded hover:bg-accent-vibrant/90"
-                      >
-                        Copy to Clipboard
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <Layout>
-      <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <div className="flex justify-between items-start mb-8">
-              <div className="text-center flex-1">
-                <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-                  Publications
-                </h1>
-                <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Research contributions to the scientific community through peer-reviewed 
-                  publications in top-tier conferences and journals.
-                </p>
-              </div>
-              
-              <div className="bg-muted/50 rounded-lg p-4 ml-8">
-                <p className="font-body text-foreground text-sm mb-3">
-                  For an up to date publication list:
-                </p>
-                <a 
-                  href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-accent-vibrant text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-accent-vibrant/90 transition-colors"
-                >
-                  Google Scholar
-                </a>
-              </div>
-            </div>
+      <PageHeader
+        title="Publications"
+        intro="Research contributions to the scientific community through peer-reviewed publications in top-tier conferences and journals."
+        aside={
+          <div className="bg-paper-2 p-7">
+            <p className="t-2 text-ink">For an up to date publication list:</p>
+            <a
+              href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn mt-5"
+            >
+              Google Scholar <span className="arrow" aria-hidden="true">→</span>
+            </a>
           </div>
+        }
+      />
 
-          <Tabs defaultValue="newest" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
-              <TabsTrigger value="newest">Recent Publications</TabsTrigger>
-              <TabsTrigger value="all">Complete List</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="newest">
-              {renderRecentPublications(newestPublications)}
-            </TabsContent>
-            
-            <TabsContent value="all">
-              {renderAllPublications()}
-            </TabsContent>
-          </Tabs>
-        </div>
+      <div className="wrap pb-[var(--section)]">
+        <Tabs defaultValue="newest" className="w-full">
+          <TabsList className="mb-14">
+            <TabsTrigger value="newest">Recent publications</TabsTrigger>
+            <TabsTrigger value="all">Complete list</TabsTrigger>
+          </TabsList>
+          <TabsContent value="newest">{renderRecentPublications(newestPublications)}</TabsContent>
+          <TabsContent value="all">{renderAllPublications()}</TabsContent>
+        </Tabs>
       </div>
     </Layout>
   );

@@ -1,15 +1,17 @@
 import Layout from "@/components/layout/Layout";
-import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import Reveal from "@/components/brand/Reveal";
+import PaperActions from "@/components/brand/PaperActions";
+import { Bullet } from "@/components/brand/Tags";
 
 interface Publication {
   title: string;
   authors: string;
   venue: string;
   year: string;
-  description: string;
+  description?: string;
+  abstract?: string;
+  type?: string;
   arxivLink?: string;
   pdfFile?: string;
   githubLink?: string;
@@ -27,7 +29,7 @@ interface ResearchArea {
 }
 
 interface SocialLink {
-  type: 'email' | 'scholar' | 'linkedin' | 'twitter' | 'website' | 'external';
+  type: 'email' | 'scholar' | 'linkedin' | 'twitter' | 'github' | 'website' | 'external';
   url: string;
   label: string;
 }
@@ -55,12 +57,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   socialLinks,
   hidePublications = false
 }) => {
-  const [showBibTeX, setShowBibTeX] = useState<string | null>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const generateBibTeX = (publication: Publication) => {
     // Create a clean key from author and title
     const firstAuthor = publication.authors.split(',')[0].trim().split(' ').pop()?.toLowerCase() || 'author';
@@ -69,7 +65,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
     
     // Clean up fields for BibTeX format
     const cleanTitle = publication.title.replace(/[{}]/g, '');
-    const cleanDescription = publication.description?.replace(/[{}]/g, '').substring(0, 500) + (publication.description && publication.description.length > 500 ? '...' : '');
+    const summary = publication.description ?? publication.abstract;
+    const cleanDescription = summary?.replace(/[{}]/g, '').substring(0, 500) + (summary && summary.length > 500 ? '...' : '');
     
     // Determine BibTeX entry type based on venue
     let entryType = 'misc';
@@ -109,301 +106,115 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
     return bibtex;
   };
 
-  const toggleBibTeX = (publicationIndex: string) => {
-    setShowBibTeX(showBibTeX === publicationIndex ? null : publicationIndex);
-  };
-
-  const getSocialIcon = (type: string) => {
-    switch (type) {
-      case 'email':
-        return <Mail className="h-4 w-4" />;
-      default:
-        return <ExternalLink className="h-4 w-4" />;
-    }
-  };
-
-  const getSocialLabel = (type: string, label: string) => {
-    switch (type) {
-      case 'email':
-        return 'Email';
-      case 'scholar':
-        return 'Google Scholar';
-      case 'linkedin':
-        return 'LinkedIn';
-      case 'twitter':
-        return 'Twitter';
-      case 'website':
-        return 'Website';
-      case 'external':
-        return 'External Website';
-      default:
-        return label;
-    }
-  };
+  const socialLabel = (type: string, label: string) =>
+    ({
+      email: "Email",
+      scholar: "Google Scholar",
+      linkedin: "LinkedIn",
+      twitter: "Twitter",
+      github: "GitHub",
+      website: "Website",
+      external: "External Website",
+    })[type] ?? label;
 
   return (
     <Layout>
-      <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Back Button */}
-          <div className="mb-8">
-            <Link 
-              to="/team" 
-              className="inline-flex items-center gap-2 text-accent-vibrant hover:text-accent-vibrant/80 transition-colors"
-            >
-              ← Back to Team
-            </Link>
-          </div>
+      <div className="wrap pb-[var(--section)] pt-10">
+        <Link to="/team" className="link t-1 font-medium">
+          ← Back to team
+        </Link>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column - Photo and Links */}
-            <div className="lg:col-span-1">
-              <Card className="shadow-card sticky top-8">
-                <CardContent className="p-8 text-center">
-                  {/* Profile Photo */}
-                  <div className="mb-6">
-                    <img 
-                      src={image}
-                      alt={name}
-                      className="w-64 h-64 rounded-full mx-auto object-cover object-top shadow-lg"
-                    />
-                  </div>
-                  
-                  {/* Name and Title */}
-                  <h1 className="font-display text-2xl font-bold text-foreground mb-2">
-                    {name}
-                  </h1>
-                  <p className="font-body text-accent-vibrant font-medium mb-2">
-                    {role}
-                  </p>
-                  <div className="font-body text-sm text-muted-foreground mb-6">
-                    {affiliation.split('\n').map((line, index) => (
-                      <div key={index}>{line}</div>
-                    ))}
-                  </div>
-
-                  {/* Social Links */}
-                  <div className="space-y-3">
-                    {socialLinks.map((link, index) => (
-                      <a 
-                        key={index}
+        <div className="mt-10 grid gap-14 lg:grid-cols-12">
+          {/* Portrait and links */}
+          <aside className="lg:col-span-4">
+            <div className="lg:sticky lg:top-24">
+              <img
+                src={image}
+                alt={name}
+                className="aspect-[4/5] w-full max-w-[20rem] bg-paper-2 object-cover object-[50%_20%]"
+              />
+              <h1 className="t-4 mt-8 font-semibold text-ink">{name}</h1>
+              <p className="t-2 mt-2 font-medium text-carmine">{role}</p>
+              <p className="t-2 mt-1 whitespace-pre-line text-ink-soft">{affiliation}</p>
+              {socialLinks.length > 0 && (
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {socialLinks.map((link) => (
+                    <li key={link.url}>
+                      <a
                         href={link.url}
-                        target={link.type === 'email' ? undefined : "_blank"}
-                        rel={link.type === 'email' ? undefined : "noopener noreferrer"}
-                        className="inline-flex items-center gap-2 w-full px-4 py-2 bg-muted/50 rounded-lg hover:bg-muted transition-colors font-body text-sm"
+                        target={link.type === "email" ? undefined : "_blank"}
+                        rel={link.type === "email" ? undefined : "noopener noreferrer"}
+                        className="btn btn-quiet !min-h-[2.5rem] !px-4"
                       >
-                        {getSocialIcon(link.type)}
-                        {getSocialLabel(link.type, link.label)}
+                        {socialLabel(link.type, link.label)}
+                        {link.type !== "email" && <span aria-hidden="true">↗</span>}
                       </a>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Right Column - Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* About Section */}
-              <Card className="shadow-card">
-                <CardContent className="p-8">
-                  <h2 className="font-display text-2xl font-semibold text-foreground mb-6">
-                    About
-                  </h2>
-                  <div className="font-body text-muted-foreground space-y-4 leading-relaxed">
-                    {about.map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Research Interests */}
-              <Card className="shadow-card">
-                <CardContent className="p-8">
-                  <h2 className="font-display text-2xl font-semibold text-foreground mb-6">
-                    Research Interests
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {researchInterests.map((interest, index) => (
-                      <div key={index}>
-                        <h3 className="font-display font-semibold text-foreground mb-2">
-                          {interest.title}
-                        </h3>
-                        <p className="font-body text-muted-foreground text-sm">
-                          {interest.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Publications */}
-              {!hidePublications && (
-                <Card className="shadow-card">
-                  <CardContent className="p-8">
-                    <h2 className="font-display text-2xl font-semibold text-foreground mb-6">
-                      Publications
-                    </h2>
-                    {publications.length > 0 ? (
-                      <div className="space-y-6">
-                        {publications.map((pub, index) => (
-                          <div key={index} className={`border-l-4 border-accent-vibrant${index > 0 ? `/${60 + (index * 20)}` : ''} pl-4`}>
-                            <h3 className="font-body font-semibold text-foreground mb-1">
-                              {pub.title}
-                            </h3>
-                            <p className="font-body text-sm text-muted-foreground mb-2">
-                              {pub.authors}
-                            </p>
-                            <p className="font-body text-xs text-muted-foreground mb-2">
-                              {pub.venue} {pub.year}
-                            </p>
-                            <p className="font-body text-sm text-muted-foreground mb-3">
-                              {pub.description}
-                            </p>
-                            
-                            {/* Publication Links */}
-                            <div className="flex flex-wrap items-center gap-2 text-xs">
-                              {pub.arxivLink && (
-                                <a
-                                  href={pub.arxivLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  arXiv
-                                </a>
-                              )}
-                              {pub.pdfFile && (
-                                <a
-                                  href={pub.pdfFile}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  PDF
-                                </a>
-                              )}
-                              {pub.githubLink && (
-                                <a
-                                  href={pub.githubLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  GitHub
-                                </a>
-                              )}
-                              {pub.codeLink && (
-                                <a
-                                  href={pub.codeLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  Code
-                                </a>
-                              )}
-                              {pub.videoLink && (
-                                <a
-                                  href={pub.videoLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  Video
-                                </a>
-                              )}
-                              {pub.blogLink && (
-                                <a
-                                  href={pub.blogLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  Blog
-                                </a>
-                              )}
-                              {pub.websiteLink && (
-                                <a
-                                  href={pub.websiteLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  Website
-                                </a>
-                              )}
-                              {pub.slidesLink && (
-                                <a
-                                  href={pub.slidesLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  Slides
-                                </a>
-                              )}
-                              {pub.huggingFaceLink && (
-                                <a
-                                  href={pub.huggingFaceLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                                >
-                                  <ExternalLink className="h-3 w-3" />
-                                  🤗 HF
-                                </a>
-                              )}
-                              <button
-                                onClick={() => toggleBibTeX(`pub-${index}`)}
-                                className="inline-flex items-center gap-1 px-2 py-1 bg-accent-vibrant/10 text-accent-vibrant rounded hover:bg-accent-vibrant/20 transition-colors"
-                              >
-                                <ExternalLink className="h-3 w-3" />
-                                BibTeX
-                              </button>
-                            </div>
-                            
-                            {/* BibTeX Display */}
-                            {showBibTeX === `pub-${index}` && (
-                              <div className="mt-3 p-3 bg-muted/50 rounded-md border text-xs">
-                                <pre className="font-mono whitespace-pre-wrap overflow-x-auto text-xs">
-                                  {generateBibTeX(pub)}
-                                </pre>
-                                <button
-                                  onClick={() => navigator.clipboard.writeText(generateBibTeX(pub))}
-                                  className="mt-2 px-2 py-1 text-xs bg-accent-vibrant text-white rounded hover:bg-accent-vibrant/90 transition-colors"
-                                >
-                                  Copy to Clipboard
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                        
-                        <div className="mt-6 pt-6 border-t border-muted">
-                          <p className="font-body text-sm text-muted-foreground italic">
-                            For a complete list of publications, visit the researcher's profile on academic platforms.
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <p className="font-body text-muted-foreground italic">
-                        Publications will be updated as research progresses.
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
+          </aside>
+
+          {/* About, interests, publications */}
+          <div className="space-y-20 lg:col-span-7 lg:col-start-6">
+            <Reveal as="section" aria-labelledby="about-title">
+              <h2 id="about-title" className="t-3 font-semibold text-ink">About</h2>
+              <div className="t-2 mt-5 max-w-[66ch] space-y-4 text-ink">
+                {about.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </Reveal>
+
+            {researchInterests.length > 0 && (
+              <Reveal as="section" aria-labelledby="interests-title">
+                <h2 id="interests-title" className="t-3 font-semibold text-ink">Research interests</h2>
+                <ul className="mt-6 grid gap-x-10 gap-y-7 md:grid-cols-2">
+                  {researchInterests.map((interest) => (
+                    <li key={interest.title}>
+                      <h3 className="t-2 flex items-baseline gap-3 font-body font-semibold text-ink">
+                        <Bullet />
+                        {interest.title}
+                      </h3>
+                      <p className="t-1 mt-2 text-ink-soft">{interest.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
+
+            {!hidePublications && (
+              <section aria-labelledby="pubs-title">
+                <h2 id="pubs-title" className="t-3 font-semibold text-ink">Publications</h2>
+                {publications.length > 0 ? (
+                  <>
+                    <Reveal as="ul" mode="rows" className="mt-6 space-y-10">
+                      {publications.map((pub) => (
+                        <li key={pub.title} className="space-y-2">
+                          <h3 className="t-2 font-body font-semibold leading-snug text-ink">{pub.title}</h3>
+                          <p className="t-1 text-ink-soft">{pub.authors}</p>
+                          <p className="t-1 italic text-ink-soft">
+                            {pub.venue} {pub.year}
+                          </p>
+                          {(pub.description ?? pub.abstract) && (
+                            <p className="t-1 max-w-[70ch] text-ink">{pub.description ?? pub.abstract}</p>
+                          )}
+                          <div className="pt-1">
+                            <PaperActions paper={pub as unknown as Record<string, unknown>} bibtex={generateBibTeX(pub)} />
+                          </div>
+                        </li>
+                      ))}
+                    </Reveal>
+                    <p className="t-1 mt-10 italic text-ink-soft">
+                      For a complete list of publications, visit the researcher's profile on academic platforms.
+                    </p>
+                  </>
+                ) : (
+                  <p className="t-2 mt-5 italic text-ink-soft">Publications will be updated as research progresses.</p>
+                )}
+              </section>
+            )}
           </div>
         </div>
       </div>

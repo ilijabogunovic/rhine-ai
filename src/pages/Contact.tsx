@@ -1,115 +1,77 @@
 import Layout from "@/components/layout/Layout";
-import { Mail, MapPin, Users, ExternalLink } from "lucide-react";
+import PageHeader from "@/components/brand/PageHeader";
+import Reveal from "@/components/brand/Reveal";
 
 const Contact = () => {
   return (
     <Layout>
-      <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              Contact
-            </h1>
-            <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get in touch with our research group for collaborations, questions, or administrative matters.
-            </p>
-          </div>
+      <PageHeader
+        title="Contact"
+        intro="Get in touch with our research group for collaborations, questions, or administrative matters."
+      />
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-            {/* Address */}
-            <div className="bg-muted/50 rounded-lg p-6">
-              <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <MapPin className="h-6 w-6 text-accent-vibrant" />
-                Address
-              </h2>
-              <div className="space-y-4">
-                <div className="font-body text-muted-foreground space-y-1">
-                  <p className="font-medium text-foreground">Department of Mathematics and Computer Science</p>
-                  <p>Spiegelgasse 1</p>
-                  <p>4051 Basel</p>
-                  <p>Switzerland</p>
-                </div>
-                <p className="font-body text-sm text-muted-foreground/80 italic">
-                  Located in the heart of Basel, just steps away from the beautiful Rhine River!
-                </p>
-                <a 
-                  href="https://maps.google.com/?q=Spiegelgasse+1,+4051+Basel,+Switzerland" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-body text-accent-vibrant hover:text-accent-vibrant/80 transition-colors text-sm"
-                >
-                  <span>View on Google Maps</span>
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-
-            {/* Reach Out */}
-            <div className="bg-accent-vibrant/10 rounded-lg p-6 border border-accent-vibrant/20">
-              <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Mail className="h-6 w-6 text-accent-vibrant" />
-                Reach Out!
-              </h2>
-              <div className="space-y-4">
-                <p className="font-body text-muted-foreground">
-                  To reach out, please contact:
-                </p>
-                <a 
-                  href="mailto:ilija.bogunovic@unibas.ch"
-                  className="block font-body text-foreground font-medium text-lg hover:text-accent-vibrant transition-colors"
-                >
-                  📧 Ilija Bogunovic
-                </a>
-              </div>
-            </div>
-
-            {/* Follow Us */}
-            <div className="bg-muted/50 rounded-lg p-6">
-              <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                <ExternalLink className="h-6 w-6 text-accent-vibrant" />
-                Follow Us
-              </h2>
-              <div className="flex flex-col space-y-3">
-                <a 
-                  href="https://x.com/ilijabogunovic" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="font-body text-accent-vibrant hover:text-accent-vibrant/80 transition-colors flex items-center gap-2"
-                >
-                  <span>Twitter</span>
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-                <a 
-                  href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="font-body text-accent-vibrant hover:text-accent-vibrant/80 transition-colors flex items-center gap-2"
-                >
-                  <span>Google Scholar</span>
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Administrative Contact */}
-          <div className="mt-8 bg-muted/30 rounded-lg p-6 max-w-2xl mx-auto">
-            <h2 className="font-display text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-              <Users className="h-5 w-5 text-accent-vibrant" />
-              Administrative Contact
-            </h2>
-            <p className="font-body text-muted-foreground mb-2">
-              For administrative questions, please reach out to:
-            </p>
-            <a 
-              href="mailto:barbara.wenger@unibas.ch"
-              className="font-body text-foreground font-medium hover:text-accent-vibrant transition-colors"
-            >
-              📧 Barbara Wenger
+      <section className="wrap grid gap-14 pb-[var(--section)] lg:grid-cols-12" aria-label="How to reach us">
+        <Reveal className="space-y-14 lg:col-span-6">
+          <div>
+            <h2 className="t-3 font-semibold text-ink">Reach out</h2>
+            <p className="t-2 mt-3 text-ink-soft">To reach out, please contact:</p>
+            <a href="mailto:ilija.bogunovic@unibas.ch" className="btn mt-5">
+              Email Ilija Bogunovic <span className="arrow" aria-hidden="true">→</span>
             </a>
           </div>
-        </div>
-      </div>
+
+          <div>
+            <h2 className="t-3 font-semibold text-ink">Administrative contact</h2>
+            <p className="t-2 mt-3 text-ink-soft">For administrative questions, please reach out to:</p>
+            <a href="mailto:barbara.wenger@unibas.ch" className="link t-2 mt-2 inline-block font-medium">
+              Barbara Wenger
+            </a>
+          </div>
+
+          <div>
+            <h2 className="t-3 font-semibold text-ink">Follow us</h2>
+            <ul className="t-2 mt-3 flex flex-wrap gap-x-8 gap-y-2">
+              <li>
+                <a href="https://x.com/ilijabogunovic" target="_blank" rel="noopener noreferrer" className="link font-medium">
+                  Twitter ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link font-medium"
+                >
+                  Google Scholar ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+        </Reveal>
+
+        <Reveal className="bg-paper-2 p-7 sm:p-10 lg:col-span-6">
+          <h2 className="t-3 font-semibold text-ink">Address</h2>
+          <address className="t-2 mt-3 not-italic text-ink">
+            <span className="font-semibold">Department of Mathematics and Computer Science</span>
+            <br />
+            Spiegelgasse 1
+            <br />
+            4051 Basel
+            <br />
+            Switzerland
+          </address>
+          <p className="t-2 mt-4 text-ink-soft">Located in the heart of Basel, just steps away from the beautiful Rhine River!</p>
+          <a
+            href="https://maps.google.com/?q=Spiegelgasse+1,+4051+Basel,+Switzerland"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link t-2 mt-4 inline-block font-medium"
+          >
+            View on Google Maps ↗
+          </a>
+        </Reveal>
+      </section>
     </Layout>
   );
 };

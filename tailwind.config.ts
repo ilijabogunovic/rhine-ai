@@ -23,6 +23,10 @@ export default {
 				'body': 'var(--font-body)',
 			},
 			colors: {
+				paper: { DEFAULT: 'var(--paper)', 2: 'var(--paper-2)' },
+				beige: 'var(--beige)',
+				ink: { DEFAULT: 'var(--ink)', soft: 'var(--ink-soft)', muted: 'var(--ink-muted)' },
+				carmine: { DEFAULT: 'var(--carmine)', deep: 'var(--carmine-deep)' },
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -95,10 +99,6 @@ export default {
 				'scale-in': {
 					'0%': { opacity: '0', transform: 'scale(0.9)' },
 					'100%': { opacity: '1', transform: 'scale(1)' }
-				},
-				'glow': {
-					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--accent-vibrant) / 0.1)' },
-					'50%': { boxShadow: '0 0 40px hsl(var(--accent-vibrant) / 0.2)' }
 				}
 			},
 			animation: {
@@ -106,17 +106,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'fade-in-up': 'fade-in-up 0.8s ease-out',
-				'scale-in': 'scale-in 0.4s ease-out',
-				'glow': 'glow 3s ease-in-out infinite'
-			},
-			boxShadow: {
-				'card': 'var(--card-shadow)',
-				'elevated': 'var(--elevated-shadow)',
-				'glow': 'var(--glow-shadow)'
-			},
-			backgroundImage: {
-				'hero-gradient': 'var(--hero-gradient)',
-				'subtle-gradient': 'var(--subtle-gradient)'
+				'scale-in': 'scale-in 0.4s ease-out'
 			}
 		}
 	},

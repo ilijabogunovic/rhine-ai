@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // Import thumbnails statically
 import thumb260220759 from '../assets/pdf-thumbs/thumb-2602.20759.jpg';
@@ -17,6 +17,33 @@ import thumb260700053 from '../assets/pdf-thumbs/thumb-2607.00053.jpg';
 import thumb260612232 from '../assets/pdf-thumbs/thumb-2606.12232.jpg';
 import thumb260518803 from '../assets/pdf-thumbs/thumb-2605.18803.jpg';
 
+const thumbnailMap: { [key: string]: string } = {
+  '2602.20759': thumb260220759,
+  '2605.29398': thumb260529398,
+  '2502.01208': thumb250201208,
+  '2503.00030': thumb250300030,
+  '2503.05856': thumb250305856,
+  '2503.08796': thumb250308796,
+  '2507.08838': thumb250708838,
+  '2509.13341': thumb250913341,
+  '2602.05547': thumb260205547,
+  '2602.16902': thumb260216902,
+  '2609.15177': thumb260915177,
+  '2607.13315': thumb260713315,
+  '2607.00053': thumb260700053,
+  '2606.12232': thumb260612232,
+  '2605.18803': thumb260518803,
+};
+
+/** The first-page thumbnail for a paper, from its arXiv or local PDF link. */
+export const getPaperThumbnail = (file?: string): string | null => {
+  if (!file) return null;
+  const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
+  const localPaperMatch = file.match(/\/papers\/(\d+\.\d+)\.pdf/);
+  const arxivId = arxivMatch?.[1] || localPaperMatch?.[1];
+  return arxivId ? thumbnailMap[arxivId] ?? null : null;
+};
+
 interface PDFThumbnailProps {
   file: string;
   className?: string;
@@ -24,102 +51,36 @@ interface PDFThumbnailProps {
 }
 
 const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => {
-  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const handleClick = () => {
-    window.open(file, '_blank');
-  };
-
-  useEffect(() => {
-    const loadThumbnail = () => {
-      try {
-        // Get arXiv ID from the file URL
-        const arxivMatch = file.match(/arxiv\.org\/pdf\/(\d+\.\d+)/);
-        const localPaperMatch = file.match(/\/papers\/(\d+\.\d+)\.pdf/);
-        const arxivId = arxivMatch?.[1] || localPaperMatch?.[1];
-
-        if (!arxivId) {
-          setError(true);
-          setLoading(false);
-          return;
-        }
-        
-        // Map arXiv IDs to imported thumbnails
-        const thumbnailMap: { [key: string]: string } = {
-          '2602.20759': thumb260220759,
-          '2605.29398': thumb260529398,
-          '2502.01208': thumb250201208,
-          '2503.00030': thumb250300030,
-          '2503.05856': thumb250305856,
-          '2503.08796': thumb250308796,
-          '2507.08838': thumb250708838,
-          '2509.13341': thumb250913341,
-          '2602.05547': thumb260205547,
-          '2602.16902': thumb260216902,
-          '2609.15177': thumb260915177,
-          '2607.13315': thumb260713315,
-          '2607.00053': thumb260700053,
-          '2606.12232': thumb260612232,
-          '2605.18803': thumb260518803,
-        };
-
-        const thumbnail = thumbnailMap[arxivId];
-        if (thumbnail) {
-          setThumbnailUrl(thumbnail);
-          setLoading(false);
-        } else {
-          console.warn(`Thumbnail not found for arXiv ID: ${arxivId}`);
-          setError(true);
-          setLoading(false);
-        }
-
-      } catch (err) {
-        console.error('Thumbnail loading failed:', err);
-        setError(true);
-        setLoading(false);
-      }
-    };
-
-    loadThumbnail();
-  }, [file]);
+  const thumbnailUrl = getPaperThumbnail(file);
 
   if (!thumbnailUrl) {
     return (
-      <div 
-        className={`${className} bg-muted/20 border border-border rounded flex flex-col items-center justify-center p-4 cursor-pointer hover:bg-muted/30 transition-colors`}
-        onClick={handleClick}
+      <a
+        href={file}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${className} flex flex-col items-start justify-end bg-paper-2 p-4 text-ink transition-colors hover:bg-beige`}
       >
-        <div className="mb-3">
-          <svg
-            className="w-12 h-12 text-muted-foreground"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-          </svg>
-        </div>
-        <div className="text-center">
-          <div className="text-xs font-semibold text-foreground mb-1">PDF Document</div>
-          <div className="text-xs text-muted-foreground">Click to View</div>
-        </div>
-      </div>
+        <span className="t-1 font-semibold">PDF</span>
+        <span className="t-1 text-ink-soft">Open the paper</span>
+      </a>
     );
   }
 
   return (
-    <div 
-      className={`${className} cursor-pointer hover:shadow-lg transition-shadow border border-border rounded overflow-hidden bg-white`}
-      onClick={handleClick}
+    <a
+      href={file}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${className} group block overflow-hidden bg-white`}
     >
       <img
         src={thumbnailUrl}
-        alt={alt || 'PDF Thumbnail'}
-        className="w-full h-full object-cover"
+        alt={alt || 'First page of the paper'}
+        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         loading="lazy"
       />
-    </div>
+    </a>
   );
 };
 

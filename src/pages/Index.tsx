@@ -1,14 +1,16 @@
 import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/home/HeroSection";
-import PillarsSection from "@/components/home/PillarsSection";
+import DirectionsSection from "@/components/home/DirectionsSection";
 import NewsSection from "@/components/home/NewsSection";
+import ApplyBand from "@/components/home/ApplyBand";
 
 const Index = () => {
   return (
     <Layout>
       <HeroSection />
-      <PillarsSection />
+      <DirectionsSection />
       <NewsSection />
+      <ApplyBand />
     </Layout>
   );
 };

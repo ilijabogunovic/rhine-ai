@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 index.html
+
+# design tooling output
+.taste-skill/inspect/
+.taste-skill/pages/
+.playwright-mcp/

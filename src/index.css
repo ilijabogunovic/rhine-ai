@@ -2,111 +2,226 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AI Research Lab Design System */
+/* Rhine AI Lab design system: the carmine look of the Rhine-bend mark */
 
 @layer base {
   :root {
-    /* Academic Professional Color Palette */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    /* Brand colours, from the mark */
+    --paper: #f7f5f1;
+    --paper-2: #efe3db;
+    --beige: #e3cdc0;
+    --ink: #141414;
+    --ink-soft: #4a4440;
+    --ink-muted: #6b635b;
+    --carmine: #960018;
+    --carmine-deep: #7a0013;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    /* The mark keeps its brand colours in every mode */
+    --mark-light: #e3cdc0;
+    --mark-accent: #960018;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    /* News categories: muted companions to the carmine */
+    --cat-publication: #8a0016;
+    --cat-publication-bg: #f5dfe0;
+    --cat-preprint: #1f4e5f;
+    --cat-preprint-bg: #dae7ea;
+    --cat-announcement: #7a4b00;
+    --cat-announcement-bg: #f3e2c0;
+    --cat-conference: #3f5a2a;
+    --cat-conference-bg: #e1e8d2;
+    --cat-opportunity: #5e2a4a;
+    --cat-opportunity-bg: #ecdbe5;
 
-    /* Research Lab Primary - Deep Academic Blue */
-    --primary: 215 45% 25%;
-    --primary-foreground: 0 0% 98%;
-    --primary-light: 215 45% 35%;
-    --primary-glow: 215 45% 55%;
+    /* shadcn roles mapped onto the brand */
+    --background: 40 27% 96%;
+    --foreground: 0 0% 8%;
 
-    /* Secondary - Sophisticated Gray */
-    --secondary: 215 15% 95%;
-    --secondary-foreground: 215 25% 25%;
+    --card: 24 38% 90%;
+    --card-foreground: 0 0% 8%;
 
-    --muted: 215 15% 96%;
-    --muted-foreground: 215 15% 45%;
+    --popover: 40 27% 96%;
+    --popover-foreground: 0 0% 8%;
 
-    /* Accent - Research Highlight */
-    --accent: 215 35% 88%;
-    --accent-foreground: 215 45% 25%;
-    --accent-vibrant: 215 85% 65%;
+    --primary: 350 100% 29%;
+    --primary-foreground: 40 27% 96%;
+    --primary-light: 350 100% 36%;
+    --primary-glow: 350 100% 29%;
 
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --secondary: 24 38% 90%;
+    --secondary-foreground: 0 0% 8%;
 
-    --border: 215 20% 88%;
-    --input: 215 20% 92%;
-    --ring: 215 45% 25%;
+    --muted: 24 38% 90%;
+    --muted-foreground: 30 8% 39%;
 
-    /* Custom Research Lab Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(215 45% 25%), hsl(215 45% 35%));
-    --subtle-gradient: linear-gradient(180deg, hsl(0 0% 100%), hsl(215 15% 98%));
-    --card-shadow: 0 2px 20px -4px hsl(215 25% 15% / 0.08);
-    --elevated-shadow: 0 8px 40px -8px hsl(215 25% 15% / 0.15);
-    --glow-shadow: 0 0 40px hsl(215 85% 65% / 0.15);
-    
-    /* Typography Scale */
-    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --accent: 22 38% 82%;
+    --accent-foreground: 0 0% 8%;
+    --accent-vibrant: 350 100% 29%;
 
-    --radius: 0.5rem;
+    --destructive: 350 100% 29%;
+    --destructive-foreground: 40 27% 96%;
 
-    --sidebar-background: 0 0% 98%;
+    --border: 22 38% 82%;
+    --input: 22 38% 82%;
+    --ring: 350 100% 29%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --card-shadow: none;
+    --elevated-shadow: 0 12px 32px -12px rgb(20 20 20 / 0.18);
+    --glow-shadow: none;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-body: 'Geist', 'Helvetica Neue', Arial, sans-serif;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Five type steps, used everywhere */
+    --step-5: clamp(3.25rem, 8vw, 8.5rem);
+    --step-4: clamp(2.125rem, 3.8vw, 3.5rem);
+    --step-3: clamp(1.375rem, 2.1vw, 2rem);
+    --step-2: 1.125rem;
+    --step-1: 1rem;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* One margin pair, one gap between sections */
+    --gutter: clamp(1rem, 3vw, 2.5rem);
+    --section: clamp(6rem, 12vw, 11rem);
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
 
-    --sidebar-border: 220 13% 91%;
+    --radius: 0px;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 40 27% 96%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 350 100% 29%;
+    --sidebar-primary-foreground: 40 27% 96%;
+    --sidebar-accent: 24 38% 90%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 22 38% 82%;
+    --sidebar-ring: 350 100% 29%;
   }
+}
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+/* Colour versions of the mark, picked with the lab colour switcher (src/lib/theme.tsx) */
+@layer base {
+  html[data-theme="blue"] {
+    --mark-light: #c9d4ea;
+    --mark-accent: #1d3a8a;
+    --carmine: #1d3a8a;
+    --carmine-deep: #152c6b;
+    --beige: #c9d4ea;
+    --paper-2: #e6ebf4;
+    --primary: 224 65% 33%;
+    --accent-vibrant: 224 65% 33%;
+    --ring: 224 65% 33%;
+    --accent: 221 45% 85%;
+    --card: 220 40% 93%;
+    --secondary: 220 40% 93%;
+    --muted: 220 40% 93%;
+    --border: 221 45% 85%;
+    --input: 221 45% 85%;
+  }
+  html[data-theme="green"] {
+    --mark-light: #cfddcb;
+    --mark-accent: #1e5c3a;
+    --carmine: #1e5c3a;
+    --carmine-deep: #164a2e;
+    --beige: #cfddcb;
+    --paper-2: #e5ece2;
+    --primary: 147 51% 24%;
+    --accent-vibrant: 147 51% 24%;
+    --ring: 147 51% 24%;
+    --accent: 107 20% 83%;
+    --card: 104 18% 91%;
+    --secondary: 104 18% 91%;
+    --muted: 104 18% 91%;
+    --border: 107 20% 83%;
+    --input: 107 20% 83%;
+  }
+  html[data-theme="orange"] {
+    --mark-light: #f0d4c0;
+    --mark-accent: #c2410c;
+    --carmine: #b03a0b;
+    --carmine-deep: #8f2f08;
+    --beige: #f0d4c0;
+    --paper-2: #f6e7dc;
+    --primary: 17 88% 37%;
+    --accent-vibrant: 17 88% 37%;
+    --ring: 17 88% 37%;
+    --accent: 25 62% 85%;
+    --card: 25 62% 91%;
+    --secondary: 25 62% 91%;
+    --muted: 25 62% 91%;
+    --border: 25 62% 85%;
+    --input: 25 62% 85%;
+  }
+}
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+/* Dark mode: a warm near-black ground; accents are lifted so text in them stays readable */
+@layer base {
+  html[data-mode="dark"] {
+    --paper: #161413;
+    --paper-2: #221e1c;
+    --beige: #3a3330;
+    --ink: #f2ede7;
+    --ink-soft: #cbc2ba;
+    --ink-muted: #a1978e;
+    --carmine: #e8566a;
+    --carmine-deep: #f07c8c;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --cat-publication: #f4a3ae;
+    --cat-publication-bg: #3d1d22;
+    --cat-preprint: #9fcadb;
+    --cat-preprint-bg: #16313a;
+    --cat-announcement: #f0c97c;
+    --cat-announcement-bg: #3a2c12;
+    --cat-conference: #b9d39a;
+    --cat-conference-bg: #263120;
+    --cat-opportunity: #e3b1cf;
+    --cat-opportunity-bg: #36202e;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 15 8% 8%;
+    --foreground: 33 33% 93%;
+    --card: 15 9% 12%;
+    --card-foreground: 33 33% 93%;
+    --popover: 15 9% 12%;
+    --popover-foreground: 33 33% 93%;
+    --primary: 352 76% 62%;
+    --primary-foreground: 15 8% 8%;
+    --secondary: 15 9% 12%;
+    --secondary-foreground: 33 33% 93%;
+    --muted: 15 9% 12%;
+    --muted-foreground: 28 9% 59%;
+    --accent: 12 8% 21%;
+    --accent-foreground: 33 33% 93%;
+    --accent-vibrant: 352 76% 62%;
+    --border: 12 8% 21%;
+    --input: 12 8% 21%;
+    --ring: 352 76% 62%;
+  }
+  html[data-mode="dark"][data-theme="blue"] {
+    --carmine: #8ba6f0;
+    --carmine-deep: #aec2f6;
+    --paper-2: #1b1e26;
+    --beige: #2f3546;
+    --primary: 224 76% 74%;
+    --accent-vibrant: 224 76% 74%;
+    --ring: 224 76% 74%;
+  }
+  html[data-mode="dark"][data-theme="green"] {
+    --carmine: #79c49a;
+    --carmine-deep: #9bd6b4;
+    --paper-2: #1a201c;
+    --beige: #2e3a31;
+    --primary: 146 39% 62%;
+    --accent-vibrant: 146 39% 62%;
+    --ring: 146 39% 62%;
+  }
+  html[data-mode="dark"][data-theme="orange"] {
+    --carmine: #f2915c;
+    --carmine-deep: #f6ad85;
+    --paper-2: #241d19;
+    --beige: #3e3129;
+    --primary: 22 85% 66%;
+    --accent-vibrant: 22 85% 66%;
+    --ring: 22 85% 66%;
   }
 }
 
@@ -115,7 +230,141 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--beige) var(--paper);
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: var(--step-2);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--carmine);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--carmine);
+    outline-offset: 3px;
+  }
+
+  input, textarea {
+    caret-color: var(--carmine);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .t-5 { font-size: var(--step-5); line-height: 0.95; letter-spacing: -0.035em; }
+  .t-4 { font-size: var(--step-4); line-height: 1.05; letter-spacing: -0.02em; }
+  .t-3 { font-size: var(--step-3); line-height: 1.25; letter-spacing: -0.01em; }
+  .t-2 { font-size: var(--step-2); line-height: 1.55; }
+  .t-1 { font-size: var(--step-1); line-height: 1.5; }
+
+  /* A text link that answers the pointer */
+  .link {
+    color: var(--carmine);
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 180ms ease, color 180ms ease;
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: 3rem;
+    padding: 0 1.6rem;
+    background: var(--carmine);
+    color: var(--paper);
+    font-weight: 500;
+    font-size: var(--step-1);
+    transition: background-color 180ms ease, transform 140ms var(--ease-out);
+  }
+  .btn:hover { background: var(--carmine-deep); }
+  .btn:active { transform: translateY(1px) scale(0.99); }
+  .btn-quiet {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+  .btn-quiet:hover { background: var(--beige); }
+
+  .btn .arrow {
+    transition: transform 180ms var(--ease-out);
+  }
+  .btn:hover .arrow { transform: translateX(3px); }
+}
+
+/* Entrances: content is visible without script; the hidden state only applies under html.js */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  html.js [data-reveal].in > * {
+    opacity: 1;
+    transform: none;
+  }
+  html.js [data-reveal="rows"] > * {
+    transform: translateY(14px);
+    transition-duration: 600ms;
+    transition-delay: calc(var(--i, 0) * 50ms);
+  }
+  html.js [data-reveal="open"] > * {
+    transform: scale(1.04);
+    clip-path: inset(0 0 100% 0);
+    opacity: 1;
+    transition: transform 1100ms var(--ease-soft), clip-path 1100ms var(--ease-out);
+  }
+  html.js [data-reveal="open"].in > * {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+
+  .drift {
+    animation: drift 22s var(--ease-soft) infinite alternate;
+    transform-origin: 50% 40%;
+  }
+  @keyframes drift {
+    from { transform: scale(1); }
+    to { transform: scale(1.07) translate(-1%, -1%); }
   }
 }

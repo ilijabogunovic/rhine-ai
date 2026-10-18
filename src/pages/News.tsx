@@ -1,20 +1,9 @@
 import Layout from "@/components/layout/Layout";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex';
-
-// Helper function to render text with LaTeX expressions
-const renderMathText = (text: string) => {
-  const parts = text.split(/(\$.*?\$)/);
-  return parts.map((part, index) => {
-    if (part.startsWith('$') && part.endsWith('$')) {
-      const math = part.slice(1, -1);
-      return <InlineMath key={index} math={math} />;
-    }
-    return <span key={index}>{part}</span>;
-  });
-};
+import PageHeader from "@/components/brand/PageHeader";
+import Reveal from "@/components/brand/Reveal";
+import { CategoryTag } from "@/components/brand/Tags";
+import { renderMathText } from "@/lib/mathText";
 
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
@@ -27,7 +16,7 @@ export const newsItems: { date: string; title: string; excerpt: string; type: st
   {
     date: "September 2026",
     title: "Ilija Bogunovic Receives SNSF Project Grant for Research on Diffusion Language Models",
-    excerpt: "Ilija Bogunovic has been awarded a Project Grant by the Swiss National Science Foundation (SNSF) for the project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. PhD and postdoc openings will be announced soon.",
+    excerpt: "Ilija Bogunovic has been awarded a Project Grant by the Swiss National Science Foundation (SNSF) for the project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. \n PhD and postdoc openings will be announced soon.",
     type: "Announcement",
     url: "/news/snsf-project-grant-2026"
   },
@@ -159,72 +148,57 @@ export const newsItems: { date: string; title: string; excerpt: string; type: st
   }
 ];
 
-const typeBadgeColor = (type: string) => {
-  switch (type) {
-    case "Publication": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
-    case "Preprint": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
-    case "Announcement": return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200";
-    case "Conference": return "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200";
-    case "Opportunity": return "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200";
-    default: return "bg-accent text-accent-foreground";
-  }
-};
+const yearOf = (date: string) => date.match(/\d{4}/)?.[0] ?? "Earlier";
 
 const News = () => {
+  const years = Array.from(new Set(newsItems.map((n) => yearOf(n.date))));
+
   return (
     <Layout>
-      <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              News
-            </h1>
-            <p className="font-body text-lg text-muted-foreground">
-              Latest updates, publications, and announcements from Rhine AI Lab.
-            </p>
-          </div>
+      <PageHeader title="News" intro="Latest updates, publications, and announcements from Rhine AI Lab." />
 
-          <div className="space-y-6">
-            {newsItems.map((item, index) => {
-              const isInternal = !item.url.startsWith('http');
-              const cardContent = (
-                <Card className="shadow-card hover:shadow-elevated transition-all duration-300 cursor-pointer group">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${typeBadgeColor(item.type)}`}>
-                        {item.type}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
-                        {item.date}
-                      </span>
-                    </div>
-                    <h2 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {renderMathText(item.title)}
-                    </h2>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="font-body text-muted-foreground leading-relaxed">
-                      {item.excerpt}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-
-              if (isInternal) {
-                return (
-                  <Link key={index} to={item.url} className="block no-underline">
-                    {cardContent}
-                  </Link>
-                );
-              }
-              return (
-                <a key={index} href={item.url} target="_blank" rel="noopener noreferrer" className="block no-underline">
-                  {cardContent}
-                </a>
-              );
-            })}
-          </div>
-        </div>
+      <div className="wrap space-y-24 pb-[var(--section)]">
+        {years.map((year) => (
+          <section key={year} className="grid gap-8 lg:grid-cols-12" aria-labelledby={`news-${year}`}>
+            <h2 id={`news-${year}`} className="t-4 font-semibold text-ink lg:col-span-2">
+              {year}
+            </h2>
+            <Reveal as="ul" mode="rows" className="lg:col-span-10">
+              {newsItems
+                .filter((n) => yearOf(n.date) === year)
+                .map((item) => {
+                  const isInternal = !item.url.startsWith("http");
+                  const inner = (
+                    <article className="grid gap-x-10 gap-y-2 py-7 sm:grid-cols-[11rem_1fr]">
+                      <div className="t-1 text-ink-soft">
+                        <p>{item.date}</p>
+                        <CategoryTag type={item.type} className="mt-2" />
+                      </div>
+                      <div>
+                        <h3 className="t-3 font-semibold text-ink transition-colors [text-wrap:wrap] group-hover:text-carmine">
+                          {renderMathText(item.title)}
+                        </h3>
+                        <p className="t-2 mt-3 whitespace-pre-line text-ink-soft">{item.excerpt}</p>
+                      </div>
+                    </article>
+                  );
+                  return (
+                    <li key={item.title} className="transition-colors duration-200 hover:bg-paper-2">
+                      {isInternal ? (
+                        <Link to={item.url} className="group block px-0 sm:px-6">
+                          {inner}
+                        </Link>
+                      ) : (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="group block px-0 sm:px-6">
+                          {inner}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
+            </Reveal>
+          </section>
+        ))}
       </div>
     </Layout>
   );

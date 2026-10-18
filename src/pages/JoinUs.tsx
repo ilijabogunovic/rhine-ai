@@ -1,190 +1,175 @@
+import { useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Users, BookOpen, Globe } from "lucide-react";
-import { useEffect } from "react";
+import PageHeader from "@/components/brand/PageHeader";
+import Reveal from "@/components/brand/Reveal";
+import { Bullet } from "@/components/brand/Tags";
+
+const interests = [
+  "Human alignment",
+  "Novel discovery",
+  "Reinforcement learning",
+  "Large language models (LLMs)",
+  "Diffusion models",
+  "Foundation models",
+  "Reasoning",
+  "Planning",
+];
+
+/** The subject line to use, with a one-tap copy. */
+const SubjectLine = ({ label, subject }: { label: string; subject: string }) => {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(subject);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
+  return (
+    <div className="bg-paper-2 p-6 sm:p-7">
+      <p className="t-1 text-ink-soft">{label}</p>
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
+        <p className="t-3 font-display font-semibold text-carmine">"{subject}"</p>
+        <button type="button" onClick={copy} className="btn btn-quiet !min-h-[2.5rem] !bg-beige !px-4 hover:!bg-paper">
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const Route = ({
+  id,
+  title,
+  question,
+  children,
+}: {
+  id: string;
+  title: string;
+  question: string;
+  children: ReactNode;
+}) => (
+  <section id={id} className="scroll-mt-20 py-16 sm:py-20" aria-labelledby={`${id}-title`}>
+    <Reveal className="grid gap-8 lg:grid-cols-12">
+      <div className="lg:col-span-5">
+        <h2 id={`${id}-title`} className="t-4 font-semibold text-ink">
+          {title}
+        </h2>
+        <p className="t-3 mt-4 max-w-[24ch] font-display text-ink-soft">{question}</p>
+      </div>
+      <div className="t-2 max-w-[62ch] space-y-5 text-ink lg:col-span-7">{children}</div>
+    </Reveal>
+  </section>
+);
 
 const JoinUs = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <Layout>
-      <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-display text-4xl font-bold text-foreground mb-4">
-              Join the Lab!
-            </h1>
-          </div>
+      <PageHeader title="Join the lab">
+        <p className="t-2 mt-8 max-w-[60ch] text-ink">
+          We are looking for exceptional applicants who have a strong background in areas such as machine learning, data
+          science, computer science, and mathematics. Applicants for the postdoctoral scholar position should have a
+          strong publication record in leading conferences and journals.
+        </p>
+        <p className="t-2 mt-6 max-w-[56ch] text-ink-soft">
+          Unfortunately, we are not able to respond to all emails. Please follow the appropriate route depending on your
+          situation.
+        </p>
+        <nav className="t-2 mt-8 flex flex-wrap gap-x-7 gap-y-2" aria-label="Routes">
+          <a href="#phd" className="link font-medium">PhD student</a>
+          <a href="#ucl-phd" className="link font-medium">PhD at UCL</a>
+          <a href="#students" className="link font-medium">Student supervision</a>
+          <a href="#postdoc" className="link font-medium">Postdoctoral scholar</a>
+        </nav>
+      </PageHeader>
 
-          <div className="space-y-8">
-            {/* Introduction */}
-            <Card className="shadow-card">
-              <CardContent className="p-8">
-                <div className="space-y-6 text-center">
-                  <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    We are looking for exceptional applicants 🌟 who have a strong background in areas such as machine learning, data science, computer science, and mathematics. Applicants for the postdoctoral scholar position should have a strong publication record in leading conferences and journals 📚.
-                  </p>
-                  <div className="border-t border-muted pt-4">
-                    <p className="font-body text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
-                      Unfortunately, we are not able to respond to all emails. Please follow the appropriate route depending on your situation.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+      <div className="wrap pb-[var(--section)]">
+        <Route
+          id="phd"
+          title="PhD students"
+          question="You are a prospective PhD student?"
+        >
+          <p>
+            Please reach out directly. A strong background in machine learning, AI, coding & experimentation is
+            necessary, with particular interest in any of:
+          </p>
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+            {interests.map((t) => (
+              <li key={t} className="flex items-baseline gap-3">
+                <Bullet />
+                {t}
+              </li>
+            ))}
+          </ul>
+          <p>
+            We have open PhD positions at the University of Basel, Department of Mathematics and Computer Science, and we
+            can also co-supervise PhDs at University College London (UCL) AI Centre.
+          </p>
+          <p>
+            To reach out, please contact:{" "}
+            <a href="mailto:ilija.bogunovic@unibas.ch" className="link font-semibold">Ilija Bogunovic</a>
+          </p>
+          <SubjectLine label="When reaching out for a PhD position, please use the subject line:" subject="[PhD position application]" />
+        </Route>
 
-            {/* PhD Positions */}
-            <Card className="shadow-card">
-              <CardContent className="p-8">
-                <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <Users className="h-6 w-6 text-accent-vibrant" />
-                  You are a prospective PhD student?
-                </h2>
-                <div className="space-y-4">
-                  <p className="font-body text-muted-foreground">
-                    Please reach out directly. A strong background in machine learning, AI, coding & experimentation is necessary, with particular interest in any of:
-                  </p>
-                  <div className="bg-muted/30 rounded-lg p-4">
-                    <div className="grid md:grid-cols-2 gap-2 font-body text-sm text-muted-foreground">
-                      <div>• Human alignment</div>
-                      <div>• Novel discovery</div>
-                      <div>• Reinforcement learning</div>
-                      <div>• Large language models (LLMs)</div>
-                      <div>• Diffusion models</div>
-                      <div>• Foundation models</div>
-                      <div>• Reasoning</div>
-                      <div>• Planning</div>
-                    </div>
-                  </div>
-                  <p className="font-body text-muted-foreground">
-                    We have open PhD positions at the University of Basel, Department of Mathematics and Computer Science, and we can also co-supervise PhDs at University College London (UCL) AI Centre.
-                  </p>
-                  <div className="space-y-4">
-                    <p className="font-body text-muted-foreground">
-                      To reach out, please contact:
-                    </p>
-                    <a 
-                      href="mailto:ilija.bogunovic@unibas.ch"
-                      className="block font-body text-foreground font-medium text-lg hover:text-accent-vibrant transition-colors"
-                    >
-                      📧 Ilija Bogunovic
-                    </a>
-                  </div>
-                  <div className="bg-accent-vibrant/10 border border-accent-vibrant/20 rounded-lg p-4">
-                    <p className="font-body text-foreground font-medium mb-2">
-                      When reaching out for a PhD position, please use the subject line:
-                    </p>
-                    <p className="font-mono text-accent-vibrant font-medium text-lg">
-                      "[PhD position application]"
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        <Route
+          id="ucl-phd"
+          title="PhD students at UCL"
+          question="You are a PhD student at UCL seeking supervision or co-supervision?"
+        >
+          <p>We can supervise or co-supervise PhD students at the UCL AI Centre.</p>
+          <p>
+            To reach out, please contact:{" "}
+            <a href="mailto:i.bogunovic@ucl.ac.uk" className="link font-semibold">Ilija Bogunovic</a>
+          </p>
+          <SubjectLine label="When reaching out for UCL PhD supervision, please use the subject line:" subject="[UCL PhD supervision inquiry]" />
+        </Route>
 
-            {/* UCL PhD Students */}
-            <Card className="shadow-card">
-              <CardContent className="p-8">
-                <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <Globe className="h-6 w-6 text-accent-vibrant" />
-                  You are a prospective PhD student or MSc student at UCL (AI Centre)?
-                </h2>
-                <div className="space-y-4">
-                  <p className="font-body text-muted-foreground">
-                    Please reach out directly, I am able to supervise/co-supervise admitted students or MSc thesis projects.
-                  </p>
-                  <div className="space-y-4">
-                    <p className="font-body text-muted-foreground">
-                      To reach out, please contact:
-                    </p>
-                    <a 
-                      href="mailto:i.bogunovic@ucl.ac.uk"
-                      className="block font-body text-foreground font-medium text-lg hover:text-accent-vibrant transition-colors"
-                    >
-                      📧 Ilija Bogunovic
-                    </a>
-                  </div>
-                  <div className="bg-accent-vibrant/10 border border-accent-vibrant/20 rounded-lg p-4">
-                    <p className="font-body text-foreground font-medium mb-2">
-                      When reaching out for UCL supervision, please use the subject line:
-                    </p>
-                    <p className="font-mono text-accent-vibrant font-medium text-lg">
-                      "[UCL PhD supervision inquiry]"
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+        <Route
+          id="students"
+          title="Student supervision"
+          question="You are a master student looking for a thesis or project?"
+        >
+          <p>
+            We supervise master theses and master projects. Open research questions are listed under{" "}
+            <Link to="/teaching/topics" className="link font-semibold">project topics</Link>.
+          </p>
+          <p>
+            To reach out, please contact:{" "}
+            <a href="mailto:ilija.bogunovic@unibas.ch" className="link font-semibold">Ilija Bogunovic</a>
+          </p>
+          <SubjectLine label="When reaching out for a student project, please use the subject line:" subject="[Student project inquiry]" />
+        </Route>
 
-            {/* Postdoc Positions */}
-            <Card className="shadow-card">
-              <CardContent className="p-8">
-                <h2 className="font-display text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <BookOpen className="h-6 w-6 text-accent-vibrant" />
-                  You are a prospective Postdoctoral Scholar?
-                </h2>
-                <div className="space-y-4">
-                  <p className="font-body text-muted-foreground">
-                    Please reach out via email to:
-                  </p>
-                  <div className="bg-background rounded-lg p-4 border">
-                    <p className="font-body text-foreground">
-                      📧 <a href="mailto:ilija.bogunovic@unibas.ch" className="text-accent-vibrant hover:text-accent-vibrant/80 transition-colors font-medium">
-                        ilija.bogunovic@unibas.ch
-                      </a> or <a href="mailto:i.bogunovic@ucl.ac.uk" className="text-accent-vibrant hover:text-accent-vibrant/80 transition-colors font-medium">
-                        i.bogunovic@ucl.ac.uk
-                      </a>
-                    </p>
-                  </div>
-                  <div className="bg-accent-vibrant/10 border border-accent-vibrant/20 rounded-lg p-4">
-                    <p className="font-body text-foreground font-medium mb-2">
-                      Using the subject line:
-                    </p>
-                    <p className="font-mono text-accent-vibrant font-medium text-lg">
-                      "[Application PostDoc]"
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <p className="font-body text-muted-foreground mb-4">
-                      Applicants can inquire if there are available positions first before applying.
-                    </p>
-                    <p className="font-body text-muted-foreground font-medium">
-                      Your application should include:
-                    </p>
-
-                    <div className="font-body text-muted-foreground space-y-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-accent-vibrant/20 rounded-full flex items-center justify-center text-xs font-medium text-accent-vibrant mt-0.5">1</div>
-                        <div>
-                          <p className="font-medium text-foreground">Your CV, including a list of publications</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-accent-vibrant/20 rounded-full flex items-center justify-center text-xs font-medium text-accent-vibrant mt-0.5">2</div>
-                        <div>
-                          <p className="font-medium text-foreground">Contact information for three referees</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-accent-vibrant/20 rounded-full flex items-center justify-center text-xs font-medium text-accent-vibrant mt-0.5">3</div>
-                        <div>
-                          <p className="font-medium text-foreground">A cover letter describing your prior research experience and explaining why you are interested in joining our group</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="font-body text-sm text-muted-foreground italic pt-4 border-t border-muted">
-                      Applications are reviewed on a rolling basis. We encourage applications from candidates with diverse backgrounds and experiences.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-          </div>
-        </div>
+        <Route
+          id="postdoc"
+          title="Postdocs"
+          question="You are a prospective Postdoctoral Scholar?"
+        >
+          <p>
+            Please reach out via email to{" "}
+            <a href="mailto:ilija.bogunovic@unibas.ch" className="link font-semibold">ilija.bogunovic@unibas.ch</a> or{" "}
+            <a href="mailto:i.bogunovic@ucl.ac.uk" className="link font-semibold">i.bogunovic@ucl.ac.uk</a>
+          </p>
+          <SubjectLine label="Using the subject line:" subject="[PostDoc application]" />
+          <p>Applicants can inquire if there are available positions first before applying.</p>
+          <p className="font-semibold">Your application should include:</p>
+          <ol className="list-decimal space-y-2 pl-6 marker:font-semibold marker:text-carmine">
+            <li>Your CV, including a list of publications</li>
+            <li>Contact information for three referees</li>
+            <li>
+              A cover letter describing your prior research experience and explaining why you are interested in joining
+              our group
+            </li>
+          </ol>
+          <p className="text-ink-soft">
+            Applications are reviewed on a rolling basis. We encourage applications from candidates with diverse
+            backgrounds and experiences.
+          </p>
+        </Route>
       </div>
     </Layout>
   );
