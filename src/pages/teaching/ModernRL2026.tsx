@@ -53,7 +53,7 @@ const ModernRL2026 = () => {
       </PageHeader>
 
       <div className="wrap pb-[var(--section)]">
-        <section className="bg-paper-2 p-7 sm:p-10" aria-labelledby="logistics-title">
+        <section className="rounded-2xl bg-paper-2 p-7 sm:p-10" aria-labelledby="logistics-title">
           <h2 id="logistics-title" className="t-3 font-semibold text-ink">Logistics</h2>
           <dl className="t-2 mt-6 grid gap-x-10 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
             <div>

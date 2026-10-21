@@ -183,7 +183,7 @@ const News = () => {
                     </article>
                   );
                   return (
-                    <li key={item.title} className="transition-colors duration-200 hover:bg-paper-2">
+                    <li key={item.title} className="rounded-xl transition-colors duration-200 hover:bg-paper-2">
                       {isInternal ? (
                         <Link to={item.url} className="group block px-0 sm:px-6">
                           {inner}

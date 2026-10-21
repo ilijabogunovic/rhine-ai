@@ -10,7 +10,7 @@ const CATEGORY_CLASS: Record<string, string> = {
 /** A small coloured tag naming a news category. */
 export const CategoryTag = ({ type, className = "" }: { type: string; className?: string }) => (
   <span
-    className={`inline-block px-2 py-0.5 text-sm font-medium leading-snug ${
+    className={`inline-block rounded-full px-2.5 py-0.5 text-sm font-medium leading-snug ${
       CATEGORY_CLASS[type] ?? "bg-paper-2 text-ink"
     } ${className}`}
   >

@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { Check, Copy } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/brand/PageHeader";
 import Reveal from "@/components/brand/Reveal";
@@ -29,14 +30,32 @@ const SubjectLine = ({ label, subject }: { label: string; subject: string }) => 
     }
   };
   return (
-    <div className="bg-paper-2 p-6 sm:p-7">
+    <div className="rounded-2xl bg-paper-2 p-5 sm:p-6">
       <p className="t-1 text-ink-soft">{label}</p>
       <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
-        <p className="t-3 font-display font-semibold text-carmine">"{subject}"</p>
-        <button type="button" onClick={copy} className="btn btn-quiet !min-h-[2.5rem] !bg-beige !px-4 hover:!bg-paper">
-          {copied ? "Copied" : "Copy"}
+        <p className="t-3 font-display font-semibold text-carmine">{subject}</p>
+        <button
+          type="button"
+          onClick={copy}
+          aria-label={copied ? "Subject line copied" : `Copy the subject line ${subject}`}
+          className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 active:scale-[0.97] ${
+            copied ? "bg-carmine text-paper" : "bg-beige text-ink hover:bg-carmine hover:text-paper"
+          }`}
+        >
+          {copied ? (
+            <Check aria-hidden="true" strokeWidth={2.25} className="copy-pop h-4 w-4" />
+          ) : (
+            <Copy aria-hidden="true" strokeWidth={1.75} className="h-4 w-4" />
+          )}
+          <span aria-live="polite">{copied ? "Copied" : "Copy"}</span>
         </button>
       </div>
+      <style>{`
+        @media (prefers-reduced-motion: no-preference) {
+          .copy-pop { animation: copy-pop 320ms var(--ease-out) both; }
+          @keyframes copy-pop { from { transform: scale(0.4) rotate(-20deg); opacity: 0; } }
+        }
+      `}</style>
     </div>
   );
 };

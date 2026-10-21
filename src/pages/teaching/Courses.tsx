@@ -27,7 +27,7 @@ const Courses = () => {
             ))}
           </Reveal>
         ) : (
-          <div className="bg-paper-2 p-8 sm:p-12">
+          <div className="rounded-2xl bg-paper-2 p-8 sm:p-12">
             <p className="t-3 font-display text-ink">No courses this semester.</p>
             <p className="t-2 mt-3 text-ink-soft">Slides, exercises and schedules of past courses stay available.</p>
             <Link to="/teaching/archive" className="btn mt-6">

@@ -98,62 +98,6 @@
   }
 }
 
-/* Colour versions of the mark, picked with the lab colour switcher (src/lib/theme.tsx) */
-@layer base {
-  html[data-theme="blue"] {
-    --mark-light: #c9d4ea;
-    --mark-accent: #1d3a8a;
-    --carmine: #1d3a8a;
-    --carmine-deep: #152c6b;
-    --beige: #c9d4ea;
-    --paper-2: #e6ebf4;
-    --primary: 224 65% 33%;
-    --accent-vibrant: 224 65% 33%;
-    --ring: 224 65% 33%;
-    --accent: 221 45% 85%;
-    --card: 220 40% 93%;
-    --secondary: 220 40% 93%;
-    --muted: 220 40% 93%;
-    --border: 221 45% 85%;
-    --input: 221 45% 85%;
-  }
-  html[data-theme="green"] {
-    --mark-light: #cfddcb;
-    --mark-accent: #1e5c3a;
-    --carmine: #1e5c3a;
-    --carmine-deep: #164a2e;
-    --beige: #cfddcb;
-    --paper-2: #e5ece2;
-    --primary: 147 51% 24%;
-    --accent-vibrant: 147 51% 24%;
-    --ring: 147 51% 24%;
-    --accent: 107 20% 83%;
-    --card: 104 18% 91%;
-    --secondary: 104 18% 91%;
-    --muted: 104 18% 91%;
-    --border: 107 20% 83%;
-    --input: 107 20% 83%;
-  }
-  html[data-theme="orange"] {
-    --mark-light: #f0d4c0;
-    --mark-accent: #c2410c;
-    --carmine: #b03a0b;
-    --carmine-deep: #8f2f08;
-    --beige: #f0d4c0;
-    --paper-2: #f6e7dc;
-    --primary: 17 88% 37%;
-    --accent-vibrant: 17 88% 37%;
-    --ring: 17 88% 37%;
-    --accent: 25 62% 85%;
-    --card: 25 62% 91%;
-    --secondary: 25 62% 91%;
-    --muted: 25 62% 91%;
-    --border: 25 62% 85%;
-    --input: 25 62% 85%;
-  }
-}
-
-
 /* Dark mode: a warm near-black ground; accents are lifted so text in them stays readable */
 @layer base {
   html[data-mode="dark"] {
@@ -195,33 +139,6 @@
     --border: 12 8% 21%;
     --input: 12 8% 21%;
     --ring: 352 76% 62%;
-  }
-  html[data-mode="dark"][data-theme="blue"] {
-    --carmine: #8ba6f0;
-    --carmine-deep: #aec2f6;
-    --paper-2: #1b1e26;
-    --beige: #2f3546;
-    --primary: 224 76% 74%;
-    --accent-vibrant: 224 76% 74%;
-    --ring: 224 76% 74%;
-  }
-  html[data-mode="dark"][data-theme="green"] {
-    --carmine: #79c49a;
-    --carmine-deep: #9bd6b4;
-    --paper-2: #1a201c;
-    --beige: #2e3a31;
-    --primary: 146 39% 62%;
-    --accent-vibrant: 146 39% 62%;
-    --ring: 146 39% 62%;
-  }
-  html[data-mode="dark"][data-theme="orange"] {
-    --carmine: #f2915c;
-    --carmine-deep: #f6ad85;
-    --paper-2: #241d19;
-    --beige: #3e3129;
-    --primary: 22 85% 66%;
-    --accent-vibrant: 22 85% 66%;
-    --ring: 22 85% 66%;
   }
 }
 
@@ -311,6 +228,7 @@
     gap: 0.6em;
     min-height: 3rem;
     padding: 0 1.6rem;
+    border-radius: 999px;
     background: var(--carmine);
     color: var(--paper);
     font-weight: 500;

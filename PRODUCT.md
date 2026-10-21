@@ -50,7 +50,7 @@ Three research directions:
 
 - The name **Rhine AI** and the **RHINE acronym** expansion (Reasoning, Human-aligned Intelligence and Novel Exploration) are binding.
 - The **dual affiliation** with the University of Basel (DMI) and the UCL Centre for Artificial Intelligence must stay visible.
-- The current header illustration (`public/rhine-ai-header.png`) is an existing asset, but it was not confirmed as binding.
+- The header illustration is `public/rhine-ai-header-sunset.png` (with a `.webp`): the Rhine in Basel at sunset.
 
 ## Evidence on Hand
 

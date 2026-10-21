@@ -59,7 +59,7 @@ const PDFThumbnail: React.FC<PDFThumbnailProps> = ({ file, className, alt }) => 
         href={file}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${className} flex flex-col items-start justify-end bg-paper-2 p-4 text-ink transition-colors hover:bg-beige`}
+        className={`${className} flex flex-col items-start justify-end rounded-xl bg-paper-2 p-4 text-ink transition-colors hover:bg-beige`}
       >
         <span className="t-1 font-semibold">PDF</span>
         <span className="t-1 text-ink-soft">Open the paper</span>

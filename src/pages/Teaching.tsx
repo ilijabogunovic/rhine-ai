@@ -18,7 +18,7 @@ const Teaching = () => {
       <Reveal className="wrap grid gap-4 pb-[var(--section)] md:grid-cols-2">
         <Link
           to="/teaching/courses"
-          className="group flex min-h-[22rem] flex-col justify-between bg-paper-2 p-8 transition-colors duration-200 hover:bg-beige sm:p-12"
+          className="group flex min-h-[22rem] flex-col justify-between rounded-2xl bg-paper-2 p-8 transition-colors duration-200 hover:bg-beige sm:p-12"
         >
           <div>
             <h2 className="t-4 font-semibold text-ink">Courses</h2>
@@ -45,7 +45,7 @@ const Teaching = () => {
 
         <Link
           to="/teaching/topics"
-          className="group flex min-h-[22rem] flex-col justify-between bg-carmine p-8 text-paper transition-colors duration-200 hover:bg-carmine-deep sm:p-12"
+          className="group flex min-h-[22rem] flex-col justify-between rounded-2xl bg-carmine p-8 text-paper transition-colors duration-200 hover:bg-carmine-deep sm:p-12"
         >
           <div>
             <h2 className="t-4 font-semibold text-paper">Project topics</h2>

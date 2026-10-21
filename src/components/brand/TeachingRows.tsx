@@ -39,7 +39,7 @@ export const TopicRow = ({ topic }: { topic: Topic }) => {
       <div className="lg:col-span-9">
         <p className="flex flex-wrap gap-2">
           {topic.level.map((l) => (
-            <span key={l} className="bg-paper-2 px-2 py-0.5 text-sm font-medium text-ink">
+            <span key={l} className="rounded-full bg-paper-2 px-2.5 py-0.5 text-sm font-medium text-ink">
               {l}
             </span>
           ))}

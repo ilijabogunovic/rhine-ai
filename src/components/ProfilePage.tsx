@@ -131,7 +131,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
               <img
                 src={image}
                 alt={name}
-                className="aspect-[4/5] w-full max-w-[20rem] bg-paper-2 object-cover object-[50%_20%]"
+                className="aspect-[4/5] w-full max-w-[20rem] rounded-2xl bg-paper-2 object-cover object-[50%_20%]"
               />
               <h1 className="t-4 mt-8 font-semibold text-ink">{name}</h1>
               <p className="t-2 mt-2 font-medium text-carmine">{role}</p>

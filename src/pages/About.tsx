@@ -111,7 +111,7 @@ const About = () => {
             <a href="mailto:i.bogunovic@ucl.ac.uk" className="link">i.bogunovic@ucl.ac.uk</a>
           </p>
         </Reveal>
-        <Reveal className="bg-paper-2 p-7 sm:p-10 lg:col-span-6 lg:col-start-7">
+        <Reveal className="rounded-2xl bg-paper-2 p-7 sm:p-10 lg:col-span-6 lg:col-start-7">
           <p className="t-2 font-semibold text-ink">Please use an appropriate subject line such as:</p>
           <dl className="mt-6 space-y-3">
             {subjects.map(([subject, use]) => (

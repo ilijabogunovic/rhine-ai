@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Reveal from "@/components/brand/Reveal";
 import { getImagePath } from "@/utils/imageUtils";
-import { THEMES, useTheme } from "@/lib/theme";
 
 const acronym = [
   ["R", "easoning, "],
@@ -12,34 +11,27 @@ const acronym = [
 ];
 
 const HeroSection = () => {
-  const { theme } = useTheme();
   return (
   <section aria-labelledby="hero-title">
-    {/* The Rhine at Basel: one illustration per lab colour, crossfading when the colour changes */}
+    {/* The Rhine at Basel at sunset */}
     <div className="relative h-[12rem] overflow-hidden sm:aspect-[4/1] sm:h-auto">
-      {THEMES.map((t) => (
-        <picture key={t.id}>
-          <source srcSet={getImagePath(`/${t.header}.webp`)} type="image/webp" />
-          <img
-            src={getImagePath(t.id === "blue" ? "/rhine-ai-header.png" : `/${t.header}.png`)}
-            alt={t.id === theme ? `Illustration of the Rhine in Basel with the Mittlere Brücke and the Münster, in ${t.label.toLowerCase()} tones` : ""}
-            width={2172}
-            height={724}
-            className={`hero-image absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-700 ease-out ${
-              t.id === theme ? "opacity-100" : "opacity-0"
-            }`}
-            {...{ fetchpriority: t.id === theme ? "high" : "low" }}
-          />
-        </picture>
-      ))}
-      <div className="absolute inset-x-0 top-[8%] text-center sm:top-[4%]">
-        <h1 id="hero-title" className="hero-title t-5 font-semibold text-[#141414]">
-          Rhine AI Lab
-        </h1>
-      </div>
+      <picture>
+        <source srcSet={getImagePath("/rhine-ai-header-sunset.webp")} type="image/webp" />
+        <img
+          src={getImagePath("/rhine-ai-header-sunset.png")}
+          alt="Illustration of the Rhine in Basel with the Mittlere Brücke and the Münster"
+          width={1672}
+          height={557}
+          className="hero-image absolute inset-0 h-full w-full object-cover object-top"
+          {...{ fetchpriority: "high" }}
+        />
+      </picture>
     </div>
 
     <div className="wrap pb-16 pt-14 sm:pb-20 sm:pt-20">
+      <h1 id="hero-title" className="sr-only">
+        Rhine AI Lab
+      </h1>
       <Reveal className="mx-auto flex max-w-[64rem] flex-col items-center text-center">
         <p className="t-4 font-display text-ink [text-wrap:balance] max-sm:!text-[1.75rem]">
           {acronym.map(([initial, rest]) => (
@@ -72,9 +64,7 @@ const HeroSection = () => {
     <style>{`
       @media (prefers-reduced-motion: no-preference) {
         .hero-image { animation: hero-image-in 1.8s var(--ease-soft) both; }
-        .hero-title { animation: hero-title-in 1.1s var(--ease-out) 0.2s both; }
         @keyframes hero-image-in { from { transform: scale(1.06); opacity: 0.6; } }
-        @keyframes hero-title-in { from { opacity: 0; transform: translateY(16px); } }
       }
     `}</style>
   </section>

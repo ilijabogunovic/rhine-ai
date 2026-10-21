@@ -50,7 +50,7 @@ const Contact = () => {
           </div>
         </Reveal>
 
-        <Reveal className="bg-paper-2 p-7 sm:p-10 lg:col-span-6">
+        <Reveal className="rounded-2xl bg-paper-2 p-7 sm:p-10 lg:col-span-6">
           <h2 className="t-3 font-semibold text-ink">Address</h2>
           <address className="t-2 mt-3 not-italic text-ink">
             <span className="font-semibold">Department of Mathematics and Computer Science</span>

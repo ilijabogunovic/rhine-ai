@@ -49,7 +49,7 @@ const NewsSection = () => (
                 rel="noopener noreferrer"
                 className="group grid grid-cols-[4rem_1fr] gap-5"
               >
-                <span className="block h-[5.25rem] w-16 overflow-hidden bg-white">
+                <span className="block h-[5.25rem] w-16 overflow-hidden rounded-md bg-white">
                   {thumb && (
                     <img
                       src={thumb}

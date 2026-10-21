@@ -4,7 +4,9 @@ import PDFThumbnail from "@/components/PDFThumbnail";
 import PageHeader from "@/components/brand/PageHeader";
 import PaperActions from "@/components/brand/PaperActions";
 import Reveal from "@/components/brand/Reveal";
+import { useId, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ChevronDown, Minus, Plus } from "lucide-react";
 
 // Mapping of author names to their profile routes
 const authorRoutes: Record<string, string> = {
@@ -681,6 +683,74 @@ export const publications = [
   }
 ];
 
+const ABSTRACT_LIMIT = 280;
+
+/** An abstract cut at a word near the limit, with a small control to read the rest. */
+const Abstract = ({ text }: { text: string }) => {
+  const [open, setOpen] = useState(false);
+  if (!text) return null;
+  const long = text.length > ABSTRACT_LIMIT;
+  const cut = long ? text.slice(0, text.lastIndexOf(" ", ABSTRACT_LIMIT)).replace(/[,.;:]$/, "") : text;
+  return (
+    <p className="t-2 max-w-[66ch] text-ink">
+      {open || !long ? text : <>{cut}<span className="text-ink-muted">…</span></>}
+      {long && (
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          className="group ml-2 inline-flex translate-y-[-0.1em] items-center gap-1 rounded-full bg-paper-2 py-0.5 pl-1.5 pr-2.5 align-middle text-sm font-medium text-ink transition-colors duration-200 hover:bg-carmine hover:text-paper"
+        >
+          {open ? (
+            <Minus aria-hidden="true" strokeWidth={2} className="h-3.5 w-3.5" />
+          ) : (
+            <Plus aria-hidden="true" strokeWidth={2} className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-90" />
+          )}
+          {open ? "Less" : "More"}
+        </button>
+      )}
+    </p>
+  );
+};
+
+/** One year of the complete list, folding open and closed under its heading. */
+const YearGroup = ({ year, count, defaultOpen, children }: { year: string; count: number; defaultOpen: boolean; children: ReactNode }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const panel = useId();
+  return (
+    <section className="border-t border-beige" aria-labelledby={`all-${year}`}>
+      <h2 id={`all-${year}`} className="font-semibold text-ink">
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls={panel}
+          className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+        >
+          <span className="t-4 transition-colors duration-200 group-hover:text-carmine">{year}</span>
+          <span className="flex items-center gap-4">
+            <span className="t-1 font-body font-normal text-ink-soft">
+              {count} paper{count === 1 ? "" : "s"}
+            </span>
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-paper-2 transition-colors duration-200 group-hover:bg-carmine group-hover:text-paper">
+              <ChevronDown
+                aria-hidden="true"
+                strokeWidth={1.75}
+                className={`h-5 w-5 transition-transform duration-300 ease-out ${open ? "rotate-180" : ""}`}
+              />
+            </span>
+          </span>
+        </button>
+      </h2>
+      <div id={panel} className={`grid transition-[grid-template-rows] duration-500 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+        <div className="overflow-hidden" {...(open ? {} : { inert: "" })}>
+          <div className="pb-12 pt-2">{children}</div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Publications = () => {
   const newestPublications = publications.filter(paper => paper.year !== "2024").slice(0, 5);
 
@@ -775,7 +845,7 @@ const Publications = () => {
                     </h3>
                     <p className="t-1 text-ink-soft">{renderAuthors(paper.authors)}</p>
                     <p className="t-1 italic text-ink-soft">{paper.venue}, {paper.year}</p>
-                    <p className="t-2 max-w-[66ch] text-ink">{paper.abstract}</p>
+                    <Abstract text={paper.abstract ?? ""} />
                     <div className="pt-2">
                       <PaperActions paper={paper} bibtex={generateBibTeX(paper)} />
                     </div>
@@ -792,13 +862,12 @@ const Publications = () => {
   const renderAllPublications = () => {
     const { byYear, years } = groupByYear(publications);
     return (
-      <div className="space-y-20">
-        {years.map(year => (
-          <section key={year} className="grid gap-6 lg:grid-cols-12" aria-labelledby={`all-${year}`}>
-            <h2 id={`all-${year}`} className="t-4 font-semibold text-ink lg:col-span-2">{year}</h2>
-            <ul className="space-y-9 lg:col-span-10">
-              {byYear[year].map((paper) => (
-                <li key={paper.title} className="max-w-[80ch] space-y-1.5">
+      <div className="border-b border-beige">
+        {years.map((year, i) => (
+          <YearGroup key={year} year={year} count={byYear[year].length} defaultOpen={i === 0}>
+            <ul className="space-y-9">
+              {byYear[year].map((paper, i) => (
+                <li key={`${paper.title}-${i}`} className="max-w-[80ch] space-y-1.5">
                   <h3 className="t-2 font-body font-semibold leading-snug text-ink">
                     <a href={paper.arxivLink} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-carmine">
                       {paper.title}
@@ -812,7 +881,7 @@ const Publications = () => {
                 </li>
               ))}
             </ul>
-          </section>
+          </YearGroup>
         ))}
       </div>
     );
@@ -824,7 +893,7 @@ const Publications = () => {
         title="Publications"
         intro="Research contributions to the scientific community through peer-reviewed publications in top-tier conferences and journals."
         aside={
-          <div className="bg-paper-2 p-7">
+          <div className="rounded-2xl bg-paper-2 p-7">
             <p className="t-2 text-ink">For an up to date publication list:</p>
             <a
               href="https://scholar.google.com/citations?user=xMvt3NEAAAAJ&hl=en"

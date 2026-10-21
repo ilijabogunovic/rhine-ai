@@ -60,7 +60,7 @@ const DirectionsSection = () => (
           ))}
         </Reveal>
 
-        <div className="mt-16 bg-paper-2 p-7 sm:p-9">
+        <div className="mt-16 rounded-2xl bg-paper-2 p-7 sm:p-9">
           <h3 className="t-2 font-body font-semibold text-ink">What we work on, day to day</h3>
           <Reveal as="ul" mode="rows" className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
             {topics.map((t) => (

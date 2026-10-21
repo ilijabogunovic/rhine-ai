@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Mark } from "@/components/brand/Motif";
-import PaintPicker from "@/components/brand/PaintPicker";
+import ModePicker from "@/components/brand/ModePicker";
 
 export const navItems = [
   { name: "Publications", path: "/publications" },
@@ -47,14 +47,14 @@ const Navigation = () => {
               {item.name}
             </NavLink>
           ))}
-          <PaintPicker />
+          <ModePicker />
           <Link to="/contact" className="btn !min-h-[2.5rem] !px-5">
             Contact
           </Link>
         </div>
 
         <div className="flex items-center gap-1 xl:hidden">
-          <PaintPicker />
+          <ModePicker />
         <button
           type="button"
           className="-mr-2 flex h-11 w-11 items-center justify-center text-ink"

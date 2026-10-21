@@ -23,7 +23,7 @@ const Topics = () => {
             ))}
           </Reveal>
         ) : (
-          <div className="bg-paper-2 p-8 sm:p-12">
+          <div className="rounded-2xl bg-paper-2 p-8 sm:p-12">
             <p className="t-3 font-display text-ink">New topics will be posted here.</p>
             <p className="t-2 mt-3 text-ink-soft">
               Interested in a thesis or project with the lab in the meantime? Write to{" "}

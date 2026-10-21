@@ -39,7 +39,7 @@ const PaperActions = ({ paper, bibtex }: PaperActionsProps) => {
         </button>
       </div>
       {open && (
-        <div className="mt-4 bg-paper-2 p-5">
+        <div className="mt-4 rounded-xl bg-paper-2 p-5">
           <pre className="overflow-x-auto whitespace-pre-wrap font-mono text-sm leading-relaxed text-ink">
             <code>{bibtex}</code>
           </pre>
