@@ -25,6 +25,9 @@ dist-ssr
 index.html
 
 # design tooling output
-.taste-skill/inspect/
-.taste-skill/pages/
+.taste-skill/
+
+# local design context (kept out of the repo)
+PRODUCT.md
+.impeccable/
 .playwright-mcp/
