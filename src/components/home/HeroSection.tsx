@@ -21,8 +21,8 @@ const HeroSection = () => {
         <img
           src={getImagePath("/rhine-ai-header-sunset.png")}
           alt="Illustration of the Rhine in Basel with the Mittlere Brücke and the Münster"
-          width={1672}
-          height={557}
+          width={2800}
+          height={933}
           className="hero-image absolute inset-0 h-full w-full object-cover object-top"
           {...{ fetchpriority: "high" }}
         />
