@@ -28,7 +28,11 @@ const SnsfProjectGrant2026 = () => {
               The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. It will investigate the foundations of post-training methods for improving reasoning in diffusion language models.
             </p>
             <p className="t-2 text-ink leading-relaxed">
-              PhD and postdoc openings connected to the project will be announced soon.
+              PhD and postdoc positions connected to the project are now open:{" "}
+              <Link to="/news/phd-postdoc-diffusion-llm-2026" className="link font-semibold">
+                read the opening
+              </Link>
+              .
             </p>
           </div>
         </div>

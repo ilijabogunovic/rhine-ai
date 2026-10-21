@@ -26,7 +26,7 @@ export const directions = [
 const topics = [
   "Human alignment",
   "Novel discovery",
-  "Reinforcement learning",
+  "Post-training",
   "Large language models",
   "Diffusion models",
   "Foundation models",

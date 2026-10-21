@@ -7,6 +7,13 @@ import { renderMathText } from "@/lib/mathText";
 
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
+    date: "October 2026",
+    title: "PhD and Postdoc Positions in Post-Training of Diffusion Language Models",
+    excerpt: "We are hiring PhD students and Postdocs for the SNSF project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The positions are based in Basel and start in January 2027 or later. Apply preferably before November 20, 2026.",
+    type: "Opportunity",
+    url: "/news/phd-postdoc-diffusion-llm-2026"
+  },
+  {
     date: "September 2026",
     title: "Rhine AI Lab Has Four Papers Accepted to NeurIPS 2026",
     excerpt: "We are excited to announce that four Rhine AI Lab papers have been accepted to to the Conference on Neural Information Processing Systems (NeurIPS) 2026. See you there!",
@@ -16,7 +23,7 @@ export const newsItems: { date: string; title: string; excerpt: string; type: st
   {
     date: "September 2026",
     title: "Ilija Bogunovic Receives SNSF Project Grant for Research on Diffusion Language Models",
-    excerpt: "Ilija Bogunovic has been awarded a Project Grant by the Swiss National Science Foundation (SNSF) for the project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. \n PhD and postdoc openings will be announced soon.",
+    excerpt: "Ilija Bogunovic has been awarded a Project Grant by the Swiss National Science Foundation (SNSF) for the project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The four-year project starts in January 2027 and will be carried out at the Rhine AI Lab, University of Basel. \n PhD and postdoc positions on the project are now open.",
     type: "Announcement",
     url: "/news/snsf-project-grant-2026"
   },

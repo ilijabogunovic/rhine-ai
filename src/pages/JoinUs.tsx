@@ -5,11 +5,12 @@ import Layout from "@/components/layout/Layout";
 import PageHeader from "@/components/brand/PageHeader";
 import Reveal from "@/components/brand/Reveal";
 import { Bullet } from "@/components/brand/Tags";
+import { openOpenings } from "@/data/openings";
 
 const interests = [
   "Human alignment",
   "Novel discovery",
-  "Reinforcement learning",
+  "Post-training",
   "Large language models (LLMs)",
   "Diffusion models",
   "Foundation models",
@@ -103,6 +104,32 @@ const JoinUs = () => {
           <a href="#students" className="link font-medium">Student supervision</a>
           <a href="#postdoc" className="link font-medium">Postdoctoral scholar</a>
         </nav>
+        {openOpenings().length > 0 && (
+          <section aria-labelledby="open-positions" className="mt-12 rounded-2xl bg-paper-2 p-6 sm:p-8">
+            <h2 id="open-positions" className="t-3 font-semibold text-ink">
+              Open positions
+            </h2>
+            <ul className="mt-5 space-y-4">
+              {openOpenings().map((o) => (
+                <li key={o.url}>
+                  <Link
+                    to={o.url}
+                    className="group flex flex-wrap items-center justify-between gap-x-6 gap-y-3"
+                  >
+                    <span>
+                      <span className="t-2 block font-semibold text-ink transition-colors group-hover:text-carmine">{o.title}</span>
+                      <span className="t-1 mt-1 block text-ink-soft">{o.summary}</span>
+                    </span>
+                    <span className="t-1 inline-flex items-center gap-2 font-medium text-carmine">
+                      Read the opening
+                      <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </PageHeader>
 
       <div className="wrap pb-[var(--section)]">

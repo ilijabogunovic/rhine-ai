@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Reveal from "@/components/brand/Reveal";
 import { getImagePath } from "@/utils/imageUtils";
+import { openOpenings } from "@/data/openings";
 
 const acronym = [
   ["R", "easoning, "],
@@ -59,12 +60,36 @@ const HeroSection = () => {
           We develop agentic AI systems that reason, adapt, and self-evolve, focusing on sequential decision making and
           generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
         </p>
+        {openOpenings().map((o) => (
+          <Link
+            key={o.url}
+            to={o.url}
+            className="group mt-12 flex w-full flex-col gap-6 rounded-3xl bg-paper-2 p-7 text-left transition-colors duration-300 hover:bg-beige sm:flex-row sm:items-center sm:justify-between sm:p-9"
+          >
+            <span className="block">
+              <span className="t-1 inline-flex items-center gap-2 font-semibold text-carmine">
+                <span aria-hidden="true" className="hiring-dot h-2 w-2 rounded-full bg-carmine" />
+                We're hiring
+              </span>
+              <span className="t-3 mt-3 block max-w-[44ch] font-display font-semibold text-ink">{o.title}</span>
+              <span className="t-1 mt-2 block text-ink-soft">{o.summary}</span>
+            </span>
+            <span
+              aria-hidden="true"
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-paper text-2xl text-ink transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-rotate-12"
+            >
+              →
+            </span>
+          </Link>
+        ))}
       </Reveal>
     </div>
     <style>{`
       @media (prefers-reduced-motion: no-preference) {
         .hero-image { animation: hero-image-in 1.8s var(--ease-soft) both; }
         @keyframes hero-image-in { from { transform: scale(1.06); opacity: 0.6; } }
+        .hiring-dot { animation: hiring-dot 1.8s ease-in-out infinite; }
+        @keyframes hiring-dot { 50% { opacity: 0.35; transform: scale(0.7); } }
       }
     `}</style>
   </section>

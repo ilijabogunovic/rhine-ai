@@ -37,6 +37,7 @@ import Icml2026Lab from "./pages/news/Icml2026Lab";
 import Macroscopic2026 from "./pages/news/macroscopic2026";
 import Neurips2026 from "./pages/news/Neurips2026";
 import SnsfProjectGrant2026 from "./pages/news/SnsfProjectGrant2026";
+import PhdPostdocDiffusionLLM2026 from "./pages/news/PhdPostdocDiffusionLLM2026";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="/news/macroscopic2026" element={<Macroscopic2026 />} />
           <Route path="/news/neurips-2026" element={<Neurips2026 />} />
           <Route path="/news/snsf-project-grant-2026" element={<SnsfProjectGrant2026 />} />
+          <Route path="/news/phd-postdoc-diffusion-llm-2026" element={<PhdPostdocDiffusionLLM2026 />} />
           <Route path="/news/icml-2026-lab" element={<Icml2026Lab />} />
           <Route path="/team/ilija-bogunovic" element={<IlijaBogunovic />} />
           <Route path="/team/william-bankes" element={<WilliamBankes />} />
