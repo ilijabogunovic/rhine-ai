@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/brand/Reveal";
 import { getImagePath } from "@/utils/imageUtils";
 import { openOpenings } from "@/data/openings";
@@ -76,9 +77,12 @@ const HeroSection = () => {
             </span>
             <span
               aria-hidden="true"
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-paper text-2xl text-ink transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-rotate-12"
+              className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-paper text-ink transition-transform duration-300 ease-out group-hover:scale-110"
             >
-              →
+              <ArrowRight
+                strokeWidth={2.5}
+                className="h-6 w-6 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+              />
             </span>
           </Link>
         ))}
