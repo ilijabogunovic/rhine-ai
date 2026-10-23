@@ -8,13 +8,13 @@ import { Bullet } from "@/components/brand/Tags";
 import { openOpenings } from "@/data/openings";
 
 const interests = [
-  "Human alignment",
-  "Novel discovery",
   "Post-training",
-  "Large language models (LLMs)",
+  "Large language models",
   "Diffusion models",
-  "Foundation models",
   "Reasoning",
+  "Human alignment",
+  "Foundation models",
+  "Novel discovery",
   "Planning",
 ];
 

@@ -24,13 +24,13 @@ export const directions = [
 ];
 
 const topics = [
-  "Human alignment",
-  "Novel discovery",
   "Post-training",
   "Large language models",
   "Diffusion models",
-  "Foundation models",
   "Reasoning",
+  "Human alignment",
+  "Foundation models",
+  "Novel discovery",
   "Planning",
 ];
 

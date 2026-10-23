@@ -11,7 +11,20 @@ const RobinFaro = () => {
     about: [
       "Robin Faro is a PhD student at the University of Basel, jointly supervised by Prof. Ilija Bogunovic and Prof. Aurelien Lucchi."
     ],
-    researchInterests: [],
+    researchInterests: [
+      {
+        title: "Post-Training and Reasoning",
+        description: "Reinforcement learning and fine-tuning methods that improve how language models reason"
+      },
+      {
+        title: "Curriculum Learning",
+        description: "Ordering and selecting training data and tasks so that models learn faster and more reliably"
+      },
+      {
+        title: "Diffusion Language Models",
+        description: "Efficient pretraining, post-training and speed distillation"
+      }
+    ],
     publications: getAuthorPublications("Robin Faro"),
     socialLinks: [
         {
