@@ -16,6 +16,8 @@ import thumb260713315 from '../assets/pdf-thumbs/thumb-2607.13315.jpg';
 import thumb260700053 from '../assets/pdf-thumbs/thumb-2607.00053.jpg';
 import thumb260612232 from '../assets/pdf-thumbs/thumb-2606.12232.jpg';
 import thumb260518803 from '../assets/pdf-thumbs/thumb-2605.18803.jpg';
+import thumb260935426 from '../assets/pdf-thumbs/thumb-2609.35426.jpg';
+import thumb261035101 from '../assets/pdf-thumbs/thumb-2610.35101.jpg';
 
 const thumbnailMap: { [key: string]: string } = {
   '2602.20759': thumb260220759,
@@ -33,6 +35,8 @@ const thumbnailMap: { [key: string]: string } = {
   '2607.00053': thumb260700053,
   '2606.12232': thumb260612232,
   '2605.18803': thumb260518803,
+  '2609.35426': thumb260935426,
+  '2610.35101': thumb261035101,
 };
 
 /** The first-page thumbnail for a paper, from its arXiv or local PDF link. */

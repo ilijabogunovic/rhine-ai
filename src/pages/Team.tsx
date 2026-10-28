@@ -39,28 +39,12 @@ const teamMembers = [
     link: "/team/xiaohang-tang"
   },
   {
-    name: "Theo Brown",
-    role: "PhD Student",
-    expertise: "",
-    bio: "With UKAEA",
-    image: "/theo-brown-resized.jpg",
-    link: "/team/theo-brown"
-  },
-  {
     name: "Seongho Son",
     role: "PhD Student",
     expertise: "",
     bio: "With B. Paige (UCL)",
     image: "/seong-ho-resized.jpg",
     link: "/team/seong-ho"
-  },
-  {
-    name: "Zhe Wang",
-    role: "PhD Student",
-    expertise: "",
-    bio: "With Google DeepMind",
-    image: "/zhe-wang-proper.jpg",
-    link: "/team/zhe-wang"
   },
   {
     name: "Ahmet H. Guzel",
@@ -77,14 +61,6 @@ const teamMembers = [
     bio: "With J. Knoblauch (UCL)",
     image: "/abdelhamid-ezzerg-profile.jpg",
     link: "/team/abdelhamid-ezzerg"
-  },
-  {
-    name: "Dr. Sangwoong Yoon",
-    role: "Research Fellow",
-    expertise: "",
-    bio: "University College London\nIncoming assistant professor at UNIST",
-    image: "/sangwoong-yoon-resized.jpg",
-    link: "/team/sangwoong-yoon"
   },
   {
     name: "Robin Faro",
@@ -166,16 +142,25 @@ const masterStudents: Person[] = [
 // Former lab members. `bio` can say where they are now.
 const alumni: Person[] = [
   {
-    name: "Jue Du",
-    role: "Master Thesis",
-    bio: "University of Basel",
-    image: "",
+    name: "Theo Brown",
+    role: "PhD Student",
+    bio: "Now at UCL and Google DeepMind",
+    image: "/theo-brown-resized.jpg",
+    link: "/team/theo-brown",
   },
   {
-    name: "Akshat Mittal",
-    role: "Master Thesis",
-    bio: "University College London",
-    image: "",
+    name: "Zhe Wang",
+    role: "PhD Student",
+    bio: "Now at Google DeepMind",
+    image: "/zhe-wang-proper.jpg",
+    link: "/team/zhe-wang",
+  },
+  {
+    name: "Dr. Sangwoong Yoon",
+    role: "Research Fellow",
+    bio: "Now at UNIST",
+    image: "/sangwoong-yoon-resized.jpg",
+    link: "/team/sangwoong-yoon",
   },
 ];
 

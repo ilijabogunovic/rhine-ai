@@ -8,10 +8,24 @@ import { renderMathText } from "@/lib/mathText";
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "October 2026",
+    title: "Spherical Brownian Diffusion for Language Modeling",
+    excerpt: "We introduce Spherical Brownian Diffusion, a continuous diffusion language model that uses Brownian motion on the unit sphere as its forward process. Holding the corruption fixed, we find that the choice of sampler matters far more than the choice of corruption, with categorical refinement helping on reasoning tasks and stochastic updates preserving diversity in open-ended text generation.",
+    type: "Preprint",
+    url: "https://arxiv.org/abs/2610.35101"
+  },
+  {
+    date: "October 2026",
     title: "PhD and Postdoc Positions in Post-Training of Diffusion Language Models",
     excerpt: "We are hiring PhD students and Postdocs for the SNSF project \"Foundations of Post-Training for Reasoning in Diffusion Large Language Models.\" The positions are based in Basel and start in January 2027 or later. Apply preferably before November 20, 2026.",
     type: "Opportunity",
     url: "/news/phd-postdoc-diffusion-llm-2026"
+  },
+  {
+    date: "September 2026",
+    title: "Frontier Learning: Training LLM Reasoners at the Edge of Capability",
+    excerpt: "We propose frontier learning, an open-ended post-training approach that uses procedural generators online to keep producing informative training problems. A regret signal steers generation toward the edge of the model's evolving reasoning capabilities, giving consistently higher relative gains than fixed-pool baselines across reasoning tasks and model families.",
+    type: "Preprint",
+    url: "https://arxiv.org/abs/2609.35426"
   },
   {
     date: "September 2026",

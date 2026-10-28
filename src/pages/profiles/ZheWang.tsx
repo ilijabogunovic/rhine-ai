@@ -5,8 +5,8 @@ import { getImagePath } from "@/utils/imageUtils";
 const ZheWang = () => {
   const profileData = {
     name: "Zhe Wang",
-    role: "PhD Student",
-    affiliation: "UCL AI Centre (With Google DeepMind)",
+    role: "Former PhD Student",
+    affiliation: "Now at Google DeepMind",
     image: getImagePath("/zhe-wang-profile.jpg"),
     about: [],
     researchInterests: [],

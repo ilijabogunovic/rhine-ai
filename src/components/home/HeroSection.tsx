@@ -44,7 +44,7 @@ const HeroSection = () => {
           ))}
         </p>
         <p className="t-2 mt-8 max-w-[64ch] text-ink-soft">
-          A research group in the{" "}
+          Rhine AI is a research group in the{" "}
           <a href="https://dmi.unibas.ch/de/" target="_blank" rel="noopener noreferrer" className="link">
             Department of Mathematics and Computer Science (DMI)
           </a>{" "}

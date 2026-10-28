@@ -24,7 +24,9 @@ const authorRoutes: Record<string, string> = {
   "Ahmet H. Güzel": "/team/ahmet-h-guzel",
   "Ahmet H. Guzel": "/team/ahmet-h-guzel",
   "Abdelhamid Ezzerg": "/team/abdelhamid-ezzerg",
-  "Sangwoong Yoon": "/team/sangwoong-yoon"
+  "Sangwoong Yoon": "/team/sangwoong-yoon",
+  "Robin Faro": "/team/robin-faro",
+  "Antonio Lopardo": "/team/antonio-lopardo"
 };
 
 // Function to render author names with clickable links for team members
@@ -59,6 +61,26 @@ const renderAuthors = (authors: string) => {
 };
 
 export const publications = [
+  {
+    year: "2026",
+    title: "Spherical Brownian Diffusion for Language Modeling",
+    authors: "Andrea Miele, Ilija Bogunovic",
+    venue: "arXiv preprint arXiv:2610.35101",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2610.35101",
+    pdfFile: "/papers/2610.35101.pdf",
+    abstract: "Continuous diffusion language models involve two coupled design choices: how to corrupt continuous token representations and how to invert that corruption at generation time. Recent work has explored language generation on the unit sphere through geodesic and von Mises--Fisher (vMF) paths, raising the question of which forward process to use on this geometry and how much that choice matters relative to inference. We introduce Spherical Brownian Diffusion, using Brownian motion as the canonical isotropic diffusion on the sphere. Its heat semigroup provides a principled forward process, an additive dimension-free noise clock, and an exact ancestral bridge, while a clean-token posterior learned with cross-entropy supports multiple samplers. To separate corruption from inference, we derive high-dimensional approximation rates between Brownian and moment-matched vMF corruption and use this relationship for controlled substitutions. On Sudoku, Brownian and moment-matched vMF give nearly identical results across four samplers and five budgets under otherwise identical settings. In contrast, with the corruption process fixed, sampler choice produces a 25.0-point spread at a sampler budget of 180 calls. Using the ancestral bridge, we split this gain into a memory effect from re-noising the state, present on Sudoku and GSM8K, and a token-selection effect on GSM8K and largest at small budgets. Across reasoning tasks, categorical refinement improves performance, whereas unconditional text generation benefits from stochastic updates that preserve diversity.",
+  },
+  {
+    year: "2026",
+    title: "Frontier Learning: Training LLM Reasoners at the Edge of Capability",
+    authors: "Robin Faro, Shyam Sundhar Ramesh, Ilija Bogunovic, Aurelien Lucchi",
+    venue: "arXiv preprint arXiv:2609.35426",
+    type: "Preprint",
+    arxivLink: "https://arxiv.org/abs/2609.35426",
+    pdfFile: "/papers/2609.35426.pdf",
+    abstract: "Reinforcement Learning-based post-training of Large Language Models (LLM) has been successfully applied to improve their reasoning capabilities. Existing pipelines primarily finetune LLMs on a fixed pool of problems specified prior to training using the GRPO loss. This is fundamentally limiting, as learning signal arises only when policy rollouts mix successes and failures, causing the useful portion of any fixed pool to quickly become stale as the model improves. To address this, we propose frontier learning, an open-ended post-training approach in which procedural generators are used online to continually produce informative training problems. It treats the generator's task-specific parameters as a search space and uses a regret signal to prioritize and explore frontier difficulty levels in order to focus training at the edge of the model's evolving reasoning capabilities. Across several reasoning tasks and model families, our approach consistently achieves higher relative gains over fixed-pool baselines, demonstrating that effective post-training requires not only selecting useful problems, but continually generating them at the edge of capability.",
+  },
   {
     year: "2026",
     title: "Temporal Self-Distillation: Faster Inference in Discrete Diffusion Language Models",
