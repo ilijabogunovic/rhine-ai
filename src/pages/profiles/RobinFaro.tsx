@@ -21,6 +21,10 @@ const RobinFaro = () => {
         description: "Ordering and selecting training data and tasks so that models learn faster and more reliably"
       },
       {
+        title: "Agentic AI",
+        description: "Multi-turn reinforcement learning, tool use and long-horizon planning"
+      },
+      {
         title: "Diffusion Language Models",
         description: "Efficient pretraining, post-training and speed distillation"
       }

@@ -8,6 +8,13 @@ import { renderMathText } from "@/lib/mathText";
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
     date: "October 2026",
+    title: "Ilija Bogunovic Receives ERC Starting Grant for Research on Aligning Large Language Models",
+    excerpt: "Ilija Bogunovic has been awarded a Starting Grant from the European Research Council (ERC) for the project \"AlgoAlign: Efficient and Pluralistic Alignment for Reliable Large Language Models.\" The five-year project will be carried out at the Rhine AI Lab, University of Basel, and will develop efficient post-training methods that improve the reasoning of large language models and align them with the diverse preferences of different users and groups.",
+    type: "Announcement",
+    url: "/news/erc-starting-grant-2026"
+  },
+  {
+    date: "October 2026",
     title: "Spherical Brownian Diffusion for Language Modeling",
     excerpt: "We introduce Spherical Brownian Diffusion, a continuous diffusion language model that uses Brownian motion on the unit sphere as its forward process. Holding the corruption fixed, we find that the choice of sampler matters far more than the choice of corruption, with categorical refinement helping on reasoning tasks and stochastic updates preserving diversity in open-ended text generation.",
     type: "Preprint",
