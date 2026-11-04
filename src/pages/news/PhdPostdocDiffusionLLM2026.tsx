@@ -2,6 +2,18 @@ import type { ReactNode } from "react";
 import Layout from "@/components/layout/Layout";
 import { Bullet, CategoryTag } from "@/components/brand/Tags";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+
+const portal = [
+  {
+    label: "PhD position",
+    url: "https://jobs.unibas.ch/offene-stellen/phd-position-in-post-training-of-diffusion-language-models-prof-i-bogunovic/69e46779-c5dc-47c2-b000-d2bffb100240",
+  },
+  {
+    label: "Postdoc position",
+    url: "https://jobs.unibas.ch/offene-stellen/postdoc-position-in-post-training-of-diffusion-language-models-prof-i-bogunovic/1c8e7b49-8c0b-4002-89fa-268adb152f96",
+  },
+];
 
 const facts = [
   ["Positions", "PhD and Postdoc"],
@@ -127,20 +139,35 @@ const PhdPostdocDiffusionLLM2026 = () => {
 
             <Section title="How to apply">
               <p className="t-2 leading-relaxed text-ink">
-                If interested, please send us an application as described below, and indicate clearly whether you are
-                applying for a PhD or a Postdoc position. Your application should be a{" "}
-                <strong className="font-semibold text-carmine">single pdf file</strong> containing
-                the following:
+                Applications go through the University of Basel job portal, where each position has its own
+                listing:{" "}
+                <a href={portal[0].url} target="_blank" rel="noopener noreferrer" className="link font-semibold">
+                  PhD position
+                </a>{" "}
+                and{" "}
+                <a href={portal[1].url} target="_blank" rel="noopener noreferrer" className="link font-semibold">
+                  Postdoc position
+                </a>
+                . Your application consists of{" "}
+                <strong className="font-semibold text-carmine">two pdf files</strong>:
               </p>
-              <List
-                items={[
-                  "Short motivation statement (maximum 150 words) explaining your interest in the position and justifying why your background is a good fit for the position",
-                  "Curriculum vitae (including a list of publications, if applicable)",
-                  "PhD applicants: scanned transcripts of bachelor’s and master’s degree",
-                  "Contact info (no direct recommendation letters) for peers who can recommend you",
-                  "PhD applicants: your latest thesis (and/or one of your publications, if applicable). Postdoc applicants: your PhD thesis or up to two representative publications",
-                ]}
-              />
+              <ol className="space-y-6">
+                <li className="space-y-3">
+                  <h3 className="t-2 font-semibold text-ink">1. Your CV</h3>
+                  <List items={["Curriculum vitae, including a list of publications if applicable"]} />
+                </li>
+                <li className="space-y-3">
+                  <h3 className="t-2 font-semibold text-ink">2. A single pdf containing:</h3>
+                  <List
+                    items={[
+                      "Short motivation statement (maximum 150 words) explaining your interest in the position and justifying why your background is a good fit for the position",
+                      "PhD applicants: scanned transcripts of bachelor’s and master’s degree",
+                      "Contact info (no direct recommendation letters) for peers who can recommend you",
+                      "PhD applicants: your latest thesis (and/or one of your publications, if applicable). Postdoc applicants: your PhD thesis or up to two representative publications",
+                    ]}
+                  />
+                </li>
+              </ol>
               <p className="t-2 leading-relaxed text-ink">
                 You are encouraged to send your application before November 20, 2026. However, there is no deadline for
                 applying, and the positions will be open until suitable candidates are found. If your application is
@@ -161,14 +188,23 @@ const PhdPostdocDiffusionLLM2026 = () => {
                 ))}
               </dl>
               <div className="space-y-3 border-t border-beige pt-6">
-                <p className="t-1 text-ink-soft">Send your application to</p>
-                <a href="mailto:ilija.bogunovic@unibas.ch" className="link t-2 block font-semibold">
-                  ilija.bogunovic@unibas.ch
-                </a>
-                <p className="t-1 text-ink-soft">
-                  with the subject line <span className="font-semibold text-ink">[PhD position application]</span> or{" "}
-                  <span className="font-semibold text-ink">[PostDoc application]</span>.
-                </p>
+                <p className="t-1 text-ink-soft">Apply on the University of Basel job portal</p>
+                {portal.map((p) => (
+                  <a
+                    key={p.url}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn group w-full justify-between"
+                  >
+                    {p.label}
+                    <ArrowUpRight
+                      aria-hidden="true"
+                      strokeWidth={2.25}
+                      className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </a>
+                ))}
               </div>
             </div>
           </aside>
