@@ -12,6 +12,12 @@ export interface Opening {
 
 export const openings: Opening[] = [
   {
+    title: "PhD and Postdoc positions in Recursive Self-Improvement",
+    summary: "How LLMs and AI agents can drive their own improvement. In Basel, flexible start, reviewed on a rolling basis.",
+    url: "/news/phd-postdoc-recursive-self-improvement-2026",
+    open: true,
+  },
+  {
     title: "PhD and Postdoc positions in Post-Training of Diffusion Language Models",
     summary: "SNSF-funded, in Basel, starting January 2027 or later. Apply preferably before November 20, 2026.",
     url: "/news/phd-postdoc-diffusion-llm-2026",

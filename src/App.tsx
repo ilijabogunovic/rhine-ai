@@ -39,6 +39,7 @@ import Neurips2026 from "./pages/news/Neurips2026";
 import SnsfProjectGrant2026 from "./pages/news/SnsfProjectGrant2026";
 import ErcStartingGrant2026 from "./pages/news/ErcStartingGrant2026";
 import PhdPostdocDiffusionLLM2026 from "./pages/news/PhdPostdocDiffusionLLM2026";
+import PhdPostdocRecursiveSelfImprovement2026 from "./pages/news/PhdPostdocRecursiveSelfImprovement2026";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/news/snsf-project-grant-2026" element={<SnsfProjectGrant2026 />} />
           <Route path="/news/erc-starting-grant-2026" element={<ErcStartingGrant2026 />} />
           <Route path="/news/phd-postdoc-diffusion-llm-2026" element={<PhdPostdocDiffusionLLM2026 />} />
+          <Route path="/news/phd-postdoc-recursive-self-improvement-2026" element={<PhdPostdocRecursiveSelfImprovement2026 />} />
           <Route path="/news/icml-2026-lab" element={<Icml2026Lab />} />
           <Route path="/team/ilija-bogunovic" element={<IlijaBogunovic />} />
           <Route path="/team/william-bankes" element={<WilliamBankes />} />

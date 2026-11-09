@@ -7,6 +7,13 @@ import { renderMathText } from "@/lib/mathText";
 
 export const newsItems: { date: string; title: string; excerpt: string; type: string; url: string; highlight?: boolean }[] = [
   {
+    date: "November 2026",
+    title: "PhD and Postdoc Positions in Recursive Self-Improvement",
+    excerpt: "We are hiring PhD students and a Postdoc to work on recursive self-improvement and open-ended learning: how large language models and AI agents can generate their own tasks and environments, check their own progress, and improve the procedures used to train them. The positions are based in Basel with flexible start dates, and applications are reviewed on a rolling basis.",
+    type: "Opportunity",
+    url: "/news/phd-postdoc-recursive-self-improvement-2026"
+  },
+  {
     date: "October 2026",
     title: "Ilija Bogunovic Receives ERC Starting Grant for Research on Aligning Large Language Models",
     excerpt: "Ilija Bogunovic has been awarded a Starting Grant from the European Research Council (ERC) for the project \"AlgoAlign: Efficient and Pluralistic Alignment for Reliable Large Language Models.\" The five-year project will be carried out at the Rhine AI Lab, University of Basel, and will develop efficient post-training methods that improve the reasoning of large language models and align them with the diverse preferences of different users and groups.",

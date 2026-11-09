@@ -61,32 +61,34 @@ const HeroSection = () => {
           We develop agentic AI systems that reason, adapt, and self-evolve, focusing on sequential decision making and
           generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
         </p>
+      </Reveal>
+        <div className={`mt-12 grid gap-4 sm:mt-14 ${openOpenings().length > 1 ? "md:grid-cols-2" : ""}`}>
         {openOpenings().map((o) => (
           <Link
             key={o.url}
             to={o.url}
-            className="group mt-12 flex w-full flex-col gap-6 rounded-3xl bg-paper-2 p-7 text-left transition-colors duration-300 hover:bg-beige sm:flex-row sm:items-center sm:justify-between sm:p-9"
+            className="group flex h-full w-full flex-col gap-6 rounded-3xl bg-paper-2 p-7 text-left transition-colors duration-300 hover:bg-beige sm:flex-row sm:justify-between sm:px-9 sm:py-7"
           >
             <span className="block">
               <span className="t-1 inline-flex items-center gap-2 font-semibold text-carmine">
                 <span aria-hidden="true" className="hiring-dot h-2 w-2 rounded-full bg-carmine" />
                 We're hiring
               </span>
-              <span className="t-3 mt-3 block max-w-[44ch] font-display font-semibold text-ink">{o.title}</span>
+              <span className="t-3 mt-2 block max-w-[44ch] font-display font-semibold text-ink">{o.title}</span>
               <span className="t-1 mt-2 block text-ink-soft">{o.summary}</span>
             </span>
             <span
               aria-hidden="true"
-              className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-paper text-ink transition-transform duration-300 ease-out group-hover:scale-110"
+              className="grid h-12 w-12 shrink-0 place-items-center sm:self-center rounded-full bg-paper text-ink transition-transform duration-300 ease-out group-hover:scale-110"
             >
               <ArrowRight
                 strokeWidth={2.5}
-                className="h-6 w-6 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                className="h-5 w-5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
               />
             </span>
           </Link>
         ))}
-      </Reveal>
+        </div>
     </div>
     <style>{`
       @media (prefers-reduced-motion: no-preference) {
