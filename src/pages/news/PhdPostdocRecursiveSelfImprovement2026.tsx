@@ -8,11 +8,11 @@ import { ArrowUpRight, Clock } from "lucide-react";
 const portal = [
   {
     label: "PhD positions",
-    url: "",
+    url: "https://jobs.unibas.ch/offene-stellen/phd-position-in-recursive-self-improvement-prof-i-bogunovic/2b75cea1-620c-4740-8c21-0d290d31ff4b",
   },
   {
     label: "Postdoc position",
-    url: "",
+    url: "https://jobs.unibas.ch/offene-stellen/postdoc-position-in-recursive-self-improvement-prof-i-bogunovic/59e22c12-f94b-433b-a69a-f8112c863e30",
   },
 ];
 const portalReady = portal.every((p) => p.url);
