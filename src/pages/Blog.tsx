@@ -5,6 +5,15 @@ import { renderMathText } from "@/lib/mathText";
 
 const blogPosts = [
   {
+    date: "November 2026",
+    title: "Bench the Weights: Can AI Agents Debug Neural Networks?",
+    author: "Robin Faro, Antonio Lopardo, Andrea Miele, Aurélien Lucchi, and Ilija Bogunovic",
+    excerpt: "We hid targeted edits in the weights of 42 pretrained networks and gave 19 models from seven labs, running as coding agents, 25 minutes and 50 forward passes to find and undo them, with no gradients. GPT-6.2 Astra completely repaired 30 of the 42 networks; the next best model repaired about 15.",
+    readTime: "25 min read",
+    category: "Technical",
+    url: "/blog/bench-the-weights/"
+  },
+  {
     date: "September 2026",
     title: "Fine-Tuning DiffusionGemma: What Works, What Breaks",
     author: "Andrea Miele, William Bankes, Keyue Jiang, Seongho Son, Xiaohang Tang, and Ilija Bogunovic",
@@ -80,8 +89,7 @@ const Blog = () => {
             <li key={post.title}>
               <a
                 href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(post.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="group grid gap-x-10 gap-y-3 py-10 lg:grid-cols-12"
               >
                 <span className="t-1 block text-ink-soft lg:col-span-3">
@@ -96,7 +104,9 @@ const Blog = () => {
                   <span className="t-2 mt-4 block text-ink-soft">{renderMathText(post.excerpt)}</span>
                   <span className="t-1 mt-4 inline-block font-medium text-carmine">
                     Read the post{" "}
-                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">↗</span>
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                      {post.url.startsWith("http") ? "↗" : "→"}
+                    </span>
                   </span>
                 </span>
               </a>

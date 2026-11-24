@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 index.html
+# Standalone blog posts are served as public/blog/<slug>/index.html
+!public/blog/*/index.html
 
 # design tooling output
 .taste-skill/
