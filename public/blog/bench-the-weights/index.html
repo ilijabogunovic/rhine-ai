@@ -1152,7 +1152,7 @@ html.intro-on body { overflow: hidden; }
   <p class="ol-t">Outline</p>
   <ol class="ol-parts">
     <li><a class="ol-p" href="#part-design"><span class="ol-n">1</span>Benchmark design</a><ul class="ol-s"><li><a href="#s-0-why-repair-weights">Why weight-space programming</a></li><li><a href="#s-1-the-setup">The networks</a></li><li><a href="#s-2-how-the-problems-are-built">How the problems are built</a></li><li><a href="#s-3-the-solver-s-setup">The solver's setup</a></li></ul></li>
-    <li><a class="ol-p" href="#part-results"><span class="ol-n">2</span>Results</a><ul class="ol-s"><li><a href="#s-4-who-repairs-the-most">Who repairs the most?</a></li><li><a href="#s-5-what-the-agents-did">What the agents did</a></li><li><a href="#integrity">Did anyone cheat?</a></li><li><a href="#s-7-how-capability-has-evolved">How capability has evolved</a></li></ul></li>
+    <li><a class="ol-p" href="#part-results"><span class="ol-n">2</span>Results</a><ul class="ol-s"><li><a href="#s-4-who-repairs-the-most">Who repairs the most?</a></li><li><a href="#s-5-what-the-agents-did">What did the agents do?</a></li><li><a href="#integrity">Did anyone cheat?</a></li><li><a href="#s-7-how-capability-has-evolved">How has capability evolved?</a></li></ul></li>
     <li><a class="ol-p" href="#part-ablations"><span class="ol-n">3</span>Ablations</a><ul class="ol-s"><li><a href="#s-8-does-more-time-help">Does more time help?</a></li><li><a href="#s-9-does-more-thinking-help">Does more thinking help?</a></li></ul></li>
     <li><a class="ol-p" href="#part-takeaways"><span class="ol-n">4</span>Takeaways</a><ul class="ol-s"><li><a href="#s-11-what-it-means">What it means</a></li><li><a href="#s-12-limitations">Limitations</a></li><li><a href="#s-13-what-next">What next</a></li></ul></li>
   </ol>
@@ -1335,7 +1335,7 @@ html.intro-on body { overflow: hidden; }
 </figure>
 
 <section class="col">
-  <h3 id="s-5-what-the-agents-did">What the agents did</h3>
+  <h3 id="s-5-what-the-agents-did">What did the agents do?</h3>
   <p>For every attempt, we keep a full record: the agent's messages and tool calls, the code it ran, a log of every weight it inspected, every forward pass, and every edit it saved or dropped. We also asked each agent to start every code cell with a one-line hypothesis, such as “the outputs of the third block look off”, so we can see what it believed at each step. We checked all these trajectories in order to get some insights about how the models reached their performance.</p>
   <p><b>Most agents touch the right weights, then let go.</b> We count a trial's bugs as found if the agent edits a modified weight or names a modified layer in a hypothesis. Finding is the easy part. 13 of the 19 models do it in at least two thirds of their trials. Solving the problem, with at least 75% recovery, is rare. GPT-6.2 Astra solves 73% of its trials, GPT-6.2 Sol 35% and no other model more than 29% (Figure 5). The most common failure is giving up on the right edit, editing a modified weight and then undoing it.</p>
   <p><b>The edits get dropped because the score does not move.</b> 85% of the undone edits had shown no gain. That is by design. Undoing one of a problem's bugs alone recovers less than 20%, so a correct first step looks like no progress. GPT-6.2 Astra and Sol keep about half of these no-gain edits, most other models a quarter to a third. The first example below Figure 5 shows what this looks like: GPT-6.2 Astra and Claude Fable 5.2 both find the first bug of the same problem, and only Astra keeps the fix.</p>
@@ -1507,7 +1507,7 @@ html.intro-on body { overflow: hidden; }
 <aside class="col insight"><b>Insight</b>The models that went looking for a shortcut were mostly the ones with nothing better to try. There was nothing on the machine to find.</aside>
 
 <section class="col">
-  <h3 id="s-7-how-capability-has-evolved" data-ek="h2-1l6r7s6">How capability has evolved over time</h3>
+  <h3 id="s-7-how-capability-has-evolved" data-ek="h2-1l6r7s6">How has capability evolved over time?</h3>
   <p>Sorted by release date, the same results show how fast weight-space programming has improved over four months, though not smoothly (Figure 13). Before September no model fully repaired more than one of the 42 networks. GPT-6 Astra, released on 3 September, solved 29%, and for two and a half months no model beat it. GPT-6.2 Astra then reached 73% on 17 November, two and a half times the previous best.</p>
   <p>Most of the progress came in November. <a href="https://rikiyat.github.io/blog/weight-space-programming/">Sparks of Weight-Space Programming</a> was published on 2 November, and every provider that has released a model since then beat its earlier best. OpenAI went from 29% to 73% with GPT-6.2 Astra, Google from 15% to 29% with Gemini 4 Neon, and Anthropic from 5% to 21% with Claude Fable 5.2. The timing does not show cause and effect, since these models were very likely in development before the post appeared. Either way, models are getting better at editing network weights directly, and the pace suggests that frontier labs may already be training on similar tasks.</p>
 </section>
