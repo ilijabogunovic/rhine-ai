@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/brand/Reveal";
 import { getImagePath } from "@/utils/imageUtils";
 import { openOpenings } from "@/data/openings";
@@ -62,7 +62,44 @@ const HeroSection = () => {
           generative AI to drive novel discoveries and build robust, intelligent systems for real-world challenges.
         </p>
       </Reveal>
-        <div className={`mt-12 grid gap-4 sm:mt-14 ${openOpenings().length > 1 ? "md:grid-cols-2" : ""}`}>
+        {/* Featured release: the latest blog post and its leaderboard */}
+        <div className="mt-12 flex flex-col gap-6 rounded-3xl bg-paper-2 p-7 sm:mt-14 sm:flex-row sm:items-center sm:gap-8 sm:px-9 sm:py-7">
+          <img
+            src={getImagePath("/blog/bench-the-weights/logo.png")}
+            alt=""
+            width={320}
+            height={320}
+            className="h-20 w-20 shrink-0 sm:h-24 sm:w-24"
+          />
+          <div className="min-w-0 flex-1">
+            <span className="t-1 inline-flex items-center gap-2 font-semibold text-carmine">
+              <span
+                aria-hidden="true"
+                className="new-badge inline-block text-[1.25em] font-extrabold leading-none text-carmine"
+              >
+                !
+              </span>
+              New on the research blog
+            </span>
+            <a href="/blog/bench-the-weights/" className="t-3 mt-2 block font-display font-semibold text-ink transition-colors hover:text-carmine">
+              Bench the Weights: Can AI Agents Debug Neural Networks?
+            </a>
+            <span className="t-1 mt-2 block text-ink-soft">
+              19 models from seven labs try to find and fix hidden bugs in the weights of 42 networks, without gradients.
+            </span>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-3 sm:flex-col">
+            <a href="/blog/bench-the-weights/" className="btn group">
+              Read the post
+              <ArrowRight strokeWidth={2.25} className="arrow h-4 w-4" />
+            </a>
+            <a href="https://benchtheweights.com" target="_blank" rel="noopener noreferrer" className="btn btn-quiet bg-paper hover:bg-beige">
+              Leaderboard
+              <ArrowUpRight strokeWidth={2.25} className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+        <div className={`mt-4 grid gap-4 ${openOpenings().length > 1 ? "md:grid-cols-2" : ""}`}>
         {openOpenings().map((o) => (
           <Link
             key={o.url}
@@ -96,6 +133,8 @@ const HeroSection = () => {
         @keyframes hero-image-in { from { transform: scale(1.06); opacity: 0.6; } }
         .hiring-dot { animation: hiring-dot 1.8s ease-in-out infinite; }
         @keyframes hiring-dot { 50% { opacity: 0.35; transform: scale(0.7); } }
+        .new-badge { animation: new-badge 1.8s ease-in-out infinite; }
+        @keyframes new-badge { 50% { transform: scale(1.15); } }
       }
     `}</style>
   </section>

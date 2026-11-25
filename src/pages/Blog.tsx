@@ -8,7 +8,7 @@ const blogPosts = [
     date: "November 2026",
     title: "Bench the Weights: Can AI Agents Debug Neural Networks?",
     author: "Robin Faro, Antonio Lopardo, Andrea Miele, Aurélien Lucchi, and Ilija Bogunovic",
-    excerpt: "We hid targeted edits in the weights of 42 pretrained networks and gave 19 models from seven labs, running as coding agents, 25 minutes and 50 forward passes to find and undo them, with no gradients. GPT-6.2 Astra completely repaired 30 of the 42 networks; the next best model repaired about 15.",
+    excerpt: "We hid targeted bugs in the weights of 42 pretrained networks and gave 19 models from seven labs, running as coding agents, 25 minutes and 50 forward passes to find and undo them, with no gradients. GPT-6.2 Astra completely repaired 30 of the 42 networks; the next best model repaired about 15.",
     readTime: "25 min read",
     category: "Technical",
     url: "/blog/bench-the-weights/"
